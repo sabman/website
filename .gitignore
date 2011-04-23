@@ -1,4 +1,5 @@
 .DS_Store
-tmp/*
 *.css
 .monitor
+node_modules
+tmp/*
