@@ -335,7 +335,7 @@ $(function() {
       var t = e.originalEvent.touches.item(0);
       me.goTo(new nko.Vector(t.pageX, t.pageY));
     })
-    .delegate('.slide', 'click', function() {
+    .delegate('.page', 'click', function() {
       var $this = $(this)
         , id = $(this).attr('id');
       $this.removeAttr('id');
