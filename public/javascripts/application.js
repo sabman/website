@@ -241,11 +241,41 @@ $(function() {
   new nko.Thing({ name: 'deadtree', pos: new nko.Vector(4000, 4960) });
   new nko.Thing({ name: 'portopotty', pos: new nko.Vector(4080, 4960) });
 
-  // slide-0
+  // slide-0 ground rules
   new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(1900, 200) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(1800, 180) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(1700, 250) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(1850, 750) });
+
+  // slide-1 audience
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(2800, 780) });
+  new nko.Thing({ name: 'deadtree', pos: new nko.Vector(2900, 800) });
+  new nko.Thing({ name: 'chair', pos: new nko.Vector(3700, 220) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(3780, 190) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(3880, 290) });
+
+  // slide-2 popularity
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3200, 1600) });
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3260, 1600) });
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3340, 1600) });
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3410, 1600) });
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3470, 1610) });
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3600, 1600) });
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3700, 1600) });
+  new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3780, 1600) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(3850, 1620) });
+
+  // slide-3
+
+  // slide-4 team
+  new nko.Thing({ name: 'deadtree', pos: new nko.Vector(880, 900) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(800, 950) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(900, 1000) });
+  new nko.Thing({ name: 'hachiko', pos: new nko.Vector(840, 1080) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(750, 1500) });
+
+  // slide-9 thanks
+  new nko.Thing({ name: 'banner', pos: new nko.Vector(3610, 2060) });
 
   // mark the ends of the universe
   //new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(0, 0) });
