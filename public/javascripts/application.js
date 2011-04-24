@@ -146,12 +146,12 @@ nko.Dude.prototype.animate = function animate(state) {
   this.animateTimeout = setTimeout(function() { self.animate() }, 400);
 };
 
-nko.Dude.prototype.goTo = function(pos) {
+nko.Dude.prototype.goTo = function(pos, duration) {
   pos = new nko.Vector(pos);
 
   var self = this
     , delta = pos.minus(this.pos)
-    , duration = delta.length() / 200 * 1000;
+    , duration = arguments.length > 1 ? duration : delta.length() / 200 * 1000;
   this.animate(delta.cardinalDirection());
   this.div
     .stop()
@@ -174,9 +174,14 @@ nko.Dude.prototype.goTo = function(pos) {
       },
       complete: function() {
         self.pos = pos;
+        // z-index?
         self.animate('idle');
       }
     });
+};
+
+nko.Dude.prototype.warp = function(pos) {
+  this.goTo(pos, 0);
 };
 
 nko.Dude.prototype.speak = function(text) {
@@ -236,17 +241,32 @@ $(function() {
   new nko.Thing({ name: 'deadtree', pos: new nko.Vector(4000, 4960) });
   new nko.Thing({ name: 'portopotty', pos: new nko.Vector(4080, 4960) });
 
+  // slide-0
+  new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(1900, 200) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1800, 180) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1700, 250) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1850, 750) });
+
   // mark the ends of the universe
   //new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(0, 0) });
   new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(8000, 8000) });
 
   $(window)
     .load(function() { // center it
-      var page = $('.page#index')
+      var page = $(location.hash || '.page#index')
         , pos = page.position()
         , left = pos.left - ($(this).width() - page.width()) / 2
         , top = pos.top - ($(this).height() - page.height()) / 2;
       $(this).scrollLeft(left).scrollTop(top)
+
+      pos = new nko.Vector(pos.left + Math.random() * 800,
+                           pos.top + Math.random() * 200);
+      me.warp(pos);
+      ws.send(JSON.stringify({
+        obj: me,
+        method: 'warp',
+        arguments: [ pos ]
+      }));
     })
     .click(function(e) { // move on click
       var pos = { x: e.pageX, y: e.pageY };
