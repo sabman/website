@@ -334,6 +334,13 @@ $(function() {
     .bind('touchstart', function(e) { // move on touch
       var t = e.originalEvent.touches.item(0);
       me.goTo(new nko.Vector(t.pageX, t.pageY));
+    })
+    .delegate('.slide', 'click', function() {
+      var $this = $(this)
+        , id = $(this).attr('id');
+      $this.removeAttr('id');
+      location.hash = '#' + id;
+      $this.attr('id', id);
     });
 
   // keyboard
