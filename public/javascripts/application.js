@@ -267,6 +267,7 @@ $(function() {
 
   // slide-3 plan
   new nko.Thing({ name: 'desk', pos: new nko.Vector(2371, 1115) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(2400, 1100) });
 
   // slide-4 team
   new nko.Thing({ name: 'deadtree', pos: new nko.Vector(880, 900) });
