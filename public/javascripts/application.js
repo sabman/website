@@ -241,11 +241,12 @@ $(function() {
   new nko.Thing({ name: 'deadtree', pos: new nko.Vector(4000, 4960) });
   new nko.Thing({ name: 'portopotty', pos: new nko.Vector(4080, 4960) });
 
-  // slide-0 ground rules
+  // slide-0 rules
   new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(1900, 200) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(1800, 180) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(1700, 250) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(1850, 750) });
+  new nko.Thing({ name: 'arrowright', pos: new nko.Vector(2800, 100) });
 
   // slide-1 audience
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(2800, 780) });
@@ -264,6 +265,7 @@ $(function() {
   new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3700, 1600) });
   new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3780, 1600) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(3850, 1620) });
+  new nko.Thing({ name: 'arrowleft', pos: new nko.Vector(3100, 1580) });
 
   // slide-3 plan
   new nko.Thing({ name: 'desk', pos: new nko.Vector(2371, 1115) });
