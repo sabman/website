@@ -133,8 +133,8 @@ nko.Dude.prototype.animate = function animate(state) {
   if (state) this.state = state;
 
   var frames = this.state === 'idle' ? this.idleFrames : 2;
-  this.frame = ((this.frame + 1) % frames) + this.frameOffset[this.state];
-  this.div.css('background-position', (-this.frame * this.size.x) + 'px 0px');
+  this.frame = ((this.frame + 1) % frames);
+  this.div.css('background-position', (-(this.frameOffset[this.state]+this.frame) * this.size.x) + 'px 0px');
 
   if (this.bubble.is(':visible')) {
     this.bubbleFrame = (this.bubbleFrame + 1) % 3;
@@ -280,6 +280,9 @@ $(function() {
 
   // silde-7 chill
   new nko.Thing({ name: 'tent', pos: new nko.Vector(2500, 3600) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(2850, 3500) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(2890, 3600) });
+  new nko.Dude({ name: 'fire', pos: new nko.Vector(2700, 3620) });
 
   // slide-9 thanks
   new nko.Thing({ name: 'banner', pos: new nko.Vector(3610, 2060) });
