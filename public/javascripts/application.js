@@ -278,6 +278,9 @@ $(function() {
   new nko.Thing({ name: 'hachiko', pos: new nko.Vector(840, 1080) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(750, 1500) });
 
+  // silde-7 chill
+  new nko.Thing({ name: 'tent', pos: new nko.Vector(2500, 3600) });
+
   // slide-9 thanks
   new nko.Thing({ name: 'banner', pos: new nko.Vector(3610, 2060) });
 
