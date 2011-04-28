@@ -153,8 +153,9 @@ nko.Dude.prototype.goTo = function(pos, duration) {
     , delta = pos.minus(this.pos)
     , duration = arguments.length > 1 ? duration : delta.length() / 200 * 1000;
   this.animate(delta.cardinalDirection());
+  if (duration && duration > 0)
+    this.div.stop();
   this.div
-    .stop()
     .animate({
       left: pos.x,
       top: pos.y
@@ -181,7 +182,13 @@ nko.Dude.prototype.goTo = function(pos, duration) {
 };
 
 nko.Dude.prototype.warp = function(pos) {
-  this.goTo(pos, 0);
+  var self = this;
+
+  this.div
+    .fadeToggle(function() {
+      self.goTo(pos, 0);
+      self.div.fadeToggle();
+    });
 };
 
 nko.Dude.prototype.speak = function(text) {
@@ -291,23 +298,28 @@ $(function() {
   //new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(0, 0) });
   new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(8000, 8000) });
 
+  function warpTo(selector) {
+    var page = $(selector)
+      , $window = $(window)
+      , pos = page.position()
+      , left = pos.left - ($window.width() - page.width()) / 2
+      , top = pos.top - ($window.height() - page.height()) / 2;
+    $window.scrollLeft(left).scrollTop(top)
+
+    pos = new nko.Vector(pos.left + 20 + Math.random() * (page.width()-40),
+                         pos.top + 20 + Math.random() * (page.height()-40));
+    me.warp(pos);
+    ws.send(JSON.stringify({
+      obj: me,
+      method: 'warp',
+      arguments: [ pos ]
+    }));
+  }
+
   var scrolling = false;
   $(window)
     .load(function() { // center it
-      var page = $(location.hash || '.page#index')
-        , pos = page.position()
-        , left = pos.left - ($(this).width() - page.width()) / 2
-        , top = pos.top - ($(this).height() - page.height()) / 2;
-      $(this).scrollLeft(left).scrollTop(top)
-
-      pos = new nko.Vector(pos.left + Math.random() * 800,
-                           pos.top + Math.random() * 200);
-      me.warp(pos);
-      ws.send(JSON.stringify({
-        obj: me,
-        method: 'warp',
-        arguments: [ pos ]
-      }));
+      warpTo(location.hash || '.page#index');
     })
     .bind('mousewheel', function(e) {
       if (scrolling) {
@@ -364,6 +376,13 @@ $(function() {
       $this.removeAttr('id');
       location.hash = '#' + id;
       $this.attr('id', id);
+    })
+    .delegate('a[href^="#"]', 'click', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var page = $($(this).attr('href'));
+      warpTo(page);
+      page.click();
     });
 
   // keyboard
