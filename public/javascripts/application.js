@@ -232,7 +232,7 @@ $(function() {
   var types = [ 'suit', 'littleguy', 'beast', 'gifter' ];
   var me = new nko.Dude({
     name: types[Math.floor(types.length * Math.random())],
-    pos: new nko.Vector(4000 + Math.random() * 800, 4200 + Math.random() * 200),
+    pos: new nko.Vector(-100, -100),
     ready: function() {
       this.speak('type to chat. click to move around.');
       speakTimeout = setTimeout(function() { me.speak(''); }, 5000);
@@ -298,16 +298,25 @@ $(function() {
   //new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(0, 0) });
   new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(8000, 8000) });
 
+  function randomPositionOn(selector) {
+    var page = $(selector)
+      , pos = page.position()
+
+    return new nko.Vector(pos.left + 20 + Math.random() * (page.width()-40),
+                          pos.top + 20 + Math.random() * (page.height()-40));
+  }
+
   function warpTo(selector) {
     var page = $(selector)
       , $window = $(window)
       , pos = page.position()
       , left = pos.left - ($window.width() - page.width()) / 2
       , top = pos.top - ($window.height() - page.height()) / 2;
+
     $window.scrollLeft(left).scrollTop(top)
 
-    pos = new nko.Vector(pos.left + 20 + Math.random() * (page.width()-40),
-                         pos.top + 20 + Math.random() * (page.height()-40));
+    pos = randomPositionOn(page);
+
     me.warp(pos);
     ws.send(JSON.stringify({
       obj: me,
@@ -315,6 +324,26 @@ $(function() {
       arguments: [ pos ]
     }));
   }
+  nko.goTo = function goTo(selector) {
+    var page = $(selector)
+      , $window = $(window)
+      , pos = page.position()
+      , left = pos.left - ($window.width() - page.width()) / 2
+      , top = pos.top - ($window.height() - page.height()) / 2;
+
+    $('body')
+      .stop()
+      .animate({ scrollLeft: left, scrollTop: top }, 1000, 'linear');
+
+    pos = randomPositionOn(page);
+
+    me.goTo(pos);
+    ws.send(JSON.stringify({
+      obj: me,
+      method: 'goTo',
+      arguments: [ pos ]
+    }));
+  };
 
   var scrolling = false;
   $(window)
