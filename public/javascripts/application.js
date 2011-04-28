@@ -291,6 +291,7 @@ $(function() {
   //new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(0, 0) });
   new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(8000, 8000) });
 
+  var scrolling = false;
   $(window)
     .load(function() { // center it
       var page = $(location.hash || '.page#index')
@@ -307,6 +308,12 @@ $(function() {
         method: 'warp',
         arguments: [ pos ]
       }));
+    })
+    .bind('mousewheel', function(e) {
+      if (scrolling) {
+        $('body').stop();
+        scrolling = false;
+      }
     })
     .click(function(e) { // move on click
       var pos = { x: e.pageX, y: e.pageY };
@@ -337,6 +344,7 @@ $(function() {
         else if (pos.y > bottom - buffer)
           newTop = top + $win.height()/2;
 
+        scrolling = true;
         $('body')
           .stop()
           .animate({ scrollLeft: newLeft, scrollTop: newTop }, 1000, 'linear');
