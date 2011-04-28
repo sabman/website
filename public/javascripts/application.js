@@ -261,6 +261,7 @@ $(function() {
   new nko.Thing({ name: 'chair', pos: new nko.Vector(3700, 220) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(3780, 190) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(3880, 290) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(3880, 1000) });
 
   // slide-2 popularity
   new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3200, 1600) });
@@ -285,7 +286,20 @@ $(function() {
   new nko.Thing({ name: 'hachiko', pos: new nko.Vector(840, 1080) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(750, 1500) });
 
+  // slide-5 no tests
+  new nko.Thing({ name: 'obelisk', pos: new nko.Vector(890, 2100) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1790, 2100) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1700, 2300) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1800, 2500) });
+
+  // slide-6 polish
+  new nko.Thing({ name: 'deadtree', pos: new nko.Vector(800, 3200) });
+  new nko.Thing({ name: 'baretree', pos: new nko.Vector(900, 3500) });
+  new nko.Thing({ name: 'deadtree', pos: new nko.Vector(850, 3550) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1900, 3800) });
+
   // silde-7 chill
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1850, 2800) });
   new nko.Thing({ name: 'tent', pos: new nko.Vector(2500, 3600) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(2850, 3500) });
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(2890, 3600) });
@@ -293,6 +307,8 @@ $(function() {
 
   // slide-9 thanks
   new nko.Thing({ name: 'banner', pos: new nko.Vector(3610, 2060) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(3850, 2050) });
+  new nko.Thing({ name: 'americanflag', pos: new nko.Vector(3810, 2100) });
 
   // mark the ends of the universe
   //new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(0, 0) });
@@ -444,7 +460,7 @@ $(function() {
           }, 5000);
       }
     }).focus();
-  var slide = 0;
+  var slide = parseInt(location.hash.replace('#slide-', '')) || 0;
   $(document).keylisten(function(e) {
     switch (e.keyName) {
       case 'alt+left':
