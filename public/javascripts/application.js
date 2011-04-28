@@ -394,7 +394,18 @@ $(function() {
           }, 5000);
       }
     }).focus();
-  $(document).keylisten(function() { $text.focus() });
+  $(document).keylisten(function(e) {
+    switch (e.keyName) {
+      case 'meta':
+      case 'meta+ctrl':
+      case 'ctrl':
+      case 'alt':
+      case 'shift':
+        return;
+      default:
+        $text.focus()
+    }
+  });
 
   // socket
   var dudes = {};
