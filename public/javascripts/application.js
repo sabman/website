@@ -343,6 +343,8 @@ $(function() {
       method: 'goTo',
       arguments: [ pos ]
     }));
+
+    page.click();
   };
 
   var scrolling = false;
@@ -442,8 +444,13 @@ $(function() {
           }, 5000);
       }
     }).focus();
+  var slide = 0;
   $(document).keylisten(function(e) {
     switch (e.keyName) {
+      case 'alt+left':
+        return nko.goTo('#slide-' + --slide);
+      case 'alt+right':
+        return nko.goTo('#slide-' + ++slide);
       case 'meta':
       case 'meta+ctrl':
       case 'ctrl':
