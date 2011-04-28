@@ -317,32 +317,37 @@ $(function() {
         arguments: [ pos ]
       }));
 
-      // TODO move into nko.Viewport
-      var $win = $(this)
-        , left = $win.scrollLeft()
-        , top = $win.scrollTop()
-        , right = left + $win.width()
-        , bottom = top + $win.height()
-        , buffer = 160
-        , newLeft = left, newTop = top;
+      if (!Modernizr.touch) {
+        // TODO move into nko.Viewport
+        var $win = $(this)
+          , left = $win.scrollLeft()
+          , top = $win.scrollTop()
+          , right = left + $win.width()
+          , bottom = top + $win.height()
+          , buffer = 160
+          , newLeft = left, newTop = top;
 
-      if (pos.x < left + buffer)
-        newLeft = left - $win.width()/2;
-      else if (pos.x > right - buffer)
-        newLeft = left + $win.width()/2;
+        if (pos.x < left + buffer)
+          newLeft = left - $win.width()/2;
+        else if (pos.x > right - buffer)
+          newLeft = left + $win.width()/2;
 
-      if (pos.y < top + buffer)
-        newTop = top - $win.height()/2;
-      else if (pos.y > bottom - buffer)
-        newTop = top + $win.height()/2;
+        if (pos.y < top + buffer)
+          newTop = top - $win.height()/2;
+        else if (pos.y > bottom - buffer)
+          newTop = top + $win.height()/2;
 
-      $('body')
-        .stop()
-        .animate({ scrollLeft: newLeft, scrollTop: newTop }, 1000, 'linear');
+        $('body')
+          .stop()
+          .animate({ scrollLeft: newLeft, scrollTop: newTop }, 1000, 'linear');
+      }
     });
+  var moved = false;
   $('body')
-    .bind('touchstart', function(e) { // move on touch
-      var t = e.originalEvent.touches.item(0);
+    .bind('touchmove', function(e) { moved = true; })
+    .bind('touchend', function(e) { // move on touch
+      if (moved) return moved = false;
+      var t = e.originalEvent.changedTouches.item(0);
       me.goTo(new nko.Vector(t.pageX, t.pageY));
     })
     .delegate('.page', 'click', function() {
