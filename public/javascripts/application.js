@@ -410,6 +410,7 @@ $(function() {
       }
     })
     .keydown(function(e) {
+      if (e.altKey) return true;
       var d = (function() {
         switch (e.keyCode) {
           case 37: // left
@@ -436,6 +437,7 @@ $(function() {
       }
     })
     .keyup(function(e) {
+      if (e.altKey) return true;
       switch (e.keyCode) {
         case 37: // left
         case 38: // up
