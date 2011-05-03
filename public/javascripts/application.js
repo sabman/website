@@ -424,7 +424,13 @@ $(function() {
       })();
       if (d) {
         if (me.keyNav) return false;
-        me.goTo(me.pos.plus(d));
+        var pos = me.pos.plus(d);
+        me.goTo(pos);
+        ws.send(JSON.stringify({
+          obj: me,
+          method: 'goTo',
+          arguments: [ pos ]
+        }));
         me.keyNav = true;
         return false;
       }
@@ -436,6 +442,11 @@ $(function() {
         case 39: // right
         case 40: // down
           me.goTo(me.pos, 1);
+          ws.send(JSON.stringify({
+            obj: me,
+            method: 'goTo',
+            arguments: [ me.pos, 1 ]
+          }));
           me.keyNav = false;
           return false;
       }
