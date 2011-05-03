@@ -413,13 +413,13 @@ $(function() {
       var d = (function() {
         switch (e.keyCode) {
           case 37: // left
-            return new nko.Vector(-1000, 0);
+            return new nko.Vector(-5000, 0);
           case 38: // up
-            return new nko.Vector(0, -1000);
+            return new nko.Vector(0, -5000);
           case 39: // right
-            return new nko.Vector(+1000, 0);
+            return new nko.Vector(+5000, 0);
           case 40: // down
-            return new nko.Vector(0, +1000);
+            return new nko.Vector(0, +5000);
         }
       })();
       if (d) {
