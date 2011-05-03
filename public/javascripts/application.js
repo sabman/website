@@ -310,8 +310,7 @@ $(function() {
   new nko.Thing({ name: 'livetree', pos: new nko.Vector(3850, 2050) });
   new nko.Thing({ name: 'americanflag', pos: new nko.Vector(3810, 2100) });
 
-  // mark the ends of the universe
-  //new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(0, 0) });
+  // mark the end of the universe
   new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(8000, 8000) });
 
   function randomPositionOn(selector) {
