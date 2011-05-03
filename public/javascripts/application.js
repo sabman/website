@@ -408,6 +408,37 @@ $(function() {
           .stop()
           .animate({ scrollLeft: newLeft, scrollTop: newTop }, 1000, 'linear');
       }
+    })
+    .keydown(function(e) {
+      var d = (function() {
+        switch (e.keyCode) {
+          case 37: // left
+            return new nko.Vector(-1000, 0);
+          case 38: // up
+            return new nko.Vector(0, -1000);
+          case 39: // right
+            return new nko.Vector(+1000, 0);
+          case 40: // down
+            return new nko.Vector(0, +1000);
+        }
+      })();
+      if (d) {
+        if (me.keyNav) return false;
+        me.goTo(me.pos.plus(d));
+        me.keyNav = true;
+        return false;
+      }
+    })
+    .keyup(function(e) {
+      switch (e.keyCode) {
+        case 37: // left
+        case 38: // up
+        case 39: // right
+        case 40: // down
+          me.goTo(me.pos, 1);
+          me.keyNav = false;
+          return false;
+      }
     });
   var moved = false;
   $('body')
