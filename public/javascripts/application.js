@@ -185,6 +185,7 @@ nko.Dude.prototype.warp = function(pos) {
   var self = this;
 
   this.div
+    .stop()
     .fadeToggle(function() {
       self.goTo(pos, 0);
       self.div.fadeToggle();
@@ -328,8 +329,6 @@ $(function() {
       , left = pos.left - ($window.width() - page.width()) / 2
       , top = pos.top - ($window.height() - page.height()) / 2;
 
-    $window.scrollLeft(left).scrollTop(top)
-
     pos = randomPositionOn(page);
 
     me.warp(pos);
@@ -338,6 +337,8 @@ $(function() {
       method: 'warp',
       arguments: [ pos ]
     }));
+
+    $window.scrollLeft(left).scrollTop(top)
   }
   nko.goTo = function goTo(selector) {
     var page = $(selector)
@@ -469,10 +470,15 @@ $(function() {
     })
     .delegate('a[href^="#"]', 'click', function(e) {
       e.preventDefault();
-      e.stopImmediatePropagation();
       var page = $($(this).attr('href'));
-      warpTo(page);
-      page.click();
+      setTimeout(function checkArrived() {
+        if (me.div.queue().length === 0) {
+          warpTo(page);
+          page.click();
+        } else {
+          setTimeout(checkArrived, 500);
+        }
+      }, 1);
     });
 
   // keyboard
