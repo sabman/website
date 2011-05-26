@@ -1,7 +1,7 @@
 {
   "name": "nko",
   "description": "node.js knockout: 48-hour node.js hackathon",
-  "version": "2011.1.0",
+  "version": "2011.5.24",
   "homepage": "http://nodeknockout.com",
   "repository": {
     "type": "git",
@@ -9,6 +9,7 @@
   },
   "author": "NKO Team <all@nodeknockout.com>",
   "main": "./server.js",
+  "scripts": { "start": "./node_modules/.bin/nodemon" },
   "directories": {
     "lib": "."
   },
@@ -16,13 +17,13 @@
     "node": "*"
   },
   "dependencies": {
-    "express": ">=2.2.2",
-    "jade": ">=0.10.4",
-    "markdown": ">=0.2.1",
-    "socket.io": ">=0.6.17",
-    "stylus": ">=0.11.10"
+    "express": "2.3.7",
+    "jade": "0.11.0",
+    "markdown": "0.2.1",
+    "socket.io": "0.6.18",
+    "stylus": "0.13.0"
   },
   "devDependencies": {
-    "nodemon": ">=0.2.1"
+    "nodemon": "0.4.0"
   }
 }
