@@ -1,172 +1,54 @@
-.page#index
-  header
-    h1
-      | node.js
-      span.ko ko
-
-  h3
-    | node.js knockout is a 48-hour coding contest featuring
-    a( href: 'http://nodejs.org' ) node.js
-    | .
-
-  section
-    h2
-      | node.js knockout 2011 will be
-      .dates
-        time.start( datetime: '2011-08-27T00:00:00Z' ) August 27
-        |  &mdash;
-        time.end( datetime: '2011-08-29T00:00:00Z' ) August 29, 2011
-      #countdown
-
-  section
-    h2 What do I do until then?
-    p
-      a( href: 'http://twitter.com/node_knockout' ) Follow us on Twitter
-      | ,
-      a( href: 'http://2010.nodeknockout.com/' ) see 2010's winners
-      | , or
-      a( href: 'http://github.com/nko/website' ) contribute on github
-      | .
-      br
-      | Team registration will be open soonish.
-
-  footer
-    h2 Want to sponsor or help?
-    ul
-      li Contact us:
-      li: a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
-      li: a( href: 'http://twitter.com/node_knockout' ) @node_knockout
-      li: a( href: 'http://nodeknockout.posterous.com' ) blog
-      li: a( href: 'http://2010.nodeknockout.com' ) 2010 website
-
-.page#about
-  header
-    h1 about
-  :markdown
-    node.js knockout is a 48-hour competition to write node.js apps. it is
-    based heavily on [rails rumble].
-
-    design by 734m: [@burnto], [@huned], [@visnup], & [@gerad].
-    props to [#sworcery] & [@the1console].
-    it has been set in [04b_03]. no pixels were harmed in the making. peace.
-
-    [rails rumble]: http://railsrumble.com
-    [nodeconf talk]: #slide-0
-    [@burnto]: http://twitter.com/burnto
-    [@huned]: http://twitter.com/huned
-    [@visnup]: http://twitter.com/visnup
-    [@gerad]: http://twitter.com/gerad
-    [#sworcery]: http://www.swordandsworcery.com/
-    [@the1console]: https://twitter.com/the1console
-    [04b_03]: http://www.04.jp.org
-
-  a( href: "#slide-0", class: "slide" ) nodeconf talk
-
-.page.slide#slide-0
-  :markdown
-    # how to win at node.js knockout
-
-    ## ground rules
-     * node.js + 48 hours
-     * teams of up to 4
-     * don't cheat, be cool
-
-    ## why do I care?
-     * [prizes], glory
-     * try out node.js
-     * finally build that idea you've had
-
-    [prizes]: http://2010.nodeknockout.com/prizes
-
-.page.slide#slide-1
-  :markdown
-    # know thy audience
-
-    * we [publish the judges][1]
-      * "would they get this?"
-      * technology category this year
-    * no login, no signup
-    * [browser breakdown][2]
-
-    [1]: http://2010.nodeknockout.com/judges
-    [2]: http://2010.nodeknockout.com/faq
-
-.page.slide#slide-2
-  :markdown
-    # click click click click click click click
-
-    * cheat the [popular vote][1]
-    * be controversial, newsworthy
-    * **brain hacking**
-      * empathy + delight
-
-    [1]: http://2010.nodeknockout.com/judging
-
-.page.slide#slide-3
-  h1 plan ahea<sup>d</sup>
-  :markdown
-    * sketch out everything beforehand
-    * familiarize yourself with libs
-    * know your tools: git, npm, core api
-    * divide and conquer
-    * cut scope-able
-    * message on bugs, news
-
-.page.slide#slide-4
-  :markdown
-    # there is no I in team
-
-    * work with people you know
-    * dream team: 2 designers + 2 developers
-
-.page.slide#slide-5
-  :markdown
-    # frak tests
-
-    * deploy early
-    * don't write tests
-    * leverage hosted services
-    * leverage node.js
-
-.page.slide#slide-6
+header
   h1
-    a( href: 'http://en.wikipedia.org/wiki/Dorodango' ) dorodango
-    |  for all!
-  :markdown
-    * spend an entire day polishing
-    * 2 designers?
-    * smoke & mirrors
+    | node.js
+    span.ko ko
 
-.page.slide#slide-7
-  :markdown
-    # yo dude, 'sup?
+h3
+  | node.js knockout is a 48-hour coding contest featuring
+  a( href: 'http://nodejs.org' ) node.js
+  | .
 
-    * take breaks
-      * sketch on paper
-      * talk to your team
-      * cut the feature (or hack around it)
-    * sleep
-    * eat
+section
+  h2
+    | node.js knockout 2011 will be
+    .dates
+      time.start( datetime: '2011-08-27T00:00:00Z' ) August 27
+      |  &mdash;
+      time.end( datetime: '2011-08-29T00:00:00Z' ) August 29, 2011
+    #countdown
 
-.page.slide#slide-8
-  :markdown
-    # questions?
+section
+  h2 What do I do until then?
+  p
+    a( href: 'http://twitter.com/node_knockout' ) Follow us on Twitter
+    | ,
+    a( href: 'http://2010.nodeknockout.com/' ) see 2010's winners
+    | , or
+    a( href: 'http://github.com/nko/website' ) contribute on github
+    | .
+    br
+    | Team registration will be open soonish.
 
-.page.slide#slide-9
-  h1 thanks
-
+footer
+  h2 Want to sponsor or help?
   ul
-    li
-      a( href: 'http://nodeknockout.com' ) nodeknockout.com
+    li Contact us:
+    li: a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
+    li: a( href: 'http://twitter.com/node_knockout' ) @node_knockout
+    li: a( href: 'http://nodeknockout.posterous.com' ) blog
+    li: a( href: 'http://2010.nodeknockout.com' ) 2010 website
 
-  ul
-    li
-      b
-        a( href: 'http://twitter.com/node_knockout' ) @node_knockout
-    li
-      a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
+:content('script')
+  script
+    new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(180, 160) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(20, 90) });
 
-  ul
-    li
-      a( href: 'http://twitter.com/visnup' ) @visnup
-      |  / fortnight labs &mdash; I'm hiring!
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(40, 930) });
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(100, 960) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(180, 960) });
+
+    $(function() {
+      $(window).load(function() { // center it
+        nko.warpTo(location.hash || 'body');
+      })
+    });

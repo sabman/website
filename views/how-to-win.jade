@@ -1,0 +1,198 @@
+.slide#slide-0
+  :markdown
+    # how to win at node.js knockout
+
+    ## ground rules
+     * node.js + 48 hours
+     * teams of up to 4
+     * don't cheat, be cool
+
+    ## why do I care?
+     * [prizes], glory
+     * try out node.js
+     * finally build that idea you've had
+
+    [prizes]: http://2010.nodeknockout.com/prizes
+
+.slide#slide-1
+  :markdown
+    # know thy audience
+
+    * we [publish the judges][1]
+      * "would they get this?"
+      * technology category this year
+    * no login, no signup
+    * [browser breakdown][2]
+
+    [1]: http://2010.nodeknockout.com/judges
+    [2]: http://2010.nodeknockout.com/faq
+
+.slide#slide-2
+  :markdown
+    # click click click click click click click
+
+    * cheat the [popular vote][1]
+    * be controversial, newsworthy
+    * **brain hacking**
+      * empathy + delight
+
+    [1]: http://2010.nodeknockout.com/judging
+
+.slide#slide-3
+  h1 plan ahea<sup>d</sup>
+  :markdown
+    * sketch out everything beforehand
+    * familiarize yourself with libs
+    * know your tools: git, npm, core api
+    * divide and conquer
+    * cut scope-able
+    * message on bugs, news
+
+.slide#slide-4
+  :markdown
+    # there is no I in team
+
+    * work with people you know
+    * dream team: 2 designers + 2 developers
+
+.slide#slide-5
+  :markdown
+    # frak tests
+
+    * deploy early
+    * don't write tests
+    * leverage hosted services
+    * leverage node.js
+
+.slide#slide-6
+  h1
+    a( href: 'http://en.wikipedia.org/wiki/Dorodango' ) dorodango
+    |  for all!
+  :markdown
+    * spend an entire day polishing
+    * 2 designers?
+    * smoke & mirrors
+
+.slide#slide-7
+  :markdown
+    # yo dude, 'sup?
+
+    * take breaks
+      * sketch on paper
+      * talk to your team
+      * cut the feature (or hack around it)
+    * sleep
+    * eat
+
+.slide#slide-8
+  :markdown
+    # questions?
+
+.slide#slide-9
+  h1 thanks
+
+  ul
+    li
+      a( href: 'http://nodeknockout.com' ) nodeknockout.com
+
+  ul
+    li
+      b
+        a( href: 'http://twitter.com/node_knockout' ) @node_knockout
+    li
+      a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
+
+  ul
+    li
+      a( href: 'http://twitter.com/visnup' ) @visnup
+      |  / fortnight labs &mdash; I'm hiring!
+
+:content('script')
+  script
+    // slide-0 rules
+    new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(1900, 200) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1800, 180) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1700, 250) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1850, 750) });
+    new nko.Thing({ name: 'arrowright', pos: new nko.Vector(2800, 100) });
+
+    // slide-1 audience
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(2800, 780) });
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(2900, 800) });
+    new nko.Thing({ name: 'chair', pos: new nko.Vector(3700, 220) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(3780, 190) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(3880, 290) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(3880, 1000) });
+
+    // slide-2 popularity
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3200, 1600) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3260, 1600) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3340, 1600) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3410, 1600) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3470, 1610) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3600, 1600) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3700, 1600) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(3780, 1600) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(3850, 1620) });
+    new nko.Thing({ name: 'arrowleft', pos: new nko.Vector(3100, 1580) });
+
+    // slide-3 plan
+    new nko.Thing({ name: 'desk', pos: new nko.Vector(2371, 1115) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(2400, 1100) });
+
+    // slide-4 team
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(880, 900) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(800, 950) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(900, 1000) });
+    new nko.Thing({ name: 'hachiko', pos: new nko.Vector(840, 1080) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(750, 1500) });
+
+    // slide-5 no tests
+    new nko.Thing({ name: 'obelisk', pos: new nko.Vector(890, 2100) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1790, 2100) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1700, 2300) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1800, 2500) });
+
+    // slide-6 polish
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(800, 3200) });
+    new nko.Thing({ name: 'baretree', pos: new nko.Vector(900, 3500) });
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(850, 3550) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1900, 3800) });
+
+    // silde-7 chill
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(1850, 2800) });
+    new nko.Thing({ name: 'tent', pos: new nko.Vector(2500, 3600) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(2850, 3500) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(2890, 3600) });
+    new nko.Dude({ name: 'fire', pos: new nko.Vector(2700, 3620) });
+
+    // slide-9 thanks
+    new nko.Thing({ name: 'banner', pos: new nko.Vector(3610, 2060) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(3850, 2050) });
+    new nko.Thing({ name: 'americanflag', pos: new nko.Vector(3810, 2100) });
+
+    $(function() {
+      /*
+      var slide = parseInt(location.hash.replace('#slide-', '')) || 0;
+      $(document).keylisten(function(e) {
+        switch (e.keyName) {
+          case 'alt+left':
+            return nko.goTo('#slide-' + --slide);
+          case 'alt+right':
+            return nko.goTo('#slide-' + ++slide);
+        }
+      });
+      */
+
+      $(window).load(function() { // center it
+        nko.warpTo(location.hash || '.slide');
+      })
+
+      $('.slide').live('click', function() {
+        var $this = $(this)
+          , id = $(this).attr('id');
+        $this.removeAttr('id');
+        location.hash = '#' + id;
+        $this.attr('id', id);
+      });
+    });

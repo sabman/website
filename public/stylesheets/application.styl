@@ -27,24 +27,6 @@ a:link, a:visited
 p
   line-height 150%
 
-header
-  h1
-    font-size 72pt
-    word-spacing -0.5ex
-    .ko
-      background-color black
-      color white
-      text-shadow 0px 2px 0px hsla(0, 100%, 100%, 0.5)
-      padding 10px 10px 0 25px
-      border-radius 2px
-      border solid 1px hsla(0, 100%, 100%, 0.5)
-
-footer
-  margin-top 5em
-  li
-    display inline-block
-    margin 0 1ex
-
 .thing
   position absolute
   .bubble
@@ -74,16 +56,19 @@ footer
       left -100px
       width 80px
 
-.page
-  position absolute
-  width 800px
-  overflow hidden
-  text-align left
-
-.page#index
-  top 4000px
-  left 4000px
+body.\-
   text-align center
+  header
+    h1
+      font-size 72pt
+      word-spacing -0.5ex
+      .ko
+        background-color black
+        color white
+        text-shadow 0px 2px 0px hsla(0, 100%, 100%, 0.5)
+        padding 10px 10px 0 25px
+        border-radius 2px
+        border solid 1px hsla(0, 100%, 100%, 0.5)
   section
     margin 3em 0px
   .dates
@@ -91,18 +76,21 @@ footer
     margin 0.25em 0px
   #countdown, .now-what
     font-size 13pt
+  footer
+    margin-top 5em
+    li
+      display inline-block
+      margin 0 1ex
 
-.page#about
+body.\-about
   width 480px
-  top 4000px
-  left 5040px
 
 .slide
-  //display none
-
-.page.slide
-  font-size 200%
+  position absolute
   width 800px
+  overflow hidden
+  text-align left
+  font-size 200%
   li
     line-height 150%
 
@@ -111,33 +99,33 @@ footer
 // 4 3 2
 // 5 8 9
 // 6 7
-.page.slide#slide-0
+.slide#slide-0
   left 2000px
   top 0px
-.page.slide#slide-1
+.slide#slide-1
   left 3000px
   top 0px
-.page.slide#slide-2
+.slide#slide-2
   left 3000px
   top 1000px
-.page.slide#slide-3
+.slide#slide-3
   left 2000px
   top 1000px
-.page.slide#slide-4
+.slide#slide-4
   left 1000px
   top 1000px
-.page.slide#slide-5
+.slide#slide-5
   left 1000px
   top 2000px
-.page.slide#slide-6
+.slide#slide-6
   left 1000px
   top 3000px
-.page.slide#slide-7
+.slide#slide-7
   left 2000px
   top 3000px
-.page.slide#slide-8
+.slide#slide-8
   left 2000px
   top 2000px
-.page.slide#slide-9
+.slide#slide-9
   left 3000px
   top 2000px

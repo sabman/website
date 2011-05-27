@@ -6,8 +6,39 @@ var express = require('express')
 
 // express
 var app = express.createServer();
+
+// TODO: put this in a lib or push back to tj
+(function() {
+  var jade = require('jade')
+    , content;
+
+  jade.filters.content = function(str, options) {
+    var k = Object.keys(options)[0]
+      , v = jade.render(str.replace(/\\n/g, '\n'));
+    if (content[k])
+      content[k] += v;
+    else
+      content[k] = v;
+
+    return '';
+  };
+
+  app.dynamicHelpers({
+    content: function(req, res) {
+      return content = {};
+    }
+  });
+})();
+
+// routes
 app.get('/', function(req, res) {
   res.render('index');
+});
+
+[ 'about', 'how-to-win' ].forEach(function(p) {
+  app.get('/' + p, function(req, res) {
+    res.render(p);
+  });
 });
 
 // let 2010 routes redirect for a while
