@@ -40,10 +40,10 @@ app.ws.on('connection', function(client) {
       data = JSON.parse(data);
       data.sessionId = client.sessionId;
 
-      ws.broadcast(JSON.stringify(data), client.sessionId);
+      app.ws.broadcast(JSON.stringify(data), client.sessionId);
     })
     .on('disconnect', function() {
-      ws.broadcast(JSON.stringify({
+      app.ws.broadcast(JSON.stringify({
         sessionId: client.sessionId, disconnect: true
       }));
     });
