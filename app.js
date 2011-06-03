@@ -13,7 +13,7 @@ app.configure(function() {
   app.use(require('stylus').middleware(pub));
   app.use(express.logger());
   app.use(express.cookieParser());
-  app.use(express.session({ secret: 'sLjU9\.vTSrH&}]4m4yB)Ttw6FX[tEm' }));
+  app.use(express.session({ secret: secrets.session }));
   app.use(auth([ auth.Github({
     appId: 'c294545b6f2898154827',
     appSecret: secrets.github,
