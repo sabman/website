@@ -11,6 +11,9 @@ nko.Vector = function(x, y) {
   if (typeof(x) === 'number') {
     this.x = x || 0;
     this.y = y || 0;
+  } else if (x.left) {
+    this.x = x.left;
+    this.y = x.top;
   } else {
     this.x = x.x;
     this.y = x.y;
@@ -68,6 +71,11 @@ nko.Thing = function(options) {
     });
 };
 
+nko.Thing.prototype.getPosition = function() {
+  var offset = new nko.Vector(this.div.offsetParent().offset());
+  return this.pos.plus(offset);
+};
+
 nko.Thing.prototype.toJSON = function() {
   return {
     name: this.name,
@@ -88,7 +96,7 @@ nko.Thing.prototype.draw = function draw() {
       transform: Modernizr.csstransforms ? 'translate(' + offset.toString() + ')' : null,
       background: 'url(' + this.img.attr('src') + ')'
     })
-    .appendTo(document.body);
+    .appendTo($('#page'));
   if (this.ready) this.ready();
 
   this.animate();
@@ -147,7 +155,8 @@ nko.Dude.prototype.animate = function animate(state) {
 };
 
 nko.Dude.prototype.goTo = function(pos, duration) {
-  pos = new nko.Vector(pos);
+  var offset = new nko.Vector(this.div.offsetParent().offset());
+  pos = new nko.Vector(pos).minus(offset);
 
   var self = this
     , delta = pos.minus(this.pos)
@@ -349,7 +358,7 @@ $(function() {
       })();
       if (d) {
         if (me.keyNav) return false;
-        var pos = me.pos.plus(d);
+        var pos = me.getPosition().plus(d);
         me.goTo(pos);
         ws.send(JSON.stringify({
           obj: me,
@@ -367,11 +376,11 @@ $(function() {
         case 38: // up
         case 39: // right
         case 40: // down
-          me.goTo(me.pos, 1);
+          me.goTo(me.getPosition(), 1);
           ws.send(JSON.stringify({
             obj: me,
             method: 'goTo',
-            arguments: [ me.pos, 1 ]
+            arguments: [ me.getPosition(), 1 ]
           }));
           me.keyNav = false;
           return false;

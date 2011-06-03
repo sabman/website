@@ -1,54 +1,55 @@
-header
-  h1
-    | node.js
-    span.ko ko
+#page.index
+  header
+    h1
+      | node.js
+      span.ko ko
 
-h3
-  | node.js knockout is a 48-hour coding contest featuring
-  a( href: 'http://nodejs.org' ) node.js
-  | .
-
-section
-  h2
-    | node.js knockout 2011 will be
-    .dates
-      time.start( datetime: '2011-08-27T00:00:00Z' ) August 27
-      |  &mdash;
-      time.end( datetime: '2011-08-29T00:00:00Z' ) August 29, 2011
-    #countdown
-
-section
-  h2 What do I do until then?
-  p
-    a( href: 'http://twitter.com/node_knockout' ) Follow us on Twitter
-    | ,
-    a( href: 'http://2010.nodeknockout.com/' ) see 2010's winners
-    | , or
-    a( href: 'http://github.com/nko/website' ) contribute on github
+  h3
+    | node.js knockout is a 48-hour coding contest featuring
+    a( href: 'http://nodejs.org' ) node.js
     | .
-    br
-    | Team registration will be open soonish.
 
-footer
-  h2 Want to sponsor or help?
-  ul
-    li Contact us:
-    li: a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
-    li: a( href: 'http://twitter.com/node_knockout' ) @node_knockout
-    li: a( href: 'http://nodeknockout.posterous.com' ) blog
-    li: a( href: 'http://2010.nodeknockout.com' ) 2010 website
+  section
+    h2
+      | node.js knockout 2011 will be
+      .dates
+        time.start( datetime: '2011-08-27T00:00:00Z' ) August 27
+        |  &mdash;
+        time.end( datetime: '2011-08-29T00:00:00Z' ) August 29, 2011
+      #countdown
 
-:content('script')
-  script
-    new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(180, 160) });
-    new nko.Thing({ name: 'livetree', pos: new nko.Vector(20, 90) });
+  section
+    h2 What do I do until then?
+    p
+      a( href: 'http://twitter.com/node_knockout' ) Follow us on Twitter
+      | ,
+      a( href: 'http://2010.nodeknockout.com/' ) see 2010's winners
+      | , or
+      a( href: 'http://github.com/nko/website' ) contribute on github
+      | .
+      br
+      | Team registration will be open soonish.
 
-    new nko.Thing({ name: 'livetree', pos: new nko.Vector(40, 930) });
-    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(100, 960) });
-    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(180, 960) });
+  footer
+    h2 Want to sponsor or help?
+    ul
+      li Contact us:
+      li: a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
+      li: a( href: 'http://twitter.com/node_knockout' ) @node_knockout
+      li: a( href: 'http://nodeknockout.posterous.com' ) blog
+      li: a( href: 'http://2010.nodeknockout.com' ) 2010 website
 
-    $(function() {
-      $(window).load(function() { // center it
-        nko.warpTo(location.hash || 'body');
-      })
-    });
+  :content('script')
+    script
+      new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(80, 100) });
+      new nko.Thing({ name: 'livetree', pos: new nko.Vector(-80, 30) });
+
+      new nko.Thing({ name: 'livetree', pos: new nko.Vector(-60, 870) });
+      new nko.Thing({ name: 'deadtree', pos: new nko.Vector(0, 900) });
+      new nko.Thing({ name: 'portopotty', pos: new nko.Vector(80, 900) });
+
+      $(function() {
+        $(window).load(function() { // center it
+          nko.warpTo(location.hash || 'body');
+        })
+      });

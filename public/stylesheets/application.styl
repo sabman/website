@@ -28,6 +28,11 @@ a:link, a:visited
 p
   line-height 150%
 
+#page
+  position relative
+  width 800px
+  margin 0 auto
+
 .thing
   position absolute
   .bubble
@@ -57,7 +62,8 @@ p
       left -100px
       width 80px
 
-body.\-
+#page.index
+  margin-top 120px
   text-align center
   header
     h1
@@ -83,50 +89,51 @@ body.\-
       display inline-block
       margin 0 1ex
 
-body.\-about
+#page.about
   width 480px
 
-.slide
-  position absolute
-  width 800px
-  overflow hidden
-  text-align left
-  font-size 200%
-  li
-    line-height 150%
+#page.how-to-win
+  .slide
+    position absolute
+    width 800px
+    overflow hidden
+    text-align left
+    font-size 200%
+    li
+      line-height 150%
 
-// slide topology
-//   0 1
-// 4 3 2
-// 5 8 9
-// 6 7
-.slide#slide-0
-  left 2000px
-  top 0px
-.slide#slide-1
-  left 3000px
-  top 0px
-.slide#slide-2
-  left 3000px
-  top 1000px
-.slide#slide-3
-  left 2000px
-  top 1000px
-.slide#slide-4
-  left 1000px
-  top 1000px
-.slide#slide-5
-  left 1000px
-  top 2000px
-.slide#slide-6
-  left 1000px
-  top 3000px
-.slide#slide-7
-  left 2000px
-  top 3000px
-.slide#slide-8
-  left 2000px
-  top 2000px
-.slide#slide-9
-  left 3000px
-  top 2000px
+  // slide topology
+  //   0 1
+  // 4 3 2
+  // 5 8 9
+  // 6 7
+  .slide#slide-0
+    left 2000px
+    top 0px
+  .slide#slide-1
+    left 3000px
+    top 0px
+  .slide#slide-2
+    left 3000px
+    top 1000px
+  .slide#slide-3
+    left 2000px
+    top 1000px
+  .slide#slide-4
+    left 1000px
+    top 1000px
+  .slide#slide-5
+    left 1000px
+    top 2000px
+  .slide#slide-6
+    left 1000px
+    top 3000px
+  .slide#slide-7
+    left 2000px
+    top 3000px
+  .slide#slide-8
+    left 2000px
+    top 2000px
+  .slide#slide-9
+    left 3000px
+    top 2000px

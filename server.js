@@ -35,7 +35,7 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-[ 'about', 'how-to-win' ].forEach(function(p) {
+[ 'about', 'how-to-win', 'sponsors' ].forEach(function(p) {
   app.get('/' + p, function(req, res) {
     res.render(p);
   });
