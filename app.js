@@ -3,7 +3,10 @@ var express = require('express')
   , io = require('socket.io')
   , pub = __dirname + '/public'
   , port = process.env.PORT || 8000
-  , secrets = require('secrets');
+  , secrets;
+
+try { secrets = require('./secrets'); }
+catch(e) { throw "Secret keys file is missing. See ./secrets.js.sample."; }
 
 // express
 var app = express.createServer();

@@ -1,4 +1,4 @@
-var app = require('app');
+var app = require('./app');
 
 // routes
 app.get('/', function(req, res) {
