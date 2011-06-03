@@ -1,34 +1,4 @@
-var express = require('express')
-  , io = require('socket.io')
-  , util = require('util')
-  , pub = __dirname + '/public'
-  , port = process.env.PORT || 8000;
-
-// express
-var app = express.createServer();
-
-// TODO: put this in a lib or push back to tj
-(function() {
-  var jade = require('jade')
-    , content;
-
-  jade.filters.content = function(str, options) {
-    var k = Object.keys(options)[0]
-      , v = jade.render(str.replace(/\\n/g, '\n'));
-    if (content[k])
-      content[k] += v;
-    else
-      content[k] = v;
-
-    return '';
-  };
-
-  app.dynamicHelpers({
-    content: function(req, res) {
-      return content = {};
-    }
-  });
-})();
+var app = require('app');
 
 // routes
 app.get('/', function(req, res) {
@@ -41,6 +11,18 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/auth/github', function(req, res) {
+  req.authenticate(['github'], function(error, authenticated) {
+    if (error) { throw error; }
+
+    if (authenticated) {
+      res.end("<html><h1>Hello github user:" + JSON.stringify( req.getAuthDetails().user ) + ".</h1></html>")
+    } else {
+      res.end("<html><h1>Github authentication failed :( </h1></html>")
+    }
+  });
+});
+
 // let 2010 routes redirect for a while
 app.get(/\/(.*)\//, function(req, res, next) {
   var path = req.params[0];
@@ -50,11 +32,9 @@ app.get(/\/(.*)\//, function(req, res, next) {
     res.redirect('http://2010.nodeknockout.com' + req.url, 301);
   }
 });
-app.listen(port);
 
-// socket.io
-var ws = io.listen(app);
-ws.on('connection', function(client) {
+// websockets
+app.ws.on('connection', function(client) {
   client
     .on('message', function(data) {
       data = JSON.parse(data);
@@ -67,26 +47,4 @@ ws.on('connection', function(client) {
         sessionId: client.sessionId, disconnect: true
       }));
     });
-});
-
-util.log("listening on 0.0.0.0:" + port + ".");
-
-// config
-app.configure(function() {
-  app.use(require('stylus').middleware(pub));
-  app.use(express.logger());
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-});
-
-app.configure('development', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.use(express.static(pub));
-  app.set('view options', { scope: { development: true }});
-});
-
-app.configure('production', function() {
-  app.use(express.errorHandler());
-  app.use(express.static(pub, { maxAge: 1000 * 5 * 60 }));
-  app.set('view options', { scope: { development: false }});
 });
