@@ -3,6 +3,11 @@ border-image()
   -moz-border-image arguments
   border-image arguments
 
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+
 @font-face
   font-family "04b_03"
   src url('/fonts/04b_03__-webfont.eot')
@@ -28,11 +33,24 @@ a:link, a:visited
 p
   line-height 150%
 
+aside
+  display block
+  float right
+  width 200px
+
 #page
   position relative
   width 800px
-  margin 0 auto
+  margin 100px auto 0
   text-align left
+  #inner
+    background-color hsla(0, 0%, 100%, 0.6)
+    border solid 1px hsla(0, 0%, 0%, 0.1)
+    border-radius 2px
+    z-index 10000
+    position relative
+    padding 10px
+    width 580px
 
 .thing
   position absolute
@@ -63,8 +81,7 @@ p
       left -100px
       width 80px
 
-#page.index
-  margin-top 120px
+#inner.index
   text-align center
   header
     h1
@@ -80,7 +97,7 @@ p
   section
     margin 3em 0px
   .dates
-    font-size 32pt
+    font-size 24pt
     margin 0.25em 0px
   #countdown, .now-what
     font-size 13pt
