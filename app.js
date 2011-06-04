@@ -6,10 +6,10 @@ var express = require('express')
   , secrets;
 
 try { secrets = require('./secrets'); }
-catch(e) { throw "Secret keys file is missing. See ./secrets.js.sample."; }
+catch(e) { throw "secret keys file is missing. see ./secrets.js.sample."; }
 
 // express
-var app = express.createServer();
+var app = module.exports = express.createServer();
 
 // config
 app.configure(function() {
@@ -44,33 +44,9 @@ app.configure('production', function() {
   app.set('view options', { scope: { development: false }});
 });
 
-// TODO: put this in a lib or push back to tj
-(function() {
-  var jade = require('jade')
-    , content;
-
-  jade.filters.content = function(str, options) {
-    var k = Object.keys(options)[0]
-      , v = jade.render(str.replace(/\\n/g, '\n'));
-    if (content[k])
-      content[k] += v;
-    else
-      content[k] = v;
-
-    return '';
-  };
-
-  app.dynamicHelpers({
-    content: function(req, res) {
-      return content = {};
-    }
-  });
-})();
-
 app.listen(port);
+
 // socket.io
 app.ws = io.listen(app);
 
 require('util').log("listening on 0.0.0.0:" + port + ".");
-
-module.exports = app;

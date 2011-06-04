@@ -38,18 +38,3 @@
       li: a( href: 'http://twitter.com/node_knockout' ) @node_knockout
       li: a( href: 'http://nodeknockout.posterous.com' ) blog
       li: a( href: 'http://2010.nodeknockout.com' ) 2010 website
-
-  :content('script')
-    script
-      new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(80, 100) });
-      new nko.Thing({ name: 'livetree', pos: new nko.Vector(-80, 30) });
-
-      new nko.Thing({ name: 'livetree', pos: new nko.Vector(-60, 870) });
-      new nko.Thing({ name: 'deadtree', pos: new nko.Vector(0, 900) });
-      new nko.Thing({ name: 'portopotty', pos: new nko.Vector(80, 900) });
-
-      $(function() {
-        $(window).load(function() { // center it
-          nko.warpTo(location.hash || 'body');
-        })
-      });
