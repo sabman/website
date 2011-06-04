@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
 
 app.get('/auth/github', function(req, res) {
   req.authenticate(['github'], function(error, authenticated) {
-    if (error) { throw error; }
+    if (error) { throw console.inspect(error); }
 
     if (authenticated) {
       res.end("<html><h1>Hello github user:" + JSON.stringify( req.getAuthDetails().user ) + ".</h1></html>")
