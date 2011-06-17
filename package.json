@@ -8,7 +8,7 @@
     "url": "git://github.com/nko/website.git"
   },
   "author": "NKO Team <all@nodeknockout.com>",
-  "main": "./server.js",
+  "main": "./server.coffee",
   "scripts": { "start": "./node_modules/.bin/nodemon" },
   "directories": {
     "lib": "."
@@ -17,6 +17,7 @@
     "node": "*"
   },
   "dependencies": {
+    "coffee-script": "1.1.1",
     "connect": "1.4.2",
     "express": "2.3.7",
     "jade": "0.11.0",

@@ -22,7 +22,6 @@ app.configure(function() {
 });
 
 app.configure('development', function() {
-  // TODO this: https://github.com/masylum/twitter-js/commit/abc4eec8aea128b0d1ec7b936b3838010fb13213
   app.use(auth([ auth.Github({
     appId: 'c07cd7100ae57921a267',
     appSecret: secrets.github_dev,
