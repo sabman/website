@@ -12,14 +12,8 @@ html
     #page
       aside
       != body
-    - if (this.development)
-      script( src: '/javascripts/jquery-1.5.2.js' )
-    - else
-      script( src: '//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js' )
-    script
-      window.JSON || document.write("<script src='/javascripts/json2.js'>\\x3C/script>"); // include json2.js if needed
-    - each s in [ 'modernizr-1.7.min', 'socket.io.min', 'jquery.transform.light', 'jquery.border-image', 'jquery.keylisten.min', 'application' ]
-      script( src: '/javascripts/' + s + '.js' )
+    script( src: '/socket.io/socket.io.js' )
+    script( src: '/javascripts/all.js' )
     script
       $('a').live('mousedown', function() {
         var href = this.href;

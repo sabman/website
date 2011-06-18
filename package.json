@@ -25,7 +25,8 @@
     "oauth": "0.9.0",
     "socket.io": "0.6.18",
     "stylus": "0.13.0",
-    "connect-auth": "0.2.2"
+    "connect-auth": "0.2.2",
+    "connect-assetmanager": "0.0.20"
   },
   "devDependencies": {
     "nodemon": "0.4.0"

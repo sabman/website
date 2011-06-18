@@ -1,5 +1,6 @@
 var express = require('express')
   , auth = require('connect-auth')
+  , assets = require('connect-assetmanager')
   , io = require('socket.io')
   , pub = __dirname + '/public'
   , port = process.env.PORT || 8000
@@ -17,6 +18,23 @@ app.configure(function() {
   app.use(express.logger());
   app.use(express.cookieParser());
   app.use(express.session({ secret: secrets.session }));
+  app.use(assets({
+    js: {
+      route: /\/javascripts\/all\.js/,
+      path: './public/javascripts/',
+      dataType: 'javascript',
+      debug: true,
+      files: [
+        'modernizr-2.0.4.js',
+        'json2.js',
+        'jquery-1.5.2.js',
+        'jquery.keylisten.js',
+        'jquery.border-image.js',
+        'jquery.transform.light.js',
+        'application.js',
+        '*']
+    }
+  }));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
 });
