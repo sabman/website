@@ -8,7 +8,7 @@
     "url": "git://github.com/nko/website.git"
   },
   "author": "NKO Team <all@nodeknockout.com>",
-  "main": "./server.coffee",
+  "main": "./server.js",
   "scripts": { "start": "./node_modules/.bin/nodemon" },
   "directories": {
     "lib": "."
