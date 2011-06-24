@@ -2,12 +2,11 @@ var express = require('express')
   , auth = require('connect-auth')
   , assets = require('connect-assetmanager')
   , io = require('socket.io')
-  , pub = __dirname + '/public'
-  , port = process.env.PORT || 8000
-  , secrets;
+  , pub = __dirname + '/../public'
+  , env = require('./env')
+  , port = env.port
+  , secrets = env.secrets;
 
-try { secrets = require('./secrets'); }
-catch(e) { throw "secret keys file is missing. see ./secrets.js.sample."; }
 
 // express
 var app = module.exports = express.createServer();
@@ -35,12 +34,12 @@ app.configure(function() {
         '*']
     }
   }));
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/../views');
   app.set('view engine', 'jade');
 });
 
 app.configure('development', function() {
-  app.use(auth([ auth.Github({
+  app.use(auth([auth.Github({
     appId: 'c07cd7100ae57921a267',
     appSecret: secrets.github_dev,
     callback: 'http://localhost:' + port + '/auth/github'
@@ -51,7 +50,7 @@ app.configure('development', function() {
 });
 
 app.configure('production', function() {
-  app.use(auth([ auth.Github({
+  app.use(auth([auth.Github({
     appId: 'c294545b6f2898154827',
     appSecret: secrets.github,
     callback: 'http://nodeknockout.com/auth/github'

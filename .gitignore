@@ -3,4 +3,4 @@
 .monitor
 node_modules
 tmp/*
-secrets.js
+config/secrets.js

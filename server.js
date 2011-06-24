@@ -1,2 +1,9 @@
 require('coffee-script');
-require('./server.coffee');
+
+[ 'index',
+  'auth',
+  'redirect',
+  'websocket'
+].forEach(function(controller) {
+  require('./controllers/' + controller);
+});
