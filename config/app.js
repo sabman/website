@@ -7,6 +7,8 @@ var express = require('express')
   , port = env.port
   , secrets = env.secrets;
 
+require('../middleware/render2');
+
 
 // express
 var app = module.exports = express.createServer();

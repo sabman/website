@@ -33,7 +33,7 @@ html
           li.interested
             a( href: 'mailto:all@nodeknockout.com?subject=Sponsoring' ) Interested in sponsoring?
 
-      != body
+      #inner( class: view.replace(/\//g,'-') )!= body
     script( src: '/socket.io/socket.io.js' )
     script( src: '/javascripts/all.js' )
     script

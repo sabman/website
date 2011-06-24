@@ -1,8 +1,8 @@
 app = require '../config/app'
 
 app.get '/', (req, res) ->
-  res.render('index');
+  res.render2('index/index')
 
-for p in ['about', 'how-to-win', 'sponsors']
+['about', 'how-to-win', 'sponsors'].forEach (p) ->
   app.get '/' + p, (req, res) ->
-    res.render(p)
+    res.render2('index/' +p)
