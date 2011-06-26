@@ -4,6 +4,7 @@ var express = require('express')
   , io = require('socket.io')
   , pub = __dirname + '/../public'
   , env = require('./env')
+  , coffee = require('coffee-script')
   , port = env.port
   , secrets = env.secrets;
 
@@ -25,6 +26,15 @@ app.configure(function() {
       path: './public/javascripts/',
       dataType: 'javascript',
       debug: true,
+      preManipulate: {
+        '^': [function(file, path, index, isLast, callback) {
+            if (/\.coffee$/.test(path)) {
+              callback(coffee.compile(file));
+            } else {
+              callback(file);
+            }
+          }]
+      },
       files: [
         'modernizr-2.0.4.js',
         'json2.js',
