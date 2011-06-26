@@ -9,7 +9,7 @@ html
     script _gaq = [['_setAccount', 'UA-16773586-1'], ['_trackPageview']];
     script( async: true, src: '//www.google-analytics.com/ga.js' )
   body
-    #page
+    #page( class: view.replace(/\//g,'-') )
       aside
         h3 Important dates
         table.important-dates
@@ -33,7 +33,7 @@ html
           li.interested
             a( href: 'mailto:all@nodeknockout.com?subject=Sponsoring' ) Interested in sponsoring?
 
-      #inner( class: view.replace(/\//g,'-') )!= body
+      #inner!= body
     script( src: '/socket.io/socket.io.js' )
     script( src: '/javascripts/all.js' )
     script
