@@ -29,6 +29,7 @@
     "connect-assetmanager": "0.0.20"
   },
   "devDependencies": {
-    "nodemon": "0.4.0"
+    "nodemon": "0.4.0",
+    "node-inspector": "0.1.6"
   }
 }
