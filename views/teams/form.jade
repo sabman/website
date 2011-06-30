@@ -3,7 +3,7 @@
 .name
   h3
     label( for: 'name' ) Name
-  input( type: 'text', name: 'name', id: 'name', placeholder: 'Witty Team Name', value: team.name )
+  input( type: 'text', name: 'name', id: 'name', placeholder: 'Witty Team Name', value: team.get('name') )
 
 .members
   h3 Member Emails
