@@ -1,5 +1,6 @@
 h1 Edit your Team
 
-form( method: 'PUT', action: '/teams/' + team.id )
+form( method: 'POST', action: '/teams/' + team.id )
+  input( type: 'hidden', name: '_method', value: 'put' )
   != partial('form')
   input( type: 'submit', value: 'Update' )

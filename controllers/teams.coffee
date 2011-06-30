@@ -25,3 +25,10 @@ app.get '/teams/:id/edit', (req, res) ->
   team.fetch
     success: -> res.render2 'teams/edit', team: team
     error: (e) -> next 'route' # 404
+
+# update
+app.put '/teams/:id', (req, res) ->
+  team = new Team id: req.params.id
+  team.save req.body,
+    success: -> res.redirect "/teams/#{team.id}"
+    error: -> res.render2 'teams/edit', team: team
