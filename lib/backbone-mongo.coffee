@@ -19,7 +19,11 @@ BackboneMongo.sync = (method, model, success, error) ->
     return error(e) if e
 
     res = if Array.isArray res then res[0] else res
-    model._id ?= res._id
-    model.id ?= res.id = res._id?.toHexString()
+
+    if typeof res is 'object'
+      model._id ?= res._id
+      model.id ?= res.id = res._id?.toHexString()
+    else
+      res = {}
 
     success(res)

@@ -1,3 +1,4 @@
+_ = require 'underscore'
 app = require '../config/app'
 { Team } = require '../models/team'
 
@@ -7,8 +8,8 @@ app.get '/teams/new', (req, res) ->
 
 # create
 app.post '/teams', (req, res) ->
-  team = new Team
-  team.save req.body,
+  team = new Team req.body # this needs to be done here and the line below so that
+  team.save req.body,      # the attributes are set even w/validation errors
     success: -> res.redirect "/teams/#{team.id}"
     error: -> res.render2 'teams/new', team: team
 
@@ -28,7 +29,7 @@ app.get '/teams/:id/edit', (req, res) ->
 
 # update
 app.put '/teams/:id', (req, res) ->
-  team = new Team id: req.params.id
+  team = new Team _.extend req.body, id: req.params.id
   team.save req.body,
     success: -> res.redirect "/teams/#{team.id}"
     error: -> res.render2 'teams/edit', team: team

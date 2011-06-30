@@ -19,7 +19,7 @@ class out.Team extends Backbone.Model
   validate: (attrs) ->
     @errors.length = 0
 
-    if ('name' of attrs) and not attrs.name
+    if 'name' of attrs and not attrs.name
       @errors.push "Team name can't be blank"
 
     if 'emails' of attrs
