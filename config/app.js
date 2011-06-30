@@ -5,21 +5,25 @@ var express = require('express')
   , pub = __dirname + '/../public'
   , env = require('./env')
   , coffee = require('coffee-script')
+  , mongo = require('../lib/mongo')({
+      name: 'nko',
+      collections: ['teams'] })
   , port = env.port
   , secrets = env.secrets;
 
 // express
 var app = module.exports = express.createServer();
 
-// middleware
-require('../middleware/render2');
-app.te = require('../middleware/throw-runtime-error');
+// utilities & hacks
+require('../lib/render2');
+app.te = require('../lib/throw-runtime-error');
 
 // config
 app.configure(function() {
   app.use(require('stylus').middleware(pub));
   app.use(express.logger());
   app.use(express.cookieParser());
+  app.use(express.bodyParser());
   app.use(express.session({ secret: secrets.session }));
   app.use(assets({
     js: {
@@ -73,9 +77,12 @@ app.configure('production', function() {
   app.set('view options', { scope: { development: false }});
 });
 
-app.listen(port);
+mongo.on('ready', function(db) {
+  // TODO don't start listening until mongo is ready
+  app.db = db;
+});
 
-// socket.io
-app.ws = io.listen(app);
+app.listen(port);
+app.ws = io.listen(app); // socket.io
 
 require('util').log("listening on 0.0.0.0:" + port + ".");
