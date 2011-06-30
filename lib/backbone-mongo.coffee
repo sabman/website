@@ -12,7 +12,7 @@ commands =
     collection.remove { _id: model._id }, { safe: true }, callback
 
 BackboneMongo.sync = (method, model, success, error) ->
-  model._id ?= BSON.ObjectID.createFromHexString(model.id) if model.id?
+  model._id ?= app.db.BSON.ObjectID.createFromHexString(model.id) if model.id?
   collection = app.db[model.collection.name.toLowerCase()]
 
   commands[method] collection, model, (e, res) ->
@@ -20,6 +20,6 @@ BackboneMongo.sync = (method, model, success, error) ->
 
     res = if Array.isArray res then res[0] else res
     model._id ?= res._id
-    model.id ?= res._id?.toHexString()
+    model.id ?= res.id = res._id?.toHexString()
 
     success(res)
