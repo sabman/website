@@ -1,9 +1,9 @@
 Backbone ?= require '../lib/backbone-mongo'
 out = (exports ? this)
 
-class out.Teams extends Backbone.Model
+class out.Teams extends Backbone.Collection
   name: 'teams' # for mongo
-  url: -> @name
+  url: -> "/#{@name}"
 
 class out.Team extends Backbone.Model
   collection: out.Teams
