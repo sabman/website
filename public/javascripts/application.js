@@ -475,7 +475,7 @@ $(function() {
 
   //// page specific stuff
 
-  $('#inner.index').each(function() {
+  $('#page.index-index').each(function() {
     new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(-10, 100) });
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(-80, 30) });
 
@@ -488,7 +488,7 @@ $(function() {
     })
   });
 
-  $('#inner.how-to-win').each(function() {
+  $('#page.how-to-win').each(function() {
     // slide-0 rules
     new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(1900, 200) });
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(1800, 180) });
