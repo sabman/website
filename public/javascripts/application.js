@@ -472,6 +472,9 @@ $(function() {
 
   ws.connect();
 
+  $(window).load(function() { // center it
+    nko.warpTo(location.hash || 'body');
+  })
 
   //// page specific stuff
 
@@ -482,10 +485,6 @@ $(function() {
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(-60, 870) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(0, 900) });
     new nko.Thing({ name: 'portopotty', pos: new nko.Vector(80, 900) });
-
-    $(window).load(function() { // center it
-      nko.warpTo(location.hash || 'body');
-    })
   });
 
   $('#page.how-to-win').each(function() {
