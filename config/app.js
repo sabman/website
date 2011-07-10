@@ -2,7 +2,6 @@ var express = require('express')
   , auth = require('connect-auth')
   , assets = require('connect-assetmanager')
   , io = require('socket.io')
-  , pub = __dirname + '/../public'
   , env = require('./env')
   , coffee = require('coffee-script')
   , mongo = require('../lib/mongo')({
@@ -14,13 +13,19 @@ var express = require('express')
 // express
 var app = module.exports = express.createServer();
 
+// some paths
+app.paths = {
+  public: __dirname + '/../public',
+  views: __dirname + '/../views'
+};
+
 // utilities & hacks
 require('../lib/render2');
 app.te = require('../lib/throw-runtime-error');
 
 // config
 app.configure(function() {
-  app.use(require('stylus').middleware(pub));
+  app.use(require('stylus').middleware(app.paths.public));
   app.use(express.logger());
   app.use(express.cookieParser());
   app.use(express.bodyParser());
@@ -52,7 +57,7 @@ app.configure(function() {
         '*']
     }
   }));
-  app.set('views', __dirname + '/../views');
+  app.set('views', app.paths.views);
   app.set('view engine', 'jade');
 });
 
@@ -63,7 +68,7 @@ app.configure('development', function() {
     callback: 'http://localhost:' + port + '/auth/github'
   })]));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.use(express.static(pub));
+  app.use(express.static(app.paths.public));
   app.set('view options', { scope: { development: true }});
 });
 
@@ -74,7 +79,7 @@ app.configure('production', function() {
     callback: 'http://nodeknockout.com/auth/github'
   })]));
   app.use(express.errorHandler());
-  app.use(express.static(pub, { maxAge: 1000 * 5 * 60 }));
+  app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
   app.set('view options', { scope: { development: false }});
 });
 
