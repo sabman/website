@@ -4,9 +4,7 @@ var express = require('express')
   , io = require('socket.io')
   , env = require('./env')
   , coffee = require('coffee-script')
-  , mongo = require('../lib/mongo')({
-      name: 'nko',
-      collections: ['teams'] })
+  , mongoose = require('mongoose')
   , port = env.port
   , secrets = env.secrets;
 
@@ -83,10 +81,10 @@ app.configure('production', function() {
   app.set('view options', { scope: { development: false }});
 });
 
-mongo.on('ready', function(db) {
-  // TODO don't start listening until mongo is ready
-  app.db = db;
-});
+// db
+require('../models/team');
+mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/nko_development');
+app.db = mongoose;
 
 app.listen(port);
 app.ws = io.listen(app); // socket.io

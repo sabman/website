@@ -1,33 +1,21 @@
-Backbone ?= require '../lib/backbone-mongo'
-out = (exports ? this)
+mongoose = require 'mongoose'
+ObjectId = mongoose.Schema.ObjectId
+Invite = require './invite'
 
-class out.Teams extends Backbone.Collection
-  name: 'teams' # for mongo
-  url: -> "/#{@name}"
+Team = module.exports = new mongoose.Schema
+  name:
+    type: String
+    validate: [/./, "Name can't be blank"]
+  emails: [String]
+  invites: [Invite]
+  member_ids: [ObjectId]
 
-class out.Team extends Backbone.Model
-  collection: out.Teams
+Team.path('emails').validate (v) ->
+  1 <= v.length
+, 'Team must have at least one member'
 
-  defaults:
-    name: null
-    invites: []
-    member_ids: []
+Team.path('emails').validate (v) ->
+  v.length <= 4
+, 'At most four members are allowed on a team'
 
-  initialize: ->
-    @errors = []
-
-  validate: (attrs) ->
-    @errors.length = 0
-
-    if 'name' of attrs and not attrs.name
-      @errors.push "Team name can't be blank"
-
-    if 'emails' of attrs
-      if attrs.emails.length
-        @errors.push "At most 4 members allowed on a team" if attrs.emails.length > 4
-      else
-        @errors.push "Team must have at least one member"
-
-    @errors.length
-
-  emails: -> []
+mongoose.model 'Team', Team

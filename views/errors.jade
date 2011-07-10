@@ -1,4 +1,5 @@
-- if (errors.length)
+- if (typeof(errors) !== 'undefined')
   ul.errors
-    - each error in errors
-      li= error
+    - each message, field in errors
+      - message = message.replace(/^Validator "|" failed for path \w+$/g, '')
+      li= message

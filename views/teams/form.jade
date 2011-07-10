@@ -1,4 +1,4 @@
-!= partial('errors', { locals: { errors: team.errors }})
+!= partial('errors')
 
 .name
   h3
@@ -9,6 +9,6 @@
   h3 Member Emails
   .note We don&rsquo;t spam.
   ol#members
-    - for (var i = 1; i < 5; i++)
+    - for (var i = 0; i < 4; i++)
       li
-        input.email( type: 'text', name: 'emails[]', value: team.emails()[i - 1], placeholder: 'member' + i + '@team.com' )
+        input.email( type: 'text', name: 'emails[]', value: team.emails[i], placeholder: 'member' + (i+1) + '@team.com' )

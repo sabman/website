@@ -1,6 +1,11 @@
 _ = require 'underscore'
 app = require '../config/app'
-{ Team } = require '../models/team'
+Team = app.db.model 'Team'
+
+# index
+app.get '/teams', (req, res) ->
+  Team.find (err, teams) ->
+    res.render2 'teams', teams: teams
 
 # new
 app.get '/teams/new', (req, res) ->
@@ -8,24 +13,24 @@ app.get '/teams/new', (req, res) ->
 
 # create
 app.post '/teams', (req, res) ->
-  team = new Team req.body # this needs to be done here and the line below so that
-  team.save req.body,      # the attributes are set even w/validation errors
-    success: -> res.redirect "/teams/#{team.id}"
-    error: -> res.render2 'teams/new', team: team
+  team = new Team req.body
+  team.save (err) ->
+    if err
+      res.render2 'teams/new', team: team, errors: err.errors
+    else
+      res.redirect "/teams/#{team.id}"
 
 # show
 app.get '/teams/:id', (req, res) ->
-  team = new Team id: req.params.id
-  team.fetch
-    success: -> res.render2 'teams/show', team: team
-    error: (e) -> next 'route' # 404
+  Team.findById req.params.id, (err, team) ->
+    return next 'route' if err
+    res.render2 'teams/show', team: team
 
 # edit
 app.get '/teams/:id/edit', (req, res) ->
-  team = new Team id: req.params.id
-  team.fetch
-    success: -> res.render2 'teams/edit', team: team
-    error: (e) -> next 'route' # 404
+  Team.findById req.params.id, (err, team) ->
+    return next 'route' if err
+    res.render2 'teams/edit', team: team
 
 # update
 app.put '/teams/:id', (req, res) ->
