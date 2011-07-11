@@ -12,7 +12,10 @@ html
     #page( class: view.replace(/\//g,'-') )
       aside
         .login
-          a.button( href: '/auth/github' ) Sign in
+          - if (user)
+            = user.github.login
+          - else
+            a.button( href: '/auth/github' ) Sign in
 
         h3 Important dates
         table.important-dates

@@ -1,5 +1,5 @@
 var express = require('express')
-  , auth = require('connect-auth')
+  , auth = require('mongoose-auth')
   , assets = require('connect-assetmanager')
   , io = require('socket.io')
   , env = require('./env')
@@ -20,6 +20,11 @@ app.paths = {
 // utilities & hacks
 require('../lib/render2');
 app.te = require('../lib/throw-runtime-error');
+
+// db
+require('../models');
+mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/nko_development');
+app.db = mongoose;
 
 // config
 app.configure(function() {
@@ -55,36 +60,24 @@ app.configure(function() {
         '*']
     }
   }));
+  app.use(auth.middleware());
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
 });
 
 app.configure('development', function() {
-  app.use(auth([auth.Github({
-    appId: 'c07cd7100ae57921a267',
-    appSecret: secrets.github_dev,
-    callback: 'http://localhost:' + port + '/auth/github'
-  })]));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.use(express.static(app.paths.public));
   app.set('view options', { scope: { development: true }});
 });
 
 app.configure('production', function() {
-  app.use(auth([auth.Github({
-    appId: 'c294545b6f2898154827',
-    appSecret: secrets.github,
-    callback: 'http://nodeknockout.com/auth/github'
-  })]));
   app.use(express.errorHandler());
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
   app.set('view options', { scope: { development: false }});
 });
 
-// db
-require('../models/team');
-mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/nko_development');
-app.db = mongoose;
+auth.helpExpress(app);
 
 app.listen(port);
 app.ws = io.listen(app); // socket.io

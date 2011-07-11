@@ -1,7 +1,6 @@
 require('coffee-script');
 
 [ 'index',
-  'auth',
   'teams',
   'redirect',
   'websocket'

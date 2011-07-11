@@ -1,3 +1,4 @@
+util = require 'util'
 app = require '../config/app'
 
 app.get /\/(.*)\//, (req, res, next) ->
@@ -6,4 +7,5 @@ app.get /\/(.*)\//, (req, res, next) ->
     next() # don't redirect for stylesheets and the like
   else
     # let 2010 routes redirect for a while
+    util.log('redirecting to http://2010.nodeknockout.com' + req.url)
     res.redirect('http://2010.nodeknockout.com' + req.url, 301)
