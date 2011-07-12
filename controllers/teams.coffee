@@ -48,7 +48,7 @@ app.put '/teams/:id', (req, res, next) ->
 
   Team.findById req.params.id, (err, team) ->
     return next '404' unless team
-    return next '401' unless _.include team.people_ids, req.user.id
+    return next '401' unless team.includes req.user
     _.extend team, req.body
     team.save (err) ->
       if err

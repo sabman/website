@@ -6,10 +6,11 @@ Invite = require './invite'
 TeamSchema = new mongoose.Schema
   name:
     type: String
-    validate: [/./, "Name can't be blank"]
-  emails: [String]
-  invites: [Invite]
-  people_ids: [ObjectId]
+    validate: [ /./, "Name can't be blank" ]
+  emails: [ String ]
+  invites: [ Invite ]
+  people_ids: [ ObjectId ]
+TeamSchema.plugin require('mongoose-types').useTimestamps
 
 TeamSchema.path('emails').validate (v) ->
   1 <= v.length
