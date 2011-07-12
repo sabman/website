@@ -9,9 +9,9 @@ PersonSchema.plugin auth,
     everyauth: { User: () -> Person }
   github:
     everyauth:
-      myHostname: if env.production then 'http://nodeknockout.com' else 'http://localhost:8000'
-      appId: env.secrets.github_app_id
-      appSecret: env.secrets.github_secret
+      myHostname: env.hostname
+      appId: env.github_app_id
+      appSecret: env.secrets.github
       redirectPath: '/'
 mongoose.model 'Person', PersonSchema
 

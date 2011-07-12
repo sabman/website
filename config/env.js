@@ -7,12 +7,15 @@ env.development = env.node_env === 'development';
 env.production = !env.development;
 
 if (env.development) {
+  env.hostname = 'http://localhost:' + env.port;
+  env.github_app_id = 'c07cd7100ae57921a267';
   try { env.secrets = require('./secrets'); }
   catch(e) { throw "secret keys file is missing. see ./secrets.js.sample."; }
 } else {
+  env.hostname = 'http://nodeknockout.com';
+  env.github_app_id = 'c294545b6f2898154827';
   env.secrets = {
-    github_app_id: process.env.GITHUB_APP_ID,
-    github_secret: process.env.GITHUB_OAUTH_SECRET,
+    github: process.env.GITHUB_OAUTH_SECRET,
     session: process.env.EXPRESS_SESSION_KEY
   };
 }
