@@ -55,3 +55,4 @@ app.put '/teams/:id', (req, res, next) ->
         res.render2 'teams/edit', team: team, errors: err.errors
       else
         res.redirect "/teams/#{team.id}"
+  null
