@@ -9,7 +9,7 @@ PersonSchema.plugin auth,
     everyauth: { User: () -> Person }
   github:
     everyauth:
-      myHostname: 'http://nodeknockout.com'
+      myHostname: if env.production then 'http://nodeknockout.com' else 'http://localhost:8000'
       appId: env.secrets.github_app_id
       appSecret: env.secrets.github_secret
       redirectPath: '/'
