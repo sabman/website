@@ -33,8 +33,10 @@ header, footer
 time
   display inline
 
-body
+body, input
   font-family "04b_03", monospace
+
+body
   text-align center
   background hsl(200, 30%, 95%) url('/images/noise.png') repeat
   text-shadow 0px 1px 0px hsla(0, 100%, 100%, 0.6)
@@ -43,7 +45,7 @@ body
 a:link, a:visited
   color hsl(200, 30%, 60%)
 
-button, a.button
+button, input[type=submit], a.button
   border solid 1px hsla(0, 0%, 0%, 0.2)
   background-color hsl(200, 30%, 60%)
   background hsl(200, 30%, 50%) -webkit-linear-gradient(-90deg, hsla(0, 0%, 100%, 0.6), hsla(0, 0%, 100%, 0.1) 50%)
@@ -55,6 +57,14 @@ button, a.button
   box-shadow inset 0 0 3px hsla(0, 0%, 0%, 0.2)
   &:active
     box-shadow inset 0 0 5px hsla(0, 0%, 0%, 0.8)
+
+input[type=text], input[type=email]
+  font-size large
+  padding 6px 5px 2px
+  border-radius 2px
+  border solid 1px hsla(0, 0%, 0%, 0.2)
+  box-shadow inset 0px 0px 3px hsla(0, 0%, 0%, 0.2)
+  margin 2px 0
 
 p
   line-height 150%
