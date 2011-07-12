@@ -44,7 +44,12 @@ html
           li.interested
             a( href: 'mailto:all@nodeknockout.com?subject=Sponsoring' ) Interested in sponsoring?
 
-      #inner!= body
+      #inner
+        header
+          h1: a( href: '/' )
+            | node.js
+            span.ko ko
+        != body
     script( src: '/socket.io/socket.io.js' )
     script( src: '/javascripts/all.js' )
     script

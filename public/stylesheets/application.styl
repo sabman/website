@@ -13,12 +13,20 @@ box-shadow()
   -moz-box-shadow arguments
   box-shadow arguments
 
+small = 12px
+medium = 16px
+large = 24px
+x-large = 34px
+xx-large = 64px
+xxx-large = 96px
+
 @font-face
   font-family "04b_03"
   src url('/fonts/04b_03__-webfont.eot')
   src url('/fonts/04b_03__-webfont.eot?iefix') format('eot'), url('/fonts/04b_03__-webfont.woff') format('woff'), url('/fonts/04b_03__-webfont.ttf') format('truetype'), url('/fonts/04b_03__-webfont.svg#webfontiFL0wwqh') format('svg')
   font-weight normal
   font-style normal
+  font-size medium
 
 header, footer
   display block
@@ -107,6 +115,21 @@ aside
     position relative
     padding 10px 20px
     width 580px
+    header
+      text-align center
+      h1
+        font-size x-large
+        word-spacing -0.5ex
+        a
+          color black
+          text-decoration none
+        .ko
+          background-color black
+          color white
+          text-shadow 0px 2px 0px hsla(0, 100%, 100%, 0.5)
+          padding 8px 5px 5px 10px
+          border-radius 2px
+          border solid 1px hsla(0, 100%, 100%, 0.5)
 
 .thing
   position absolute
@@ -139,26 +162,21 @@ aside
 
 #page.index-index
   text-align center
-  header
-    h1
-      font-size 72pt
-      word-spacing -0.5ex
-      .ko
-        background-color black
-        color white
-        text-shadow 0px 2px 0px hsla(0, 100%, 100%, 0.5)
-        padding 10px 10px 0 25px
-        border-radius 2px
-        border solid 1px hsla(0, 100%, 100%, 0.5)
+  header h1
+    font-size xxx-large !important
+    .ko
+      padding 10px 10px 0 25px !important
   section
     margin 3em 0px
   .dates
-    font-size 24pt
+    font-size x-large
     margin 0.25em 0px
   #countdown, .now-what
-    font-size 13pt
+    font-size medium
+  a.register.button
+    font-size large
   footer
-    margin-top 5em
+    margin-top 3em
     li
       display inline-block
       margin 0 1ex
