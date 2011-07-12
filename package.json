@@ -29,7 +29,7 @@
     "mongoose": "1.6.0",
     "mongoose-auth": "0.0.11",
     "mongoose-types": "1.0.3",
-    "postageapp": "https://github.com/visnup/postageapp-nodejs/tarball/patch-1",
+    "postageapp": "0.0.2",
     "socket.io": "0.6.18",
     "stylus": "0.13.0",
     "underscore": "1.1.6"
