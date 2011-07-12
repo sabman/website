@@ -16,7 +16,7 @@
     "lib": "."
   },
   "engines": {
-    "node": "*"
+    "node": "~0.4.9"
   },
   "dependencies": {
     "coffee-script": "1.1.1",
