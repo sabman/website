@@ -13,7 +13,10 @@ html
       aside
         .login
           - if (user)
-            = user.github.login
+            img.avatar( src: gravatar_url(user) )
+            a( href: '/people/' + user.id )= user.github.login
+            |  |
+            a( href: '/logout' ) Sign out
           - else
             a.button( href: '/auth/github' ) Sign in
 

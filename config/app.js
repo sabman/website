@@ -1,9 +1,10 @@
 var express = require('express')
-  , auth = require('mongoose-auth')
   , assets = require('connect-assetmanager')
-  , io = require('socket.io')
-  , env = require('./env')
+  , auth = require('mongoose-auth')
   , coffee = require('coffee-script')
+  , cookieSession = require('connect-cookie-session')
+  , env = require('./env')
+  , io = require('socket.io')
   , mongoose = require('mongoose')
   , port = env.port
   , secrets = env.secrets;
@@ -33,7 +34,7 @@ app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.session({ secret: secrets.session }));
+  app.use(cookieSession({ secret: secrets.session }));
   app.use(assets({
     js: {
       route: /\/javascripts\/all\.js/,
@@ -77,7 +78,9 @@ app.configure('production', function() {
   app.set('view options', { scope: { development: false }});
 });
 
+// helpers
 auth.helpExpress(app);
+require('../helpers')(app);
 
 app.listen(port);
 app.ws = io.listen(app); // socket.io

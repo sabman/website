@@ -274,7 +274,7 @@ $(function() {
       arguments: [ pos ]
     }));
 
-    $window.scrollLeft(left).scrollTop(top)
+    //$window.scrollLeft(left).scrollTop(top)
   }
   nko.goTo = function goTo(selector) {
     var page = $(selector)
@@ -479,8 +479,8 @@ $(function() {
   //// page specific stuff
 
   $('#page.index-index').each(function() {
-    new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(-10, 100) });
-    new nko.Thing({ name: 'livetree', pos: new nko.Vector(-80, 30) });
+    new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(-10, 160) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(-80, 120) });
 
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(-60, 870) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(0, 900) });

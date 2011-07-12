@@ -22,6 +22,7 @@
     "coffee-script": "1.1.1",
     "connect": "1.4.3",
     "connect-assetmanager": "0.0.20",
+    "connect-cookie-session": "0.0.1",
     "express": "2.4.2",
     "jade": "0.11.0",
     "markdown": "0.2.1",
