@@ -343,6 +343,7 @@ $(function() {
       }
     })
     .keydown(function(e) {
+      if ($(e.target).is('input')) return true;
       if (e.altKey) return true;
       var d = (function() {
         switch (e.keyCode) {
@@ -370,6 +371,7 @@ $(function() {
       }
     })
     .keyup(function(e) {
+      if ($(e.target).is('input')) return true;
       if (e.altKey) return true;
       switch (e.keyCode) {
         case 37: // left
@@ -386,6 +388,7 @@ $(function() {
           return false;
       }
     });
+
   var moved = false;
   $('body')
     .bind('touchmove', function(e) { moved = true; })
