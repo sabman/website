@@ -6,9 +6,9 @@
   input( type: 'text', name: 'name', id: 'name', placeholder: 'Witty Team Name', value: team.get('name') )
 
 .members
-  h3 Member Emails
+  h3 Member Emails (including yours)
   .note We don&rsquo;t spam.
   ol#members
     - for (var i = 0; i < 4; i++)
       li
-        input.email( type: 'text', name: 'emails[]', value: team.emails[i], placeholder: 'member' + (i+1) + '@team.com' )
+        input.email( type: 'email', name: 'emails[]', value: team.emails[i], placeholder: 'member' + (i+1) + '@team.com' )

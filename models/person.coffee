@@ -3,7 +3,7 @@ auth = require 'mongoose-auth'
 env = require '../config/env'
 
 # auth decoration
-PersonSchema = new mongoose.Schema
+PersonSchema = module.exports = new mongoose.Schema
 PersonSchema.plugin auth,
   everymodule:
     everyauth: { User: () -> Person }
@@ -12,7 +12,9 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       appId: env.github_app_id
       appSecret: env.secrets.github
-      redirectPath: '/'
-mongoose.model 'Person', PersonSchema
+      redirectPath: '/people/me'
 
-module.exports = Person = mongoose.model 'Person'
+Person = module.exports = mongoose.model 'Person', PersonSchema
+Person.prototype.team = (callback) ->
+  Team = mongoose.model 'Team'
+  Team.find people_ids: this.id, callback

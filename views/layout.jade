@@ -14,7 +14,7 @@ html
         .login
           - if (user)
             img.avatar( src: gravatar_url(user) )
-            a( href: '/people/' + user.id )= user.github.login
+            a( href: '/people/me' )= user.github.login
             |  |
             a( href: '/logout' ) Sign out
           - else

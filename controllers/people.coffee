@@ -6,6 +6,15 @@ app.get '/people', (req, res) ->
   Person.find (err, people) ->
     res.render2 'people', people: people
 
+app.get '/people/me', (req, res) ->
+  Person.findById req.user.id, (err, person) ->
+    return next '404' unless person
+    person.team (team) ->
+      if team
+        res.render2 'people/show', person: person, team: team
+      else
+        res.redirect '/teams/new'
+
 # show
 app.get '/people/:id', (req, res, next) ->
   Person.findById req.params.id, (err, person) ->
