@@ -6,6 +6,7 @@ var express = require('express')
   , env = require('./env')
   , io = require('socket.io')
   , mongoose = require('mongoose')
+  , mongooseTypes = require('mongoose-types')
   , port = env.port
   , secrets = env.secrets;
 
@@ -25,6 +26,7 @@ app.te = require('../lib/throw-runtime-error');
 // db
 require('../models');
 mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/nko_development');
+mongooseTypes.loadTypes(mongoose);
 app.db = mongoose;
 
 // config
@@ -58,7 +60,8 @@ app.configure(function() {
         'jquery.border-image.js',
         'jquery.transform.light.js',
         'application.js',
-        '*']
+        '*'
+      ]
     }
   }));
   app.use(auth.middleware());
