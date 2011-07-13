@@ -25,10 +25,14 @@ app.post '/teams', (req, res) ->
   team = new Team req.body
   req.user.join team
   team.save (err) ->
-    if err
-      res.render2 'teams/new', team: team, errors: err.errors
-    else
-      res.redirect "/teams/#{team.id}"
+    team.people (err2, people) ->
+      if err
+        res.render2 'teams/new',
+          team: team
+          people: people
+          errors: err.errors
+      else
+        res.redirect "/teams/#{team.id}"
 
 # show (join)
 app.get '/teams/:id', (req, res, next) ->
