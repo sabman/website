@@ -5,6 +5,7 @@ env = require '../config/env'
 
 # auth decoration
 PersonSchema = module.exports = new mongoose.Schema
+  email: String
 PersonSchema.plugin require('mongoose-types').useTimestamps
 PersonSchema.plugin auth,
   everymodule:
