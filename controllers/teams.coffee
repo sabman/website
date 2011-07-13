@@ -46,7 +46,9 @@ app.get '/teams/:id/edit', (req, res, next) ->
   Team.findById req.param('id'), (err, team) ->
     return next '404' unless team
     return next '401' unless team.includes req.user
-    res.render2 'teams/edit', team: team
+    team.people (err, people) ->
+      console.log people
+      res.render2 'teams/edit', team: team, people: people
 
 # update
 app.put '/teams/:id', (req, res, next) ->

@@ -27,7 +27,7 @@ TeamSchema.method 'includes', (person) ->
   _.any @people_ids, (id) -> id.equals(person.id)
 
 TeamSchema.method 'people', (callback) ->
-  Person.find id: { '$in': @people_ids }, callback
+  Person.find _id: { '$in': @people_ids }, callback
 
 TeamSchema.method 'invited', (invite) ->
   _.detect @invites, (i) -> i.code == invite

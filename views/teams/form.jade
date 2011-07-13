@@ -9,6 +9,8 @@
   h3 Member Emails (including yours)
   .note We don&rsquo;t spam.
   ol#members
-    - for (var i = 0; i < 4; i++)
+    - each person in people
+      li: a( href: '/people/' + person.id )= person.github.login
+    - for (var i = 0; i < 4 - people.length; i++)
       li
-        input.email( type: 'email', name: 'emails[]', value: team.emails[i], placeholder: 'member' + (i+1) + '@team.com' )
+        input.email( type: 'email', name: 'emails[]', value: team.emails[i], placeholder: 'member' + (people.length+i+1) + '@team.com' )
