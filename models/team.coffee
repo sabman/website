@@ -24,7 +24,7 @@ TeamSchema = module.exports = new mongoose.Schema
 TeamSchema.plugin require('mongoose-types').useTimestamps
 
 TeamSchema.method 'includes', (person) ->
-  _.any @people_ids, (id) -> id.equals(person.id)
+  _.any @people_ids, (id) -> id.equals(person.id) if person
 
 TeamSchema.method 'people', (callback) ->
   Person.find _id: { '$in': @people_ids }, callback
