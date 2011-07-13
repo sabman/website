@@ -1,5 +1,6 @@
 app = require '../config/app'
 Person = app.db.model 'Person'
+Team = app.db.model 'Team'
 
 # index
 app.get '/people', (req, res) ->
@@ -11,7 +12,12 @@ app.get '/people/me', (req, res) ->
     return next '404' unless person
     person.team (team) ->
       if team
-        res.render2 'people/show', person: person, team: team
+        res.redirect "/people/#{person.id}"
+      if invite = req.session.invite
+        Team.findOne 'invites.code': invite, (err, team) ->
+          req.user.join team, invite
+          team.save (err) ->
+            res.redirect "/people/#{person.id}"
       else
         res.redirect '/teams/new'
 
@@ -19,7 +25,8 @@ app.get '/people/me', (req, res) ->
 app.get '/people/:id', (req, res, next) ->
   Person.findById req.param('id'), (err, person) ->
     return next '404' unless person
-    res.render2 'people/show', person: person
+    person.team (err, team) ->
+      res.render2 'people/show', person: person, team: team
 
 # edit
 app.get '/people/:id/edit', (req, res, next) ->

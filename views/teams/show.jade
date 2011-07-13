@@ -1,3 +1,13 @@
-h1= team.name
+h1
+  = team.name
+  - if (team.includes(user))
+    | 
+    a.button( href: '/teams/' + team.id + '/edit' ) Manage
 
-p: a.button( href: '/teams/' + team.id + '/edit' ) Edit
+- if (people.length > 0)
+  h2 members
+- else
+  h2 #{team.invites.length} pending invites
+  - if (team.invited(invite))
+    | You're invited to this team! Hurrah!
+    p: a.button( href: '/auth/github' ) Accept Invitation

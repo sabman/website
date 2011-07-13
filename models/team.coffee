@@ -3,6 +3,7 @@ mongoose = require 'mongoose'
 
 InviteSchema = require './invite'
 Invite = mongoose.model 'Invite'
+Person = mongoose.model 'Person'
 
 TeamSchema = module.exports = new mongoose.Schema
   name:
@@ -24,6 +25,12 @@ TeamSchema.plugin require('mongoose-types').useTimestamps
 
 TeamSchema.method 'includes', (person) ->
   _.any @people_ids, (id) -> id.equals(person.id)
+
+TeamSchema.method 'people', (callback) ->
+  Person.find id: { '$in': @people_ids }, callback
+
+TeamSchema.method 'invited', (invite) ->
+  _.detect @invites, (i) -> i.code == invite
 
 # create invites
 TeamSchema.pre 'save', (next) ->

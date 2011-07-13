@@ -20,18 +20,24 @@ app.post '/teams', (req, res) ->
   return res.redirect '/teams/new' unless req.loggedIn
 
   team = new Team req.body
-  team.people_ids.push req.user.id
+  req.user.join team
   team.save (err) ->
     if err
       res.render2 'teams/new', team: team, errors: err.errors
     else
       res.redirect "/teams/#{team.id}"
 
-# show
+# show (join)
 app.get '/teams/:id', (req, res, next) ->
+  req.session.invite = req.param('invite') if req.param('invite')
   Team.findById req.param('id'), (err, team) ->
     return next '404' unless team
-    res.render2 'teams/show', team: team
+    team.people (err, people) ->
+      throw err if err
+      res.render2 'teams/show',
+        team: team
+        people: people
+        invite: req.session.invite
 
 # edit
 app.get '/teams/:id/edit', (req, res, next) ->

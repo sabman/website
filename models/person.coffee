@@ -1,3 +1,4 @@
+_ = require 'underscore'
 mongoose = require 'mongoose'
 auth = require 'mongoose-auth'
 env = require '../config/env'
@@ -14,8 +15,15 @@ PersonSchema.plugin auth,
       appId: env.github_app_id
       appSecret: env.secrets.github
       redirectPath: '/people/me'
+
 PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
-  Team.find people_ids: @id, callback
+  Team.findOne people_ids: @id, callback
+
+PersonSchema.method 'join', (team, invite) ->
+  team.people_ids.push @id unless team.includes(this)
+  if old = _.detect(team.invites, (i) -> i.code == invite)
+    team.emails = _.without team.emails, old.email
+    old.remove()
 
 Person = mongoose.model 'Person', PersonSchema
