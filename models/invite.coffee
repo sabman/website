@@ -11,16 +11,15 @@ InviteSchema = module.exports = new mongoose.Schema
     default: no
   code:
     type: String
-    default: () -> rbytes.randomBytes(12).toString('base64')
+    default: -> rbytes.randomBytes(12).toString('base64')
 
-InviteSchema.method 'send', (person) ->
-  unless @sent
+InviteSchema.method 'send', (force) ->
+  if not @sent or force
     util.log "Sending 'teams_new' to '#{@email}'"
     team = @parentArray._parent
     postageapp.apiCall @email, 'teams_new', null, 'all@nodeknockout.com',
       team_id: team.id
       team_name: team.name
-      #person_github_login: person.github.login
       invite_code: @code
     @sent = yes
 

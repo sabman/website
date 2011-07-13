@@ -46,6 +46,15 @@ app.get '/teams/:id', (req, res, next) ->
         people: people
         invite: req.session.invite
 
+# resend invitation
+app.all '/teams/:id/invite/:inviteId', (req, res, next) ->
+  Team.findById req.param('id'), (err, team) ->
+    app.te err
+    return next '404' unless team
+    return next '401' unless team.includes req.user
+    team.invites.id(req.param('inviteId')).send(true)
+    res.redirect "/teams/#{team.id}"
+
 # edit
 app.get '/teams/:id/edit', (req, res, next) ->
   return res.redirect '/auth/github' unless req.loggedIn

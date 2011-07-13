@@ -12,10 +12,8 @@ TeamSchema = module.exports = new mongoose.Schema
   emails:
     type: [ mongoose.SchemaTypes.Email ]
     validate: [
-      (v) -> 1 <= v.length
-      'min'
-      (v) -> v.length <= 4
-      'max'
+      ((v) -> 1 <= v.length), 'min',
+      ((v) -> v.length <= 4), 'max'
     ]
   invites: [ InviteSchema ]
   people_ids:
