@@ -4,3 +4,5 @@ form( method: 'POST', action: '/teams/' + team.id )
   input( type: 'hidden', name: '_method', value: 'put' )
   != partial('form')
   input( type: 'submit', value: 'Update' )
+  | 
+  a( href: '/teams/' + team.id ) Cancel
