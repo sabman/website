@@ -9,6 +9,7 @@
   h3 Member Emails (including yours)
   .note We don&rsquo;t spam.
   ol#members
+    - if (typeof(people) === 'undefined') people = []
     - each person in people
       li
         img.avatar( src: gravatar_url(person) )

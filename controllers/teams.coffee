@@ -12,14 +12,14 @@ app.get '/teams', (req, res) ->
 app.get '/teams/new', (req, res) ->
   team = new Team
   team.emails = [ req.user.github.email ] if req.loggedIn
-  res.render2 'teams/new', team: team, people: []
+  res.render2 'teams/new', team: team
 
 # create
 app.post '/teams', (req, res) ->
   team = new Team req.body
   team.save (err) ->
     if err
-      res.render2 'teams/new', team: team, people: [], errors: err.errors
+      res.render2 'teams/new', team: team, errors: err.errors
     else
       res.redirect "/teams/#{team.id}"
 
