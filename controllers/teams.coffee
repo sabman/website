@@ -10,29 +10,18 @@ app.get '/teams', (req, res) ->
 
 # new
 app.get '/teams/new', (req, res) ->
-  return res.redirect '/auth/github' unless req.loggedIn
-
-  team = new Team people_ids: [ req.user.id ]
-  team.emails = []
-  team.people (err, people) ->
-    app.te err
-    res.render2 'teams/new', team: team, people: people
+  team = new Team
+  team.emails = [ req.user.github.email ] if req.loggedIn
+  res.render2 'teams/new', team: team, people: []
 
 # create
 app.post '/teams', (req, res) ->
-  return res.redirect '/teams/new' unless req.loggedIn
-
   team = new Team req.body
-  req.user.join team
   team.save (err) ->
-    team.people (err2, people) ->
-      if err
-        res.render2 'teams/new',
-          team: team
-          people: people
-          errors: err.errors
-      else
-        res.redirect "/teams/#{team.id}"
+    if err
+      res.render2 'teams/new', team: team, people: [], errors: err.errors
+    else
+      res.redirect "/teams/#{team.id}"
 
 # show (join)
 app.get '/teams/:id', (req, res, next) ->

@@ -18,8 +18,9 @@ app.get '/people/me', (req, res) ->
           req.session.invite = null
           if team
             req.user.join team, invite
-            team.save (err) ->
-              res.redirect "/people/#{person.id}"
+            req.user.save (err) ->
+              team.save (err) ->
+                res.redirect "/people/#{person.id}"
           else
             res.redirect '/teams/new'
       else
