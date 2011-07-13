@@ -14,8 +14,8 @@ PersonSchema.plugin auth,
       appId: env.github_app_id
       appSecret: env.secrets.github
       redirectPath: '/people/me'
-
-Person = module.exports = mongoose.model 'Person', PersonSchema
-Person.prototype.team = (callback) ->
+PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
   Team.find people_ids: this.id, callback
+
+Person = mongoose.model 'Person', PersonSchema

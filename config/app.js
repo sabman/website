@@ -30,26 +30,8 @@ mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/nko_development
 app.db = mongoose;
 
 // config
-app.configure('development', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.use(express.static(app.paths.public));
-
-  app.set('view options', { scope: { development: true }});
-});
-
-app.configure('production', function() {
-  app.use(express.errorHandler());
-  app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
-
-  app.set('view options', { scope: { development: false }});
-});
-
 app.configure(function() {
   app.use(require('stylus').middleware(app.paths.public));
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(cookieSession({ secret: secrets.session }));
   app.use(assets({
     js: {
       route: /\/javascripts\/all\.js/,
@@ -77,6 +59,27 @@ app.configure(function() {
       ]
     }
   }));
+});
+
+app.configure('development', function() {
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.static(app.paths.public));
+
+  app.set('view options', { scope: { development: true }});
+});
+
+app.configure('production', function() {
+  app.use(express.errorHandler());
+  app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
+
+  app.set('view options', { scope: { development: false }});
+});
+
+app.configure(function() {
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(cookieSession({ secret: secrets.session }));
   app.use(express.logger());
   app.use(auth.middleware());
 

@@ -1,2 +1,2 @@
-for lib in ['person', 'team']
+for lib in ['invite', 'person', 'team']
   require "./#{lib}"
