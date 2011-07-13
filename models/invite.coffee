@@ -1,10 +1,27 @@
 mongoose = require 'mongoose'
 rbytes = require 'rbytes'
+util = require 'util'
+env = require '../config/env'
+postageapp = require('postageapp')(env.secrets.postageapp)
 
 InviteSchema = module.exports = new mongoose.Schema
   email: String
+  sent:
+    type: Boolean
+    default: no
   code:
     type: String
     default: () -> rbytes.randomBytes(12).toString('base64')
+
+InviteSchema.method 'send', (person) ->
+  unless @sent
+    util.log "Sending 'teams_new' to '#{@email}'"
+    team = @parentArray._parent
+    postageapp.apiCall @email, 'teams_new', null, 'all@nodeknockout.com',
+      team_id: team.id
+      team_name: team.name
+      #person_github_login: person.github.login
+      invite_code: @code
+    @sent = yes
 
 mongoose.model 'Invite', InviteSchema

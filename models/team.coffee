@@ -1,7 +1,5 @@
 _ = require 'underscore'
 mongoose = require 'mongoose'
-env = require '../config/env'
-postageapp = require('postageapp')(env.secrets.postageapp)
 
 InviteSchema = require './invite'
 Invite = mongoose.model 'Invite'
@@ -25,19 +23,18 @@ TeamSchema = module.exports = new mongoose.Schema
 TeamSchema.plugin require('mongoose-types').useTimestamps
 
 TeamSchema.method 'includes', (person) ->
-  _.any this.people_ids, (id) -> id.equals(person.id)
+  _.any @people_ids, (id) -> id.equals(person.id)
 
-# create stub people? and send emails
+# create invites
 TeamSchema.pre 'save', (next) ->
-  this.invites = for email in this.emails
-    _.detect(this.invites, (i) -> i.email == email) or new Invite email: email
-  ###
-  postageapp.apiCall this.emails, 'teams_new', null, 'all@nodeknockout.com',
-    team_id: this.id
-    team_name: this.name
-    person_github_login: 'visnup'
-    invite_code: 'awef'
-  ###
+  for email in @emails
+    unless _.detect(@invites, (i) -> i.email == email)
+      @invites.push new Invite(email: email)
+  _.invoke @invites, 'send'
   next()
+TeamSchema.post 'save', () ->
+  for invite in @invites
+    invite.remove() unless !invite or _.include(@emails, invite.email)
+  @save() if @isModified 'invites'
 
 mongoose.model 'Team', TeamSchema

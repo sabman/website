@@ -16,6 +16,6 @@ PersonSchema.plugin auth,
       redirectPath: '/people/me'
 PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
-  Team.find people_ids: this.id, callback
+  Team.find people_ids: @id, callback
 
 Person = mongoose.model 'Person', PersonSchema

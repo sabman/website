@@ -52,8 +52,6 @@ app.put '/teams/:id', (req, res, next) ->
     _.extend team, req.body
     team.save (err) ->
       if err
-        throw err unless err.errors
-        console.log require('util').inspect(err, false, null)
         res.render2 'teams/edit', team: team, errors: err.errors
       else
         res.redirect "/teams/#{team.id}"

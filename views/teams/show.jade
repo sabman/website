@@ -1,4 +1,3 @@
-h1= team.get('name')
+h1= team.name
 
-p
-  a( href: '/teams/' + team.id + '/edit' ) Edit
+p: a.button( href: '/teams/' + team.id + '/edit' ) Edit
