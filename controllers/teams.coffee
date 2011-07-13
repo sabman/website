@@ -29,7 +29,7 @@ app.post '/teams', (req, res) ->
 
 # show
 app.get '/teams/:id', (req, res, next) ->
-  Team.findById req.params.id, (err, team) ->
+  Team.findById req.param('id'), (err, team) ->
     return next '404' unless team
     res.render2 'teams/show', team: team
 
@@ -37,7 +37,7 @@ app.get '/teams/:id', (req, res, next) ->
 app.get '/teams/:id/edit', (req, res, next) ->
   return res.redirect '/auth/github' unless req.loggedIn
 
-  Team.findById req.params.id, (err, team) ->
+  Team.findById req.param('id'), (err, team) ->
     return next '404' unless team
     return next '401' unless team.includes req.user
     res.render2 'teams/edit', team: team
@@ -46,7 +46,7 @@ app.get '/teams/:id/edit', (req, res, next) ->
 app.put '/teams/:id', (req, res, next) ->
   return res.redirect '/auth/github' unless req.loggedIn
 
-  Team.findById req.params.id, (err, team) ->
+  Team.findById req.param('id'), (err, team) ->
     return next '404' unless team
     return next '401' unless team.includes req.user
     _.extend team, req.body
