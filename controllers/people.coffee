@@ -10,14 +10,18 @@ app.get '/people', (req, res) ->
 app.get '/people/me', (req, res) ->
   Person.findById req.user.id, (err, person) ->
     return next '404' unless person
-    person.team (team) ->
+    person.team (err, team) ->
       if team
         res.redirect "/people/#{person.id}"
-      if invite = req.session.invite
+      else if invite = req.session.invite
         Team.findOne 'invites.code': invite, (err, team) ->
-          req.user.join team, invite
-          team.save (err) ->
-            res.redirect "/people/#{person.id}"
+          req.session.invite = null
+          if team
+            req.user.join team, invite
+            team.save (err) ->
+              res.redirect "/people/#{person.id}"
+          else
+            res.redirect '/teams/new'
       else
         res.redirect '/teams/new'
 
