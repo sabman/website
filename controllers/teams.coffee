@@ -13,8 +13,10 @@ app.get '/teams/new', (req, res) ->
   return res.redirect '/auth/github' unless req.loggedIn
 
   team = new Team people_ids: [ req.user.id ]
-  team.emails = [ req.user.github.email ] if req.user.github.email?
-  res.render2 'teams/new', team: team
+  team.emails = []
+  team.people (err, people) ->
+    app.te err
+    res.render2 'teams/new', team: team, people: people
 
 # create
 app.post '/teams', (req, res) ->
