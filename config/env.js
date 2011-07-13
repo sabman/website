@@ -16,6 +16,7 @@ if (env.development) {
   env.github_app_id = 'c294545b6f2898154827';
   env.secrets = {
     github: process.env.GITHUB_OAUTH_SECRET,
+    postageapp: process.env.POSTAGEAPP_SECRET,
     session: process.env.EXPRESS_SESSION_KEY
   };
 }
