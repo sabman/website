@@ -479,12 +479,15 @@ $(function() {
     nko.warpTo(location.hash || 'body');
   })
 
+  //// flare
+  new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(-10, 160) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(-80, 120) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(580, 80) });
+  new nko.Thing({ name: 'livetree', pos: new nko.Vector(1000, 380) });
+  new nko.Thing({ name: 'deadtree', pos: new nko.Vector(1050, 420) });
+
   //// page specific stuff
-
   $('#page.index-index').each(function() {
-    new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(-10, 160) });
-    new nko.Thing({ name: 'livetree', pos: new nko.Vector(-80, 120) });
-
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(-60, 870) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(0, 900) });
     new nko.Thing({ name: 'portopotty', pos: new nko.Vector(80, 900) });
