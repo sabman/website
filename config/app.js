@@ -29,6 +29,7 @@ process.on('uncaughtException', function(e) {
   Hoptoad.notifiy(e);
 });
 app.error(function(e, req, res, next) {
+  if (typeof(e) === 'string') e = new Error(e);
   Hoptoad.notify(e);
   next(e);
 });
