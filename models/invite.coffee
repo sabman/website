@@ -3,6 +3,7 @@ rbytes = require 'rbytes'
 util = require 'util'
 env = require '../config/env'
 postageapp = require('postageapp')(env.secrets.postageapp)
+qs = require 'querystring'
 
 InviteSchema = module.exports = new mongoose.Schema
   email: String
@@ -20,7 +21,7 @@ InviteSchema.method 'send', (force) ->
     postageapp.apiCall @email, 'teams_new', null, 'all@nodeknockout.com',
       team_id: team.id
       team_name: team.name
-      invite_code: @code
+      invite_code: qs.escape @code
     @sent = yes
 
 mongoose.model 'Invite', InviteSchema
