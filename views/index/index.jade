@@ -12,17 +12,14 @@ section
       time.end( datetime: '2011-08-29T00:00:00Z' ) August 29, 2011
     #countdown
 
-//
-  section
-    button#register Register Now!
+section
+  - if (team)
+    a.button( href: '/teams/' + team.id ) View Your Team
+  - else
+    a.register.button( href: '/teams/new' ) Register a Team
 
 section
-  h2 What do I do until then?
-  p
-    - if (team)
-      a.button( href: '/teams/' + team.id ) View Your Team
-    - else
-      a.register.button( href: '/teams/new' ) Register a Team
+  h2 What else can I do until then?
   p
     a( href: 'http://twitter.com/node_knockout' ) Follow us on Twitter
     | ,
@@ -31,7 +28,7 @@ section
     a( href: 'http://github.com/nko2/website' ) contribute on github
     | .
 
-footer
+section
   h2 Want to sponsor or help?
   ul
     li Contact us:
