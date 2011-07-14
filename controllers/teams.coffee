@@ -19,7 +19,7 @@ app.post '/teams', (req, res) ->
   team = new Team req.body
   team.save (err) ->
     if err
-      res.render2 'teams/new', team: team, errors: err.errors
+      res.render2 'teams/new', team: team
     else
       res.redirect "/teams/#{team.id}"
 
@@ -67,7 +67,7 @@ app.put '/teams/:id', (req, res, next) ->
     _.extend team, req.body
     team.save (err) ->
       if err
-        res.render2 'teams/edit', team: team, errors: err.errors
+        res.render2 'teams/edit', team: team
       else
         res.redirect "/teams/#{team.id}"
   null

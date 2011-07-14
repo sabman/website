@@ -11,10 +11,7 @@ TeamSchema = module.exports = new mongoose.Schema
     required: true
   emails:
     type: [ mongoose.SchemaTypes.Email ]
-    validate: [
-      #((v) -> v.length >= 1 or this.people_ids.length > 0), 'min'
-      ((v) -> v.length <= 4), 'max'
-    ]
+    validate: [ ((v) -> v.length <= 4), 'max' ]
   invites: [ InviteSchema ]
   people_ids:
     type: [ mongoose.Schema.ObjectId ]
@@ -29,6 +26,15 @@ TeamSchema.method 'people', (callback) ->
 
 TeamSchema.method 'invited', (invite) ->
   _.detect @invites, (i) -> i.code == invite
+
+# min people validation
+TeamSchema.pre 'save', (next) ->
+  if @people_ids.length + @emails.length == 0
+    error = new mongoose.Document.ValidationError this
+    error.errors.emails = 'min'
+    next error
+  else
+    next()
 
 # create invites
 TeamSchema.pre 'save', (next) ->

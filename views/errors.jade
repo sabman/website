@@ -2,4 +2,4 @@
   ul.errors
     - each message, field in errors
       - message = message.replace(/^Validator "|" failed for path \w+$/g, '')
-      li= message
+      li #{field}: #{message}
