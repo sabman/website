@@ -35,8 +35,6 @@ app.get '/teams/:id', (req, res, next) ->
       res.render2 'teams/show',
         team: team
         people: people
-        invite: req.session.invite
-        code: req.session.team
 
 # resend invitation
 app.all '/teams/:id/invite/:inviteId', (req, res, next) ->
