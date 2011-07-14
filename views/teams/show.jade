@@ -25,4 +25,8 @@ h1
           span.sending
   - if (team.invited(invite))
     | You're invited to this team! Hurrah!
-    p: a.button( href: '/auth/github' ) Accept Invitation
+    p.accept
+      a.button( href: '/auth/github' ) Accept Invitation
+      |  via
+      img( src: '/images/github.png', style: 'margin-bottom: -4px;' )
+      | github

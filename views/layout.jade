@@ -20,6 +20,10 @@ html
             a( href: '/logout' ) Sign out
           - else
             a.button( href: '/auth/github' ) Sign in
+            .via
+              | via
+              img.via-github( src: '/images/github.png' )
+              | github
 
         h3 Important dates
         table.important-dates
