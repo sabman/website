@@ -45,7 +45,7 @@ app.all '/teams/:id/invite/:inviteId', (req, res, next) ->
   Team.findById req.param('id'), (err, team) ->
     app.te err
     return next() unless team
-    return next '401' unless team.includes(req.user || req.session.team)
+    return next '401' unless team.includes(req.user, req.session.team)
     team.invites.id(req.param('inviteId')).send(true)
     res.redirect "/teams/#{team.id}"
 
@@ -54,7 +54,7 @@ app.get '/teams/:id/edit', (req, res, next) ->
   Team.findById req.param('id'), (err, team) ->
     app.te err
     return next() unless team
-    return next '401' unless team.includes(req.user || req.session.team)
+    return next '401' unless team.includes(req.user, req.session.team)
     team.people (err, people) ->
       app.te err
       res.render2 'teams/edit', team: team, people: people
@@ -66,7 +66,7 @@ app.put '/teams/:id', (req, res, next) ->
   Team.findById req.param('id'), (err, team) ->
     app.te err
     return next() unless team
-    return next '401' unless team.includes(req.user || req.session.team)
+    return next '401' unless team.includes(req.user, req.session.team)
     _.extend team, req.body
     team.save (err) ->
       if err

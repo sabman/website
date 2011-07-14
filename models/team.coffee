@@ -22,9 +22,8 @@ TeamSchema = module.exports = new mongoose.Schema
     default: -> rbytes.randomBytes(12).toString('base64')
 TeamSchema.plugin require('mongoose-types').useTimestamps
 
-TeamSchema.method 'includes', (person) ->
-  console.log person
-  @code == person or _.any(@people_ids, (id) -> id.equals(person.id)) if person
+TeamSchema.method 'includes', (person, code) ->
+  @code == code or _.any @people_ids, (id) -> id.equals(person?.id)
 
 TeamSchema.method 'people', (callback) ->
   Person.find _id: { '$in': @people_ids }, callback

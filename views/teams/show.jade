@@ -1,6 +1,6 @@
 h1
   = team.name
-  - if (team.includes(user || code))
+  - if (team.includes(user, code))
     | 
     a.button( href: '/teams/' + team.id + '/edit' ) Manage
 
@@ -14,7 +14,7 @@ h1
 
 - if (team.invites.length)
   h2 Invites (#{team.invites.length} pending)
-  - if (team.includes(user || code))
+  - if (team.includes(user, code))
     ul.invites
       - each invite in team.invites
         li
