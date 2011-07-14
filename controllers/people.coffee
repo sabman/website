@@ -8,11 +8,14 @@ ensureAuth = (req, res, next) ->
   next()
 
 loadPerson = (req, res, next) ->
-  uid = req.param('id') or req.user.id
-  Person.findById uid, (err, person) ->
-    app.te err
-    return next '404' unless person
-    req.person = person
+  if uid = req.param('id')
+    Person.findById uid, (err, person) ->
+      app.te err
+      return next '404' unless person
+      req.person = person
+      next()
+  else
+    req.person = req.user
     next()
 
 loadTeam = (req, res, next) ->
