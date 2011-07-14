@@ -1,8 +1,6 @@
 h1
   img.avatar( src: gravatar_url(person, 80) )
   = person.github.login
-
-- if (team)
-  h2
-    | on team
+  - if (team)
+    |  is on team
     a( href: '/teams/' + team.id )= team.name
