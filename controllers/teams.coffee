@@ -38,6 +38,8 @@ app.get '/teams/:id', (req, res, next) ->
 
 # resend invitation
 app.all '/teams/:id/invite/:inviteId', (req, res, next) ->
+  return res.redirect '/auth/github' unless req.loggedIn
+
   Team.findById req.param('id'), (err, team) ->
     app.te err
     return next '404' unless team
