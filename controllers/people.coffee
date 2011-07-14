@@ -15,11 +15,11 @@ app.get '/people/me', (req, res) ->
         res.redirect "/people/#{person.id}"
       else if invite = req.session.invite
         Team.findOne 'invites.code': invite, (err, team) ->
-          req.session.invite = null
           if team
             req.user.join team, invite
             req.user.save (err) ->
               team.save (err) ->
+                req.session.invite = null
                 res.redirect "/people/#{person.id}"
           else
             res.redirect '/teams/new'
