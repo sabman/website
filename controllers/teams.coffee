@@ -27,6 +27,7 @@ app.post '/teams', (req, res) ->
 app.get '/teams/:id', (req, res, next) ->
   req.session.invite = req.param('invite') if req.param('invite')
   Team.findById req.param('id'), (err, team) ->
+    app.te err
     return next '404' unless team
     team.people (err, people) ->
       app.te err

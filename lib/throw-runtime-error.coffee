@@ -1,19 +1,12 @@
 util = require 'util'
 
-class RuntimeError
-  constructor: (@obj) ->
-    @inspected = util.inspect obj
-    Error.call this, @inspected
-    @captureStackTrace arguments.callee
-
-  log: ->
-    util.debug "ERROR: #{@inspected}"
-    console.trace()
-    this
-util.inherits RuntimeError, Error
-
 throwRuntimeError = (obj) ->
   return unless obj?
-  throw (new RuntimeError(obj)).log()
+  if obj instanceof Error
+    e = obj
+  else
+    e = new Error util.inspect obj
+    Error.captureStackTrace e, arguments.callee
+  throw e
 
 module.exports = throwRuntimeError

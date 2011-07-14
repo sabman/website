@@ -7,6 +7,8 @@ var express = require('express')
   , io = require('socket.io')
   , mongoose = require('mongoose')
   , mongooseTypes = require('mongoose-types')
+  , Hoptoad = require('hoptoad-notifier').Hoptoad
+  , util = require('util')
   , port = env.port
   , secrets = env.secrets;
 
@@ -18,6 +20,18 @@ app.paths = {
   public: __dirname + '/../public',
   views: __dirname + '/../views'
 };
+
+// error handling
+Hoptoad.key = 'b76b10945d476da44a0eac6bfe1aeabd';
+Hoptoad.environment = env.node_env;
+process.on('uncaughtException', function(e) {
+  util.debug(e.stack);
+  Hoptoad.notifiy(e);
+});
+app.error(function(e, req, res, next) {
+  Hoptoad.notify(e);
+  next(e);
+});
 
 // utilities & hacks
 require('../lib/render2');
@@ -49,6 +63,8 @@ app.configure(function() {
           }]
       },
       files: [
+        'hoptoad-notifier.js',
+        'hoptoad-key.js',
         'modernizr-2.0.4.js',
         'json2.js',
         'jquery-1.5.2.js',
