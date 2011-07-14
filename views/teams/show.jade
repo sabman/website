@@ -22,6 +22,7 @@ h1
           | &mdash; 
           a( href: '/teams/' + team.id + '/invite/' + invite.id, rel: 'nofollow' )
             | resend
+          span.sending
   - if (team.invited(invite))
     | You're invited to this team! Hurrah!
     p: a.button( href: '/auth/github' ) Accept Invitation
