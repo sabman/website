@@ -97,7 +97,10 @@ app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(cookieSession({ secret: secrets.session }));
+  app.use(cookieSession({
+    secret: secrets.session,
+    cookie: { maxAge: 31536000000 }
+  }));
   app.use(express.logger());
   app.use(auth.middleware());
 
