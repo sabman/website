@@ -41,7 +41,7 @@ app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res) ->
         req.user.join team, invite
         req.user.save (err) ->
           team.save (err) ->
-            req.session.invite = null
+            delete req.session.invite
             res.redirect "/people/#{req.person.id}"
       else
         res.redirect '/teams/new'
