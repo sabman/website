@@ -144,7 +144,7 @@ nko.Dude.prototype.animate = function animate(state) {
   this.frame = ((this.frame + 1) % frames);
   this.div.css('background-position', (-(this.frameOffset[this.state]+this.frame) * this.size.x) + 'px 0px');
 
-  if (this.bubble.is(':visible')) {
+  if (this.bubble && this.bubble.is(':visible')) {
     this.bubbleFrame = (this.bubbleFrame + 1) % 3;
     $('<img>', { src: '/images/734m/talkbubble' + this.bubbleFrame + '.png' }).load(function() {
       self.bubble.css('border-image', "url('" + this.src + "') 21 20 42 21");
