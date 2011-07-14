@@ -41,8 +41,8 @@ app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res) ->
   else if invite = req.session.invite
     Team.findOne 'invites.code': invite, (err, team) ->
       if team
-        req.user.join team, invite
-        req.user.save (err) ->
+        req.person.join team, invite
+        req.person.save (err) ->
           team.save (err) ->
             delete req.session.invite
             res.redirect "/people/#{req.person.id}"
