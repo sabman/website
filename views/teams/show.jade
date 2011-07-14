@@ -1,6 +1,6 @@
 h1
   = team.name
-  - if (team.includes(user))
+  - if (team.includes(user || code))
     | 
     a.button( href: '/teams/' + team.id + '/edit' ) Manage
 
@@ -14,14 +14,12 @@ h1
 
 - if (team.invites.length)
   h2 Invites (#{team.invites.length} pending)
-  - if (team.includes(user))
+  - if (team.includes(user || code))
     ul.invites
       - each invite in team.invites
         li
-          = invite.email
-          | &mdash; 
-          a( href: '/teams/' + team.id + '/invite/' + invite.id, rel: 'nofollow' )
-            | resend
+          #{invite.email} &mdash;
+          a( href: '/teams/' + team.id + '/invite/' + invite.id, rel: 'nofollow' ) resend
           span.sending
   - if (team.invited(invite))
     | You're invited to this team! Hurrah!

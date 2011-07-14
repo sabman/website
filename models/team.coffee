@@ -1,5 +1,6 @@
 _ = require 'underscore'
 mongoose = require 'mongoose'
+rbytes = require 'rbytes'
 
 InviteSchema = require './invite'
 Invite = mongoose.model 'Invite'
@@ -16,10 +17,14 @@ TeamSchema = module.exports = new mongoose.Schema
   people_ids:
     type: [ mongoose.Schema.ObjectId ]
     index: true
+  code:
+    type: String
+    default: -> rbytes.randomBytes(12).toString('base64')
 TeamSchema.plugin require('mongoose-types').useTimestamps
 
 TeamSchema.method 'includes', (person) ->
-  _.any @people_ids, (id) -> id.equals(person.id) if person
+  console.log person
+  @code == person or _.any(@people_ids, (id) -> id.equals(person.id)) if person
 
 TeamSchema.method 'people', (callback) ->
   Person.find _id: { '$in': @people_ids }, callback
