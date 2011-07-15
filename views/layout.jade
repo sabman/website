@@ -54,6 +54,11 @@ html
           h1: a( href: '/' )
             | node.js
             span.ko ko
+          nav: ul
+            li: a( href: '/rules' ) Rules
+            li: a( href: '/locations' ) Locations
+            li: a( href: '/teams' ) Teams
+
         != body
     script( src: '/socket.io/socket.io.js' )
     script( src: '/javascripts/all.js' )

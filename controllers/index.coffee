@@ -12,6 +12,5 @@ loadCurrentPersonWithTeam = (req, res, next) ->
 app.get '/', [loadCurrentPersonWithTeam], (req, res) ->
   res.render2 'index/index', team: req.team
 
-['about', 'how-to-win', 'sponsors'].forEach (p) ->
-  app.get '/' + p, (req, res) ->
-    res.render2('index/' +p)
+['about', 'how-to-win', 'locations', 'rules', 'sponsors'].forEach (p) ->
+  app.get '/' + p, (req, res) -> res.render2 "index/#{p}"

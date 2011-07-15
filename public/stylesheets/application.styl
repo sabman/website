@@ -28,7 +28,7 @@ xxx-large = 96px
   font-style normal
   font-size medium
 
-header, footer
+header, footer, nav
   display block
 time
   display inline
@@ -57,15 +57,16 @@ button, input[type=submit], a.button
   font-size large
   border solid 1px hsla(0, 0%, 0%, 0.2)
   background-color hsl(200, 30%, 60%)
-  background hsl(200, 30%, 50%) -webkit-linear-gradient(-90deg, hsla(0, 0%, 100%, 0.6), hsla(0, 0%, 100%, 0.1) 50%)
+  background hsl(200, 30%, 50%) -webkit-linear-gradient(-90deg, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 100%, 0.1) 50%)
+  background hsl(200, 30%, 50%) -moz-linear-gradient(-90deg, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 100%, 0.1) 50%)
   color white
-  text-shadow 0 -1px 0 hsla(0, 0%, 0%, 0.2)
+  text-shadow 0 -1px 0 hsla(0, 0%, 0%, 0.5)
   text-decoration none
-  padding 5px 10px
+  padding 5px 1ex
   border-radius 3px
   box-shadow inset 0 0 3px hsla(0, 0%, 0%, 0.2)
   &:active
-    box-shadow inset 0 0 5px hsla(0, 0%, 0%, 0.8)
+    box-shadow inset 0 0 5px hsla(0, 0%, 0%, 0.6)
 
 input[type=text], input[type=email]
   font-size large
@@ -169,6 +170,14 @@ aside
           padding 8px 5px 5px 10px
           border-radius 2px
           border solid 1px hsla(0, 100%, 100%, 0.5)
+      nav
+        margin 1em 0
+        border-bottom dotted 2px hsla(0, 0%, 0%, 0.2)
+        a:link
+          text-decoration none
+        li
+          display inline
+          margin 0 1em
 
 .thing
   position absolute
@@ -205,6 +214,8 @@ aside
     font-size xxx-large !important
     .ko
       padding 10px 10px 0 25px !important
+  nav
+    font-size large
   section
     margin 3em 0px
     p, ul
