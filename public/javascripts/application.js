@@ -250,6 +250,29 @@ $(function() {
     }
   });
 
+  // networking
+  var dudes = {};
+  var ws = new io.Socket();
+  ws.on('connect', function() {
+    ws.send(JSON.stringify({ obj: me }));
+  });
+  ws.on('message', function(data) {
+    var data = JSON.parse(data)
+      , dude = dudes[data.sessionId];
+
+    if (data.disconnect && dude) {
+      dude.remove();
+      delete dudes[data.sessionId];
+    }
+
+    if (data.obj && !dude)
+      dude = dudes[data.sessionId] = new nko.Dude(data.obj).draw();
+
+    if (data.method)
+      nko.Dude.prototype[data.method].apply(dude, data.arguments);
+  });
+  ws.connect();
+
   function randomPositionOn(selector) {
     var page = $(selector)
       , pos = page.position()
@@ -450,30 +473,6 @@ $(function() {
         $text.focus()
     }
   });
-
-  // socket
-  var dudes = {};
-  var ws = new io.Socket();
-  ws.on('connect', function() {
-    ws.send(JSON.stringify({ obj: me }));
-  });
-  ws.on('message', function(data) {
-    var data = JSON.parse(data)
-      , dude = dudes[data.sessionId];
-
-    if (data.disconnect && dude) {
-      dude.remove();
-      delete dudes[data.sessionId];
-    }
-
-    if (data.obj && !dude)
-      dude = dudes[data.sessionId] = new nko.Dude(data.obj).draw();
-
-    if (data.method)
-      nko.Dude.prototype[data.method].apply(dude, data.arguments);
-  });
-
-  ws.connect();
 
   $(window).load(function() { // center it
     nko.warpTo(location.hash || 'body');
