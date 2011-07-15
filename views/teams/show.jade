@@ -15,6 +15,7 @@ h1
 - if (team.invites.length)
   h2 Invites (#{team.invites.length} pending)
   - if (team.includes(user, session.team))
+    p Check your email for invites or resend invites below.
     ul.invites
       - each invite in team.invites
         li
@@ -22,7 +23,7 @@ h1
           a( href: '/teams/' + team.id + '/invite/' + invite.id, rel: 'nofollow' ) resend
           span.sending
   - if (team.invited(session.invite))
-    | You're invited to this team! Hurrah!
+    h2 You're invited to this team!
     p.accept
       a.button( href: '/auth/github' ) Accept Invitation
       |  via

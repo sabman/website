@@ -7,11 +7,13 @@
 ## /people/me
 
 - if on a team
-  - renders /people/show with the logged in person
+  - redirects to /people/show of the logged in person
 - if invited to a team (based on session invite code [see below])
   - joins the team
     - deletes the invite
     - clears out session invite code
+- if created a team (still not on it, and still no confirmed invite)
+  - redirect to the created team
 - else
   - redirects to /teams/new
 

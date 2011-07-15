@@ -48,6 +48,13 @@ app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res) ->
             res.redirect "/people/#{req.person.id}"
       else
         res.redirect '/teams/new'
+  else if code = req.session.team
+    Team.findOne code: code, (err, team) ->
+      app.te err
+      if team
+        res.redirect '/teams/' + team.id
+      else
+        res.redirect '/teams/new'
   else
     res.redirect '/teams/new'
 
