@@ -10,7 +10,8 @@ loadTeam = (req, res, next) ->
       return res.send 404 unless team
       req.team = team
       next()
-  next()
+  else
+    next()
 
 loadPeople = (req, res, next) ->
   req.team.people (err, people) ->
