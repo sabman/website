@@ -1,7 +1,5 @@
-- title(team.name)
-
 h1
-  = team.name
+  = title(team.name)
   - if (team.includes(user, session.team))
     | 
     a.button( href: '/teams/' + team.id + '/edit' ) Manage
