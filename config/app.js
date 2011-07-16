@@ -1,11 +1,6 @@
 var express = require('express')
   , auth = require('mongoose-auth')
-  , coffee = require('coffee-script')
   , env = require('./env')
-  , io = require('socket.io')
-  , mongoose = require('mongoose')
-  , mongooseTypes = require('mongoose-types')
-  , Hoptoad = require('hoptoad-notifier').Hoptoad
   , util = require('util')
   , port = env.port
   , secrets = env.secrets;
@@ -20,6 +15,7 @@ app.paths = {
 };
 
 // error handling
+var Hoptoad = require('hoptoad-notifier').Hoptoad;
 Hoptoad.key = 'b76b10945d476da44a0eac6bfe1aeabd';
 Hoptoad.environment = env.node_env;
 process.on('uncaughtException', function(e) {
@@ -36,10 +32,11 @@ app.error(function(e, req, res, next) {
 
 // utilities & hacks
 require('../lib/render2');
-require('../lib/mongo-log')(mongoose.mongo);
 
 // db
-mongooseTypes.loadTypes(mongoose);
+var mongoose = require('mongoose')
+require('../lib/mongo-log')(mongoose.mongo);
+require('mongoose-types').loadTypes(mongoose);
 require('../models');
 util.log('connecting to ' + env.mongo_url);
 mongoose.connect(env.mongo_url);
@@ -47,6 +44,7 @@ app.db = mongoose;
 
 // config
 app.configure(function() {
+  var coffee = require('coffee-script');
   app.use(require('stylus').middleware(app.paths.public));
   app.use(require('connect-assetmanager')({
     js: {
@@ -110,6 +108,6 @@ auth.helpExpress(app);
 require('../helpers')(app);
 
 app.listen(port);
-app.ws = io.listen(app); // socket.io
+app.ws = require('socket.io').listen(app);
 
 require('util').log("listening on 0.0.0.0:" + port + ".");
