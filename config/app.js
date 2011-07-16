@@ -24,11 +24,13 @@ Hoptoad.key = 'b76b10945d476da44a0eac6bfe1aeabd';
 Hoptoad.environment = env.node_env;
 process.on('uncaughtException', function(e) {
   util.debug(e.stack);
-  Hoptoad.notifiy(e);
+  if (env.node_env === 'production')
+    Hoptoad.notify(e);
 });
 app.error(function(e, req, res, next) {
   if (typeof(e) === 'string') e = new Error(e);
-  Hoptoad.notify(e);
+  if (env.node_env === 'production')
+    Hoptoad.notify(e);
   next(e);
 });
 
