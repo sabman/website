@@ -11,7 +11,7 @@ loadPerson = (req, res, next) ->
   if id = req.param('id')
     Person.findById id, (err, person) ->
       return next err if err
-      return res.send 404 unless person
+      return next 404 unless person
       req.person = person
       next()
   else
@@ -26,7 +26,7 @@ loadTeam = (req, res, next) ->
 
 ensureAccess = (req, res, next) ->
   ensureAuth req, res, ->
-    return res.send 401 unless req.person.id is req.user.id
+    return next 401 unless req.person.id is req.user.id
     next()
 
 # index

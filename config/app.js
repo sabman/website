@@ -24,10 +24,17 @@ process.on('uncaughtException', function(e) {
     Hoptoad.notify(e);
 });
 app.error(function(e, req, res, next) {
-  if (typeof(e) === 'string') e = new Error(e);
+  if (typeof(e) === 'number')
+    return res.render2('errors/' + e, { status: e });
+
+  if (typeof(e) === 'string')
+    e = new Error(e);
+
   if (env.node_env === 'production')
     Hoptoad.notify(e);
-  next(e);
+
+  util.debug(e.stack);
+  res.render2('errors/500', { error: e });
 });
 
 // utilities & hacks
@@ -97,8 +104,6 @@ app.configure(function() {
   app.use(express.logger());
   app.use(auth.middleware());
   app.use(app.router);
-  app.registerErrorHandlers();
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
 });

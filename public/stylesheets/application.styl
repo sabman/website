@@ -33,7 +33,7 @@ header, footer, nav
 time
   display inline
 
-body, input
+body, input, code
   font-family 'VT323', monospace
   font-size medium
 
@@ -330,3 +330,14 @@ aside
   h1 img.avatar
     width 80px
     height 80px
+
+#page.errors-500
+  code
+    display block
+    overflow scroll
+    white-space pre
+    border-radius 2px
+    border solid 1px hsla(0, 0%, 0%, 0.1)
+    background-color hsla(0, 0%, 0%, 0.1)
+    padding 2px
+    margin-left -3px

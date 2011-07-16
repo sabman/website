@@ -7,7 +7,7 @@ loadTeam = (req, res, next) ->
   if id = req.param('id')
     Team.findById id, (err, team) ->
       return next err if err
-      return res.send 404 unless team
+      return next 404 unless team
       req.team = team
       next()
   else
@@ -20,7 +20,7 @@ loadPeople = (req, res, next) ->
     next()
 
 ensureAccess = (req, res, next) ->
-  return res.send 401 unless req.team.includes(req.user, req.session.team)
+  return next 401 unless req.team.includes(req.user, req.session.team)
   next()
 
 # index
