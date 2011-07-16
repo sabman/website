@@ -1,8 +1,6 @@
 var express = require('express')
-  , assets = require('connect-assetmanager')
   , auth = require('mongoose-auth')
   , coffee = require('coffee-script')
-  , cookieSession = require('connect-cookie-session')
   , env = require('./env')
   , io = require('socket.io')
   , mongoose = require('mongoose')
@@ -48,7 +46,7 @@ app.db = mongoose;
 // config
 app.configure(function() {
   app.use(require('stylus').middleware(app.paths.public));
-  app.use(assets({
+  app.use(require('connect-assetmanager')({
     js: {
       route: /\/javascripts\/all\.js/,
       path: './public/javascripts/',
@@ -80,32 +78,35 @@ app.configure(function() {
 });
 
 app.configure('development', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.use(express.static(app.paths.public));
+});
+app.configure('production', function() {
+  app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
+});
 
+app.configure(function() {
+  app.use(express.cookieParser());
+  app.use(require('connect-cookie-session')({
+    secret: secrets.session,
+    cookie: { maxAge: 31536000000 } // ~1 year
+  }));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.logger());
+  app.use(auth.middleware());
+  app.use(app.router);
+  app.set('views', app.paths.views);
+  app.set('view engine', 'jade');
+});
+
+app.configure('development', function() {
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.set('view options', { scope: { development: true }});
 });
 
 app.configure('production', function() {
   app.use(express.errorHandler());
-  app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
-
   app.set('view options', { scope: { development: false }});
-});
-
-app.configure(function() {
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(cookieSession({
-    secret: secrets.session,
-    cookie: { maxAge: 31536000000 } // 1 year
-  }));
-  app.use(express.logger());
-  app.use(auth.middleware());
-
-  app.set('views', app.paths.views);
-  app.set('view engine', 'jade');
 });
 
 // helpers
