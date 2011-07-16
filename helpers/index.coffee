@@ -8,5 +8,9 @@ module.exports = (app) ->
       inspect obj
 
   app.dynamicHelpers
-    session: (req, res) ->
-      req.session
+    session: (req, res) -> req.session
+    req: (req, res) -> req
+    title: (req, res) ->
+      (title) ->
+        req.pageTitle = title if title
+        req.pageTitle
