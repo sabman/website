@@ -462,6 +462,7 @@ $(function() {
       }
     }).focus();
   $(document).keylisten(function(e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return true;
     switch (e.keyName) {
       case 'meta':
       case 'meta+ctrl':
