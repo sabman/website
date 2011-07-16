@@ -73,7 +73,6 @@ app.configure(function() {
         ]
       },
       files: [
-        env.hostname+'/socket.io/socket.io.js',
         'hoptoad-notifier.js',
         'hoptoad-key.js',
         'modernizr-2.0.4.js',
