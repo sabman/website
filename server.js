@@ -4,8 +4,7 @@ require('coffee-script');
   'index',
   'people',
   'teams',
-  'websocket',
-  'redirect'
+  'websocket'
 ].forEach(function(controller) {
   require('./controllers/' + controller);
 });
