@@ -81,9 +81,11 @@ app.configure(function() {
 
 app.configure('development', function() {
   app.use(express.static(app.paths.public));
+  app.set('view options', { scope: { development: true }});
 });
 app.configure('production', function() {
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
+  app.set('view options', { scope: { development: false }});
 });
 
 app.configure(function() {
@@ -97,18 +99,9 @@ app.configure(function() {
   app.use(express.logger());
   app.use(auth.middleware());
   app.use(app.router);
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
-});
-
-app.configure('development', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.set('view options', { scope: { development: true }});
-});
-
-app.configure('production', function() {
-  app.use(express.errorHandler());
-  app.set('view options', { scope: { development: false }});
 });
 
 // helpers
