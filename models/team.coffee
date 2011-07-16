@@ -25,11 +25,16 @@ TeamSchema.plugin require('mongoose-types').useTimestamps
 TeamSchema.method 'includes', (person, code) ->
   @code == code or person and _.any @people_ids, (id) -> id.equals(person.id)
 
-TeamSchema.method 'people', (callback) ->
-  Person.find _id: { '$in': @people_ids }, callback
+TeamSchema.method 'people', (next) ->
+  Person.find _id: { '$in': @people_ids }, next
 
 TeamSchema.method 'invited', (invite) ->
   _.detect @invites, (i) -> i.code == invite
+
+TeamSchema.static 'canRegister', (next) ->
+  Team.count null, (err, count) ->
+    return next err if err
+    next null, count < 200
 
 # min people validation
 TeamSchema.pre 'save', (next) ->
@@ -39,6 +44,17 @@ TeamSchema.pre 'save', (next) ->
     next error
   else
     next()
+
+# max teams
+TeamSchema.pre 'save', (next) ->
+  Team.canRegister (err, yeah) =>
+    return next err if err
+    if yeah
+      next()
+    else
+      error = new mongoose.Document.ValidationError this
+      error.errors._base = 'max'
+      next error
 
 # create invites
 TeamSchema.pre 'save', (next) ->
@@ -52,4 +68,4 @@ TeamSchema.post 'save', () ->
     invite.remove() unless !invite or _.include(@emails, invite.email)
   @save() if @isModified 'invites'
 
-mongoose.model 'Team', TeamSchema
+Team = mongoose.model 'Team', TeamSchema
