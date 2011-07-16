@@ -41,7 +41,8 @@ require('../lib/mongo-log')(mongoose.mongo);
 // db
 mongooseTypes.loadTypes(mongoose);
 require('../models');
-mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/nko_development');
+util.log('connecting to ' + env.mongo_url);
+mongoose.connect(env.mongo_url);
 app.db = mongoose;
 
 // config
@@ -98,7 +99,7 @@ app.configure(function() {
   app.use(express.methodOverride());
   app.use(cookieSession({
     secret: secrets.session,
-    cookie: { maxAge: 31536000000 }
+    cookie: { maxAge: 31536000000 } // 1 year
   }));
   app.use(express.logger());
   app.use(auth.middleware());
