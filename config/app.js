@@ -51,7 +51,9 @@ app.db = mongoose;
 
 // config
 app.configure(function() {
-  var coffee = require('coffee-script');
+  var coffee = require('coffee-script')
+    , uglify_jsp = require("uglify-js").parser
+    , uglify_pro = require("uglify-js").uglify;
   app.use(require('stylus').middleware(app.paths.public));
   app.use(require('connect-assetmanager')({
     js: {
@@ -60,15 +62,18 @@ app.configure(function() {
       dataType: 'javascript',
       debug: true,
       preManipulate: {
-        '^': [function(file, path, index, isLast, callback) {
+        '^': [
+          function(file, path, index, isLast, callback) {
             if (/\.coffee$/.test(path)) {
               callback(coffee.compile(file));
             } else {
               callback(file);
             }
-          }]
+          }
+        ]
       },
       files: [
+        env.hostname+'/socket.io/socket.io.js',
         'hoptoad-notifier.js',
         'hoptoad-key.js',
         'modernizr-2.0.4.js',
@@ -80,6 +85,17 @@ app.configure(function() {
         'application.js',
         '*'
       ]
+      , 'postManipulate': {
+        '^': [
+          function(file, path, index, isLast, callback) {
+            file = '(function(){'+file+'})();';
+            var ast = uglify_jsp.parse(file);
+            ast = uglify_pro.ast_mangle(ast);
+            ast = uglify_pro.ast_squeeze(ast);
+            callback(uglify_pro.gen_code(ast));
+          }
+        ]
+      }
     }
   }));
 });
