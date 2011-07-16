@@ -99,6 +99,7 @@ app.configure(function() {
   app.use(express.logger());
   app.use(auth.middleware());
   app.use(app.router);
+  app.registerErrorHandlers();
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
