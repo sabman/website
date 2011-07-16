@@ -73,7 +73,7 @@ app.put '/teams/:id', [loadTeam, ensureAccess], (req, res, next) ->
     if req.team.errors
       req.team.people (err, people) ->
         return next err if err
-        res.render2 'teams/edit', team: req.team, people: req.people
+        res.render2 'teams/edit', team: req.team, people: people
     else
       res.redirect "/teams/#{req.team.id}"
   null
