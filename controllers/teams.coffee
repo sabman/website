@@ -49,7 +49,7 @@ app.all '/teams/:id/invite/:inviteId', (req, res, next) ->
   Team.findById req.param('id'), (err, team) ->
     return next err if err
     return next() unless team
-    return next '401' unless team.includes(req.user, req.session.team)
+    return res.send 401 unless team.includes(req.user, req.session.team)
     team.invites.id(req.param('inviteId')).send(true)
     res.redirect "/teams/#{team.id}"
 
@@ -58,7 +58,7 @@ app.get '/teams/:id/edit', (req, res, next) ->
   Team.findById req.param('id'), (err, team) ->
     return next err if err
     return next() unless team
-    return next '401' unless team.includes(req.user, req.session.team)
+    return res.send 401 unless team.includes(req.user, req.session.team)
     team.people (err, people) ->
       return next err if err
       res.render2 'teams/edit', team: team, people: people
@@ -70,7 +70,7 @@ app.put '/teams/:id', (req, res, next) ->
   Team.findById req.param('id'), (err, team) ->
     return next err if err
     return next() unless team
-    return next '401' unless team.includes(req.user, req.session.team)
+    return res.send 401 unless team.includes(req.user, req.session.team)
     _.extend team, req.body
     team.save (err) ->
       return next err if err and err.name != 'ValidationError'

@@ -10,8 +10,8 @@ ensureAuth = (req, res, next) ->
 loadPerson = (req, res, next) ->
   if uid = req.param('id')
     Person.findById uid, (err, person) ->
-      app.te err
-      return next '404' unless person
+      return next err if err
+      return next() unless person
       req.person = person
       next()
   else
@@ -20,22 +20,22 @@ loadPerson = (req, res, next) ->
 
 loadTeam = (req, res, next) ->
   req.person.team (err, team) ->
-    app.te err
+    return next err if err
     req.team = team
     next()
 
 ensureAccess = (req, res, next) ->
   ensureAuth req, res, ->
-    return next '401' unless req.person.id is req.user.id
+    return res.send 401 unless req.person.id is req.user.id
     next()
 
 # index
-app.get '/people', (req, res) ->
+app.get '/people', (req, res, next) ->
   Person.find (err, people) ->
-    app.te err
+    return next err if err
     res.render2 'people', people: people
 
-app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res) ->
+app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res, next) ->
   if req.team
     res.redirect "/people/#{req.person.id}"
   else if invite = req.session.invite
@@ -50,7 +50,7 @@ app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res) ->
         res.redirect '/teams/new'
   else if code = req.session.team
     Team.findOne code: code, (err, team) ->
-      app.te err
+      return next err if err
       if team
         res.redirect '/teams/' + team.id
       else
@@ -70,7 +70,8 @@ app.get '/people/:id/edit', [loadPerson, ensureAccess], (req, res, next) ->
 app.put '/people/:id', [loadPerson, ensureAccess], (req, res) ->
   _.extend req.person, req.body
   req.person.save (err) ->
-    if err
-      res.render2 'people/edit', person: req.person, errors: err.errors
+    return next err if err && err.name != 'ValidationError'
+    if req.person.errors
+      res.render2 'people/edit', person: req.person
     else
       res.redirect "/people/#{req.person.id}"

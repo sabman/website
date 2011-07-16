@@ -36,7 +36,6 @@ app.error(function(e, req, res, next) {
 
 // utilities & hacks
 require('../lib/render2');
-app.te = require('../lib/throw-runtime-error');
 require('../lib/mongo-log')(mongoose.mongo);
 
 // db
