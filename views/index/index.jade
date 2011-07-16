@@ -17,7 +17,7 @@ section
     a.register.button( href: '/teams/' + team.id ) View Your Team
   - else if (canRegister)
     a.register.button( href: '/teams/new' ) Register a Team
-    p Before it's too late!
+    p Before it's too late! (#{teamsLeft} spots left)
   - else
     h3: a( href: '/teams/new' ) Registration is closed
 
