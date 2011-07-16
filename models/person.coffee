@@ -9,7 +9,9 @@ PersonSchema = module.exports = new mongoose.Schema
 PersonSchema.plugin require('mongoose-types').useTimestamps
 PersonSchema.plugin auth,
   everymodule:
-    everyauth: { User: () -> Person }
+    everyauth:
+      moduleTimeout: 10000
+      User: () -> Person
   github:
     everyauth:
       myHostname: env.hostname
