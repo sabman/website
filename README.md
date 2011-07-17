@@ -5,4 +5,9 @@
     |_| |_|\___/ \__,_|\___(_)/ |___/ |_|\_\_| |_|\___/ \___|_|\_\___/ \__,_|\__|
                             |__/                                                 
 
-ye should walk around, greet others, maybe stop and admire the trees.
+[node.js knockout] is a 48-hour programming contest featuring [node.js]. it
+owes its roots to [rails rumble].
+
+[node.js knockout]:http://nodeknockout.com/
+[node.js]:http://nodejs.org/
+[rails rumble]:http://railsrumble.com/
