@@ -4,7 +4,7 @@ Team = app.db.model 'Team'
 
 # middleware
 ensureAuth = (req, res, next) ->
-  return res.redirect '/auth/github' unless req.loggedIn
+  return res.redirect '/login' unless req.loggedIn
   next()
 
 loadPerson = (req, res, next) ->
@@ -37,7 +37,8 @@ app.get '/people', (req, res, next) ->
 
 app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res, next) ->
   if req.team
-    res.redirect "/people/#{req.person.id}"
+    res.redirect req.session.returnTo || "/people/#{req.person.id}"
+    delete req.session.returnTo
   else if invite = req.session.invite
     Team.findOne 'invites.code': invite, (err, team) ->
       if team

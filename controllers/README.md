@@ -1,7 +1,8 @@
 # login flow
 
-## /auth/github
+## /login -> /auth/github
 
+- remember referer for returnTo behavior
 - sign in via github, redirects to /people/me
 
 ## /people/me

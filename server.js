@@ -1,6 +1,7 @@
 require('coffee-script');
 
-[ 'index',
+[ 'login',
+  'index',
   'people',
   'teams',
   'websocket',
