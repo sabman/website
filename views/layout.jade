@@ -78,7 +78,7 @@ html
 
         != body
     script( src: '/socket.io/socket.io.js' )
-    script( src: '/javascripts/all.js' )
+    script( src: '/javascripts/'+(cacheTimeStamps.js || '007')+'/all.js' )
     script
       $('a').live('mousedown', function() {
         var href = this.href;
