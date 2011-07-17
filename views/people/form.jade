@@ -1,0 +1,52 @@
+!= partial('errors', { errors: person.errors })
+
+.name.tabular
+  label( for: 'name' ) Name
+  input( type: 'text', name: 'name', id: 'name', value: person.name )
+
+.email.tabular
+  label( for: 'email' ) Email
+  input( type: 'text', name: 'email', id: 'email', value: person.email )
+  .note
+    - if (person.role === 'contestant')
+      | Only visible to team members.
+    - else
+      | Only visible to you.
+
+- if (req.user.admin)
+  .role.tabular
+    label( for: 'role' ) Role
+    select( name: 'role', id: 'role' )
+      option( value: 'contestant' ) Contestant
+      option( value: 'judge' ) Judge
+      option( value: 'voter' ) Public Voter
+    span.technical
+      input( type: 'checkbox', name: 'technical', value: true)
+      | technical
+    .admin
+      input( type: 'checkbox', name: 'admin', value: true )
+      | Admin
+
+- if (person.isNew || person.role == 'judge' || person.role == 'contestant' || !person.role)
+  h2 Optional
+
+  .location.tabular
+    label( for: 'location' ) Location
+    input( type: 'text', name: 'location', id: 'location', value: person.location )
+
+  .company.tabular
+    label( for: 'company' ) Company
+    input( type: 'text', name: 'company', id: 'company', value: person.company )
+
+  .bio.tabular
+    label( for: 'bio' ) Bio
+    textarea( name: 'bio', id: 'bio' )= person.bio
+    - if (person.role == 'judge')
+      .note
+        | A 2-3 sentence bio for the
+        != ' <a href="/judging">judges page</a>.'
+
+  .twitter.tabular
+    label( for: 'twitter' ) Twitter
+    | http://twitter.com/
+    input( type: 'text', name: 'twitter', id: 'twitter', value: person.twitter )

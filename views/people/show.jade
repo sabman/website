@@ -1,6 +1,31 @@
+.avatar-and-role
+  img.avatar( src: avatar_url(person, 80) )
+  .role= person.role
+
 h1
-  img.avatar( src: gravatar_url(person, 80) )
-  = title(person.github.login)
-  - if (team)
-    |  is on team
+  = title(person.name || person.github.login)
+  span.icons
+    - if (person.twitter)
+      a.twitter( href: 'http://twitter.com/' + person.twitter )
+        img( src: '/images/twitter.png' )
+    - if (person.github.login)
+      a.github( href: 'http://github.com/' + person.github.login )
+        img( src: '/images/github.png' )
+.details
+  - if (person.company)
+    .company!= markdown(person.company)
+  - if (person.location && person.company)
+    |  &mdash;
+  - if (person.location)
+    a.location( href: 'http://maps.google.com/?q=' + person.location )
+      = person.location
+
+- if (team)
+  h2.team
+    | On
     a( href: '/teams/' + team.id )= team.name
+
+.bio!= markdown(person.bio)
+
+- if (req.user.admin)
+  p: a.button( href: '/people/' + person.id + '/edit' ) Edit

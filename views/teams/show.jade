@@ -9,7 +9,7 @@ h1
   ul.people
     - each person in people
       li
-        img.avatar( src: gravatar_url(person) )
+        img.avatar( src: avatar_url(person) )
         a( href: '/people/' + person.id )= person.github.login
 
 - if (team.invites.length)

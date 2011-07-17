@@ -5,7 +5,16 @@ env = require '../config/env'
 
 # auth decoration
 PersonSchema = module.exports = new mongoose.Schema
+  name: String
   email: String
+  image_url: String
+  location: String
+  company: String
+  twitter: String
+  bio: String
+  admin: Boolean
+  role: String
+  technical: Boolean
 PersonSchema.plugin require('mongoose-types').useTimestamps
 PersonSchema.plugin auth,
   everymodule:

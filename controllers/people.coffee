@@ -26,7 +26,12 @@ loadTeam = (req, res, next) ->
 
 ensureAccess = (req, res, next) ->
   ensureAuth req, res, ->
-    return next 401 unless req.person.id is req.user.id
+    return next 401 unless (req.user is req.person) or req.user.admin
+    next()
+
+ensureAdmin = (req, res, next) ->
+  ensureAuth req, res, ->
+    return next 401 unless req.user.admin
     next()
 
 # index
@@ -37,7 +42,7 @@ app.get '/people', (req, res, next) ->
 
 app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res, next) ->
   if req.team
-    res.redirect req.session.returnTo || "/people/#{req.person.id}"
+    res.redirect req.session.returnTo or "/people/#{req.person.id}"
     delete req.session.returnTo
   else if invite = req.session.invite
     Team.findOne 'invites.code': invite, (err, team) ->
@@ -59,16 +64,31 @@ app.get '/people/me', [ensureAuth, loadPerson, loadTeam], (req, res, next) ->
   else
     res.redirect '/teams/new'
 
+# new
+app.get '/people/new', [ensureAdmin], (req, res, next) ->
+  res.render2 'people/new', person: new Person
+
+# create
+app.post '/people', [ensureAdmin], (req, res) ->
+  person = new Person req.body
+  person.save (err) ->
+    if err
+      res.render2 'people/new', person: person
+    else
+      res.redirect "people/#{person.id}"
+
 # show
 app.get '/people/:id', [loadPerson, loadTeam], (req, res, next) ->
   res.render2 'people/show', person: req.person, team: req.team
 
 # edit
-app.get '/people/:id/edit', [loadPerson, ensureAccess], (req, res, next) ->
+app.get '/people/:id/edit', [loadPerson, ensureAdmin], (req, res, next) ->
   res.render2 'people/edit', person: req.person
 
 # update
-app.put '/people/:id', [loadPerson, ensureAccess], (req, res) ->
+app.put '/people/:id', [loadPerson, ensureAdmin], (req, res) ->
+  unless req.user.admin
+    delete req.body[attr] for att in ['role', 'admin', 'technical']
   _.extend req.person, req.body
   req.person.save (err) ->
     return next err if err && err.name != 'ValidationError'

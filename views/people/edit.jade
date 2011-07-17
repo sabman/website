@@ -1,0 +1,9 @@
+h1 Edit your Profile
+
+form( method: 'POST', action: '/people/' + person.id )
+  input( type: 'hidden', name: '_method', value: 'put' )
+  != partial('form')
+  p
+    input( type: 'submit', value: 'Update' )
+    | 
+    a( href: '/people/' + person.id ) Cancel

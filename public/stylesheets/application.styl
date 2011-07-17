@@ -68,13 +68,16 @@ button, input[type=submit], a.button
   &:active
     box-shadow inset 0 0 5px hsla(0, 0%, 0%, 0.6)
 
-input[type=text], input[type=email]
+input[type=text], input[type=email], textarea
   font-size large
   padding 2px 3px
   border-radius 2px
   border solid 1px hsla(0, 0%, 0%, 0.2)
   box-shadow inset 0px 0px 3px hsla(0, 0%, 0%, 0.2)
   margin 2px 0
+
+textarea
+  font-size small
 
 p, ul
   margin 1em 0
@@ -331,9 +334,23 @@ aside
     line-height 150%
 
 #page.people-show
-  h1 img.avatar
-    width 80px
-    height 80px
+  .avatar-and-role
+    float left
+    margin-right 10px
+    img.avatar
+      width 80px
+      height 80px
+    .role
+      text-align center
+      text-transform uppercase
+      font-size small
+  h1
+    margin-bottom 0
+  .details
+    .company, .company p
+      display inline
+  .team, .bio
+    clear left
 
 #page.errors-500
   code
@@ -345,3 +362,26 @@ aside
     background-color hsla(0, 0%, 0%, 0.1)
     padding 2px
     margin-left -3px
+
+#page.people-new, #page.people-edit
+  input[type=text], textarea
+    width 300px
+  .twitter input[type=text]
+    width 150px
+  .bio
+    label
+      vertical-align top
+    textarea
+      height 3.5em
+  .tabular
+    margin 10px 0
+    > label
+      display inline-block
+      margin-left 0
+      width 100px
+    > div
+      margin-left 100px
+  .note
+    font-size small
+  .role .technical
+    display none

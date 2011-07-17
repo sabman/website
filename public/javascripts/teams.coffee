@@ -3,4 +3,4 @@ $('#page.teams-show .invites a').live 'click', (e) ->
   $t = $(this).hide()
   $n = $t.next().show().html 'sending&hellip;'
   $.post @href, ->
-  	$n.text('done').delay(500).fadeOut 'slow', -> $t.show()
+    $n.text('done').delay(500).fadeOut 'slow', -> $t.show()
