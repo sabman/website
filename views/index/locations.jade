@@ -32,43 +32,50 @@ p#map
 
   [Let us know]:mailto:all@nodeknockout.com
 
-h4 Copenhagen, Denmark
-- address = escape('Gothersgade 8B, Boltens Gaard, 1123 Copenhagen')
-a( href='http://maps.google.com/maps?q=' + address )
-  img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-h3
-  a( href: 'http://www.nodeclub.dk/' ) Node Club Copenhagen
-  br
-  a( href: 'http://foundershouse.dk/' ) @ Founders House
-h5
-  | Gothersgade 8B
-  br
-  | Boltens Gaard
-  br
-  | 1123 Copenhagen
+ul.locations
+  li
+    h4 Copenhagen, Denmark
+    - address = escape('Gothersgade 8B, Boltens Gaard, 1123 Copenhagen')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.nodeclub.dk/' ) Node Club Copenhagen
+      br
+      a( href: 'http://foundershouse.dk/' ) @ Founders House
+    h5
+      | Gothersgade 8B
+      br
+      | Boltens Gaard
+      br
+      | 1123 Copenhagen
+    p
+      | Drinks are on the house and good pizza, bagels, and kebabs are 30-50
+      | meters away
 
-h4 Munich, Germany
-- address = escape('Sonnenstraße 32, 80331 München')
-a( href='http://maps.google.com/maps?q=' + address )
-  img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-h3: a( href: 'http://coworkingmunich.de/' ) coworkingmunich.de
-h5 Sonnenstraße 32, 80331 München
-p
-  | Coworking space for free to all attendees during the contest.
-  | Contact
-  a( href: 'mailto:counter@coworkingmunich.de' ) counter@coworkingmunich.de
-  .
+  li
+    h4 Munich, Germany
+    - address = escape('Sonnenstraße 32, 80331 München')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3: a( href: 'http://coworkingmunich.de/' ) coworkingmunich.de
+    h5 Sonnenstraße 32, 80331 München
+    p
+      | Coworking space for free to all attendees during the contest.
+      | Contact
+      a( href: 'mailto:counter@coworkingmunich.de' ) counter@coworkingmunich.de
+      .
 
-h4 New York
-- address = escape('902 Broadway 4th Floor, New York, NY, 10016')
-a( href='http://maps.google.com/maps?q=' + address )
-  img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-h3
-  a( href: 'http://www.nodejitsu.com/#/home' ) nodejitsu
-  br
-  a( href: 'http://www.generalassemb.ly/' ) @ General Assembly
-h5
-  | 902 Broadway, 4th Floor
-  br
-  | New York, NY, 10016
-p Details soon.
+  li
+    h4 New York
+    - address = escape('902 Broadway 4th Floor, New York, NY, 10016')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.nodejitsu.com/#/home' ) nodejitsu
+      br
+      a( href: 'http://www.generalassemb.ly/' ) @ General Assembly
+    h5
+      | 902 Broadway, 4th Floor
+      br
+      | New York, NY, 10016
+    p Details soon.
