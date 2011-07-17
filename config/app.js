@@ -57,7 +57,7 @@ app.configure(function() {
   app.use(require('stylus').middleware(app.paths.public));
   app.use(require('connect-assetmanager')({
     js: {
-      route: /\/javascripts\/all\.js/,
+      route: /\/javascripts\/[a-z0-9]+\/all\.js/,
       path: './public/javascripts/',
       dataType: 'javascript',
       debug: true,
@@ -93,6 +93,10 @@ app.configure(function() {
             ast = uglify_pro.ast_squeeze(ast);
             callback(uglify_pro.gen_code(ast));
           }
+          , function (file, path, index, isLast, callback) {
+            cacheTimestamps.js = crypto.createHash('md5').update(file).digest('hex');
+            callback(file);
+          }
         ]
       }
     }
@@ -121,6 +125,16 @@ app.configure(function() {
   app.use(app.router);
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
+});
+
+// Cache busting
+var crypto = require('crypto')
+  , cacheTimestamps = {};
+
+app.dynamicHelpers({
+  'cacheTimeStamps': function() {
+    return cacheTimestamps;
+  }
 });
 
 // helpers
