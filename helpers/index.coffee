@@ -3,7 +3,7 @@ util = require('util')
 module.exports = (app) ->
   app.helpers
     gravatar_url: (person, size = 30) ->
-      "http://gravatar.com/avatar/#{person.github.gravatarId}?s=#{size}"
+      "http://gravatar.com/avatar/#{person.github.gravatarId}?s=#{size}&d=http://nodeknockout.com/images/gravatar_fallback.png"
     inspect: -> util.inspect.apply null, arguments
 
   app.dynamicHelpers
