@@ -18,6 +18,12 @@ PersonSchema.plugin auth,
       appId: env.github_app_id
       appSecret: env.secrets.github
       redirectPath: '/people/me'
+  facebook:
+    everyauth:
+      myHostname: env.hostname
+      appId: env.facebook_app_id
+      appSecret: env.secrets.facebook
+      redirectPath: '/people/me'
 
 PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'

@@ -1,6 +1,8 @@
 .DS_Store
-*.css
+.idea
 .monitor
+*.css
 node_modules
 tmp/*
+config/secrets.coffee
 config/secrets.js

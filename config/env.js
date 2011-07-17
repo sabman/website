@@ -9,13 +9,16 @@ env.production = !env.development;
 
 if (env.development) {
   env.hostname = 'http://localhost:' + env.port;
+  env.facebook_app_id = '167380289998508';
   env.github_app_id = 'c07cd7100ae57921a267';
   try { env.secrets = require('./secrets'); }
   catch(e) { throw "secret keys file is missing. see ./secrets.js.sample."; }
 } else {
   env.hostname = 'http://nodeknockout.com';
+  env.facebook_app_id = '228877970485637';
   env.github_app_id = 'c294545b6f2898154827';
   env.secrets = {
+    facebook: process.env.FACEBOOK_OAUTH_SECRET,
     github: process.env.GITHUB_OAUTH_SECRET,
     postageapp: process.env.POSTAGEAPP_SECRET,
     session: process.env.EXPRESS_SESSION_KEY

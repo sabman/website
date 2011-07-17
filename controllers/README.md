@@ -5,6 +5,15 @@
 - remember referer for returnTo behavior
 - sign in via github, redirects to /people/me
 
+## /auth/facebook
+
+- remember referer for returnTo behavior
+- sign in via facebook, redirects to /people/me
+
+## /auth/twitter
+
+- Do we want to add Twitter as an authentication mechanism?
+
 ## /people/me
 
 - if on a team
