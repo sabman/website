@@ -1,6 +1,8 @@
 _ = require 'underscore'
+colors = require 'colors'
 app = require '../config/app'
 Team = app.db.model 'Team'
+{ ensureAuth } = require '../lib/route-middleware'
 
 # middleware
 loadTeam = (req, res, next) ->
@@ -86,3 +88,13 @@ app.delete '/teams/:id', [loadTeam, ensureAccess], (req, res, next) ->
   req.team.remove (err) ->
     return next err if err
     res.redirect '/teams'
+
+# upvote
+app.post '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
+  console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'love'.red )
+  res.send 'love'
+
+# un-upvote
+app.post '/teams/:id/nolove', [loadTeam, ensureAuth], (req, res) ->
+  console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'nolove'.red )
+  res.send 'nolove'

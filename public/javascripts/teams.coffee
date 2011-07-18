@@ -7,9 +7,15 @@ $('#page.teams-show .invites a').live 'click', (e) ->
 
 $('#page.teams-show').each ->
   $('.heart').toggle ->
-      $(this).addClass('loved')
+      $this = $(this)
+      team = $this.attr('data-team')
+      $.post '/teams/'+team+'/love', ->
+        $this.addClass('loved')
     , ->
-      $(this).removeClass('loved')
+      $this = $(this)
+      team = $this.attr('data-team')
+      $.post '/teams/'+team+'/nolove', ->
+        $this.removeClass('loved')
 
 $('#page.teams-edit').each ->
   $('a.scary').click ->
