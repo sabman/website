@@ -69,14 +69,15 @@ button, input[type=submit], a.button
     box-shadow inset 0 0 5px hsla(0, 0%, 0%, 0.6)
 
 input[type=text], input[type=email], input[type=password], textarea
+  outline none
   font-size large
   padding 2px 3px
   border-radius 2px
-  border 2px dashed #CCC
-  margin 2px 0
-  outline none
+  border 2px solid #ddd
+  margin 3px 0
+  box-shadow inset 0 0 3px hsla(0, 0%, 0%, 0.1)
   &:focus
-    border 2px solid #BBB
+    border-color #bbb
 
 textarea
   font-size small
