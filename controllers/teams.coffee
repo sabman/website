@@ -1,8 +1,9 @@
 _ = require 'underscore'
 colors = require 'colors'
 app = require '../config/app'
-Team = app.db.model 'Team'
 { ensureAuth } = require '../lib/route-middleware'
+Team = app.db.model 'Team'
+Vote = app.db.model 'Vote'
 
 # middleware
 loadTeam = (req, res, next) ->
@@ -60,6 +61,7 @@ app.get '/teams/:id', [loadTeam, loadPeople], (req, res) ->
     team: req.team
     people: req.people
     voting: app.enabled('voting')
+    votes: []
 
 # resend invitation
 app.all '/teams/:id/invite/:inviteId', [loadTeam, ensureAccess], (req, res) ->
@@ -91,10 +93,28 @@ app.delete '/teams/:id', [loadTeam, ensureAccess], (req, res, next) ->
 
 # upvote
 app.post '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
-  console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'love'.red )
-  res.send 'love'
+  team_id = req.team.id
+  person_id = req.user.id
+  console.log( 'team'.cyan, team_id, 'voter'.cyan, person_id, 'love'.red )
+  Vote.findOne { type:'upvote', team_id: team_id, person_id: person_id }, (err, vote) ->
+    console.log arguments
+    return res.send 400 if err
+    if not vote
+      vote = new Vote
+      vote.type = 'upvote'
+      vote.person_id = person_id
+      vote.team_id = team_id
+    vote.love()
+    vote.save (err) ->
+      return res.send 400 if err
+      res.send 'love'
 
 # un-upvote
 app.post '/teams/:id/nolove', [loadTeam, ensureAuth], (req, res) ->
   console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'nolove'.red )
-  res.send 'nolove'
+  Vote.findOne { type:'upvote', team_id: req.team.id, person_id: req.user.id }, (err, vote) ->
+    return res.send 400 if err
+    vote.nolove()
+    vote.save (err) ->
+      return res.send 400 if err
+      res.send 'nolove'

@@ -33,3 +33,8 @@ h1
 - if (voting)
   h2 Votes
   button.heart(data-team: team.id) ♥
+  - if (votes.length)
+    ul.votes
+    - each voter in votes
+      li
+        img.avatar( src: avatar_url(voter) )
