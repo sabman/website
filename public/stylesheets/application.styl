@@ -20,6 +20,8 @@ x-large = 34px
 xx-large = 64px
 xxx-large = 92px
 
+red = hsl(0, 60%, 60%)
+
 @font-face
   font-family "04b_03"
   src url('/fonts/04b_03__-webfont.eot')
@@ -50,7 +52,7 @@ body
 a:link, a:visited
   color hsl(200, 30%, 60%)
   &.scary
-    color hsl(0, 60%, 60%)
+    color red
 
 a img
   border 0
@@ -70,14 +72,14 @@ button, input[type=submit], a.button
   &:active
     box-shadow inset 0 0 10px hsla(0, 0%, 0%, 0.5)
   &.scary
-    background-color hsl(0, 60%, 60%)
+    background-color red
 
 .heart
   padding 10px 1ex 5px
   font-size 18px
 
 .loved
-  color red
+  background-color red
 
 input[type=text], input[type=email], input[type=password], textarea
   outline none
