@@ -21,5 +21,5 @@ app.get '/', [loadCurrentPersonWithTeam, loadCanRegister], (req, res) ->
     canRegister: req.canRegister
     teamsLeft: req.teamsLeft
 
-['faq', 'how-to-win', 'locations', 'rules', 'sponsors'].forEach (p) ->
+['faq', 'how-to-win', 'locations', 'rules', 'sponsors', 'judging'].forEach (p) ->
   app.get '/' + p, (req, res) -> res.render2 "index/#{p}"
