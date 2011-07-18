@@ -4,3 +4,8 @@ $('#page.teams-show .invites a').live 'click', (e) ->
   $n = $t.next().show().html 'sending&hellip;'
   $.post @href, ->
     $n.text('done').delay(500).fadeOut 'slow', -> $t.show()
+
+$('.heart').toggle ->
+    $(this).addClass('loved')
+  , ->
+    $(this).removeClass('loved')
