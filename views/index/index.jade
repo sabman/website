@@ -19,23 +19,15 @@ section
     a.register.button( href: '/teams/new' ) Register a Team
     p Before it's too late! (#{teamsLeft} spots left)
   - else
-    h3: a( href: '/teams/new' ) Registration is closed
+    h3.scary Registration is full
+    a( href: '/teams/new' ) No! I want to register!
 
 section
   h3 What else can I do until then?
   p
     a( href: 'http://twitter.com/node_knockout' ) Follow us on Twitter
     | ,
-    a( href: 'http://2010.nodeknockout.com/' ) see 2010's winners
+    a( href: 'http://2010.nodeknockout.com/' ) see past winners
     | , or
     a( href: 'https://github.com/nko2/website' ) contribute on github
     | .
-
-section
-  h3 Want to sponsor or help?
-  ul
-    li Contact us:
-    li: a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
-    li: a( href: 'http://twitter.com/node_knockout' ) @node_knockout
-    li: a( href: 'http://nodeknockout.posterous.com' ) blog
-    li: a( href: 'http://2010.nodeknockout.com' ) 2010 website

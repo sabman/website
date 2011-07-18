@@ -64,7 +64,7 @@ app.get '/teams/:id', [loadTeam, loadPeople], (req, res) ->
     votes: []
 
 # resend invitation
-app.all '/teams/:id/invite/:inviteId', [loadTeam, ensureAccess], (req, res) ->
+app.all '/teams/:id/invites/:inviteId', [loadTeam, ensureAccess], (req, res) ->
   req.team.invites.id(req.param('inviteId')).send(true)
   res.redirect "/teams/#{req.team.id}"
 

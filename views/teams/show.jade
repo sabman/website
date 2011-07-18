@@ -27,7 +27,7 @@ h1
       - each invite in team.invites
         li
           #{invite.email} &mdash;
-          a( href: '/teams/' + team.id + '/invite/' + invite.id, rel: 'nofollow' ) resend
+          a( href: '/teams/' + team.id + '/invites/' + invite.id, rel: 'nofollow' ) resend
           span.sending
 
 - if (voting)

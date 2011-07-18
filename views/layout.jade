@@ -34,13 +34,15 @@ html
         table.important-dates
           tr
             th Registration
-            td 7/13 &mdash; 8/20
+            td 7/13 &mdash; 8/20*
           tr
             th Competition
-            td 8/27 &mdash; 8/29
+            td 8/27 &mdash; 8/29&nbsp;
           tr
             th Judging
-            td 8/29 &mdash; 9/5&nbsp;
+            td 8/29 &mdash; 9/5&nbsp;&nbsp;
+          tr
+            th.asterisk( colspan: 2 ) *space permitting
 
         ul.sponsors
           li: a( href: 'http://www.joyent.com/' )
@@ -75,9 +77,20 @@ html
             li: a( href: '/rules' ) Rules
             li: a( href: '/locations' ) Locations
             li: a( href: '/teams' ) Teams
-            //li: a( href: 'http://twitter.com/node_knockout' ) Twitter
-
         != body
+        footer: ul
+          li
+            | email
+            a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
+          li
+            | twitter
+            a( href: 'http://twitter.com/node_knockout' ) @node_knockout
+          li
+            | old
+            a( href: 'http://2010.nodeknockout.com' ) 2010
+          li
+            | run by
+            a( href: 'http://fortnightlabs.com' ) fortnight labs
     script( src: '/socket.io/socket.io.js' )
     script( src: '/javascripts/'+(cacheTimeStamps.js || '007')+'/all.js' )
     script
