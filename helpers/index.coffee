@@ -16,7 +16,8 @@ module.exports = (app) ->
       if person.image_url?
         person.image_url
       else if person.github?.gravatarId?
-        gravatar_url person.github.gravtarId, size
+        id = person.github.gravatarId # HACK getter bugs
+        gravatar_url id, size
       else if person.email?
         gravatar_url md5(person.email.trim().toLowerCase()), size
       else
