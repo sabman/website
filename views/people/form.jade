@@ -17,14 +17,14 @@
   .role.tabular
     label( for: 'role' ) Role
     select( name: 'role', id: 'role' )
-      option( value: 'contestant' ) Contestant
-      option( value: 'judge' ) Judge
-      option( value: 'voter' ) Public Voter
+      option( value: 'contestant', selected: (person.role === 'contestant') ) Contestant
+      option( value: 'judge', selected: (person.role === 'judge') ) Judge
+      option( value: 'voter', selected: (person.role === 'voter') ) Public Voter
     span.technical
-      input( type: 'checkbox', name: 'technical', value: true)
+      input( type: 'checkbox', name: 'technical', checked: person.technical )
       | technical
     .admin
-      input( type: 'checkbox', name: 'admin', value: true, 'id': 'admin' )
+      input( type: 'checkbox', name: 'admin', checked: person.admin, 'id': 'admin' )
       label(for: 'admin') Admin
 
 - if (person.isNew || person.role == 'judge' || person.role == 'contestant' || !person.role)
