@@ -280,10 +280,7 @@
 
     nko.warpTo = function warpTo(selector) {
       var page = $(selector)
-        , $window = $(window)
-        , pos = page.position()
-        , left = pos.left - ($window.width() - page.width()) / 2
-        , top = pos.top - ($window.height() - page.height()) / 2;
+        , pos = page.position();
 
       pos = randomPositionOn(page);
 
@@ -293,19 +290,10 @@
         method: 'warp',
         arguments: [ pos ]
       }));
-
-      //$window.scrollLeft(left).scrollTop(top)
     }
     nko.goTo = function goTo(selector) {
       var page = $(selector)
-        , $window = $(window)
-        , pos = page.position()
-        , left = pos.left - ($window.width() - page.width()) / 2
-        , top = pos.top - ($window.height() - page.height()) / 2;
-
-      $('body')
-        .stop()
-        .animate({ scrollLeft: left, scrollTop: top }, 1000, 'linear');
+        , pos = page.position();
 
       pos = randomPositionOn(page);
 
@@ -319,14 +307,7 @@
       page.click();
     };
 
-    var scrolling = false;
     $(window)
-      .bind('mousewheel', function(e) {
-        if (scrolling) {
-          $('body').stop();
-          scrolling = false;
-        }
-      })
       .click(function(e) { // move on click
         var pos = { x: e.pageX, y: e.pageY };
         me.goTo(pos);
@@ -335,32 +316,6 @@
           method: 'goTo',
           arguments: [ pos ]
         }));
-
-        if (!Modernizr.touch) {
-          // TODO move into nko.Viewport
-          var $win = $(this)
-            , left = $win.scrollLeft()
-            , top = $win.scrollTop()
-            , right = left + $win.width()
-            , bottom = top + $win.height()
-            , buffer = 160
-            , newLeft = left, newTop = top;
-
-          if (pos.x < left + buffer)
-            newLeft = left - $win.width()/2;
-          else if (pos.x > right - buffer)
-            newLeft = left + $win.width()/2;
-
-          if (pos.y < top + buffer)
-            newTop = top - $win.height()/2;
-          else if (pos.y > bottom - buffer)
-            newTop = top + $win.height()/2;
-
-          scrolling = true;
-          $('body')
-            .stop()
-            .animate({ scrollLeft: newLeft, scrollTop: newTop }, 1000, 'linear');
-        }
       })
       .keydown(function(e) {
         if ($(e.target).is('input')) return true;
