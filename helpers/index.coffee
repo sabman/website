@@ -32,3 +32,4 @@ module.exports = (app) ->
       (title) ->
         req.pageTitle = title if title
         req.pageTitle
+    admin: (req, res) -> req.user?.admin

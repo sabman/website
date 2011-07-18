@@ -1,6 +1,6 @@
 h1
   = title(team.name)
-  - if (team.includes(user, session.team))
+  - if (team.includes(user, session.team) || admin)
     a.manage( href: '/teams/' + team.id + '/edit' ) Manage
 
 - if (team.invited(session.invite))
@@ -21,7 +21,7 @@ h1
 
 - if (team.invites.length)
   h2 Invites (#{team.invites.length} pending)
-  - if (team.includes(user, session.team))
+  - if (team.includes(user, session.team) || admin)
     p Check your email for invites or resend invites below.
     ul.invites
       - each invite in team.invites
