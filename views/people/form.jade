@@ -17,9 +17,9 @@
   .role.tabular
     label( for: 'role' ) Role
     select( name: 'role', id: 'role' )
-      option( value: 'contestant' ) Contestant
-      option( value: 'judge' ) Judge
-      option( value: 'voter' ) Public Voter
+      option( value: 'contestant', selected: (person.role === 'contestant') ) Contestant
+      option( value: 'judge', selected: (person.role === 'judge') ) Judge
+      option( value: 'voter', selected: (person.role === 'voter') ) Public Voter
     span.technical
       input( type: 'checkbox', name: 'technical', checked: person.technical )
       | technical
