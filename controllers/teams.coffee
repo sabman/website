@@ -22,6 +22,13 @@ loadPeople = (req, res, next) ->
     req.people = people
     next()
 
+loadVotes = (req, res, next) ->
+  return next() if not app.enabled('voting')
+  Vote.findOne { type:'upvote', team_id: req.team.id, person_id: req.user.id }, (err, vote) ->
+    return next err if err
+    req.user.upvote = vote.upvote
+    next()
+
 ensureAccess = (req, res, next) ->
   return next 401 unless req.team.includes(req.user, req.session.team)
   next()
@@ -55,13 +62,14 @@ app.post '/teams', (req, res, next) ->
       res.redirect "/teams/#{team.id}"
 
 # show (join)
-app.get '/teams/:id', [loadTeam, loadPeople], (req, res) ->
+app.get '/teams/:id', [loadTeam, loadPeople, loadVotes], (req, res) ->
   req.session.invite = req.param('invite') if req.param('invite')
   res.render2 'teams/show'
     team: req.team
     people: req.people
     voting: app.enabled('voting')
     votes: []
+    user: { upvote: req.user.upvote }
 
 # resend invitation
 app.all '/teams/:id/invites/:inviteId', [loadTeam, ensureAccess], (req, res) ->

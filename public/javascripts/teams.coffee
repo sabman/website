@@ -5,17 +5,16 @@ $('#page.teams-show .invites a').live 'click', (e) ->
   $.post @href, ->
     $n.text('done').delay(500).fadeOut 'slow', -> $t.show()
 
-$('#page.teams-show').each ->
-  $('.heart').toggle ->
-      $this = $(this)
-      team = $this.attr('data-team')
-      $.post '/teams/'+team+'/love', ->
-        $this.addClass('loved')
-    , ->
-      $this = $(this)
-      team = $this.attr('data-team')
-      $.post '/teams/'+team+'/nolove', ->
-        $this.removeClass('loved')
+$('#page.teams-show .heart').live 'click', (e) ->
+  e.preventDefault()
+  $this = $(this)
+  team = $this.attr('data-team')
+  if $this.hasClass('loved')
+    $.post '/teams/'+team+'/nolove', ->
+      $this.removeClass('loved')
+  else
+    $.post '/teams/'+team+'/love', ->
+      $this.addClass('loved')
 
 $('#page.teams-edit').each ->
   $('a.scary').click ->

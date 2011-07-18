@@ -32,7 +32,7 @@ h1
 
 - if (voting)
   h2 Votes
-  button.heart(data-team: team.id) ♥
+  button( 'class': 'heart ' + (user.upvote ? 'loved' : ''), data-team: team.id) ♥
   - if (votes.length)
     ul.votes
     - each voter in votes
