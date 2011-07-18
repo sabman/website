@@ -13,7 +13,7 @@ PersonSchema = module.exports = new mongoose.Schema
   twitter: String
   bio: String
   admin: Boolean
-  role: String
+  role: { type: String, enum: ['contestant', 'judge', 'voter' ] }
   technical: Boolean
 PersonSchema.plugin require('mongoose-types').useTimestamps
 PersonSchema.plugin auth,
@@ -23,16 +23,16 @@ PersonSchema.plugin auth,
       User: () -> Person
   github:
     everyauth:
+      redirectPath: '/login/done'
       myHostname: env.hostname
       appId: env.github_app_id
       appSecret: env.secrets.github
-      redirectPath: '/people/me'
   facebook:
     everyauth:
+      redirectPath: '/login/done'
       myHostname: env.hostname
       appId: env.facebook_app_id
       appSecret: env.secrets.facebook
-      redirectPath: '/people/me'
 
 PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
