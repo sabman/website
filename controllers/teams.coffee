@@ -23,7 +23,8 @@ loadPeople = (req, res, next) ->
     next()
 
 loadVotes = (req, res, next) ->
-  return next() if not app.enabled('voting')
+  if (!app.enabled('voting') || !req.user)
+    return next()
   Vote.findOne { type:'upvote', team_id: req.team.id, person_id: req.user.id }, (err, vote) ->
     return next err if err
     req.user.upvote = vote.upvote
@@ -69,7 +70,7 @@ app.get '/teams/:id', [loadTeam, loadPeople, loadVotes], (req, res) ->
     people: req.people
     voting: app.enabled('voting')
     votes: []
-    user: { upvote: req.user.upvote }
+    upvoted: !!(req.user && req.user.upvote)
 
 # resend invitation
 app.all '/teams/:id/invites/:inviteId', [loadTeam, ensureAccess], (req, res) ->
