@@ -1,5 +1,4 @@
 app = require '../config/app'
-_ = require 'underscore'
 { ensureAuth, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
 Team = app.db.model 'Team'
 
@@ -16,13 +15,6 @@ app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next
       return next err if err
       if team
         req.person.join team, invite
-        _.extend req.person,
-          role: 'contesant'
-          email: req.person.github.email
-          name: req.person.github.name
-          company: req.person.github.company
-          location: req.person.github.location
-        req.person.role = 'contestant'
         req.person.save (err) ->
           return next err if err
           team.save (err) ->

@@ -44,7 +44,12 @@ PersonSchema.method 'team', (callback) ->
 PersonSchema.method 'join', (team, invite) ->
   team.people_ids.push @id unless team.includes(this)
   if invite and old = _.detect(team.invites, (i) -> i.code == invite)
-    @email = old.email
+    _.extend this,
+      name: @github.name
+      email: old.email || @github.email
+      role: 'contesant'
+      company: @github.company
+      location: @github.location
     team.emails = _.without team.emails, old.email
     old.remove()
 
