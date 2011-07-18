@@ -125,7 +125,7 @@ app.configure(function() {
   app.use(app.router);
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
-  app.enable('voting')
+  app.disable('voting')
 });
 
 // Cache busting
