@@ -1,3 +1,4 @@
+_ = require 'underscore'
 app = require '../config/app'
 { ensureAdmin, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
 Person = app.db.model 'Person'
