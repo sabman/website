@@ -75,9 +75,20 @@ html
             li: a( href: '/rules' ) Rules
             li: a( href: '/locations' ) Locations
             li: a( href: '/teams' ) Teams
-            //li: a( href: 'http://twitter.com/node_knockout' ) Twitter
-
         != body
+        footer: ul
+          li
+            | email
+            a( href: 'mailto:all@nodeknockout.com' ) all@nodeknockout.com
+          li
+            | twitter
+            a( href: 'http://twitter.com/node_knockout' ) @node_knockout
+          li
+            | old
+            a( href: 'http://2010.nodeknockout.com' ) 2010
+          li
+            | run by
+            a( href: 'http://fortnightlabs.com' ) fortnight labs
     script( src: '/socket.io/socket.io.js' )
     script( src: '/javascripts/'+(cacheTimeStamps.js || '007')+'/all.js' )
     script
