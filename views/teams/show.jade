@@ -3,6 +3,14 @@ h1
   - if (team.includes(user, session.team))
     a.manage( href: '/teams/' + team.id + '/edit' ) Manage
 
+- if (team.invited(session.invite))
+  h2 You're invited to this team!
+  p.accept
+    a.button( href: '/login' ) Accept Invitation
+    |  via
+    img( src: '/images/github.png', style: 'margin-bottom: -4px;' )
+    | github
+
 - if (people.length)
   h2 Members
   ul.people
@@ -21,12 +29,5 @@ h1
           #{invite.email} &mdash;
           a( href: '/teams/' + team.id + '/invite/' + invite.id, rel: 'nofollow' ) resend
           span.sending
-  - if (team.invited(session.invite))
-    h2 You're invited to this team!
-    p.accept
-      a.button( href: '/login' ) Accept Invitation
-      |  via
-      img( src: '/images/github.png', style: 'margin-bottom: -4px;' )
-      | github
 - if (voting)
   button.heart(data-team: team.id) ♥

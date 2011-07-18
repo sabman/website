@@ -47,7 +47,7 @@ PersonSchema.method 'join', (team, invite) ->
     _.extend this,
       name: @github.name
       email: old.email || @github.email
-      role: 'contesant'
+      role: 'contestant'
       company: @github.company
       location: @github.location
     team.emails = _.without team.emails, old.email
