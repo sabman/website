@@ -24,8 +24,8 @@
       input( type: 'checkbox', name: 'technical', value: true)
       | technical
     .admin
-      input( type: 'checkbox', name: 'admin', value: true )
-      | Admin
+      input( type: 'checkbox', name: 'admin', value: true, 'id': 'admin' )
+      label(for: 'admin') Admin
 
 - if (person.isNew || person.role == 'judge' || person.role == 'contestant' || !person.role)
   h2 Optional
