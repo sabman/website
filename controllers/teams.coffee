@@ -27,11 +27,11 @@ loadVotes = (req, res, next) ->
     return next()
   Vote.findOne { type:'upvote', team_id: req.team.id, person_id: req.user.id }, (err, vote) ->
     return next err if err
-    req.user.upvote = vote.upvote
+    req.user.upvote = vote.upvote if vote
     next()
 
 ensureAccess = (req, res, next) ->
-  return next 401 if not req.team.includes(req.user, req.session.team) or req.user.admin
+  return next 401 unless req.team.includes(req.user, req.session.team) or req.user?.admin
   next()
 
 # index
