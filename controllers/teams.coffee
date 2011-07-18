@@ -54,7 +54,10 @@ app.post '/teams', (req, res, next) ->
 # show (join)
 app.get '/teams/:id', [loadTeam, loadPeople], (req, res) ->
   req.session.invite = req.param('invite') if req.param('invite')
-  res.render2 'teams/show', team: req.team, people: req.people, voting: app.enabled('voting')
+  res.render2 'teams/show'
+    team: req.team
+    people: req.people
+    voting: app.enabled('voting')
 
 # resend invitation
 app.all '/teams/:id/invite/:inviteId', [loadTeam, ensureAccess], (req, res) ->

@@ -29,5 +29,7 @@ h1
           #{invite.email} &mdash;
           a( href: '/teams/' + team.id + '/invite/' + invite.id, rel: 'nofollow' ) resend
           span.sending
+
 - if (voting)
+  h2 Votes
   button.heart(data-team: team.id) ♥

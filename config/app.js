@@ -106,10 +106,12 @@ app.configure(function() {
 app.configure('development', function() {
   app.use(express.static(app.paths.public));
   app.set('view options', { scope: { development: true }});
+  app.enable('voting');
 });
 app.configure('production', function() {
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
   app.set('view options', { scope: { development: false }});
+  app.disable('voting');
 });
 
 app.configure(function() {
@@ -125,7 +127,6 @@ app.configure(function() {
   app.use(app.router);
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
-  app.disable('voting')
 });
 
 // Cache busting
