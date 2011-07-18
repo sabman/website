@@ -34,7 +34,7 @@ TeamSchema.method 'invited', (invite) ->
 TeamSchema.static 'canRegister', (next) ->
   Team.count null, (err, count) ->
     return next err if err
-    max = 201 # because team fortnight labs doesn't count
+    max = 201 # +1 because team fortnight labs doesn't count
     next null, count < max, max - count
 
 # min people validation
@@ -48,6 +48,7 @@ TeamSchema.pre 'save', (next) ->
 
 # max teams
 TeamSchema.pre 'save', (next) ->
+  return next() unless @isNew
   Team.canRegister (err, yeah) =>
     return next err if err
     if yeah
