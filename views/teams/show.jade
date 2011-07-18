@@ -1,8 +1,7 @@
 h1
   = title(team.name)
   - if (team.includes(user, session.team))
-    | 
-    a.button( href: '/teams/' + team.id + '/edit' ) Manage
+    a.manage( href: '/teams/' + team.id + '/edit' ) Manage
 
 - if (people.length)
   h2 Members

@@ -1,3 +1,7 @@
+app = require '../config/app'
+Person = app.db.model 'Person'
+Team = app.db.model 'Team'
+
 ensureAuth = (req, res, next) ->
   return res.redirect '/login' unless req.loggedIn
   next()
