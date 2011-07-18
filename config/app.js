@@ -91,7 +91,7 @@ app.configure(function() {
             var ast = uglify_jsp.parse(file);
             ast = uglify_pro.ast_mangle(ast);
             ast = uglify_pro.ast_squeeze(ast);
-            callback(uglify_pro.gen_code(ast));
+            callback(uglify_pro.gen_code(ast, { beautify: true, indent_level: 0 }));
           }
           , function (file, path, index, isLast, callback) {
             cacheTimestamps.js = crypto.createHash('md5').update(file).digest('hex');
