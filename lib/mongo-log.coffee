@@ -24,6 +24,7 @@ module.exports = (mongo) ->
     output.documents = db_command.documents if db_command.documents
     output.spec = db_command.spec if db_command.spec
     output.document = db_command.document if db_command.document
+    output.selector = db_command.selector if db_command.selector
     output.skip = db_command.numberToSkip if db_command.numberToSkip
     output.limit = db_command.numberToReturn if db_command.numberToReturn
     console.log inspect(output, null, 8)

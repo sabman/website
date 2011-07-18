@@ -1,8 +1,17 @@
 h1 Edit your Team
 
 form( method: 'POST', action: '/teams/' + team.id )
-  input( type: 'hidden', name: '_method', value: 'put' )
+  input( type: 'hidden', name: '_method', value: 'PUT' )
   != partial('form')
   input( type: 'submit', value: 'Update' )
   | 
   a( href: '/teams/' + team.id ) Cancel
+  |  or
+  a.scary( href: '#' ) Delete?
+
+form.delete( method: 'POST', action: '/teams/' + team.id )
+  input( type: 'hidden', name: '_method', value: 'DELETE' )
+  p Are you sure? This can't be undone.
+  input.scary( type: 'submit', value: 'Delete' )
+  | 
+  a( href: '#' ) Cancel
