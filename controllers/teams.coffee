@@ -31,7 +31,7 @@ loadVotes = (req, res, next) ->
     next()
 
 ensureAccess = (req, res, next) ->
-  return next 401 unless req.team.includes(req.user, req.session.team) or req.user.admin
+  return next 401 if not req.team.includes(req.user, req.session.team) or req.user.admin
   next()
 
 # index
