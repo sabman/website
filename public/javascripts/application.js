@@ -428,7 +428,9 @@
     });
 
     $(window).load(function() { // center it
-      nko.warpTo(location.hash || 'body');
+      var el = $(location.hash)
+      if (el.length === 0) el = $('body');
+      nko.warpTo(el);
     })
 
     //// flare
