@@ -13,12 +13,12 @@ h1= title(person.name || person.github.login)
       = person.location
   - if ((person.location || person.company) && (person.twitter || person.github))
     |  &mdash;
-  - if (person.twitter || person.github)
+  - if (person.twitter || (person.github && person.github.login))
     .icons
       - if (person.twitter)
         a.twitter( href: 'http://twitter.com/' + person.twitter )
           img( src: '/images/twitter.png' )
-      - if (person.github)
+      - if (person.github && person.github.login)
         a.github( href: 'http://github.com/' + person.github.login )
           img( src: '/images/github.png' )
 
