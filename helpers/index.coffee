@@ -29,6 +29,7 @@ sponsors = [
   [ 'linode.png', 'http://www.linode.com/index.cfm' ]
   [ 'mongohq.png', 'https://mongohq.com/home' ]
   [ 'nodejitsu.png', 'http://www.nodejitsu.com/' ]
+  [ 'nodesocket.png', 'http://www.nodesocket.com/' ]
   [ 'pusher.png', 'http://pusher.com/' ]
   [ 'spreecast.png', 'http://spreecast.com/' ]
   [ 'summercamp.gif', 'http://www.nodeconf.com/summercamp.html' ]
