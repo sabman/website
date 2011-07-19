@@ -54,7 +54,11 @@ app.configure(function() {
   var coffee = require('coffee-script')
     , uglify_jsp = require("uglify-js").parser
     , uglify_pro = require("uglify-js").uglify;
-  app.use(require('stylus').middleware(app.paths.public));
+  app.use(require('stylus').middleware({
+    src: app.paths.public,
+    dest: app.paths.public,
+    compress: true
+  }));
   app.use(require('connect-assetmanager')({
     js: {
       route: /\/javascripts\/[a-z0-9]+\/all\.js/,
