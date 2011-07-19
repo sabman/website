@@ -34,6 +34,25 @@ p#map
 
 ul.locations
   li
+    h4 Cologne, Germany
+    - address = escape('Deutz-Mülheimerstraße 129, 51063 Köln, Germany')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.railslove.com/' ) Railslove
+      br
+      a( href: 'http://www.coworkingcologne.de/' ) @ cowoco
+    h5
+      | Deutz-Mülheimerstraße 129
+      br
+      | 51063 Köln
+      br
+      | Germany
+    p Contact 
+      a( href: 'mailto:michael@railslove.com' ) michael@railslove.com
+      .
+
+  li
     h4 Copenhagen, Denmark
     - address = escape('Gothersgade 8B, 1123 Copenhagen')
     a( href='http://maps.google.com/maps?q=' + address )
@@ -50,7 +69,7 @@ ul.locations
       | 1123 Copenhagen
     p
       | Drinks are on the house and good pizza, bagels, and kebabs are 30-50
-      | meters away
+      | meters away.
 
   li
     h4 Munich, Germany
