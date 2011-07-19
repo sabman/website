@@ -47,7 +47,7 @@ html
         ul.sponsors
           - sponsors(function(sponsor) {
             li: a( href: sponsor[1] )
-              img( src: '/images/sponsors/' + sponsor[0], class: sponsor[0].replace(/\....$/, '') )
+              img( src: '/images/sponsors/' + sponsor[0], class: sponsor[0].replace(/\.\w+$/, '') )
           - });
           li.interested
             a( href: 'mailto:all@nodeknockout.com?subject=Sponsoring' ) Interested in sponsoring?
