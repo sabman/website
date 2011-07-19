@@ -53,11 +53,17 @@ app.db = mongoose;
 app.configure(function() {
   var coffee = require('coffee-script')
     , uglify_jsp = require("uglify-js").parser
-    , uglify_pro = require("uglify-js").uglify;
-  app.use(require('stylus').middleware({
+    , uglify_pro = require("uglify-js").uglify
+    , stylus = require('stylus');
+  app.use(stylus.middleware({
     src: app.paths.public,
     dest: app.paths.public,
-    compress: true
+    compile: function(str, path) {
+      return stylus(str)
+        .set('compress', true)
+        .set('filename', path)
+        .set('paths', [ __dirname, app.paths.public ]);
+    }
   }));
   app.use(require('connect-assetmanager')({
     js: {

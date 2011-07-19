@@ -144,41 +144,14 @@ aside
     margin 2em 0 0
     padding 0
     text-align center
-    // sponsor logo list: x-height = ~25px; leading  = ~70px
-    img.joyent
-      width 179px
-      height 51px
-      margin-bottom 14px
-    img.github
-      width 120px
-      height 53px
-      margin-bottom 10px
-    img.heroku
-      width 204px
-      height 68px
-    img.linode
-      width 307px
-      height 66px
-      margin-left -22px
-      margin-bottom 4px
-    img.mongohq
-      width 289px
-      height 70px
-      margin-bottom 7px
-    img.nodejitsu
-      width 185px
-      height 50px
-    img.pusher
-      width 200px
-      height 81px
-    img.spreecast
-      width 235px
-      height 52px
-      margin-top -3px
-      margin-bottom 5px
+    // sponsor logo list: x-height = 20px; descender = 23px; ascender = 26px
+    for sponsor in github heroku joyent linode mongohq nodejitsu pusher spreecast
+      img.{sponsor}
+        width image-size('/images/sponsors/' + sponsor + '.png')[0]
+        height image-size('/images/sponsors/' + sponsor + '.png')[1]
     img.summercamp
-      width 250px
-      height 95px
+      width image-size('/images/sponsors/summercamp.gif')[0]
+      height image-size('/images/sponsors/summercamp.gif')[1]
     li.interested
       margin-top 15px
 

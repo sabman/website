@@ -45,24 +45,10 @@ html
             th.asterisk( colspan: 2 ) *space permitting
 
         ul.sponsors
-          li: a( href: 'http://www.joyent.com/' )
-            img.joyent( src: '/images/sponsors/joyent.png' )
-          li: a( href: 'https://github.com/' )
-            img.github( src: '/images/sponsors/github.png' )
-          li: a( href: 'http://www.heroku.com/' )
-            img.heroku( src: '/images/sponsors/heroku.png' )
-          li: a( href: 'http://www.linode.com/index.cfm' )
-            img.linode( src: '/images/sponsors/linode.png' )
-          li: a( href: 'https://mongohq.com/home' )
-            img.mongohq( src: '/images/sponsors/mongohq.png' )
-          li: a( href: 'http://www.nodejitsu.com/' )
-            img.nodejitsu( src: '/images/sponsors/nodejitsu.png' )
-          li: a( href: 'http://pusher.com/' )
-            img.pusher( src: '/images/sponsors/pusher.png' )
-          li: a( href: 'http://spreecast.com/' )
-            img.spreecast( src: '/images/sponsors/spreecast.png' )
-          li: a( href: 'http://www.nodeconf.com/summercamp.html' )
-            img.summercamp( src: '/images/sponsors/summercamp.gif' )
+          - sponsors(function(sponsor) {
+            li: a( href: sponsor[1] )
+              img( src: '/images/sponsors/' + sponsor[0], class: sponsor[0].replace(/\....$/, '') )
+          - });
           li.interested
             a( href: 'mailto:all@nodeknockout.com?subject=Sponsoring' ) Interested in sponsoring?
 
