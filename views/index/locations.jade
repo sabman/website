@@ -34,7 +34,7 @@ p#map
 
 ul.locations
   li
-    h4 Cologne, Germany
+    h4#cologne Cologne, Germany
     - address = escape('Deutz-Mülheimerstraße 129, 51063 Köln, Germany')
     a( href='http://maps.google.com/maps?q=' + address )
       img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
@@ -53,7 +53,7 @@ ul.locations
       .
 
   li
-    h4 Copenhagen, Denmark
+    h4#copenhagen Copenhagen, Denmark
     - address = escape('Gothersgade 8B, 1123 Copenhagen')
     a( href='http://maps.google.com/maps?q=' + address )
       img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
@@ -72,7 +72,7 @@ ul.locations
       | meters away.
 
   li
-    h4 Munich, Germany
+    h4#munich Munich, Germany
     - address = escape('Sonnenstraße 32, 80331 München')
     a( href='http://maps.google.com/maps?q=' + address )
       img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
@@ -85,7 +85,7 @@ ul.locations
       .
 
   li
-    h4 New York
+    h4#nyc New York
     - address = escape('902 Broadway 4th Floor, New York, NY, 10016')
     a( href='http://maps.google.com/maps?q=' + address )
       img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
