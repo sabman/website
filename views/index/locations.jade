@@ -39,15 +39,13 @@ ul.locations
     a( href='http://maps.google.com/maps?q=' + address )
       img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
     h3
-      a( href: 'http://www.railslove.com/' ) Railslove
+      a( href: 'http://railslove.com/' ) Railslove
       br
       a( href: 'http://www.coworkingcologne.de/' ) @ cowoco
     h5
       | Deutz-Mülheimerstraße 129
       br
-      | 51063 Köln
-      br
-      | Germany
+      | 51063 Köln, Germany
     p Contact 
       a( href: 'mailto:michael@railslove.com' ) michael@railslove.com
       .
@@ -70,6 +68,23 @@ ul.locations
     p
       | Drinks are on the house and good pizza, bagels, and kebabs are 30-50
       | meters away.
+
+  li
+    h4#london London, UK
+    - address = escape('19 Mandela Street, London, NW1 0DU, United Kingdom')
+    a( href: 'http://www.forward.co.uk/contact' )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.forward.co.uk/' ) Forward
+      | , 
+      a( href: 'http://pusher.com/' ) Pusher
+      | , &amp;
+      a( href: 'http://www.gosquared.com/' ) GoSquared
+    h5
+      | 19 Mandela Street, Floor 2, Centro 3
+      br
+      | London, NW1 0DU, United Kingdom
+    p Free pizza and beers. More details soon.
 
   li
     h4#munich Munich, Germany
