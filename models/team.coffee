@@ -10,6 +10,7 @@ TeamSchema = module.exports = new mongoose.Schema
   name:
     type: String
     required: true
+    unique: true
   emails:
     type: [ mongoose.SchemaTypes.Email ]
     validate: [ ((v) -> v.length <= 4), 'max' ]
@@ -37,6 +38,11 @@ TeamSchema.static 'canRegister', (next) ->
     max = 225 + 1 # +1 because team fortnight labs doesn't count
     next null, count < max, max - count
 
+TeamSchema.static 'uniqueName', (name, next) ->
+  Team.count { name: name }, (err, count) ->
+    return next err if err
+    next null, !count
+
 # min people validation
 TeamSchema.pre 'save', (next) ->
   if @people_ids.length + @emails.length == 0
@@ -56,6 +62,18 @@ TeamSchema.pre 'save', (next) ->
     else
       error = new mongoose.Document.ValidationError this
       error.errors._base = 'max'
+      next error
+
+# unique name
+TeamSchema.pre 'save', (next) ->
+  return next() unless @isNew
+  Team.uniqueName @name, (err, yeah) =>
+    return next err if err
+    if yeah
+      next()
+    else
+      error = new mongoose.Document.ValidationError this
+      error.errors.name = 'unique'
       next error
 
 # create invites
