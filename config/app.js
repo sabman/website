@@ -87,7 +87,7 @@ app.configure(function() {
         'hoptoad-key.js',
         'modernizr-2.0.4.js',
         'json2.js',
-        'jquery-1.5.2.js',
+        'jquery-1.6.2.js',
         'jquery.keylisten.js',
         'jquery.border-image.js',
         'jquery.transform.light.js',

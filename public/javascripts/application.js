@@ -204,7 +204,7 @@
     else
       this.bubble
         .text(text)
-        .scrollTop(this.bubble.attr("scrollHeight"))
+        .scrollTop(this.bubble.prop("scrollHeight"))
         .fadeIn();
   };
 
