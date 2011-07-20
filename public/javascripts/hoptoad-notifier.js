@@ -272,5 +272,5 @@ window.onerror = function(message, file, line) {
       stack     : '()@' + file + ':' + line
     });
   }, 100);
-  return true;
+  return false;
 };
