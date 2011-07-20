@@ -29,7 +29,7 @@ $('form.person .twitter input').live('blur', ->
 
       image_url = data.profile_image_url.replace '_normal.', '.'
       $form.find('.image_url')
-        .find('img.avatar').attr('src', image_url)
+        .find('img.avatar').attr('src', image_url).end()
         .find('input').val (i, v) -> v or image_url
 
       $this.next('.spinner').hide()
