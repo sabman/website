@@ -92,6 +92,7 @@ app.configure(function() {
         'jquery.border-image.js',
         'jquery.transform.light.js',
         'application.js',
+        'md5.js',
         '*'
       ]
       , 'postManipulate': {

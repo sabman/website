@@ -26,8 +26,21 @@
       input( type: 'checkbox', name: 'admin', checked: person.admin, 'id': 'admin' )
       label(for: 'admin') Admin
 
-- if (person.isNew || person.role == 'judge' || person.role == 'contestant' || !person.role)
+- if (person.role !== 'voter')
   h2.optional Optional
+
+  .twitter.tabular
+    label( for: 'twitter' ) Twitter
+    | http://twitter.com/
+    input( type: 'text', name: 'twitter', id: 'twitter', value: person.twitter )
+    img.spinner( src: '/images/spinner.gif' )
+
+  .image_url.tabular
+    label( for: 'image_url' ) Picture
+    - image_url = avatar_url(person, 80)
+    img.avatar( src: image_url )
+    input( type: 'hidden', name: 'image_url', value: person.image_url )
+    button change
 
   .location.tabular
     label( for: 'location' ) Location
@@ -44,8 +57,3 @@
       .note
         | A 2-3 sentence bio for the
         != ' <a href="/judging">judges page</a>.'
-
-  .twitter.tabular
-    label( for: 'twitter' ) Twitter
-    | http://twitter.com/
-    input( type: 'text', name: 'twitter', id: 'twitter', value: person.twitter )

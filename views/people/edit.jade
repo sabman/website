@@ -1,6 +1,6 @@
 h1 Edit your Profile
 
-form( method: 'POST', action: '/people/' + person.id )
+form.person( method: 'POST', action: '/people/' + person.id )
   input( type: 'hidden', name: '_method', value: 'put' )
   != partial('form')
   p

@@ -39,12 +39,12 @@ sponsors = [
 module.exports = (app) ->
   app.helpers
     avatar_url: (person, size = 30) ->
-      if person.image_url?
+      if person.image_url
         person.image_url
-      else if person.github?.gravatarId?
+      else if person.github?.gravatarId
         id = person.github.gravatarId # HACK getter bugs
         gravatar_url id, size
-      else if person.email?
+      else if person.email
         gravatar_url md5(person.email.trim().toLowerCase()), size
       else
         '/images/gravatar_fallback.png'

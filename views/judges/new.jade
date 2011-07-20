@@ -13,7 +13,7 @@
 
 h1 Nomination
 
-form( method: 'POST', action: '/judges' )
+form.person( method: 'POST', action: '/judges' )
   != partial('people/form')
   p
     input( type: 'submit', value: 'Nominate' )

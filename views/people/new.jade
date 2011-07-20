@@ -1,6 +1,6 @@
 h1 Create Person
 
-form( method: 'POST', action: '/people' )
+form.person( method: 'POST', action: '/people' )
   != partial('form')
   p
     input( type: 'submit', value: 'Create' )
