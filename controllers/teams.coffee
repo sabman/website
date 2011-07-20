@@ -8,11 +8,15 @@ Vote = app.db.model 'Vote'
 # middleware
 loadTeam = (req, res, next) ->
   if id = req.param('id')
-    Team.findById id, (err, team) ->
-      return next err if err
-      return next 404 unless team
-      req.team = team
-      next()
+    try
+      Team.findById id, (err, team) ->
+        return next err if err
+        return next 404 unless team
+        req.team = team
+        next()
+    catch error
+      throw error unless error.message == 'Id cannot be longer than 12 bytes'
+      return next 404
   else
     next()
 
