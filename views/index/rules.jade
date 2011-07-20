@@ -2,8 +2,153 @@
 
 :markdown
   # Rules
+ 
+  _Judging and voting details are still forthcoming._
 
-  Rules are forthcoming. Until then, refer to [last year's rules][1]. They're
-  going to be very similar, with only a few tweaks to voting and judging.
+  ### Node.js
 
-  [1]:http://2010.nodeknockout.com/rules
+  All applications must be built using node.js™. This isn't to say you
+  can't use additional technology to _supplement_ node.js™, like amazon
+  web services™ or MongoDB™.
+
+  ### 48 Hours
+
+  You've got exactly 48 hours to develop your web app during the Knockout, not
+  a minute more. The competition kicks off at [12:00am / 00:00 GMT on August
+  27, 2011][start time] and will end at [12:00am / 00:00 GMT on August 29,
+  2011][end time]. Make sure you understand what time that translates to in
+  your local time zone.
+
+  Of course, feel free to work on the _concept_ for your application before the
+  competition starts: pretty hand-drawn pictures on napkins, angry email
+  threads between team members on two-space or four-space indentation, schema
+  designs, finite state machines. Just no digital assets including graphic
+  design assets, code, etc.
+
+  After those 48 hours are up, an expert panel, other contestants, and the
+  public will be invited to use your application and judge it against the
+  competition. No additional features or bug fixes are allowed during this
+  period, or you will be disqualified. Please don't make us disqualify you;
+  we'll be very sad.
+
+  ### Teams and Contestants
+
+  Teams are comprised of between one to four individuals. No more than four
+  people are allowed on a team (and no less than one). To be eligible, teams
+  must register at least one week prior to the start of the competition (space
+  subject to availability).
+
+  No worries if you work for a sponsor: they won't be able to influence the
+  judging process. Moreover, don't worry if you know a judge either: we'll
+  prevent judges from voting on a team they know personally and they're
+  committed to stay impartial.
+
+  ### Source Control
+
+  Source code will be hosted in a shiny, free git repository provided by
+  [GitHub]. Your team should push regularly to show progress. We'll be watching
+  to make sure people don't cheat (don't think you can develop everything ahead
+  of time and push it all at the end; we know lots of git tricks too). We'll
+  send GitHub access information before the competition starts.
+
+  ### Deployment
+
+  [Joyent], [Heroku], and [Linode] will provide free, private instances to
+  deploy your code to. Which one you choose is up to you (kinda like Pokémon):
+
+  - Joyent provides a full VPS, so you'll be able to set the machine up how you
+  want, but also note that Joyent only provides Solaris (ZFS!) and doesn't give
+  root access.
+  - Heroku is crazy easy and fast to get started with, but has some limitations
+  (non-writable disk; XHR long-polling, but no WebSockets).
+  - Linode is also a full VPS, with your choice of [Linux distro] and
+  root-level access. If offers the most flexibility, but requires the most
+  configuration and UNIX skillZ.
+
+  Expect login information before the competition starts. You cannot deploy to
+  your own private server, no matter how face-melting awesome it is.
+
+  Entries will remain up until winners are announced. During judging, we will
+  need access via an SSH key to make sure there is no cheating, including
+  comparing deployed code with that in the git repo. After the 48-hour
+  deadline, you will still be allowed to restart processes, free up disk space,
+  and other general sysadmin tasks, including playing lots of StarCraft 2.
+
+  ### Web Application
+
+  Entries _should_ be web applications. It's hard for judges (especially the
+  general public) to fairly evaluate entries that require compilation or setup.
+  If you want to submit a non-web app, you're welcome to, but you aren't likely
+  to get judged fairly. If an app is not a website, but some library, utility,
+  or desktop program, then it must be deployed to the [npm] registry.
+
+  If you do decide to submit something that isn't immediately accessible via
+  the web, then we encourage you to think of a clever way to share it as a
+  website, for example via [VNC].
+
+  ### Technical Entries
+
+  If you want to make sure that the expert judges looking at your app have a
+  technical background, you'll have an option to label your entry so. We'll
+  assign technical judges accordingly, but there are no guarantees that the
+  technical judges will have any given specific expertise. Other non-technical
+  judges may still be called on to judge your app if technical entries greatly
+  outnumber technical judges.
+
+  ### Libraries
+
+  Libraries, plugins, and modules that are public and freely available are
+  allowed and encouraged. During judging, please list all libraries that you
+  use on your team's profile page to give credit where it's due. Stock photos
+  and free icon sets are allowed. Paying for something that is not generally
+  available to everyone else is not allowed, and not nice.
+
+  Developing a library in secret before the competition that provides the same
+  general functionality of your project and releasing it a day before will
+  likely get you disqualified. On the other hand, developing a library that is
+  publicly available and provides a general-purpose, publicly usable function
+  can be done before the competition begins.
+
+  ### Web Services
+
+  We encourage use of third-party web services and their APIs (e.g. Twitter,
+  Flickr, Google maps). Almost everyone loves mashups.  Again, make sure to
+  update your team profile with what services you use.
+
+  ### Ownership and Open Source
+
+  The code you write is yours. If you intend to share it after the competition,
+  you can pick whatever license you love. We encourage contestants to open
+  source their code, but it's totally up to you. If you want to start a
+  business based on it, awesome.
+
+  Note however, we will have access to your GitHub repository during the
+  competition to audit for cheating, but we won't steal any of your secret
+  recipes or patent-pending algorithms. Stealing will get us disqualified.
+
+  ### Judging
+
+  Winners will be picked by a mixture of voting by judges, contestants, and
+  the general public. More details will be posted to the [judging page] soon.
+
+  ### Miscellany
+
+  Don't break any laws. Don't harm any animals (especially [potbellied pigs]).
+  And have fun. This is all for fun and glory, so don't hurt yourself.
+
+  ### Questions?
+
+  [Email] or [tweet] us.
+
+  [start time]: http://www.wolframalpha.com/input/?i=August+27%2C+2011+0%3A00+GMT
+  [end time]: http://www.wolframalpha.com/input/?i=August+29%2C+2011+0%3A00+GMT
+  [GitHub]: https://github.com/
+  [Joyent]: http://www.joyent.com/
+  [Heroku]: http://www.heroku.com/
+  [Linode]: http://www.linode.com/index.cfm
+  [Linux distro]: http://www.linode.com/faq.cfm#which-distributions-do-you-offer
+  [npm]: http://npmjs.org/
+  [judging page]: /judges
+  [potbellied pigs]: http://www.potbellypigs.com/
+  [Email]: mailto:all@nodeknockout.com
+  [tweet]: http://twitter.com/node_knockout
