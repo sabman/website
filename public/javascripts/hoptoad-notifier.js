@@ -265,10 +265,11 @@ if(b)return b.open("GET",a,!1),b.setRequestHeader("User-Agent","XMLHTTP/1.0"),b.
 window.onerror = function(message, file, line) {
   setTimeout(function() {
     Hoptoad.notify({
-      message : message,
-      url     : window.location.href,
-      type    : message.constructor.name,
-      stack   : '()@' + file + ':' + line
+      message   : message,
+      component : navigator.userAgent,
+      url       : window.location.href,
+      type      : message.constructor.name,
+      stack     : '()@' + file + ':' + line
     });
   }, 100);
   return true;
