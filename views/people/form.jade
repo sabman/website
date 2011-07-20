@@ -10,16 +10,15 @@
   .note
     - if (person.role === 'contestant')
       | Only visible to team members.
-    - else
+    - else if (person === req.user)
       | Only visible to you.
 
-- if (req.user.admin)
+- if (admin)
   .role.tabular
     label( for: 'role' ) Role
     select( name: 'role', id: 'role' )
-      option( value: 'contestant', selected: (person.role === 'contestant') ) Contestant
-      option( value: 'judge', selected: (person.role === 'judge') ) Judge
-      option( value: 'voter', selected: (person.role === 'voter') ) Public Voter
+      - each role in ['nomination', 'contestant', 'judge', 'voter']
+        option( value: role, selected: (person.role === role) )= role.charAt(0).toUpperCase() + role.slice(1)
     span.technical
       input( type: 'checkbox', name: 'technical', checked: person.technical )
       | technical
@@ -28,7 +27,7 @@
       label(for: 'admin') Admin
 
 - if (person.isNew || person.role == 'judge' || person.role == 'contestant' || !person.role)
-  h2 Optional
+  h2.optional Optional
 
   .location.tabular
     label( for: 'location' ) Location

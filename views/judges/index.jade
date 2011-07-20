@@ -1,0 +1,8 @@
+.nominate
+  h2 We Need Judges!
+  a.button( href: '/judges/new') Nominate a Judge
+
+h1 Judges
+ul
+  - each judge in judges
+    li: a( href: '/people/' + judge.id )= judge.name

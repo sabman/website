@@ -60,3 +60,4 @@ module.exports = (app) ->
         req.pageTitle = title if title
         req.pageTitle
     admin: (req, res) -> req.user?.admin
+    flash: (req, res) -> req.flash()

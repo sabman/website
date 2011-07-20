@@ -13,7 +13,7 @@ PersonSchema = module.exports = new mongoose.Schema
   twitter: String
   bio: String
   admin: Boolean
-  role: { type: String, enum: ['contestant', 'judge', 'voter' ] }
+  role: { type: String, enum: ['nomination', 'contestant', 'judge', 'voter' ] }
   technical: Boolean
 PersonSchema.plugin require('mongoose-types').useTimestamps
 PersonSchema.plugin auth,

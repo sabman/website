@@ -65,6 +65,9 @@ html
             li: a( href: '/teams' ) Teams
             li: a( href: '/faq' ) FAQ
 
+        #flash
+          - if (flash.info)
+            p.info= flash.info
         != body
 
         footer: ul
