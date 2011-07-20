@@ -318,6 +318,7 @@
         }));
       })
       .keydown(function(e) {
+        return true;
         if ($(e.target).is('input')) return true;
         if (e.altKey) return true;
         var d = (function() {
@@ -346,6 +347,7 @@
         }
       })
       .keyup(function(e) {
+        return true;
         if ($(e.target).is('input')) return true;
         if (e.altKey) return true;
         switch (e.keyCode) {
