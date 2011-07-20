@@ -423,6 +423,10 @@
         case 'ctrl':
         case 'alt':
         case 'shift':
+        case 'up':
+        case 'down':
+        case 'left':
+        case 'right':
           return;
         default:
           $text.focus()
