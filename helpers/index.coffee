@@ -23,6 +23,7 @@ shuffle = (obj) ->
 
 sponsors = [
   [ 'adobe.png', 'http://www.adobe.com/' ]
+  [ 'bislr.png', 'http://www.bislr.com/' ]
   [ 'github.png', 'https://github.com/' ]
   [ 'heroku.png', 'http://www.heroku.com/' ]
   [ 'joyent.png', 'http://www.joyent.com/' ]
