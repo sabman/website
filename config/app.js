@@ -97,11 +97,15 @@ app.configure(function() {
       , 'postManipulate': {
         '^': [
           function(file, path, index, isLast, callback) {
-            file = '(function(){'+file+'})();';
-            var ast = uglify_jsp.parse(file);
-            ast = uglify_pro.ast_mangle(ast);
-            ast = uglify_pro.ast_squeeze(ast);
-            callback(uglify_pro.gen_code(ast, { beautify: true, indent_level: 0 }));
+            if (env.production) {
+              file = '(function(){'+file+'})();';
+              var ast = uglify_jsp.parse(file);
+              ast = uglify_pro.ast_mangle(ast);
+              ast = uglify_pro.ast_squeeze(ast);
+              callback(uglify_pro.gen_code(ast, { beautify: true, indent_level: 0 }));
+            } else {
+              callback(file);
+            }
           }
           , function (file, path, index, isLast, callback) {
             cacheTimestamps.js = crypto.createHash('md5').update(file).digest('hex');
