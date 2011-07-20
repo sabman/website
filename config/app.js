@@ -83,6 +83,7 @@ app.configure(function() {
         ]
       },
       files: [
+        // order matters here
         'hoptoad-notifier.js',
         'hoptoad-key.js',
         'modernizr-2.0.4.js',
@@ -99,7 +100,6 @@ app.configure(function() {
         '^': [
           function(file, path, index, isLast, callback) {
             if (env.production) {
-              file = '(function(){'+file+'})();';
               var ast = uglify_jsp.parse(file);
               ast = uglify_pro.ast_mangle(ast);
               ast = uglify_pro.ast_squeeze(ast);
