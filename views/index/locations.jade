@@ -111,3 +111,19 @@ ul.locations
       br
       | New York, NY, 10016
     p Details soon.
+
+  li
+    h4#santa-monica Santa Monica
+    - address = escape('902 Colorado, Santa Monica, CA 90401')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.mahalo.com/' ) Mahalo HQ
+    h5
+      | 902 Colorado
+      br
+      | Santa Monica, CA 90401
+    p
+      | Sodas plus piza for lunch both days. Contact
+      a( href: 'http://twitter.com/joshontheweb' ) @joshontheweb
+      |  with questions.
