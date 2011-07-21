@@ -2,7 +2,7 @@
   img.avatar( src: avatar_url(person, 80) )
   .role= person.role
 
-h1= title(person.name || person.github.login)
+h1= title(person.name)
 .details
   - if (person.company)
     .company!= markdown(person.company)
@@ -11,15 +11,15 @@ h1= title(person.name || person.github.login)
   - if (person.location)
     a.location( href: 'http://maps.google.com/?q=' + person.location )
       = person.location
-  - if ((person.location || person.company) && (person.twitter || (person.github && person.github.login)))
+  - if ((person.location || person.company) && (person.twitter_name || person.github_login))
     |  &mdash;
-  - if (person.twitter || (person.github && person.github.login))
+  - if (person.twitter_name || person.github_login)
     .icons
       - if (person.twitter)
-        a.twitter( href: 'http://twitter.com/' + person.twitter )
+        a.twitter( href: 'http://twitter.com/' + person.twitter_name )
           img( src: '/images/twitter.png' )
-      - if (person.github && person.github.login)
-        a.github( href: 'http://github.com/' + person.github.login )
+      - if (person.github_login)
+        a.github( href: 'http://github.com/' + person.github_login )
           img( src: '/images/github.png' )
 
 - if (team)

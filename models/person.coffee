@@ -10,7 +10,7 @@ PersonSchema = module.exports = new mongoose.Schema
   image_url: String
   location: String
   company: String
-  twitter: String
+  twitter_name: String
   bio: String
   admin: Boolean
   role: { type: String, enum: ['nomination', 'contestant', 'judge', 'voter' ] }
@@ -33,6 +33,10 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       appId: env.facebook_app_id
       appSecret: env.secrets.facebook
+
+PersonSchema.virtual('login').get ->
+  @github?.login or @twitter?.screen_name
+PersonSchema.virtual('github_login').get -> @github?.login
 
 PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
