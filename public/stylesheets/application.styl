@@ -35,7 +35,7 @@ header, footer, nav
 time
   display inline
 
-body, input, textarea, code
+body, input, textarea, code, pre
   font-family 'Inconsolata', monospace
   font-size medium
 
@@ -381,14 +381,10 @@ aside
   ul.teams
     overflow hidden
     li
-      float left
-      width 47%
-      margin-right 3%
-      overflow hidden
-      white-space nowrap
-      border-bottom 1px solid #eee
-      height 32px
-      line-height 32px
+      .description
+        font-size small
+        p, ul
+          margin 0.5em 0
 
 #page.people-show
   .avatar-and-role

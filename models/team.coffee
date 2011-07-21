@@ -23,6 +23,7 @@ TeamSchema = module.exports = new mongoose.Schema
     default: -> rbytes.randomBytes(12).toString('base64')
   description: String
 TeamSchema.plugin require('mongoose-types').useTimestamps
+TeamSchema.index updatedAt: -1
 
 TeamSchema.method 'includes', (person, code) ->
   @code == code or person and _.any @people_ids, (id) -> id.equals(person.id)

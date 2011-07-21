@@ -40,7 +40,7 @@ ensureAccess = (req, res, next) ->
 
 # index
 app.get '/teams', (req, res, next) ->
-  Team.find (err, teams) ->
+  Team.find {}, {}, sort: [['updatedAt', -1]], (err, teams) ->
     return next err if err
     res.render2 'teams', teams: teams
 
