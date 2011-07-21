@@ -1,6 +1,6 @@
 _ = require 'underscore'
 app = require '../config/app'
-{ ensureAdmin, ensureAuth, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
+{ ensureAdmin, ensureAccess, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
 Person = app.db.model 'Person'
 Team = app.db.model 'Team'
 
@@ -31,11 +31,11 @@ app.get '/people/:id', [loadPerson, loadPersonTeam], (req, res, next) ->
   res.render2 'people/show', person: req.person, team: req.team
 
 # edit
-app.get '/people/:id/edit', [loadPerson, ensureAuth], (req, res, next) ->
+app.get '/people/:id/edit', [loadPerson, ensureAccess], (req, res, next) ->
   res.render2 'people/edit', person: req.person
 
 # update
-app.put '/people/:id', [loadPerson, ensureAuth], (req, res) ->
+app.put '/people/:id', [loadPerson, ensureAccess], (req, res) ->
   unless req.user.admin
     delete req.body[attr] for attr in ['role', 'admin', 'technical']
   else # FIXME
