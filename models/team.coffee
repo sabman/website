@@ -21,6 +21,7 @@ TeamSchema = module.exports = new mongoose.Schema
   code:
     type: String
     default: -> rbytes.randomBytes(12).toString('base64')
+  description: String
 TeamSchema.plugin require('mongoose-types').useTimestamps
 
 TeamSchema.method 'includes', (person, code) ->

@@ -30,6 +30,10 @@ h1
           a( href: '/teams/' + team.id + '/invites/' + invite.id, rel: 'nofollow' ) resend
           span.sending
 
+- if (team.description)
+  h2 Description
+  != markdown(team.description)
+
 - if (voting && user)
   h2 Votes
   button( 'class': 'heart ' + (upvoted ? 'loved' : ''), data-team: team.id) ♥

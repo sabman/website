@@ -93,7 +93,7 @@ input[type=text], input[type=email], input[type=password], textarea
     border-color #bbb
 
 textarea
-  font-size small
+  font-size medium
   max-width 100%
 
 p, ul
@@ -114,7 +114,7 @@ img.spinner
 
 img.avatar
   vertical-align middle
-  margin-right 5px
+  margin 2px 5px 2px 0
   border-radius 3px
   width 30px
   height 30px
@@ -337,8 +337,12 @@ aside
     margin 0.25em 0
 
 #page.teams-new, #page.teams-edit
+  textarea#description
+    width 90%
+    height 5em
   ol
     font-size large
+    margin 0.25em 0
     input.email
       width 16em
     img
@@ -446,8 +450,9 @@ form.person
   .bio
     label
       vertical-align top
+      margin-top 7px
     textarea
-      height 5.5em
+      height 12em
   .image_url
     button
       display none

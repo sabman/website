@@ -2,8 +2,7 @@
 != partial('errors', { errors: team.errors })
 
 .name
-  h3
-    label( for: 'name' ) Name
+  h3: label( for: 'name' ) Name
   input( type: 'text', name: 'name', id: 'name', placeholder: 'Witty Team Name', value: team.get('name') )
 
 .members
@@ -18,3 +17,11 @@
     - for (var i = 0; i < 4 - people.length; i++)
       li
         input.email( type: 'email', name: 'emails[]', value: team.emails[i], placeholder: 'member' + (people.length+i+1) + '@example.com' )
+
+- if (!team.isNew)
+  p
+    h3: label( for: 'description' ) Description
+    .note
+      a( href: 'http://daringfireball.net/projects/markdown/' ) Markdown
+      |  ok.
+    textarea( name: 'description', id: 'description', placeholder: "If you're looking for more members, advertise here." )= team.description
