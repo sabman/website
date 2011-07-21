@@ -90,7 +90,10 @@ ul.locations
     a( href='http://maps.google.com/maps?q=' + address )
       img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
     h3: a( href: 'http://coworkingmunich.de/' ) coworkingmunich.de
-    h5 Sonnenstraße 32, 80331 München
+    h5
+      | Sonnenstraße 32
+      br
+      | 80331 München
     p
       | Coworking space for free to all attendees during the contest.
       | Contact
@@ -120,10 +123,26 @@ ul.locations
     h3
       a( href: 'http://www.mahalo.com/' ) Mahalo HQ
     h5
-      | 902 Colorado
+      | 902 Colorado Ave
       br
       | Santa Monica, CA 90401
     p
       | Sodas plus piza for lunch both days. Contact
       a( href: 'http://twitter.com/joshontheweb' ) @joshontheweb
       |  with questions.
+
+  li
+    h4#singapore Singapore
+    - address = escape('99B Tanjong Pagar Road, Singapore 088520')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://2359media.com/' ) 2359 media
+    h5
+      | 99B Tanjong Pagar Road
+      br
+      | Singapore 088520
+    p
+      | A fridge, complimentary monitors, keyboards, and mice. Contact
+      a( href: 'mailto:seivan.heidari@2359media.com' ) Seivan Heidari
+      | .
