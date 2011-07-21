@@ -266,7 +266,6 @@ window.onerror = function(message, file, line) {
   setTimeout(function() {
     Hoptoad.notify({
       message   : message,
-      component : navigator.userAgent,
       url       : window.location.href,
       type      : message.constructor.name,
       stack     : '()@' + file + ':' + line
