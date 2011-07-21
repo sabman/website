@@ -172,6 +172,8 @@ var Hoptoad = {
   },
 
   escapeText: function(text) {
+    if (typeof(text) !== 'string' && text.toString)
+      text = text.toString();
     return text.replace(/&/g, '&#38;')
                .replace(/</g, '&#60;')
                .replace(/>/g, '&#62;')
