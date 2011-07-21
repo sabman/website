@@ -35,6 +35,7 @@ sponsors = [
   [ 'spreecast.png', 'http://spreecast.com/' ]
   [ 'summercamp.gif', 'http://www.nodeconf.com/summercamp.html' ]
   [ 'tradeking.png', 'http://www.tradeking.com/' ]
+  [ 'twilio.png', 'http://www.twilio.com/' ]
 ]
 
 module.exports = (app) ->
