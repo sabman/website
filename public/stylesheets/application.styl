@@ -416,7 +416,7 @@ aside
     padding 2px
     margin-left -3px
 
-#page.people-new, #page.people-edit, #page.judges-new
+form.person
   input[type=text], textarea
     width 400px
   .tabular
@@ -451,8 +451,12 @@ aside
     img.avatar
       width 80px
       height inherit
+    .transloadit
+      height 1px
+      width 1px
+      overflow hidden
 
-#page.judges-new
+#page.judges-new form.person
   .optional, .role
     display none
 

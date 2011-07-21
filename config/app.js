@@ -101,6 +101,7 @@ app.configure(function() {
         'jquery.keylisten.js',
         'jquery.border-image.js',
         'jquery.transform.light.js',
+        'jquery.transloadit2.js',
         'application.js',
         'md5.js',
         '*'
