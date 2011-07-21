@@ -31,3 +31,11 @@ app.post '/judges', (req, res) ->
         Thanks for nominating #{judge.name} as a judge.
         We will review and process him/her shortly."""
       res.redirect "people/#{judge.id}"
+
+# edit (just redirects to person/edit with twitter login)
+app.get '/judges/:judgeId/edit', (req, res, next) ->
+  edit_person_path = "/people/#{req.param('judgeId')}/edit"
+  if req.loggedIn
+    res.redirect edit_person_path
+  else
+    res.redirect "/login/twitter?returnTo=#{edit_person_path}"

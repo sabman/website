@@ -27,6 +27,18 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       appId: env.github_app_id
       appSecret: env.secrets.github
+  twitter:
+    everyauth:
+      redirectPath: '/login/done'
+      myHostname: env.hostname
+      consumerKey: env.twitter_app_id
+      consumerSecret: env.secrets.twitter
+      findOrCreateUser: (session, accessTok, accessTokExtra, twitter) ->
+        promise = @Promise()
+        Person.findOrCreateFromTwitter twitter, (err, person) ->
+          return promise.fail err if err
+          promise.fulfill person
+        promise
   facebook:
     everyauth:
       redirectPath: '/login/done'
@@ -56,5 +68,21 @@ PersonSchema.method 'join', (team, invite) ->
       location: @github.location
     team.emails = _.without team.emails, old.email
     old.remove()
+
+PersonSchema.method 'updateFromTwitter', (twitter) ->
+  @twitter = twitter
+  @twitter_name = twitter.screen_name
+  @name ||= twitter.name
+  @location ||= twitter.location
+  @bio ||= twitter.description
+  @image_url ||= twitter.profile_image_url.replace('_normal.', '.')
+  @role ||= 'nomination'
+
+PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
+  Person.findOne { $or: [{ twitter_name: twitter.screen_name }, { 'twitter.screen_name': twitter.screen_name }]}, (error, person) ->
+    return callback(error) if error
+    person ||= new Person
+    try person.updateFromTwitter twitter catch e then callback(e)
+    person.save (err) -> callback(err, person)
 
 Person = mongoose.model 'Person', PersonSchema

@@ -2,14 +2,11 @@ app = require '../config/app'
 { ensureAuth, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
 Team = app.db.model 'Team'
 
-app.get '/login', (req, res, next) ->
-  req.session.returnTo = req.header('referer')
-  res.redirect '/auth/github'
-
 app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next) ->
-  if req.team
-    res.redirect req.session.returnTo or "/people/#{req.person.id}"
+  if req.user?.role is 'judge' or req.user?.role is 'nomination' or req.team
+    returnTo = req.session.returnTo
     delete req.session.returnTo
+    res.redirect returnTo or "/people/#{req.person.id}"
   else if invite = req.session.invite
     Team.findOne 'invites.code': invite, (err, team) ->
       return next err if err
@@ -32,3 +29,8 @@ app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next
         res.redirect '/teams/new'
   else
     res.redirect '/teams/new'
+
+# order matters
+app.get '/login/:service?', (req, res, next) ->
+  req.session.returnTo = req.param('returnTo') or req.header('referer')
+  res.redirect "/auth/#{req.param('service') or 'github'}"
