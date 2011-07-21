@@ -77,7 +77,7 @@ PersonSchema.method 'updateFromTwitter', (twitter) ->
   @name ||= twitter.name
   @location ||= twitter.location
   @bio ||= twitter.description
-  @image_url ||= twitter.profile_image_url.replace('_normal.', '.')
+  @image_url ||= twitter.profileImageUrl.replace('_normal.', '.')
   @role ||= 'nomination'
 
 PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
