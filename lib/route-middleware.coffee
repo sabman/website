@@ -11,7 +11,7 @@ module.exports =
 
   ensureAccess: (req, res, next) ->
     ensureAuth req, res, ->
-      return next 401 unless (req.user is req.person) or req.user.admin
+      return next 401 unless (req.user.id is req.person.id) or req.user.admin
       next()
 
   ensureAdmin: (req, res, next) ->
