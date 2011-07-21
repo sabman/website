@@ -1,6 +1,6 @@
 _ = require 'underscore'
 app = require '../config/app'
-{ ensureAdmin, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
+{ ensureAdmin, ensureAuth, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
 Person = app.db.model 'Person'
 Team = app.db.model 'Team'
 
@@ -31,13 +31,13 @@ app.get '/people/:id', [loadPerson, loadPersonTeam], (req, res, next) ->
   res.render2 'people/show', person: req.person, team: req.team
 
 # edit
-app.get '/people/:id/edit', [loadPerson, ensureAdmin], (req, res, next) ->
+app.get '/people/:id/edit', [loadPerson, ensureAuth], (req, res, next) ->
   res.render2 'people/edit', person: req.person
 
 # update
-app.put '/people/:id', [loadPerson, ensureAdmin], (req, res) ->
+app.put '/people/:id', [loadPerson, ensureAuth], (req, res) ->
   unless req.user.admin
-    delete req.body[attr] for att in ['role', 'admin', 'technical']
+    delete req.body[attr] for attr in ['role', 'admin', 'technical']
   _.extend req.person, req.body
   req.person.save (err) ->
     return next err if err && err.name != 'ValidationError'

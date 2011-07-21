@@ -29,5 +29,5 @@ h1= title(person.name || person.github.login)
 
 .bio!= markdown(person.bio)
 
-- if (req.user && req.user.admin)
+- if ((req.user.id === person.id) || admin)
   p: a.button( href: '/people/' + person.id + '/edit' ) Edit
