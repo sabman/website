@@ -135,6 +135,7 @@ app.configure(function() {
     secret: secrets.session,
     cookie: { maxAge: 31536000000 } // ~1 year
   }));
+  app.use(require('../lib/connect-cookie-session-compliance'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.logger());
