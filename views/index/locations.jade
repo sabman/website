@@ -34,6 +34,21 @@ p#map
 
 ul.locations
   li
+    h4#cape-town Cape Town, South Africa
+    - address = escape('71 Roeland St, Cape Town')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://thisarmy.com/' ) thisarmy
+    h5
+      | Tank, First Floor
+      br
+      | 71 Roeland St, Cape Town
+    p Contact 
+      a( href: 'http://twitter.com/__leroux' ) @__leroux
+      .
+
+  li
     h4#cologne Cologne, Germany
     - address = escape('Deutz-Mülheimerstraße 129, 51063 Köln, Germany')
     a( href='http://maps.google.com/maps?q=' + address )
