@@ -4,5 +4,15 @@ h1 Teams (#{teams.length})
 ul('class': 'teams')
   - each team in teams
     li
-      h4: a( href: '/teams/' + team.id )= team.name
+      h3
+        a( href: '/teams/' + team.id )= team.name
+        ul.members
+          - each id in team.people_ids
+            - p = people[id]
+            li: a( href: '/people/' + id )
+              img.avatar( src: avatar_url(p), title: p.login )
+      .members
+        - each id in team.people_ids
+          a( href: '/people/' + id)= people[id].login
+          | 
       .description!= markdown(team.description)

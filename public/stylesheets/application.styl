@@ -51,6 +51,7 @@ body
 
 a:link, a:visited
   color hsl(200, 30%, 60%)
+  text-decoration none
   &.scary
     color red
 .scary
@@ -339,7 +340,7 @@ aside
 #page.teams-new, #page.teams-edit
   textarea#description
     width 90%
-    height 5em
+    height 8em
   ol
     font-size large
     margin 0.25em 0
@@ -380,8 +381,20 @@ aside
 #page.teams
   ul.teams
     overflow hidden
-    li
-      .description
+    > li
+      clear right
+      margin-bottom 3em
+      ul.members
+        float right
+        margin -10px 0 0
+        li
+          display inline-block
+        img.avatar
+          margin 0 0 0 5px
+      div.members
+        float right
+        clear right
+      .members, .description
         font-size small
         p, ul
           margin 0.5em 0

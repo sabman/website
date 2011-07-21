@@ -3,6 +3,7 @@ colors = require 'colors'
 app = require '../config/app'
 { ensureAuth } = require '../lib/route-middleware'
 Team = app.db.model 'Team'
+Person = app.db.model 'Person'
 Vote = app.db.model 'Vote'
 
 # middleware
@@ -42,7 +43,11 @@ ensureAccess = (req, res, next) ->
 app.get '/teams', (req, res, next) ->
   Team.find {}, {}, sort: [['updatedAt', -1]], (err, teams) ->
     return next err if err
-    res.render2 'teams', teams: teams
+    ids = _.reduce teams, ((r, t) -> r.concat(t.people_ids)), []
+    Person.find _id: { $in: ids }, (err, people) ->
+      return next err if err
+      people = _.reduce people, ((h, p) -> h[p.id] = p; h), {}
+      res.render2 'teams', teams: teams, people: people
 
 # new
 app.get '/teams/new', (req, res, next) ->
