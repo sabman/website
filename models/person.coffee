@@ -2,6 +2,7 @@ _ = require 'underscore'
 mongoose = require 'mongoose'
 auth = require 'mongoose-auth'
 env = require '../config/env'
+twitterAuthRename = require '../lib/twitter_auth_rename'
 
 # auth decoration
 PersonSchema = module.exports = new mongoose.Schema
@@ -33,8 +34,9 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       consumerKey: env.twitter_app_id
       consumerSecret: env.secrets.twitter
-      findOrCreateUser: (session, accessTok, accessTokExtra, twitter) ->
+      findOrCreateUser: (session, accessTok, accessTokExtra, twit) ->
         promise = @Promise()
+        twitter = twitterAuthRename accessTok, accessTokExtra, twit
         Person.findOrCreateFromTwitter twitter, (err, person) ->
           return promise.fail err if err
           promise.fulfill person
@@ -47,7 +49,7 @@ PersonSchema.plugin auth,
       appSecret: env.secrets.facebook
 
 PersonSchema.virtual('login').get ->
-  @github?.login or @twitter?.screen_name
+  @github?.login or @twit?.screenName
 PersonSchema.virtual('github_login').get -> @github?.login
 
 PersonSchema.method 'team', (callback) ->
@@ -70,8 +72,8 @@ PersonSchema.method 'join', (team, invite) ->
     old.remove()
 
 PersonSchema.method 'updateFromTwitter', (twitter) ->
-  @twitter = twitter
-  @twitter_name = twitter.screen_name
+  @twit = twitter
+  @twitter_name = twitter.screenName
   @name ||= twitter.name
   @location ||= twitter.location
   @bio ||= twitter.description
@@ -79,10 +81,14 @@ PersonSchema.method 'updateFromTwitter', (twitter) ->
   @role ||= 'nomination'
 
 PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
-  Person.findOne { $or: [{ twitter_name: twitter.screen_name }, { 'twitter.screen_name': twitter.screen_name }]}, (error, person) ->
-    return callback(error) if error
-    person ||= new Person
-    try person.updateFromTwitter twitter catch e then callback(e)
-    person.save (err) -> callback(err, person)
+  Person.findOne
+    $or: [
+      { twitter_name: twitter.screenName }
+      { 'twit.id': twitter.id }]
+    (error, person) ->
+      return callback(error) if error
+      person ||= new Person
+      try person.updateFromTwitter twitter catch e then callback(e)
+      person.save (err) -> callback(err, person)
 
 Person = mongoose.model 'Person', PersonSchema

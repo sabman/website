@@ -15,7 +15,7 @@ h1= title(person.name)
     |  &mdash;
   - if (person.twitter_name || person.github_login)
     .icons
-      - if (person.twitter)
+      - if (person.twitter_name)
         a.twitter( href: 'http://twitter.com/' + person.twitter_name )
           img( src: '/images/twitter.png' )
       - if (person.github_login)
