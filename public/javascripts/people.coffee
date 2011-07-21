@@ -27,10 +27,11 @@ $('form.person .twitter input').live('blur', ->
       $form.find('.location :text').val (i, v) -> v or data.location
       $form.find('.bio textarea').text (i, t) -> t or data.description
 
-      image_url = data.profile_image_url.replace '_normal.', '.'
-      $form.find('.image_url')
-        .find('img.avatar').attr('src', image_url).end()
-        .find('input').val (i, v) -> v or image_url
+      unless $form.find('.image_url input').val()
+        image_url = data.profile_image_url.replace '_normal.', '.'
+        $form.find('.image_url')
+          .find('img.avatar').attr('src', image_url).end()
+          .find('input').val image_url
 
       $this.next('.spinner').hide()
 ).change()
