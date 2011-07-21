@@ -34,7 +34,6 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       consumerKey: env.twitter_app_id
       consumerSecret: env.secrets.twitter
-      authorizePath: '/oauth/authenticate'
       findOrCreateUser: (session, accessTok, accessTokExtra, twit) ->
         promise = @Promise()
         twitter = twitterAuthRename accessTok, accessTokExtra, twit
