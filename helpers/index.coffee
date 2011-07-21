@@ -61,3 +61,7 @@ module.exports = (app) ->
         req.pageTitle
     admin: (req, res) -> req.user?.admin
     flash: (req, res) -> req.flash()
+    canEdit: (req, res) ->
+      (thing) ->
+        if u = req.user
+          u.admin or (u.id is thing.id)

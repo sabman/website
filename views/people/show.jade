@@ -29,5 +29,5 @@ h1= title(person.name)
 
 .bio!= markdown(person.bio)
 
-- if ((req.user.id === person.id) || admin)
+- if (canEdit(person))
   p: a.button( href: '/people/' + person.id + '/edit' ) Edit
