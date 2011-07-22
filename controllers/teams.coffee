@@ -96,7 +96,7 @@ app.all '/teams/:id/invites/:inviteId', [loadTeam, ensureAccess], (req, res) ->
   res.redirect "/teams/#{req.team.id}"
 
 # edit
-app.get '/teams/:id/edit', [loadTeam, loadPeople, ensureAccess], (req, res) ->
+app.get '/teams/:id/edit', [loadTeam, ensureAccess, loadPeople], (req, res) ->
   res.render2 'teams/edit', team: req.team, people: req.people
 
 # update
