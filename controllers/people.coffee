@@ -1,6 +1,6 @@
 _ = require 'underscore'
 app = require '../config/app'
-{ ensureAdmin, ensureAccess, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
+m = require '../lib/route-middleware'
 Person = app.db.model 'Person'
 Team = app.db.model 'Team'
 
@@ -10,15 +10,15 @@ app.get '/people', (req, res, next) ->
     return next err if err
     res.render2 'people', people: people
 
-app.get '/people/me', (req, res, next) ->
+app.get '/people/me', [m.ensureAuth], (req, res, next) ->
   res.redirect "/people/#{req.user.id}"
 
 # new
-app.get '/people/new', [ensureAdmin], (req, res, next) ->
+app.get '/people/new', [m.ensureAdmin], (req, res, next) ->
   res.render2 'people/new', person: new Person
 
 # create
-app.post '/people', [ensureAdmin], (req, res) ->
+app.post '/people', [m.ensureAdmin], (req, res) ->
   person = new Person req.body
   person.save (err) ->
     if err
@@ -27,15 +27,15 @@ app.post '/people', [ensureAdmin], (req, res) ->
       res.redirect "people/#{person.id}"
 
 # show
-app.get '/people/:id', [loadPerson, loadPersonTeam], (req, res, next) ->
+app.get '/people/:id', [m.loadPerson, m.loadPersonTeam], (req, res, next) ->
   res.render2 'people/show', person: req.person, team: req.team
 
 # edit
-app.get '/people/:id/edit', [loadPerson, ensureAccess], (req, res, next) ->
+app.get '/people/:id/edit', [m.loadPerson, m.ensureAccess], (req, res, next) ->
   res.render2 'people/edit', person: req.person
 
 # update
-app.put '/people/:id', [loadPerson, ensureAccess], (req, res) ->
+app.put '/people/:id', [m.loadPerson, m.ensureAccess], (req, res) ->
   unless req.user.admin
     delete req.body[attr] for attr in ['role', 'admin', 'technical']
   else # FIXME
