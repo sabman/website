@@ -21,24 +21,6 @@ shuffle = (obj) ->
       shuffled[rand] = value
   shuffled
 
-sponsors = [
-  [ 'adobe.png', 'http://www.adobe.com/' ]
-  [ 'bislr.png', 'http://www.bislr.com/' ]
-  [ 'geeklist.png', 'http://geekli.st/' ]
-  [ 'github.png', 'https://github.com/' ]
-  [ 'heroku.png', 'http://www.heroku.com/' ]
-  [ 'joyent.png', 'http://www.joyent.com/' ]
-  [ 'linode.png', 'http://www.linode.com/index.cfm' ]
-  [ 'mongohq.png', 'https://mongohq.com/home' ]
-  [ 'nodejitsu.png', 'http://www.nodejitsu.com/' ]
-  [ 'nodesocket.png', 'http://www.nodesocket.com/' ]
-  [ 'pusher.png', 'http://pusher.com/' ]
-  [ 'spreecast.png', 'http://spreecast.com/' ]
-  [ 'summercamp.gif', 'http://www.nodeconf.com/summercamp.html' ]
-  [ 'tradeking.png', 'http://www.tradeking.com/' ]
-  [ 'twilio.png', 'http://www.twilio.com/' ]
-]
-
 module.exports = (app) ->
   app.helpers
     avatar_url: (person, size = 30) ->
@@ -68,3 +50,21 @@ module.exports = (app) ->
       (thing) ->
         if u = req.user
           u.admin or (u.id is thing.id)
+
+sponsors = [
+  [ 'adobe.png', 'http://www.adobe.com/' ]
+  [ 'bislr.png', 'http://www.bislr.com/' ]
+  [ 'geeklist.png', 'http://geekli.st/' ]
+  [ 'github.png', 'https://github.com/' ]
+  [ 'heroku.png', 'http://www.heroku.com/' ]
+  [ 'joyent.png', 'http://www.joyent.com/' ]
+  [ 'linode.png', 'http://www.linode.com/index.cfm' ]
+  [ 'mongohq.png', 'https://mongohq.com/home' ]
+  [ 'nodejitsu.png', 'http://www.nodejitsu.com/' ]
+  [ 'nodesocket.png', 'http://www.nodesocket.com/' ]
+  [ 'pusher.png', 'http://pusher.com/' ]
+  [ 'spreecast.png', 'http://spreecast.com/' ]
+  [ 'summercamp.gif', 'http://www.nodeconf.com/summercamp.html' ]
+  [ 'tradeking.png', 'http://www.tradeking.com/' ]
+  [ 'twilio.png', 'http://www.twilio.com/' ]
+]
