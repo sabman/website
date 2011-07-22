@@ -50,7 +50,13 @@ app.get '/teams', (req, res, next) ->
   Team.find {}, {}, options, (err, teams) ->
     return next err if err
     ids = _.reduce teams, ((r, t) -> r.concat(t.people_ids)), []
-    Person.find _id: { $in: ids }, (err, people) ->
+    only =
+      email: 1
+      image_url: 1
+      'github.login': 1
+      'github.gravatarId': 1
+      'twit.screenName': 1
+    Person.find _id: { $in: ids }, only, (err, people) ->
       return next err if err
       people = _.reduce people, ((h, p) -> h[p.id] = p; h), {}
       res.render2 'teams', teams: teams, people: people, layout: !req.xhr
