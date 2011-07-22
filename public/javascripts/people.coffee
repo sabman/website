@@ -28,7 +28,7 @@ $('form.person .twitter input').live('blur', ->
       $form.find('.bio textarea').text (i, t) -> t or data.description
 
       unless $form.find('.image_url input').val()
-        image_url = data.profile_image_url.replace '_normal.', '.'
+        image_url = data.profile_image_url.replace '_normal.', '_bigger.'
         $form.find('.image_url')
           .find('img.avatar').attr('src', image_url).end()
           .find('input').val image_url
