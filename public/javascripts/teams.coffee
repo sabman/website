@@ -31,7 +31,17 @@ $ ->
           $this.addClass('loved')
 
   $('#page.teams-edit').each ->
-    $('a.scary', this).click ->
+    $('a.pull', this).click ->
+      li = $(this).closest('li')
+      i = li.prevAll('li').length + 1
+      li.html $('<input>',
+        class: 'email'
+        type: 'email'
+        name: 'emails[]'
+        placeholder: 'member' + i + '@example.com')
+      false
+
+    $('a.remove', this).click ->
       $this = $(this)
       pos = $this.position()
       form = $('form.delete')
@@ -41,6 +51,7 @@ $ ->
           left: pos.left + ($this.width() - form.outerWidth())/2
           top: pos.top + ($this.height() - form.outerHeight())/2
       false
+
     $('form.delete a', this).click ->
       $(this).closest('form').fadeOut('fast')
       false

@@ -7,7 +7,7 @@ form( method: 'POST', action: '/teams/' + team.id )
   | 
   a( href: '/teams/' + team.id ) Cancel
   |  or
-  a.scary( href: '#' ) Delete?
+  a.scary.remove( href: '#' ) Delete?
 
 form.delete( method: 'POST', action: '/teams/' + team.id )
   input( type: 'hidden', name: '_method', value: 'DELETE' )

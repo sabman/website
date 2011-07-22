@@ -3,7 +3,8 @@
 
 .name
   h3: label( for: 'name' ) Name
-  input( type: 'text', name: 'name', id: 'name', placeholder: 'Witty Team Name', value: team.get('name') )
+  input( type: 'text', name: 'name', id: 'name', placeholder: 'Witty Team Name',
+    value: team.get('name') )
 
 .members
   h3 Member Emails (including yours)
@@ -14,9 +15,13 @@
       li
         img.avatar( src: avatar_url(person) )
         a( href: '/people/' + person.id )= person.github.login
+        input( name: 'people_ids[]', type: 'hidden', value: person.id )
+        | 
+        a.scary.pull( href: '#' ) &#x2a2f;
     - for (var i = 0; i < 4 - people.length; i++)
       li
-        input.email( type: 'email', name: 'emails[]', value: team.emails[i], placeholder: 'member' + (people.length+i+1) + '@example.com' )
+        input.email( type: 'email', name: 'emails[]', value: team.emails[i],
+          placeholder: 'member' + (people.length+i+1) + '@example.com' )
 
 - if (!team.isNew)
   p
