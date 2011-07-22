@@ -1,11 +1,10 @@
 - title('Teams')
 
-h1 Teams (#{teams.length})
-ul('class': 'teams')
+h1 Teams
+ul.teams
   - each team in teams
     li
-      h3
-        a( href: '/teams/' + team.id )= team.name
+      h3: a( href: '/teams/' + team.id )= team.name
         ul.members
           - each id in team.people_ids
             - p = people[id]
@@ -16,3 +15,4 @@ ul('class': 'teams')
           a( href: '/people/' + id)= people[id].login
           | 
       .description!= markdown(team.description)
+  .more: a( href: '/teams?page=' + (Number(req.param('page') || 1) + 1) ) more
