@@ -41,12 +41,9 @@ ensureAccess = (req, res, next) ->
 
 # index
 app.get '/teams', (req, res, next) ->
-  perPage = 50
   page = (req.param('page') or 1) - 1
-  options =
-    sort: [['updatedAt', -1]]
-    limit: perPage
-    skip: perPage * page
+  perPage = 50
+  options = { sort: [['updatedAt', -1]], limit: perPage, skip: perPage * page }
   Team.find {}, {}, options, (err, teams) ->
     return next err if err
     ids = _.reduce teams, ((r, t) -> r.concat(t.people_ids)), []
