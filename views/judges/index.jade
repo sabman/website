@@ -1,8 +1,12 @@
 .nominate
-  h2 We Need Judges!
-  a.button( href: '/judges/new') Nominate a Judge
+  h2 We Need Judges! 
+    a.button( href: '/judges/new') Nominate a Judge
 
-h1 Judges
-ul
+h1 Judges (#{judges.length})
+ul.judges
   - each judge in judges
-    li: a( href: '/people/' + judge.id )= judge.name
+    li
+      img.avatar( src: avatar_url(judge, 80) )
+      h3: a( href: '/people/' + judge.id )= judge.name
+      != partial('people/details', { person: judge })
+      .bio!= markdown(judge.bio)
