@@ -378,7 +378,7 @@ aside
   ul.teams
     overflow hidden
     > li
-      clear right
+      clear both
       border-top solid 1px hsla(0, 0%, 100%, 0.9)
       border-bottom solid 1px hsla(0, 0%, 50%, 0.1)
       overflow hidden
@@ -386,20 +386,24 @@ aside
       &:first-child
         border-top-color transparent
       h3
-        margin 0
-      ul.members
-        float right
-        margin -5px 0 0
-        li
-          display inline-block
-        img.avatar
-          margin 0 0 5px 5px
+        margin 0 0 6px
+        float left
+      div.members, .description
+        font-size small
       div.members
         float right
-        clear right
+        text-align right
+        margin -5px 0 0
         line-height 100%
-      .members, .description
-        font-size small
+      ul.members
+        margin 0 0 3px
+        li
+          display inline-block
+          margin-left 5px
+        img.avatar
+          margin 0
+      .description
+        clear left
         p, ul
           margin 0.5em 0
   .more, #infscr-loading

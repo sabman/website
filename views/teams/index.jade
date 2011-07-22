@@ -2,17 +2,18 @@
 
 h1 Teams
 ul.teams
+  - toPeople = function(team) { return _.map(team.people_ids, function(id) { return people[id]; }) };
   - each team in teams
     li
       h3: a( href: '/teams/' + team.id )= team.name
-        ul.members
-          - each id in team.people_ids
-            - p = people[id]
-            li: a( href: '/people/' + id )
-              img.avatar( src: avatar_url(p), title: p.login )
       .members
-        - each id in team.people_ids
-          a( href: '/people/' + id)= people[id].login
-          | 
+        - members = toPeople(team)
+        ul.members
+          - each m in members
+            li: a( href: '/people/' + m.id )
+              img.avatar( src: avatar_url(m), title: m.login )
+        ul.members
+          - each m in members
+            li: a( href: '/people/' + m.id)= m.login
       .description!= markdown(team.description)
   .more: a( href: '/teams?page=' + (Number(req.param('page') || 1) + 1) ) more

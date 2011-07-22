@@ -1,4 +1,3 @@
-inspect = require('util').inspect
 crypto = require 'crypto'
 markdown = require('markdown').parse
 
@@ -23,6 +22,9 @@ shuffle = (obj) ->
 
 module.exports = (app) ->
   app.helpers
+    inspect: require('util').inspect
+    _: require('underscore')
+    markdown: (str) -> if str? then markdown(str) else ''
     avatar_url: (person, size = 30) ->
       if person.image_url
         person.image_url
@@ -33,8 +35,6 @@ module.exports = (app) ->
         gravatar_url md5(person.email.trim().toLowerCase()), size
       else
         '/images/gravatar_fallback.png'
-    inspect: inspect
-    markdown: (str) -> if str? then markdown(str) else ''
     sponsors: (fn) -> shuffle(sponsors).forEach fn
 
   app.dynamicHelpers
