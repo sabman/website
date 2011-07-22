@@ -4,7 +4,6 @@ $ ->
       navSelector: '.more'
       nextSelector: '.more a'
       itemSelector: 'ul.teams > li'
-      debug: true
       loading:
         img: '/images/spinner.gif'
         msgText: ''
