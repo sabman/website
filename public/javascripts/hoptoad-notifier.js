@@ -267,6 +267,7 @@ if(b)return b.open("GET",a,!1),b.setRequestHeader("User-Agent","XMLHTTP/1.0"),b.
 window.onerror = function(message, file, line) {
   setTimeout(function() {
     Hoptoad.notify({
+      component : 'browser',
       message   : message,
       url       : window.location.href,
       type      : message.constructor.name,
