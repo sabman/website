@@ -143,6 +143,12 @@ app.configure('production', function() {
 });
 
 app.configure(function() {
+  app.use(function(req, res, next) {
+    if (req.headers.host.indexOf('www.') === 0)
+      res.redirect('http://' + req.headers.host.substring(4) + req.url);
+    else
+      next();
+  });
   app.use(express.cookieParser());
   app.use(require('connect-cookie-session')({
     secret: secrets.session,
