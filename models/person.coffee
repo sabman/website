@@ -3,6 +3,7 @@ mongoose = require 'mongoose'
 auth = require 'mongoose-auth'
 env = require '../config/env'
 twitterAuthRename = require '../lib/twitter_auth_rename'
+ROLES = [ 'nomination', 'contestant', 'judge', 'voter' ]
 
 # auth decoration
 PersonSchema = module.exports = new mongoose.Schema
@@ -14,7 +15,7 @@ PersonSchema = module.exports = new mongoose.Schema
   twitter_name: String
   bio: String
   admin: Boolean
-  role: { type: String, enum: ['nomination', 'contestant', 'judge', 'voter' ] }
+  role: { type: String, enum: ROLES }
   technical: Boolean
 PersonSchema.plugin require('mongoose-types').useTimestamps
 PersonSchema.plugin auth,
@@ -49,6 +50,8 @@ PersonSchema.plugin auth,
       appId: env.facebook_app_id
       appSecret: env.secrets.facebook
 
+ROLES.forEach (t) ->
+  PersonSchema.virtual(t).get -> @role == t
 PersonSchema.virtual('login').get ->
   @github?.login or @twit?.screenName
 PersonSchema.virtual('github_login').get -> @github?.login
@@ -93,3 +96,4 @@ PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
       person.save (err) -> callback(err, person)
 
 Person = mongoose.model 'Person', PersonSchema
+Person.ROLES = ROLES

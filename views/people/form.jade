@@ -35,20 +35,21 @@
     input( type: 'text', name: 'twitter_name', id: 'twitter', value: person.twitter_name )
     img.spinner( src: '/images/spinner.gif' )
 
-  .image_url.tabular
-    label( for: 'image_url' ) Picture
-    - image_url = avatar_url(person, 80)
-    img.avatar( src: image_url )
-    input( type: 'hidden', name: 'image_url', value: person.image_url )
-    button Change
-    img.spinner( src: '/images/spinner.gif' )
-    .transloadit
-      iframe( scrolling: 'no', frameborder: 0 )
-      script( type: 'application/html-xtmpl' )
-        form( action: "http://api2.transloadit.com/assemblies", enctype: "multipart/form-data", method: "POST" )
-          - transloadit_params = { auth: { key: '86197da4c28a498fb7a3796c17dc3ce3' }, 'template_id': '898ee2cd0e904c7c8c62fd5ded92e501' }
-          input( type: 'hidden', name: 'params', value: JSON.stringify(transloadit_params))
-          input( type: 'file', name: 'file' )
+  - if (!person.contestant)
+    .image_url.tabular
+      label( for: 'image_url' ) Picture
+      - image_url = avatar_url(person, 80)
+      img.avatar( src: image_url )
+      input( type: 'hidden', name: 'image_url', value: person.image_url )
+      button Change
+      img.spinner( src: '/images/spinner.gif' )
+      .transloadit
+        iframe( scrolling: 'no', frameborder: 0 )
+        script( type: 'application/html-xtmpl' )
+          form( action: "http://api2.transloadit.com/assemblies", enctype: "multipart/form-data", method: "POST" )
+            - transloadit_params = { auth: { key: '86197da4c28a498fb7a3796c17dc3ce3' }, 'template_id': '898ee2cd0e904c7c8c62fd5ded92e501' }
+            input( type: 'hidden', name: 'params', value: JSON.stringify(transloadit_params))
+            input( type: 'file', name: 'file' )
 
   .location.tabular
     label( for: 'location' ) Location
