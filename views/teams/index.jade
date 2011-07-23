@@ -1,6 +1,6 @@
 - title('Teams')
 
-h1 Teams
+h1 Teams (#{teams.count})
 ul.teams
   - toPeople = function(team) { return _.map(team.people_ids, function(id) { return people[id]; }) };
   - each team in teams

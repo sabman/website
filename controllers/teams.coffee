@@ -42,8 +42,7 @@ ensureAccess = (req, res, next) ->
 # index
 app.get '/teams', (req, res, next) ->
   page = (req.param('page') or 1) - 1
-  perPage = 50
-  options = { sort: [['updatedAt', -1]], limit: perPage, skip: perPage * page }
+  options = { sort: [['updatedAt', -1]], limit: 50, skip: 50 * page }
   Team.find {}, {}, options, (err, teams) ->
     return next err if err
     ids = _.reduce teams, ((r, t) -> r.concat(t.people_ids)), []
@@ -57,7 +56,10 @@ app.get '/teams', (req, res, next) ->
     Person.find _id: { $in: ids }, only, (err, people) ->
       return next err if err
       people = _.reduce people, ((h, p) -> h[p.id] = p; h), {}
-      res.render2 'teams', teams: teams, people: people, layout: !req.xhr
+      Team.count {}, (err, count) ->
+        return next err if err
+        teams.count = count
+        res.render2 'teams', teams: teams, people: people, layout: !req.xhr
 
 # new
 app.get '/teams/new', (req, res, next) ->
