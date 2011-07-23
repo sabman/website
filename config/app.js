@@ -144,8 +144,7 @@ app.configure('production', function() {
 });
 
 app.configure(function() {
-  var MongoStore = require('connect-mongodb')
-    , fortnight = 1000 * 60 * 60 * 24 * 7 * 2;
+  var MongoStore = require('connect-mongodb');
 
   app.use(function(req, res, next) {
     if (req.headers.host.indexOf('www.') === 0)
@@ -156,7 +155,6 @@ app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.session({
     secret: secrets.session,
-    cookie: { maxAge: fortnight },
     store: new MongoStore({ db: mongoose.connection.db })
   }));
   app.use(express.bodyParser());
