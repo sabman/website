@@ -157,10 +157,7 @@ app.configure(function() {
   app.use(express.session({
     secret: secrets.session,
     cookie: { maxAge: fortnight },
-    store: new MongoStore({
-      db: mongoose.connection.db,
-      reapInterval: fortnight
-    })
+    store: new MongoStore({ db: mongoose.connection.db })
   }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
