@@ -143,7 +143,9 @@ app.configure('production', function() {
 });
 
 app.configure(function() {
-  var MongoStore = require('connect-mongodb');
+  var MongoStore = require('connect-mongodb')
+    , fortnight = 1000 * 60 * 60 * 24 * 7 * 2;
+
   app.use(function(req, res, next) {
     if (req.headers.host.indexOf('www.') === 0)
       res.redirect('http://' + req.headers.host.substring(4) + req.url);
@@ -153,14 +155,18 @@ app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.session({
     secret: secrets.session,
-    cookie: { maxAge: 31536000000 }, // ~1 year
-    store: new MongoStore({ db: mongoose.connection.db, reapInterval: -1 })
+    cookie: { maxAge: fortnight },
+    store: new MongoStore({
+      db: mongoose.connection.db,
+      reapInterval: fortnight
+    })
   }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.logger());
   app.use(auth.middleware());
   app.use(app.router);
+
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
 });
