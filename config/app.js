@@ -39,6 +39,7 @@ app.error(function(e, req, res, next) {
 
 // utilities & hacks
 require('../lib/render2');
+require('../lib/underscore.shuffle');
 
 // db
 var mongoose = require('mongoose')

@@ -1,4 +1,5 @@
 crypto = require 'crypto'
+_ = require 'underscore'
 markdown = require('markdown').parse
 
 md5 = (str) ->
@@ -9,21 +10,10 @@ md5 = (str) ->
 gravatar_url = (md5, size) ->
   "http://gravatar.com/avatar/#{md5}?s=#{size}&d=retro"
 
-shuffle = (obj) ->
-  shuffled = []
-  obj.forEach (value, index, list) ->
-    if index == 0
-      shuffled[0] = value
-    else
-      rand = Math.floor(Math.random() * (index + 1))
-      shuffled[index] = shuffled[rand]
-      shuffled[rand] = value
-  shuffled
-
 module.exports = (app) ->
   app.helpers
     inspect: require('util').inspect
-    _: require('underscore')
+    _: _
     markdown: (str) -> if str? then markdown(str) else ''
     avatar_url: (person, size = 30) ->
       if person.github?.gravatarId
@@ -35,7 +25,7 @@ module.exports = (app) ->
         gravatar_url md5(person.email.trim().toLowerCase()), size
       else
         '/images/gravatar_fallback.png'
-    sponsors: (fn) -> shuffle(sponsors).forEach fn
+    sponsors: (fn) -> _.shuffle(sponsors).forEach fn
 
   app.dynamicHelpers
     session: (req, res) -> req.session

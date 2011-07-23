@@ -1,11 +1,12 @@
 app = require '../config/app'
 Person = app.db.model 'Person'
+_ = require 'underscore'
 
 # index
 app.get '/judges', (req, res, next) ->
   Person.find { role: 'judge' }, (err, judges) ->
     return next err if err
-    res.render2 'judges', judges: judges
+    res.render2 'judges', judges: _.shuffle(judges)
 
 app.get '/judges/nominations', (req, res, next) ->
   Person.find { role: 'nomination' }, (err, judges) ->
