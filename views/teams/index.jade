@@ -15,7 +15,6 @@ ul.teams
         ul.members
           - each m in members
             li: a( href: '/people/' + m.id)= m.login
-      .location
-        = _.uniq(_.compact(_.map(members, function(m) { return m.github.location; }))).join('; ')
+      .location= locations(members)
       .description!= markdown(team.description)
   .more: a( href: '/teams?page=' + (Number(req.param('page') || 1) + 1) ) more

@@ -26,6 +26,17 @@ module.exports = (app) ->
       else
         '/images/gravatar_fallback.png'
     sponsors: (fn) -> _.shuffle(sponsors).forEach fn
+    locations: (people) ->
+      _(people).chain()
+        .map((p) -> p.github.location)
+        .reduce((r, p) ->
+          if p
+            k = p.toLowerCase().replace(/\W.*/, '')
+            r[k] = p if (!r[k] || r[k].length > p.length)
+          r
+        , {})
+        .values()
+        .value().join '; '
 
   app.dynamicHelpers
     session: (req, res) -> req.session
