@@ -1,5 +1,5 @@
 app = require '../config/app'
-{ ensureAuth, loadPerson, loadPersonTeam } = require '../lib/route-middleware'
+{ ensureAuth, loadPerson, loadPersonTeam } = require './middleware'
 Team = app.db.model 'Team'
 
 app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next) ->

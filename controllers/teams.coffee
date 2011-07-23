@@ -1,7 +1,7 @@
 _ = require 'underscore'
 colors = require 'colors'
 app = require '../config/app'
-{ ensureAuth } = require '../lib/route-middleware'
+{ ensureAuth } = require './middleware'
 Team = app.db.model 'Team'
 Person = app.db.model 'Person'
 Vote = app.db.model 'Vote'

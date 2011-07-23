@@ -1,6 +1,6 @@
 _ = require 'underscore'
 app = require '../config/app'
-m = require '../lib/route-middleware'
+m = require './middleware'
 Person = app.db.model 'Person'
 Team = app.db.model 'Team'
 
