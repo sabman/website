@@ -43,7 +43,6 @@ require('../lib/underscore.shuffle');
 
 // db
 var mongoose = require('mongoose')
-require('../lib/mongo-log')(mongoose.mongo);
 require('mongoose-types').loadTypes(mongoose);
 require('../models');
 util.log('connecting to ' + env.mongo_url);
@@ -136,6 +135,7 @@ app.configure('development', function() {
   app.use(express.profiler());
   app.set('view options', { scope: { development: true }});
   app.enable('voting');
+  require('../lib/mongo-log')(mongoose.mongo);
 });
 app.configure('production', function() {
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
