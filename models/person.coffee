@@ -29,6 +29,18 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       appId: env.github_app_id
       appSecret: env.secrets.github
+      findOrCreateUser: (sess, accessTok, accessTokExtra, ghUser) ->
+        promise = @Promise()
+        Person.findOne 'github.id': ghUser.id, (err, foundUser) ->
+          if foundUser
+            foundUser.updateWithGithub ghUser, (err, updatedUser) ->
+              return promise.fail err if err
+              promise.fulfill updatedUser
+          else
+            Person.createWithGithub ghUser, accessTok, (err, createdUser) ->
+              return promise.fail err if err
+              promise.fulfill createdUser
+        promise
   twitter:
     everyauth:
       redirectPath: '/login/done'
@@ -74,6 +86,13 @@ PersonSchema.method 'join', (team, invite) ->
       location: @github.location
     team.emails = _.without team.emails, old.email
     old.remove()
+
+PersonSchema.method 'updateWithGithub', (ghUser, callback) ->
+  Person.createWithGithub.call
+    create: (params, callback) =>
+      _.extend this, params
+      @save callback
+    , ghUser, null, callback
 
 PersonSchema.method 'updateFromTwitter', (twitter) ->
   @twit = twitter
