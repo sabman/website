@@ -28,7 +28,7 @@ module.exports = (app) ->
     sponsors: (fn) -> _.shuffle(sponsors).forEach fn
     locations: (people) ->
       _(people).chain()
-        .map((p) -> p.github.location)
+        .pluck('location')
         .reduce((r, p) ->
           if p
             k = p.toLowerCase().replace(/\W.*/, '')

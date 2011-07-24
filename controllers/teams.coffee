@@ -50,8 +50,8 @@ app.get '/teams', (req, res, next) ->
       email: 1
       image_url: 1
       'github.gravatarId': 1
-      'github.location': 1
       'github.login': 1
+      'location': 1
       'twit.screenName': 1
     Person.find _id: { $in: ids }, only, (err, people) ->
       return next err if err

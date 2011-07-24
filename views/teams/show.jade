@@ -18,9 +18,9 @@ h1
       li
         img.avatar( src: avatar_url(person) )
         a( href: '/people/' + person.id )= person.github.login
-        - if (person.github.location)
+        - if (person.location)
           |  &mdash;
-          = person.github.location
+          = person.location
 
 - if (team.invites.length)
   h2 Invites (#{team.invites.length} pending)

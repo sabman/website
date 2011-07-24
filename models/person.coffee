@@ -91,6 +91,8 @@ PersonSchema.method 'updateWithGithub', (ghUser, callback) ->
   Person.createWithGithub.call
     create: (params, callback) =>
       _.extend this, params
+      @company or= @github.company
+      @location or= @github.location
       @save callback
     , ghUser, null, callback
 
