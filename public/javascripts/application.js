@@ -446,5 +446,8 @@ var nko = {};
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(580, 80) });
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(1000, 380) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(1050, 420) });
+
+    // focus first input
+    $(':text:first').focus();
   });
 })(nko); // export nko
