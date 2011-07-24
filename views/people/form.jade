@@ -62,7 +62,9 @@
   .bio.tabular
     label( for: 'bio' ) Bio
     textarea( name: 'bio', id: 'bio' )= person.bio
-    - if (person.role == 'judge')
-      .note
+    .note
+      - if (person.judge || person.nomination)
         | A 2-3 sentence bio for the
-        != ' <a href="/judging">judges page</a>.'
+        != ' <a href="/judging">judges page</a>. '
+      a( href: 'http://daringfireball.net/projects/markdown/' ) Markdown
+      |  ok.
