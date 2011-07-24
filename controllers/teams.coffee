@@ -8,9 +8,9 @@ Vote = app.db.model 'Vote'
 
 # middleware
 loadTeam = (req, res, next) ->
-  if id = req.param('id')
+  if id = req.params.id
     try
-      Team.findOne $or: [ {_id: id}, {code: id} ], (err, team) ->
+      Team.findById id, (err, team) ->
         return next err if err
         return next 404 unless team
         req.team = team
@@ -18,6 +18,12 @@ loadTeam = (req, res, next) ->
     catch error
       throw error unless error.message == 'Id cannot be longer than 12 bytes'
       return next 404
+  else if code = req.params.code
+    Team.findOne code: code, (err, team) ->
+      return next err if err
+      return next 404 unless team
+      req.team = team
+      next()
   else
     next()
 
