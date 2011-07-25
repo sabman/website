@@ -1,6 +1,3 @@
-// safe console usage
-(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info, log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();)b[a]=b[a]||c})(window.console=window.console||{});
-
 var nko = {};
 (function(nko) {
   //// Vector
@@ -446,8 +443,5 @@ var nko = {};
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(580, 80) });
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(1000, 380) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(1050, 420) });
-
-    // focus first input
-    $(':text:first').focus();
   });
 })(nko); // export nko

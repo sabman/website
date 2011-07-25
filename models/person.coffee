@@ -9,10 +9,10 @@ ROLES = [ 'nomination', 'contestant', 'judge', 'voter' ]
 PersonSchema = module.exports = new mongoose.Schema
   name: String
   email: String
-  image_url: String
+  imageURL: String
   location: String
   company: String
-  twitter_name: String
+  twitterScreenName: String
   bio: String
   admin: Boolean
   role: { type: String, enum: ROLES }
@@ -70,13 +70,13 @@ PersonSchema.virtual('github_login').get -> @github?.login
 
 PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
-  Team.findOne people_ids: @id, callback
+  Team.findOne peopleIds: @id, callback
 
 # leaves saving up to the calling code: if passing in an invite, you'll
 # probably want to save both the person and the team. w/o an invite, you just
 # need to save the team.
 PersonSchema.method 'join', (team, invite) ->
-  team.people_ids.push @id unless team.includes(this)
+  team.peopleIds.push @id unless team.includes(this)
   if invite and old = _.detect(team.invites, (i) -> i.code == invite)
     _.extend this,
       name: @github.name
@@ -98,17 +98,17 @@ PersonSchema.method 'updateWithGithub', (ghUser, callback) ->
 
 PersonSchema.method 'updateFromTwitter', (twitter) ->
   @twit = twitter
-  @twitter_name = twitter.screenName
+  @twitterScreenName = twitter.screenName
   @name ||= twitter.name
   @location ||= twitter.location
   @bio ||= twitter.description
-  @image_url ||= twitter.profileImageUrl.replace('_normal.', '.')
+  @imageURL ||= twitter.profileImageUrl.replace('_normal.', '.')
   @role ||= 'nomination'
 
 PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
   Person.findOne
     $or: [
-      { twitter_name: twitter.screenName }
+      { twitterScreenName: twitter.screenName }
       { 'twit.id': twitter.id }]
     (error, person) ->
       return callback(error) if error

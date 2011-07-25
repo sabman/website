@@ -48,3 +48,9 @@ app.put '/people/:id', [m.loadPerson, m.ensureAccess], (req, res) ->
       res.render2 'people/edit', person: req.person
     else
       res.redirect "/people/#{req.person.id}"
+
+# delete
+app.delete '/people/:id', [m.loadPerson, m.ensureAccess], (req, res, next) ->
+  req.person.remove (err) ->
+    return next err if err
+    res.redirect '/people'
