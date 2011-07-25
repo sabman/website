@@ -39,6 +39,6 @@
   },
   "devDependencies": {
     "nodemon": "0.5.3",
-    "node-inspector": "0.1.6"
+    "node-inspector": "0.1.8"
   }
 }
