@@ -4,6 +4,7 @@ mongoose = require 'mongoose'
 auth = require 'mongoose-auth'
 env = require '../config/env'
 twitterAuthRename = require '../lib/twitter_auth_rename'
+facebookAuthRename = require '../lib/facebook_auth_rename'
 ROLES = [ 'nomination', 'contestant', 'judge', 'voter' ]
 
 # auth decoration
@@ -62,8 +63,11 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       appId: env.facebook_app_id
       appSecret: env.secrets.facebook
-      findOrCreateUser: (session, accessTok, accessTokExtra, fb) ->
+      scope: 'email'
+      findOrCreateUser: (session, accessTok, accessTokExtra, facebook) ->
         promise = @Promise()
+        fb = facebookAuthRename accessTok, accessTokExtra, facebook
+        console.log(fb, '$$$$$$$ fb $$$$$$$');
         Person.findOrCreateFromFacebook fb, (err, person) ->
           return promise.fail err if err
           promise.fulfill person
@@ -113,9 +117,10 @@ PersonSchema.method 'updateFromTwitter', (twitter) ->
   @role ||= 'nomination'
 
 PersonSchema.method 'updateFromFacebook', (facebook) ->
-  console.log arguments.cyan
-  @facebook_name = facebook.alias
-  @name ||= facebook.name.full
+  @fb = facebook
+  @name ||= facebook.name
+  @location ||= facebook.location
+  @imageURL ||= facebook.picture
   @role ||= 'voter'
 
 PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
@@ -130,16 +135,11 @@ PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
       person.save (err) -> callback(err, person)
 
 PersonSchema.static 'findOrCreateFromFacebook', (facebook, callback) ->
-  console.log arguments.magenta
-  Person.findOne
-    $or: [
-      { facebook_name: facebook.alias }
-      { 'fb.id': facebook.id }]
-    (error, person) ->
-      return callback(error) if error
-      person ||= new Person
-      try person.updateFromFacebook facebook catch e then callback(e)
-      person.save (err) -> callback(err, person)
+  Person.findOne 'fb.id': facebook.id, (error, person) ->
+    return callback(error) if error
+    person ||= new Person
+    try person.updateFromFacebook facebook catch e then callback(e)
+    person.save (err) -> callback(err, person)
 
 Person = mongoose.model 'Person', PersonSchema
 Person.ROLES = ROLES
