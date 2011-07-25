@@ -64,10 +64,9 @@ PersonSchema.plugin auth,
       appId: env.facebook_app_id
       appSecret: env.secrets.facebook
       scope: 'email'
-      findOrCreateUser: (session, accessTok, accessTokExtra, facebook) ->
+      findOrCreateUser: (session, accessTok, accessTokExtra, face) ->
         promise = @Promise()
-        fb = facebookAuthRename accessTok, accessTokExtra, facebook
-        console.log(fb, '$$$$$$$ fb $$$$$$$');
+        fb = facebookAuthRename accessTok, accessTokExtra, face
         Person.findOrCreateFromFacebook fb, (err, person) ->
           return promise.fail err if err
           promise.fulfill person
@@ -139,6 +138,7 @@ PersonSchema.static 'findOrCreateFromFacebook', (facebook, callback) ->
     return callback(error) if error
     person ||= new Person
     try person.updateFromFacebook facebook catch e then callback(e)
+    console.log(person, 'person')
     person.save (err) -> callback(err, person)
 
 Person = mongoose.model 'Person', PersonSchema
