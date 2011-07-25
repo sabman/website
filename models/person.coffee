@@ -75,7 +75,7 @@ PersonSchema.plugin auth,
 ROLES.forEach (t) ->
   PersonSchema.virtual(t).get -> @role == t
 PersonSchema.virtual('login').get ->
-  @github?.login or @twit?.screenName
+  @github?.login or @twit?.screenName or @name
 PersonSchema.virtual('githubLogin').get -> @github?.login
 
 PersonSchema.method 'team', (callback) ->
