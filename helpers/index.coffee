@@ -64,6 +64,7 @@ sponsors = [
   [ 'nodejitsu.png', 'http://www.nodejitsu.com/' ]
   [ 'nodesocket.png', 'http://www.nodesocket.com/' ]
   [ 'postageapp.png', 'http://postageapp.com/' ]
+  [ 'pubnub.png', 'http://www.pubnub.com/' ]
   [ 'pusher.png', 'http://pusher.com/' ]
   [ 'spreecast.png', 'http://spreecast.com/' ]
   [ 'summercamp.gif', 'http://www.nodeconf.com/summercamp.html' ]
