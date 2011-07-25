@@ -1,10 +1,12 @@
 _ = require 'underscore'
+qs = require 'querystring'
 colors = require 'colors'
 app = require '../config/app'
 { ensureAuth } = require './middleware'
 Team = app.db.model 'Team'
 Person = app.db.model 'Person'
 Vote = app.db.model 'Vote'
+Deploy = app.db.model 'Deploy'
 
 # middleware
 loadTeam = (req, res, next) ->
@@ -19,6 +21,7 @@ loadTeam = (req, res, next) ->
       throw error unless error.message == 'Id cannot be longer than 12 bytes'
       return next 404
   else if code = req.params.code
+    code = qs.unescape(code)
     Team.findOne code: code, (err, team) ->
       return next err if err
       return next 404 unless team
@@ -154,3 +157,14 @@ app.delete '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
     vote.save (err) ->
       return res.send 400 if err
       res.send 'nolove'
+
+app.post '/teams/:code/deploys', [loadTeam], (req, res) ->
+  console.log( 'team'.cyan, req.team.name, 'deployed'.green )
+  body = req.body
+  # TODO check where the request came from
+  body.isProduction = false
+  body.teamId = req.team.id
+  delete body.code
+  deploy = new Deploy body
+  deploy.save ->
+    res.send 'ok'

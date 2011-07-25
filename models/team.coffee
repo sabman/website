@@ -5,6 +5,7 @@ rbytes = require 'rbytes'
 InviteSchema = require './invite'
 Invite = mongoose.model 'Invite'
 Person = mongoose.model 'Person'
+Deploy = mongoose.model 'Deploy'
 
 TeamSchema = module.exports = new mongoose.Schema
   name:
@@ -30,6 +31,9 @@ TeamSchema.method 'includes', (person, code) ->
 
 TeamSchema.method 'people', (next) ->
   Person.find _id: { '$in': @peopleIds }, next
+
+TeamSchema.method 'deploys', (next) ->
+  Deploy.find teamId: @id, next
 
 TeamSchema.method 'invited', (invite) ->
   _.detect @invites, (i) -> i.code == invite
