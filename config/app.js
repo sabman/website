@@ -103,8 +103,9 @@ app.configure(function() {
         'jquery.keylisten.js',
         'jquery.transform.light.js',
         'jquery.transloadit2.js',
-        'application.js',
+        'console.js',
         'md5.js',
+        'application.coffee',
         '*'
       ]
       , 'postManipulate': {

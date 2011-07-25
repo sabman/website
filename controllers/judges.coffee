@@ -15,7 +15,7 @@ app.get '/judges/nominations', (req, res, next) ->
 
 # new
 app.get '/judges/new', (req, res, next) ->
-  res.render2 'judges/new', person: new Person
+  res.render2 'judges/new', person: new Person(role: 'nomination')
 
 # create
 app.post '/judges', (req, res) ->

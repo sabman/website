@@ -7,3 +7,12 @@ form.person( method: 'POST', action: '/people/' + person.id )
     input( type: 'submit', value: 'Update' )
     | 
     a( href: '/people/' + person.id ) Cancel
+    |  or
+    a.scary.remove( href: '#' ) Delete?
+
+form.delete( method: 'POST', action: '/people/' + person.id )
+  input( type: 'hidden', name: '_method', value: 'DELETE' )
+  p Are you sure? This can't be undone.
+  input.scary( type: 'submit', value: 'Delete' )
+  | 
+  a( href: '#' ) Cancel
