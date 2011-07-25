@@ -24,8 +24,10 @@ $ ->
       $this = $(this)
       team = $this.attr('data-team')
       if $this.hasClass('loved')
-        $.post '/teams/'+team+'/nolove', ->
-          $this.removeClass('loved')
+        $.ajax
+          url: '/teams/'+team+'/love'
+          type: 'DELETE'
+          success: -> $this.removeClass('loved')
       else
         $.post '/teams/'+team+'/love', ->
           $this.addClass('loved')

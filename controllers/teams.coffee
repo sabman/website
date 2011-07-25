@@ -140,7 +140,7 @@ app.post '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
       res.send 'love'
 
 # un-upvote
-app.post '/teams/:id/nolove', [loadTeam, ensureAuth], (req, res) ->
+app.delete '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
   console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'nolove'.red )
   Vote.findOne { type:'upvote', team_id: req.team.id, person_id: req.user.id }, (err, vote) ->
     return res.send 400 if err
