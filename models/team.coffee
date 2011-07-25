@@ -15,7 +15,7 @@ TeamSchema = module.exports = new mongoose.Schema
     type: [ mongoose.SchemaTypes.Email ]
     validate: [ ((v) -> v.length <= 4), 'max' ]
   invites: [ InviteSchema ]
-  people_ids:
+  peopleIds:
     type: [ mongoose.Schema.ObjectId ]
     index: true
   code:
@@ -26,10 +26,10 @@ TeamSchema.plugin require('mongoose-types').useTimestamps
 TeamSchema.index updatedAt: -1
 
 TeamSchema.method 'includes', (person, code) ->
-  @code == code or person and _.any @people_ids, (id) -> id.equals(person.id)
+  @code == code or person and _.any @peopleIds, (id) -> id.equals(person.id)
 
 TeamSchema.method 'people', (next) ->
-  Person.find _id: { '$in': @people_ids }, next
+  Person.find _id: { '$in': @peopleIds }, next
 
 TeamSchema.method 'invited', (invite) ->
   _.detect @invites, (i) -> i.code == invite
@@ -47,7 +47,7 @@ TeamSchema.static 'uniqueName', (name, next) ->
 
 # min people validation
 TeamSchema.pre 'save', (next) ->
-  if @people_ids.length + @emails.length == 0
+  if @peopleIds.length + @emails.length == 0
     error = new mongoose.Document.ValidationError this
     error.errors.emails = 'min'
     next error

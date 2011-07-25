@@ -6,10 +6,10 @@ VoteSchema = module.exports = new mongoose.Schema
   type:
     type: String
     required: true
-  person_id:
+  personId:
     type: ObjectId
     index: true
-  team_id:
+  teamId:
     type: ObjectId
     index: true
   upvote:

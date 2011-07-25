@@ -15,7 +15,7 @@
       li
         img.avatar( src: avatar_url(person) )
         a( href: '/people/' + person.id )= person.github.login
-        input( name: 'people_ids[]', type: 'hidden', value: person.id )
+        input( name: 'peopleIds[]', type: 'hidden', value: person.id )
         | 
         a.scary.pull( href: '#' ) &#x2a2f;
     - for (var i = 0; i < 4 - people.length; i++)

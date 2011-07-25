@@ -36,7 +36,7 @@ loadPeople = (req, res, next) ->
 loadVotes = (req, res, next) ->
   if (!app.enabled('voting') || !req.user)
     return next()
-  Vote.findOne { type:'upvote', team_id: req.team.id, person_id: req.user.id }, (err, vote) ->
+  Vote.findOne { type:'upvote', teamId: req.team.id, personId: req.user.id }, (err, vote) ->
     return next err if err
     req.user.upvote = vote.upvote if vote
     next()
@@ -51,10 +51,10 @@ app.get '/teams', (req, res, next) ->
   options = { sort: [['updatedAt', -1]], limit: 50, skip: 50 * page }
   Team.find {}, {}, options, (err, teams) ->
     return next err if err
-    ids = _.reduce teams, ((r, t) -> r.concat(t.people_ids)), []
+    ids = _.reduce teams, ((r, t) -> r.concat(t.peopleIds)), []
     only =
       email: 1
-      image_url: 1
+      imageURL: 1
       'github.gravatarId': 1
       'github.login': 1
       'location': 1
@@ -129,17 +129,17 @@ app.delete '/teams/:id', [loadTeam, ensureAccess], (req, res, next) ->
 
 # upvote
 app.post '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
-  team_id = req.team.id
-  person_id = req.user.id
-  console.log( 'team'.cyan, team_id, 'voter'.cyan, person_id, 'love'.red )
-  Vote.findOne { type:'upvote', team_id: team_id, person_id: person_id }, (err, vote) ->
+  teamId = req.team.id
+  personId = req.user.id
+  console.log( 'team'.cyan, teamId, 'voter'.cyan, personId, 'love'.red )
+  Vote.findOne { type:'upvote', teamId: teamId, personId: personId }, (err, vote) ->
     console.log arguments
     return res.send 400 if err
     if not vote
       vote = new Vote
       vote.type = 'upvote'
-      vote.person_id = person_id
-      vote.team_id = team_id
+      vote.personId = personId
+      vote.teamId = teamId
     vote.love()
     vote.save (err) ->
       return res.send 400 if err
@@ -148,7 +148,7 @@ app.post '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
 # un-upvote
 app.post '/teams/:id/nolove', [loadTeam, ensureAuth], (req, res) ->
   console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'nolove'.red )
-  Vote.findOne { type:'upvote', team_id: req.team.id, person_id: req.user.id }, (err, vote) ->
+  Vote.findOne { type:'upvote', teamId: req.team.id, personId: req.user.id }, (err, vote) ->
     return res.send 400 if err
     vote.nolove()
     vote.save (err) ->
