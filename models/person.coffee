@@ -1,4 +1,5 @@
 _ = require 'underscore'
+colors = require 'colors'
 mongoose = require 'mongoose'
 auth = require 'mongoose-auth'
 env = require '../config/env'
@@ -61,6 +62,12 @@ PersonSchema.plugin auth,
       myHostname: env.hostname
       appId: env.facebook_app_id
       appSecret: env.secrets.facebook
+      findOrCreateUser: (session, accessTok, accessTokExtra, fb) ->
+        promise = @Promise()
+        Person.findOrCreateFromFacebook fb, (err, person) ->
+          return promise.fail err if err
+          promise.fulfill person
+        promise
 
 ROLES.forEach (t) ->
   PersonSchema.virtual(t).get -> @role == t
@@ -105,6 +112,12 @@ PersonSchema.method 'updateFromTwitter', (twitter) ->
   @image_url ||= twitter.profileImageUrl.replace('_normal.', '.')
   @role ||= 'nomination'
 
+PersonSchema.method 'updateFromFacebook', (facebook) ->
+  console.log arguments.cyan
+  @facebook_name = facebook.alias
+  @name ||= facebook.name.full
+  @role ||= 'voter'
+
 PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
   Person.findOne
     $or: [
@@ -114,6 +127,18 @@ PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
       return callback(error) if error
       person ||= new Person
       try person.updateFromTwitter twitter catch e then callback(e)
+      person.save (err) -> callback(err, person)
+
+PersonSchema.static 'findOrCreateFromFacebook', (facebook, callback) ->
+  console.log arguments.magenta
+  Person.findOne
+    $or: [
+      { facebook_name: facebook.alias }
+      { 'fb.id': facebook.id }]
+    (error, person) ->
+      return callback(error) if error
+      person ||= new Person
+      try person.updateFromFacebook facebook catch e then callback(e)
       person.save (err) -> callback(err, person)
 
 Person = mongoose.model 'Person', PersonSchema
