@@ -38,9 +38,6 @@ app.get '/people/:id/edit', [m.loadPerson, m.ensureAccess], (req, res, next) ->
 app.put '/people/:id', [m.loadPerson, m.ensureAccess], (req, res) ->
   unless req.user.admin
     delete req.body[attr] for attr in ['role', 'admin', 'technical']
-  else # FIXME
-    req.body.admin = !!req.body.admin
-    req.body.technical = !!req.body.technical
   _.extend req.person, req.body
   req.person.save (err) ->
     return next err if err && err.name != 'ValidationError'

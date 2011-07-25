@@ -39,7 +39,7 @@ h1
 
 - if (voting)
     h2 Votes
-    - if (user.role == 'voter')
+    - if (!user || user.role == 'voter')
       button( 'class': 'heart ' + (upvoted ? 'loved' : ''), data-team: team.id) ♥
     - if (votes.length)
       ul.votes

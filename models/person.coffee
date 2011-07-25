@@ -76,7 +76,7 @@ ROLES.forEach (t) ->
   PersonSchema.virtual(t).get -> @role == t
 PersonSchema.virtual('login').get ->
   @github?.login or @twit?.screenName
-PersonSchema.virtual('github_login').get -> @github?.login
+PersonSchema.virtual('githubLogin').get -> @github?.login
 
 PersonSchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
