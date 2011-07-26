@@ -443,5 +443,17 @@ var nko = {};
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(580, 80) });
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(1000, 380) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(1050, 420) });
+
+    //// lounge
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(-60, 870) });
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(0, 900) });
+    new nko.Thing({ name: 'portopotty', pos: new nko.Vector(80, 900) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(550, 1050) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(500, 1250) });
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(560, 1300) });
+    new nko.Thing({ name: 'desk', pos: new nko.Vector(500, 1350) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(120, 1800) });
+    new nko.Thing({ name: 'deadtree', pos: new nko.Vector(70, 1700) });
+    new nko.Thing({ name: 'livetree', pos: new nko.Vector(-10, 1900) });
   });
 })(nko); // export nko

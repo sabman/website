@@ -1,9 +1,4 @@
 $ ->
-  $('#page.index-index').each ->
-    new nko.Thing name: 'livetree', pos: new nko.Vector(-60, 870)
-    new nko.Thing name: 'deadtree', pos: new nko.Vector(0, 900)
-    new nko.Thing name: 'portopotty', pos: new nko.Vector(80, 900)
-
   $('#page.how-to-win').each ->
     # slide-0 rules
     new nko.Thing name: 'streetlamp', pos: new nko.Vector(1900, 200)
