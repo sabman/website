@@ -77,7 +77,7 @@ app.configure(function() {
   app.use(require('connect-assetmanager')({
     js: {
       route: /\/javascripts\/[a-z0-9]+\/all\.js/,
-      path: './public/javascripts/',
+      path: __dirname + '/../public/javascripts/',
       dataType: 'javascript',
       debug: true,
       preManipulate: {
