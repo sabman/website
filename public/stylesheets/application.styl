@@ -13,6 +13,11 @@ box-shadow()
   -moz-box-shadow arguments
   box-shadow arguments
 
+transition()
+  -webkit-transition arguments
+  -moz-transition arguments
+  transition arguments
+
 small = 14px
 medium = 18px
 large = 24px
@@ -52,8 +57,13 @@ body
 a:link, a:visited
   color hsl(200, 30%, 60%)
   text-decoration none
+  transition color 100ms linear
   &.scary
     color red
+  &:hover
+    text-decoration underline
+    color hsl(200, 30%, 50%)
+
 .scary
   color red
 
