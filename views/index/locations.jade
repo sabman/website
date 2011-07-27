@@ -83,6 +83,19 @@ ul.locations
       | meters away.
 
   li
+    h4#dresden Dresden, Germany
+    - address = escape('Lingnerallee 3, 01069 Dresden')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'https://www.c3d2.de/' ) C3D2 HQ
+    h5
+      | Lingnerallee 3
+      br
+      | 01069 Dresden
+    p There'll be Club Mate!
+
+  li
     h4#london London, UK
     - address = escape('19 Mandela Street, London, NW1 0DU, United Kingdom')
     a( href: 'http://www.forward.co.uk/contact' )
