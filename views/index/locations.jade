@@ -129,18 +129,6 @@ ul.locations
       a( href: 'mailto:counter@coworkingmunich.de' ) counter@coworkingmunich.de
 
   li
-    h4#paris Paris, France
-    - address = escape('16 rue Gaillon, 75002 Paris')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3: a( href: 'http://joshfire.com/contact/' ) Joshfire
-    h5
-      | 16 rue Gaillon
-      br
-      | 75002 Paris
-    p We have space for at least 10 teams.
-
-  li
     h4#nyc New York
     - address = escape('902 Broadway 4th Floor, New York, NY, 10016')
     a( href='http://maps.google.com/maps?q=' + address )
@@ -154,6 +142,18 @@ ul.locations
       br
       | New York, NY, 10016
     p Details soon.
+
+  li
+    h4#paris Paris, France
+    - address = escape('16 rue Gaillon, 75002 Paris')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3: a( href: 'http://joshfire.com/contact/' ) Joshfire
+    h5
+      | 16 rue Gaillon
+      br
+      | 75002 Paris
+    p We have space for at least 10 teams.
 
   li
     h4#santa-monica Santa Monica / Los Angeles
