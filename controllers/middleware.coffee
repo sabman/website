@@ -3,7 +3,7 @@ Person = app.db.model 'Person'
 Team = app.db.model 'Team'
 
 ensureAuth = (req, res, next) ->
-  return res.redirect '/login' unless req.loggedIn
+  return res.redirect "/login?returnTo=#{encodeURIComponent(req.url)}" unless req.loggedIn
   next()
 
 module.exports =
@@ -11,7 +11,9 @@ module.exports =
 
   ensureAccess: (req, res, next) ->
     ensureAuth req, res, ->
-      return next 401 unless (req.user.id is req.person.id) or req.user.admin
+      unless req.user.admin
+        return next 401 if req.person? and req.person.id isnt req.user.id
+        return next 401 if req.team? and not req.team.includes(req.user, req.session.team)
       next()
 
   ensureAdmin: (req, res, next) ->

@@ -2,7 +2,7 @@ _ = require 'underscore'
 qs = require 'querystring'
 colors = require 'colors'
 app = require '../config/app'
-{ ensureAuth } = require './middleware'
+{ ensureAuth, ensureAccess } = require './middleware'
 Team = app.db.model 'Team'
 Person = app.db.model 'Person'
 Vote = app.db.model 'Vote'
@@ -43,10 +43,6 @@ loadVotes = (req, res, next) ->
     return next err if err
     req.user.upvote = vote.upvote if vote
     next()
-
-ensureAccess = (req, res, next) ->
-  return next 401 unless req.team.includes(req.user, req.session.team) or req.user?.admin
-  next()
 
 # index
 app.get '/teams', (req, res, next) ->
