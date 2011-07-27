@@ -77,10 +77,20 @@ ROLES.forEach (t) ->
 PersonSchema.virtual('login').get ->
   @github?.login or @twit?.screenName or @name
 PersonSchema.virtual('githubLogin').get -> @github?.login
+# twitterScreenName isn't here because you can edit it
 
-PersonSchema.method 'team', (callback) ->
+PersonSchema.method 'team', (next) ->
   Team = mongoose.model 'Team'
-  Team.findOne peopleIds: @id, callback
+  Team.findOne peopleIds: @id, next
+PersonSchema.pre 'remove', (next) ->
+  myId = @_id
+  @team (err, team) ->
+    return next err if err
+    if team
+      team.peopleIds = _.reject team.peopleIds, (id) -> id.equals(myId)
+      team.save next
+    else
+      next()
 
 # leaves saving up to the calling code: if passing in an invite, you'll
 # probably want to save both the person and the team. w/o an invite, you just
