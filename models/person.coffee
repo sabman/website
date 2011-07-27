@@ -87,8 +87,11 @@ PersonSchema.pre 'remove', (next) ->
   @team (err, team) ->
     return next err if err
     if team
-      team.peopleIds = _.reject team.peopleIds, (id) -> id.equals(myId)
-      team.save next
+      if team.peopleIds.length is 1
+        team.remove next
+      else
+        team.peopleIds = _.reject team.peopleIds, (id) -> id.equals(myId)
+        team.save next
     else
       next()
 
