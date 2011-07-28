@@ -247,26 +247,25 @@ var nko = {};
 
     // networking
     var dudes = {};
-    var ws = new io.Socket();
+    var ws = io.connect();
     ws.on('connect', function() {
       ws.send(JSON.stringify({ obj: me }));
     });
     ws.on('message', function(data) {
       var data = JSON.parse(data)
-        , dude = dudes[data.sessionId];
+        , dude = dudes[data.id];
 
       if (data.disconnect && dude) {
         dude.remove();
-        delete dudes[data.sessionId];
+        delete dudes[data.id];
       }
 
       if (data.obj && !dude)
-        dude = dudes[data.sessionId] = new nko.Dude(data.obj).draw();
+        dude = dudes[data.id] = new nko.Dude(data.obj).draw();
 
       if (data.method)
         nko.Dude.prototype[data.method].apply(dude, data.arguments);
     });
-    ws.connect();
 
     function randomPositionOn(selector) {
       var page = $(selector)
