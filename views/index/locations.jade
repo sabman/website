@@ -199,3 +199,18 @@ ul.locations
       | Everybody welcome during whole knockout with free drinks. Contact 
       a( href: 'http://twitter.com/meso' ) @meso
       .
+
+  li
+    h4#treviso Treviso, Italy
+    - address = escape('Via Sile, 41, 31056 Roncade Treviso')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.h-farmventures.com/' ) H-farm
+    h5
+      | Via Sile, 41
+      br
+      | Roncade Treviso
+    p Contact 
+      a( href: 'http://twitter.com/johnnyaboh' ) @johnnyaboh
+      .
