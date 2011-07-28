@@ -188,6 +188,23 @@ ul.locations
       | .
 
   li
+    h4#stockholm Stockholm, Sweden
+    - address = escape('Birger Jarlsgatan 18, 114 34, Stockholm, Sweden')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://hanssonlarsson.se/' ) Hansson & Larsson Internet AB
+    h5
+      | Birger Jarlsgatan 18A, 5 tr
+      br
+      | 114 34 Stockholm
+    p
+      | Everybody welcome during the knockout. We will provide coffee and beer.
+      | Contact 
+      a( href: 'http://twitter.com/yesbabyyes' ) @yesbabyyes
+      |  with any questions.
+
+  li
     h4#tokyo Tokyo, Japan
     - address = escape('東京都港区芝浦１丁目１４−６')
     a( href='http://maps.google.co.jp/maps?q=' + address )
