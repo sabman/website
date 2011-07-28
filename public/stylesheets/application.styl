@@ -181,9 +181,11 @@ aside
       img.{sponsor}
         width image-size('/images/sponsors/' + sponsor + '.png')[0]
         height image-size('/images/sponsors/' + sponsor + '.png')[1]
+    for sponsor in sleepless summercamp
+      img.{sponsor}
+        width image-size('/images/sponsors/' + sponsor + '.gif')[0]
+        height image-size('/images/sponsors/' + sponsor + '.gif')[1]
     img.summercamp
-      width image-size('/images/sponsors/summercamp.gif')[0]
-      height image-size('/images/sponsors/summercamp.gif')[1]
       margin 3px 0 10px
     li.interested
       margin 15px 0

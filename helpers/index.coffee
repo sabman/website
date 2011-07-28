@@ -72,6 +72,7 @@ sponsors = [
   [ 'postageapp.png', 'http://postageapp.com/' ]
   [ 'pubnub.png', 'http://www.pubnub.com/' ]
   [ 'pusher.png', 'http://pusher.com/' ]
+  [ 'sleepless.gif', 'http://sleepless.com/' ]
   [ 'spreecast.png', 'http://spreecast.com/' ]
   [ 'summercamp.gif', 'http://www.nodeconf.com/summercamp.html' ]
   [ 'tradeking.png', 'http://www.tradeking.com/' ]
