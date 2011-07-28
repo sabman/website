@@ -35,7 +35,7 @@
     "socket.io": "0.6.18",
     "stylus": "0.13.0",
     "uglify-js": "1.0.6",
-    "underscore": "1.1.6"
+    "underscore": "1.1.7"
   },
   "devDependencies": {
     "nodemon": "0.5.3",
