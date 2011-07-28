@@ -58,11 +58,13 @@ a:link, a:visited
   color hsl(200, 30%, 60%)
   text-decoration none
   transition color 100ms linear
-  &.scary
-    color red
   &:hover
     text-decoration underline
     color hsl(200, 30%, 50%)
+  &.scary
+    color red
+    &:hover
+      hsl(0, 60%, 50%)
 
 .scary
   color red
@@ -81,12 +83,21 @@ button, input[type=submit], a.button
   text-shadow 0 -1px 0 hsla(0, 0%, 0%, 0.5)
   padding 5px 1ex
   border-radius 3px
-  box-shadow inset 0 0 3px hsla(0, 0%, 0%, 0.2)
+  box-shadow inset 0 0 3px hsla(0, 0%, 0%, 0.2), 0 1px 1px hsla(0, 0%, 1000%, 0.7)
+  transition background-color 200ms linear
+  pointer none
+  &:hover
+    text-decoration none
+    background-color hsl(200, 35%, 60%)
   &:active
     box-shadow inset 0 0 10px hsla(0, 0%, 0%, 0.5)
     background-color hsl(200, 30%, 35%)
+    transition none
   &.scary
     background-color red
+    &:hover
+      text-decoration none
+      background-color hsl(0, 80%, 60%)
   &.heart
     font-size 18px
   &.loved
