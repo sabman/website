@@ -249,7 +249,10 @@ var nko = {};
     var dudes = {};
     var ws = io.connect();
     ws.on('connect', function() {
-      ws.send(JSON.stringify({ obj: me }));
+      (function heartbeat() {
+        ws.send(JSON.stringify({ obj: me }));
+        setTimeout(heartbeat, 5000);
+      })();
     });
     ws.on('message', function(data) {
       var data = JSON.parse(data)
