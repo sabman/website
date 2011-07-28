@@ -37,6 +37,11 @@ module.exports = (app) ->
         , {})
         .values()
         .value().join '; '
+    pluralize: (n, counter) ->
+      if n is 1
+        "1 #{counter}"
+      else
+        "#{n} #{counter}s"
 
   app.dynamicHelpers
     session: (req, res) -> req.session

@@ -9,6 +9,8 @@ ul.teams
       h3: a( href: '/teams/' + team.id )= team.name
       .members
         ul.members
+          - if (team.invites.length > 0)
+            li.invites (#{team.invites.length} invited)
           - each m in members
             li: a( href: '/people/' + m.id )
               img.avatar( src: avatar_url(m), title: m.login )
