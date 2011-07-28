@@ -179,9 +179,11 @@ app.on('listening', function() {
   require('util').log("listening on 0.0.0.0:" + port + ".");
 
   // if run as root, downgrade to the owner of this file
+  /*
   if (env.production && process.getuid() === 0)
     require('fs').stat(__filename, function(err, stats) {
       if (err) return util.log(err)
       process.setuid(stats.uid);
     });
+  */
 });
