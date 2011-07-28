@@ -43,7 +43,7 @@ TeamSchema.static 'canRegister', (next) ->
   Team.count {}, (err, count) ->
     console.log 'count checked'
     return next err if err
-    max = 305 + 1 # +1 because team fortnight labs doesn't count
+    max = 307 + 1 # +1 because team fortnight labs doesn't count
     next null, count < max, max - count
 
 TeamSchema.static 'uniqueName', (name, next) ->
