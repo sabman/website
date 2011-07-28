@@ -40,7 +40,7 @@ TeamSchema.method 'invited', (invite) ->
 
 TeamSchema.static 'canRegister', (next) ->
   console.log 'checking count'
-  Team.count null, (err, count) ->
+  Team.count {}, (err, count) ->
     console.log 'count checked'
     return next err if err
     max = 305 + 1 # +1 because team fortnight labs doesn't count
