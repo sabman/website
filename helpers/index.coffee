@@ -65,6 +65,7 @@ sponsors = [
   [ 'heroku.png', 'http://www.heroku.com/' ]
   [ 'joyent.png', 'http://www.joyent.com/' ]
   [ 'linode.png', 'http://www.linode.com/index.cfm' ]
+  [ 'maxcdn.png', 'http://maxcdn.com/' ]
   [ 'meebo.png', 'http://www.meebo.com/' ]
   [ 'mongohq.png', 'https://mongohq.com/home' ]
   [ 'nodejitsu.png', 'http://www.nodejitsu.com/' ]
