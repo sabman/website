@@ -156,6 +156,21 @@ ul.locations
     p We have space for at least 10 teams.
 
   li
+    h4#poa Porto Alegre, Brazil
+    - address = escape('Rua Liberdade 553, Porto Alegre, Brazil')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.softa.com.br/' ) Softa
+    h5
+      | Rua Liberdade 553
+      br
+      | Porto Alegre
+    p Contact 
+      a( href: 'http://twitter.com/joaomilho' ) @joaomilho
+      .
+
+  li
     h4#santa-monica Santa Monica / Los Angeles
     - address = escape('902 Colorado, Santa Monica, CA 90401')
     a( href='http://maps.google.com/maps?q=' + address )
@@ -230,19 +245,4 @@ ul.locations
       | Roncade Treviso
     p Contact 
       a( href: 'http://twitter.com/johnnyaboh' ) @johnnyaboh
-      .
-
-  li
-    h4#poa Porto Alegre, Brazil
-    - address = escape('Rua Liberdade 553, Porto Alegre, Brazil')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.softa.com.br/' ) Softa
-    h5
-      | Rua Liberdade 553
-      br
-      | Porto Alegre
-    p Contact 
-      a( href: 'http://twitter.com/joaomilho' ) @joaomilho
       .
