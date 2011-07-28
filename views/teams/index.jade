@@ -2,7 +2,7 @@
 
 h1 Teams (#{teams.count})
 ul.teams
-  - toPeople = function(team) { return _.compact(_.map(team.peopleIds, function(id) { return people[id]; })); };
+  - toPeople = function(team) { return _.map(team.peopleIds, function(id) { return people[id]; }) };
   - each team in teams
     - members = toPeople(team)
     li
