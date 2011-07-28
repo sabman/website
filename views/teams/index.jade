@@ -19,4 +19,4 @@ ul.teams
             li: a( href: '/people/' + m.id)= m.login
       .location= locations(members)
       .description!= markdown(team.description)
-  .more: a( href: '/teams?page=' + (Number(req.param('page') || 1) + 1) ) more
+  .more: a( href: req.url + '?page=' + (Number(req.param('page') || 1) + 1) ) more

@@ -45,10 +45,11 @@ loadVotes = (req, res, next) ->
     next()
 
 # index
-app.get '/teams', (req, res, next) ->
+app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
   page = (req.param('page') or 1) - 1
+  query = if req.params[0] then { peopleIds: { $size: 0 } } else {}
   options = { sort: [['updatedAt', -1]], limit: 50, skip: 50 * page }
-  Team.find {}, {}, options, (err, teams) ->
+  Team.find query, {}, options, (err, teams) ->
     return next err if err
     ids = _.reduce teams, ((r, t) -> r.concat(t.peopleIds)), []
     only =
@@ -61,7 +62,7 @@ app.get '/teams', (req, res, next) ->
     Person.find _id: { $in: ids }, only, (err, people) ->
       return next err if err
       people = _.reduce people, ((h, p) -> h[p.id] = p; h), {}
-      Team.count {}, (err, count) ->
+      Team.count query, (err, count) ->
         return next err if err
         teams.count = count
         res.render2 'teams', teams: teams, people: people, layout: !req.xhr
