@@ -28,7 +28,7 @@ app.error(function(e, req, res, next) {
     return res.render2('errors/' + e, { status: e });
 
   if (typeof(e) === 'string')
-    e = new Error(e);
+    e = Error(e);
 
   if (env.node_env === 'production')
     Hoptoad.notify(e);
@@ -46,15 +46,7 @@ var mongoose = require('mongoose')
 require('mongoose-types').loadTypes(mongoose);
 require('../models');
 util.log('connecting to ' + env.mongo_url);
-mongoose.connect(env.mongo_url, function(err) {
-  if (err) {
-    console.log(err);
-    if (err === 'connection already opened') {
-      console.log('eh, who cares');
-      mongoose.connection.onOpen();
-    }
-  }
-});
+mongoose.connect(env.mongo_url, function(err) { if (err) throw Error(err); });
 app.db = mongoose;
 
 // config
@@ -164,7 +156,8 @@ app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.session({
     secret: secrets.session,
-    store: new MongoStore({ db: mongoose.connection.db })
+    store: new MongoStore({ url: env.mongo_url },
+      function(err) { if (err) throw Error(err); })
   }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
