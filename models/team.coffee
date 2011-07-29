@@ -41,7 +41,7 @@ TeamSchema.method 'invited', (invite) ->
 TeamSchema.static 'canRegister', (next) ->
   Team.count {}, (err, count) ->
     return next err if err
-    max = 307 + 1 # +1 because team fortnight labs doesn't count
+    max = 310 + 1 # +1 because team fortnight labs doesn't count
     next null, count < max, max - count
 
 TeamSchema.static 'uniqueName', (name, next) ->
