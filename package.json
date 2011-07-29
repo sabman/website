@@ -23,7 +23,7 @@
     "colors": "0.5.0",
     "connect-assetmanager": "0.0.20",
     "connect-redis": "1.0.6",
-    "discount": "*",
+    "discount": "0.2.0",
     "express": "2.4.2",
     "jade": "0.11.0",
     "hoptoad-notifier": "0.1.3",
