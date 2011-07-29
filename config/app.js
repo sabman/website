@@ -145,7 +145,7 @@ app.configure('production', function() {
 });
 
 app.configure(function() {
-  var MongoStore = require('connect-mongodb');
+  var RedisStore = require('connect-redis')(express);
 
   app.use(function(req, res, next) {
     if (req.headers.host.indexOf('www.') === 0)
@@ -154,11 +154,7 @@ app.configure(function() {
       next();
   });
   app.use(express.cookieParser());
-  app.use(express.session({
-    secret: secrets.session,
-    store: new MongoStore({ url: env.mongo_url },
-      function(err) { if (err) throw Error(err); })
-  }));
+  app.use(express.session({ secret: secrets.session, store: new RedisStore }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.logger());
