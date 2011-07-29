@@ -274,9 +274,8 @@ aside
       left -100px
       width 80px
 
-#page.index-index
-  #inner
-    text-align center
+#page.index-index #inner
+  text-align center
   header h1
     font-size xxx-large !important
     .ko
@@ -296,9 +295,8 @@ aside
   a.register.button
     font-size x-large
 
-#page.index-locations
-  #inner
-    overflow hidden
+#page.index-locations #inner
+  overflow hidden
   p#map iframe, img.map
     border dotted 2px hsla(0, 0%, 0%, 0.2)
   ul.locations
@@ -359,14 +357,14 @@ aside
     left 3000px
     top 2000px
 
-#page.index-faq
+#page.index-faq #inner
   h2
     margin-bottom 0
   ul, p
     margin 0.25em 0
 
-#page.index-rules
-  #inner > ul
+#page.index-rules #inner
+  > ul
     list-style-type disc
     padding-left 20px
     li
@@ -374,7 +372,7 @@ aside
   h3
     margin 2em 0 0
 
-#page.teams-edit, #page.people-edit
+#page.teams-edit #inner, #page.people-edit #inner
   form.delete
     position absolute
     display none
@@ -387,7 +385,7 @@ aside
       margin 0 0 0.5em
     text-align center
 
-#page.teams-new, #page.teams-edit
+#page.teams-new #inner, #page.teams-edit #inner
   textarea#description
     width 90%
     height 8em
@@ -398,14 +396,14 @@ aside
       width 16em
     img
       margin 4px 5px 4px 0
-#page.teams-max
-  #inner > ul
+#page.teams-max #inner
+  > ul
     list-style-type disc
     padding-left 20px
     ul
       margin 0.25em 0
 
-#page.teams-show
+#page.teams-show #inner
   h1 .manage
     font-size small
     padding 0.5em
@@ -417,7 +415,7 @@ aside
     text-align center
     line-height 150%
 
-#page.teams
+#page.teams #inner
   ul.teams
     overflow hidden
     > li
@@ -461,7 +459,7 @@ aside
     text-align center
     padding-top 1em
 
-#page.people-show
+#page.people-show #inner
   .avatar-and-role
     float left
     margin-right 10px
@@ -484,7 +482,7 @@ aside
   .team, .bio
     clear left
 
-#page.errors-500
+#page.errors-500 #inner
   code
     display block
     overflow scroll
@@ -540,7 +538,7 @@ form.person
   .optional, .role
     display none
 
-#page.judges
+#page.judges #inner
   .nominate
     margin-top 2em
   ul.judges > li
