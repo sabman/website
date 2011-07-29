@@ -47,7 +47,13 @@ require('mongoose-types').loadTypes(mongoose);
 require('../models');
 util.log('connecting to ' + env.mongo_url);
 mongoose.connect(env.mongo_url, function(err) {
-  if (err) console.log(err);
+  if (err) {
+    console.log(err);
+    if (err === 'connection already opened') {
+      console.log('eh, who cares');
+      mongoose.connection.onOpen();
+    }
+  }
 });
 app.db = mongoose;
 
