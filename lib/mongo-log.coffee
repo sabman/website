@@ -27,7 +27,7 @@ module.exports = (mongo) ->
     output.selector = db_command.selector if db_command.selector
     output.skip = db_command.numberToSkip if db_command.numberToSkip
     output.limit = db_command.numberToReturn if db_command.numberToReturn
-    console.log inspect(output, null, 8)
+    console.log inspect(output, null, 8).grey
 
     executeCommand.apply this, arguments
 
