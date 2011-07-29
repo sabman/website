@@ -1,6 +1,6 @@
 crypto = require 'crypto'
 _ = require 'underscore'
-markdown = require('markdown').parse
+md = require('discount')
 
 md5 = (str) ->
   hash = crypto.createHash 'md5'
@@ -14,7 +14,7 @@ module.exports = (app) ->
   app.helpers
     inspect: require('util').inspect
     _: _
-    markdown: (str) -> if str? then markdown(str) else ''
+    markdown: (str) -> if str? then md.parse str, md.flags.noHTML else ''
     avatar_url: (person, size = 30) ->
       if person.github?.gravatarId
         id = person.github.gravatarId # HACK getter bugs
