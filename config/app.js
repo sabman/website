@@ -46,7 +46,9 @@ var mongoose = require('mongoose')
 require('mongoose-types').loadTypes(mongoose);
 require('../models');
 util.log('connecting to ' + env.mongo_url);
-mongoose.connect(env.mongo_url);
+mongoose.connect(env.mongo_url, function(err) {
+  if (err) console.log(err);
+});
 app.db = mongoose;
 
 // config

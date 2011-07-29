@@ -27,6 +27,11 @@ module.exports = (mongo) ->
     output.selector = db_command.selector if db_command.selector
     output.skip = db_command.numberToSkip if db_command.numberToSkip
     output.limit = db_command.numberToReturn if db_command.numberToReturn
-    console.log inspect(output, null, 8)
+    #util.log util.inspect(output, null, 8)
 
-    executeCommand.apply this, arguments
+    ms = Date.now()
+    executeCommand.call this, db_command, options, ->
+      took = Date.now() - ms
+      console.log inspect(output, null, 8) + ' ' + took + ' ms'
+      callback = options if !callback && typeof(options) == 'function'
+      callback.apply this, arguments if callback
