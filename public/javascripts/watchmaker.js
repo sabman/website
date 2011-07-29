@@ -263,10 +263,10 @@ var nko = {};
         delete dudes[data.id];
       }
 
-      if (data.obj && !dude)
+      if (data.obj && !dude && data.obj.pos.x < 10000 && data.obj.pos.y < 10000)
         dude = dudes[data.id] = new nko.Dude(data.obj).draw();
 
-      if (data.method)
+      if (dude && data.method)
         nko.Dude.prototype[data.method].apply(dude, data.arguments);
     });
 
