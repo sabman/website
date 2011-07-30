@@ -1,6 +1,6 @@
 app = require '../config/app'
 
-app.ws.sockets.on 'connection', (client) ->
+app.ws?.sockets.on 'connection', (client) ->
   client
     .on('message', (data) ->
       data = JSON.parse(data)
