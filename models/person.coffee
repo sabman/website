@@ -78,9 +78,14 @@ PersonSchema.virtual('login').get ->
 PersonSchema.virtual('githubLogin').get -> @github?.login
 # twitterScreenName isn't here because you can edit it
 
+# associations
 PersonSchema.method 'team', (next) ->
   Team = mongoose.model 'Team'
   Team.findOne peopleIds: @id, next
+PersonSchema.method 'votes', (next) ->
+  Vote = mongoose.model 'Vote'
+  Vote.find personId: @id, next
+
 PersonSchema.pre 'remove', (next) ->
   myId = @_id
   @team (err, team) ->

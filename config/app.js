@@ -33,7 +33,7 @@ require('../lib/underscore.shuffle');
 var mongoose = require('mongoose')
 require('mongoose-types').loadTypes(mongoose);
 require('../models');
-util.log('connecting to ' + env.mongo_url);
+util.log('connecting to ' + env.mongo_url.cyan);
 mongoose.connect(env.mongo_url, function(err) { if (err) throw Error(err); });
 app.db = mongoose;
 
@@ -165,7 +165,7 @@ app.ws = require('socket.io').listen(app);
 app.ws.set('log level', env.production ? 0 : 1);
 
 app.on('listening', function() {
-  require('util').log("listening on 0.0.0.0:" + port + ".");
+  require('util').log('listening on ' + ('0.0.0.0:' + port).cyan);
 
   // if run as root, downgrade to the owner of this file
   if (env.production && process.getuid() === 0)

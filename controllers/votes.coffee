@@ -2,30 +2,29 @@ app = require '../config/app'
 m = require './middleware'
 Vote = app.db.model 'Vote'
 
-# upvote
-app.post '/teams/:id/love', [m.loadTeam, m.ensureAuth], (req, res) ->
-  teamId = req.team.id
-  personId = req.user.id
-  console.log( 'team'.cyan, teamId, 'voter'.cyan, personId, 'love'.red )
-  Vote.findOne { type:'upvote', teamId: teamId, personId: personId }, (err, vote) ->
-    console.log arguments
-    return res.send 400 if err
-    if not vote
-      vote = new Vote
-      vote.type = 'upvote'
-      vote.personId = personId
-      vote.teamId = teamId
-    vote.love()
-    vote.save (err) ->
-      return res.send 400 if err
-      res.send 'love'
+ensureVoting = (req, res, next) ->
+  if app.enabled 'voting' then next() else next 401
 
-# un-upvote
-app.delete '/teams/:id/love', [m.loadTeam, m.ensureAuth], (req, res) ->
-  console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'nolove'.red )
-  Vote.findOne { type:'upvote', teamId: req.team.id, personId: req.user.id }, (err, vote) ->
-    return res.send 400 if err
-    vote.nolove()
-    vote.save (err) ->
-      return res.send 400 if err
-      res.send 'nolove'
+# create
+app.post '/teams/:teamId/votes', [ensureVoting, m.ensureAuth], (req, res, next) ->
+  vote = new Vote
+    personId: m.user.id
+    teamId: req.params.teamId
+    type: m.user.role
+  vote.save (err) ->
+    return next err if err
+    res.redirect '/teams/' + req.params.teamId
+
+# update
+app.put '/votes/:id', [ensureVoting, m.loadVote, m.ensureAccess], (req, res, next) ->
+  delete req.body[attr] for attr in ['personId', 'teamId', 'type']
+  _.extend req.vote, req.body
+  req.vote.save (err) ->
+    return next err if err
+    res.send 'ok'
+
+# delete
+app.delete '/votes/:id', [ensureVoting, m.loadVote, m.ensureAccess], (req, res, next) ->
+  req.vote.remove (err) ->
+    return next err if err
+    res.send 'ok'

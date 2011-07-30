@@ -13,6 +13,7 @@ module.exports =
       unless req.user.admin
         return next 401 if req.person? and req.person.id isnt req.user.id
         return next 401 if req.team? and not req.team.includes(req.user, req.session.team)
+        return next 401 if req.vote? and req.vote.personId isnt req.user.id
       next()
 
   ensureAdmin: (req, res, next) ->
@@ -21,7 +22,7 @@ module.exports =
       next()
 
   loadPerson: (req, res, next) ->
-    if id = req.params.id or req.params.personId
+    if id = req.params.personId or req.params.id
       Person.findById id, (err, person) ->
         return next err if err
         return next 404 unless person
@@ -37,8 +38,14 @@ module.exports =
       req.team = team
       next()
 
+  loadPersonVotes: (req, res, next) ->
+    req.person.votes (err, votes) ->
+      return next err if err
+      req.votes = votes
+      next()
+
   loadTeam: (req, res, next) ->
-    if id = req.params.id or req.params.teamId
+    if id = req.params.teamId or req.params.id
       try
         Team.findById id, (err, team) ->
           return next err if err
@@ -64,10 +71,18 @@ module.exports =
       req.people = people
       next()
 
-  loadVotes: (req, res, next) ->
-    if (!app.enabled('voting') || !req.user)
-      return next()
-    Vote.findOne { type:'upvote', teamId: req.team.id, personId: req.user.id }, (err, vote) ->
+  loadTeamVotes: (req, res, next) ->
+    req.team.votes (err, votes) ->
       return next err if err
-      req.user.upvote = vote.upvote if vote
+      req.votes = votes
+      next()
+
+  loadVote: (req, res, next) ->
+    if id = req.params.voteId or req.params.id
+      Vote.findById id, (err, vote) ->
+        return next err if err
+        return next 404 unless vote
+        req.vote = vote
+        next()
+    else
       next()

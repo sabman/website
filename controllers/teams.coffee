@@ -2,7 +2,7 @@ _ = require 'underscore'
 qs = require 'querystring'
 app = require '../config/app'
 m = require './middleware'
-[Person, Team, Deploy] = (app.db.model m for m in ['Person', 'Team', 'Deploy'])
+[Person, Team, Deploy] = (app.db.model s for s in ['Person', 'Team', 'Deploy'])
 
 # index
 app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
@@ -50,14 +50,12 @@ app.post '/teams', (req, res, next) ->
       res.redirect "/teams/#{team.id}"
 
 # show (join)
-app.get '/teams/:id', [m.loadTeam, m.loadTeamPeople, m.loadVotes], (req, res) ->
+app.get '/teams/:id', [m.loadTeam, m.loadTeamPeople, m.loadTeamVotes], (req, res) ->
   req.session.invite = req.param('invite') if req.param('invite')
   res.render2 'teams/show'
     team: req.team
     people: req.people
-    voting: app.enabled('voting')
-    votes: []
-    upvoted: !!(req.user && req.user.upvote)
+    votes: req.votes
 
 # resend invitation
 app.all '/teams/:id/invites/:inviteId', [m.loadTeam, m.ensureAccess], (req, res) ->

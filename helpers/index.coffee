@@ -42,6 +42,7 @@ module.exports = (app) ->
         "1 #{counter}"
       else
         "#{n} #{counter}s"
+    voting: app.enabled 'voting'
 
   app.dynamicHelpers
     session: (req, res) -> req.session

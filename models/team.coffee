@@ -28,15 +28,17 @@ TeamSchema.index updatedAt: -1
 
 TeamSchema.method 'includes', (person, code) ->
   @code == code or person and _.any @peopleIds, (id) -> id.equals(person.id)
-
-TeamSchema.method 'people', (next) ->
-  Person.find _id: { '$in': @peopleIds }, next
-
-TeamSchema.method 'deploys', (next) ->
-  Deploy.find teamId: @id, next
-
 TeamSchema.method 'invited', (invite) ->
   _.detect @invites, (i) -> i.code == invite
+
+# associations
+TeamSchema.method 'people', (next) ->
+  Person.find _id: { '$in': @peopleIds }, next
+TeamSchema.method 'deploys', (next) ->
+  Deploy.find teamId: @id, next
+TeamSchema.method 'votes', (next) ->
+  Vote = mongoose.model 'Vote'
+  Vote.find teamId: @id, next
 
 TeamSchema.static 'canRegister', (next) ->
   Team.count {}, (err, count) ->

@@ -38,11 +38,12 @@ h1
   != markdown(team.description)
 
 - if (voting)
-    h2 Votes
-    - if (!user || user.role == 'voter')
-      button( 'class': 'heart ' + (upvoted ? 'loved' : ''), data-team: team.id) ♥
-    - if (votes.length)
-      ul.votes
-      - each voter in votes
-        li
-          img.avatar( src: avatar_url(voter) )
+  h2 Votes
+  - if (!user || user.voter)
+    button.heart( data-team: team.id) ♥
+  - else if (user.contestant || user.judge)
+    form
+  ul.votes
+  - each vote in votes
+    li
+      img.avatar( src: avatar_url(vote) )
