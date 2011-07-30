@@ -2,47 +2,11 @@ _ = require 'underscore'
 qs = require 'querystring'
 colors = require 'colors'
 app = require '../config/app'
-{ ensureAuth, ensureAccess } = require './middleware'
+m = require './middleware'
 Team = app.db.model 'Team'
 Person = app.db.model 'Person'
 Vote = app.db.model 'Vote'
 Deploy = app.db.model 'Deploy'
-
-# middleware
-loadTeam = (req, res, next) ->
-  if id = req.params.id
-    try
-      Team.findById id, (err, team) ->
-        return next err if err
-        return next 404 unless team
-        req.team = team
-        next()
-    catch error
-      throw error unless error.message == 'Id cannot be longer than 12 bytes'
-      return next 404
-  else if code = req.params.code
-    code = qs.unescape(code)
-    Team.findOne code: code, (err, team) ->
-      return next err if err
-      return next 404 unless team
-      req.team = team
-      next()
-  else
-    next()
-
-loadPeople = (req, res, next) ->
-  req.team.people (err, people) ->
-    return next err if err
-    req.people = people
-    next()
-
-loadVotes = (req, res, next) ->
-  if (!app.enabled('voting') || !req.user)
-    return next()
-  Vote.findOne { type:'upvote', teamId: req.team.id, personId: req.user.id }, (err, vote) ->
-    return next err if err
-    req.user.upvote = vote.upvote if vote
-    next()
 
 # index
 app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
@@ -90,7 +54,7 @@ app.post '/teams', (req, res, next) ->
       res.redirect "/teams/#{team.id}"
 
 # show (join)
-app.get '/teams/:id', [loadTeam, loadPeople, loadVotes], (req, res) ->
+app.get '/teams/:id', [m.loadTeam, m.loadTeamPeople, m.loadVotes], (req, res) ->
   req.session.invite = req.param('invite') if req.param('invite')
   res.render2 'teams/show'
     team: req.team
@@ -100,16 +64,16 @@ app.get '/teams/:id', [loadTeam, loadPeople, loadVotes], (req, res) ->
     upvoted: !!(req.user && req.user.upvote)
 
 # resend invitation
-app.all '/teams/:id/invites/:inviteId', [loadTeam, ensureAccess], (req, res) ->
+app.all '/teams/:id/invites/:inviteId', [m.loadTeam, m.ensureAccess], (req, res) ->
   req.team.invites.id(req.param('inviteId')).send(true)
   res.redirect "/teams/#{req.team.id}"
 
 # edit
-app.get '/teams/:id/edit', [loadTeam, ensureAccess, loadPeople], (req, res) ->
+app.get '/teams/:id/edit', [m.loadTeam, m.ensureAccess, m.loadTeamPeople], (req, res) ->
   res.render2 'teams/edit', team: req.team, people: req.people
 
 # update
-app.put '/teams/:id', [loadTeam, ensureAccess], (req, res, next) ->
+app.put '/teams/:id', [m.loadTeam, m.ensureAccess], (req, res, next) ->
   _.extend req.team, req.body
   req.team.save (err) ->
     return next err if err and err.name != 'ValidationError'
@@ -122,13 +86,13 @@ app.put '/teams/:id', [loadTeam, ensureAccess], (req, res, next) ->
   null
 
 # delete
-app.delete '/teams/:id', [loadTeam, ensureAccess], (req, res, next) ->
+app.delete '/teams/:id', [m.loadTeam, m.ensureAccess], (req, res, next) ->
   req.team.remove (err) ->
     return next err if err
     res.redirect '/teams'
 
 # upvote
-app.post '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
+app.post '/teams/:id/love', [m.loadTeam, m.ensureAuth], (req, res) ->
   teamId = req.team.id
   personId = req.user.id
   console.log( 'team'.cyan, teamId, 'voter'.cyan, personId, 'love'.red )
@@ -146,7 +110,7 @@ app.post '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
       res.send 'love'
 
 # un-upvote
-app.delete '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
+app.delete '/teams/:id/love', [m.loadTeam, m.ensureAuth], (req, res) ->
   console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'nolove'.red )
   Vote.findOne { type:'upvote', teamId: req.team.id, personId: req.user.id }, (err, vote) ->
     return res.send 400 if err
@@ -155,7 +119,7 @@ app.delete '/teams/:id/love', [loadTeam, ensureAuth], (req, res) ->
       return res.send 400 if err
       res.send 'nolove'
 
-app.post '/teams/:code/deploys', [loadTeam], (req, res) ->
+app.post '/teams/:code/deploys', [m.loadTeam], (req, res) ->
   console.log( 'team'.cyan, req.team.name, 'deployed'.green )
   body = req.body
   # TODO check where the request came from
