@@ -54,15 +54,7 @@ app.configure(function() {
   var coffee = require('coffee-script')
     , uglify_jsp = require("uglify-js").parser
     , uglify_pro = require("uglify-js").uglify
-    , stylus = require('stylus')
-    , crypto = require('crypto')
-    , cacheTimestamps = {};
-
-  app.dynamicHelpers({
-    'cacheTimeStamps': function() {
-      return cacheTimestamps;
-    }
-  });
+    , stylus = require('stylus');
 
   app.use(stylus.middleware({
     src: app.paths.public,
@@ -74,7 +66,8 @@ app.configure(function() {
         .set('paths', [ __dirname, app.paths.public ]);
     }
   }));
-  app.use(require('connect-assetmanager')({
+
+  var assetManager = require('connect-assetmanager')({
     js: {
       route: /\/javascripts\/[a-z0-9]+\/all\.js/,
       path: __dirname + '/../public/javascripts/',
@@ -120,15 +113,12 @@ app.configure(function() {
               callback(file);
             }
           }
-          , function (file, path, index, isLast, callback) {
-            var md5 = crypto.createHash('md5');
-            cacheTimestamps.js = md5.update(file).digest('hex');
-            callback(file);
-          }
         ]
       }
     }
-  }));
+  });
+  app.use(assetManager);
+  app.helpers({ assetManager: assetManager });
 });
 
 app.configure('development', function() {

@@ -84,7 +84,7 @@ html
             | run by
             a( href: 'http://fortnightlabs.com' ) fortnight labs
     script( src: '/socket.io/socket.io.js' )
-    script( src: '/javascripts/'+(cacheTimeStamps.js || '007')+'/all.js' )
+    script( src: '/javascripts/'+(assetManager.cacheHashes.js || '007')+'/all.js' )
     script
       $('a').live('mousedown', function() {
         var href = this.href;
