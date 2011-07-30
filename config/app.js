@@ -19,22 +19,9 @@ var Hoptoad = require('hoptoad-notifier').Hoptoad;
 Hoptoad.key = 'b76b10945d476da44a0eac6bfe1aeabd';
 Hoptoad.environment = env.node_env;
 process.on('uncaughtException', function(e) {
-  util.debug(e.stack);
+  util.debug(e.stack.red);
   if (env.node_env === 'production')
     Hoptoad.notify(e);
-});
-app.error(function(e, req, res, next) {
-  if (typeof(e) === 'number')
-    return res.render2('errors/' + e, { status: e });
-
-  if (typeof(e) === 'string')
-    e = Error(e);
-
-  if (env.node_env === 'production')
-    Hoptoad.notify(e);
-
-  util.debug(e.stack);
-  res.render2('errors/500', { error: e });
 });
 
 // utilities & hacks
@@ -150,6 +137,19 @@ app.configure(function() {
   app.use(express.logger());
   app.use(auth.middleware());
   app.use(app.router);
+  app.use(function(e, req, res, next) {
+    if (typeof(e) === 'number')
+      return res.render2('errors/' + e, { status: e });
+
+    if (typeof(e) === 'string')
+      e = Error(e);
+
+    if (env.node_env === 'production')
+      Hoptoad.notify(e);
+
+    util.debug(e.stack);
+    res.render2('errors/500', { error: e });
+  });
 
   app.set('views', app.paths.views);
   app.set('view engine', 'jade');
