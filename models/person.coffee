@@ -1,5 +1,4 @@
 _ = require 'underscore'
-colors = require 'colors'
 mongoose = require 'mongoose'
 auth = require 'mongoose-auth'
 env = require '../config/env'

@@ -1,12 +1,8 @@
 _ = require 'underscore'
 qs = require 'querystring'
-colors = require 'colors'
 app = require '../config/app'
 m = require './middleware'
-Team = app.db.model 'Team'
-Person = app.db.model 'Person'
-Vote = app.db.model 'Vote'
-Deploy = app.db.model 'Deploy'
+[Person, Team, Deploy] = (app.db.model m for m in ['Person', 'Team', 'Deploy'])
 
 # index
 app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
@@ -90,34 +86,6 @@ app.delete '/teams/:id', [m.loadTeam, m.ensureAccess], (req, res, next) ->
   req.team.remove (err) ->
     return next err if err
     res.redirect '/teams'
-
-# upvote
-app.post '/teams/:id/love', [m.loadTeam, m.ensureAuth], (req, res) ->
-  teamId = req.team.id
-  personId = req.user.id
-  console.log( 'team'.cyan, teamId, 'voter'.cyan, personId, 'love'.red )
-  Vote.findOne { type:'upvote', teamId: teamId, personId: personId }, (err, vote) ->
-    console.log arguments
-    return res.send 400 if err
-    if not vote
-      vote = new Vote
-      vote.type = 'upvote'
-      vote.personId = personId
-      vote.teamId = teamId
-    vote.love()
-    vote.save (err) ->
-      return res.send 400 if err
-      res.send 'love'
-
-# un-upvote
-app.delete '/teams/:id/love', [m.loadTeam, m.ensureAuth], (req, res) ->
-  console.log( 'team'.cyan, req.team.id, 'voter'.cyan, req.user.id, 'nolove'.red )
-  Vote.findOne { type:'upvote', teamId: req.team.id, personId: req.user.id }, (err, vote) ->
-    return res.send 400 if err
-    vote.nolove()
-    vote.save (err) ->
-      return res.send 400 if err
-      res.send 'nolove'
 
 app.post '/teams/:code/deploys', [m.loadTeam], (req, res) ->
   console.log( 'team'.cyan, req.team.name, 'deployed'.green )

@@ -5,6 +5,7 @@ require('coffee-script');
   'people',
   'judges',
   'teams',
+  'votes',
   'websocket',
   'redirect'
 ].forEach(function(controller) {

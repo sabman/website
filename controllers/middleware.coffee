@@ -21,7 +21,7 @@ module.exports =
       next()
 
   loadPerson: (req, res, next) ->
-    if id = req.param('id')
+    if id = req.params.id or req.params.personId
       Person.findById id, (err, person) ->
         return next err if err
         return next 404 unless person
@@ -38,7 +38,7 @@ module.exports =
       next()
 
   loadTeam: (req, res, next) ->
-    if id = req.params.id
+    if id = req.params.id or req.params.teamId
       try
         Team.findById id, (err, team) ->
           return next err if err

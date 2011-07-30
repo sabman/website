@@ -25,6 +25,7 @@ process.on('uncaughtException', function(e) {
 });
 
 // utilities & hacks
+require('colors');
 require('../lib/render2');
 require('../lib/underscore.shuffle');
 
