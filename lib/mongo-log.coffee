@@ -3,7 +3,6 @@ inspect = require('util').inspect
 
 module.exports = (mongo) ->
   executeCommand = mongo.Db.prototype.executeCommand
-  BaseCommand = mongo.BaseCommand
 
   commandName = (command) ->
     switch command.constructor
