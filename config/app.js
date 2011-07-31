@@ -30,12 +30,7 @@ require('../lib/render2');
 require('../lib/underscore.shuffle');
 
 // db
-var mongoose = require('mongoose')
-require('mongoose-types').loadTypes(mongoose);
-require('../models');
-util.log('connecting to ' + env.mongo_url.cyan);
-mongoose.connect(env.mongo_url, function(err) { if (err) throw Error(err); });
-app.db = mongoose;
+app.db = require('../models')(env);
 
 // config
 app.configure(function() {
@@ -114,7 +109,6 @@ app.configure('development', function() {
   app.use(express.profiler());
   app.set('view options', { scope: { development: true }});
   app.enable('voting');
-  require('../lib/mongo-log')(mongoose.mongo);
 });
 app.configure('production', function() {
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
