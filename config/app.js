@@ -107,12 +107,10 @@ app.configure(function() {
 app.configure('development', function() {
   app.use(express.static(app.paths.public));
   app.use(express.profiler());
-  app.set('view options', { scope: { development: true }});
   app.enable('voting');
 });
 app.configure('production', function() {
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
-  app.set('view options', { scope: { development: false }});
   app.disable('voting');
 });
 
