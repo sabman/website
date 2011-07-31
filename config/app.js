@@ -30,7 +30,7 @@ require('../lib/render2');
 require('../lib/underscore.shuffle');
 
 // db
-app.db = require('../models')(env);
+app.db = require('../models')(env.mongo_url);
 
 // config
 app.configure(function() {
