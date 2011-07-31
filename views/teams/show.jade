@@ -1,7 +1,7 @@
-h1
-  = title(team.name)
-  - if (team.includes(user, session.team) || admin)
-    a.manage( href: '/teams/' + team.id + '/edit' ) Manage
+- if (team.includes(user, session.team) || admin)
+  .edit: a.button( href: '/teams/' + team.id + '/edit' ) Manage
+
+h1= title(team.name)
 
 - if (team.invited(session.invite))
   h2 You're invited to this team!

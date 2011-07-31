@@ -1,3 +1,6 @@
+- if (canEdit(person))
+  .edit: a.button( href: '/people/' + person.id + '/edit' ) Edit
+
 .avatar-and-role
   img.avatar( src: avatar_url(person, 80) )
   .role= person.role
@@ -11,6 +14,3 @@ h1= title(person.name)
     a( href: '/teams/' + team.id )= team.name
 
 .bio!= markdown(person.bio)
-
-- if (canEdit(person))
-  p: a.button( href: '/people/' + person.id + '/edit' ) Edit
