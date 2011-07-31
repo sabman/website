@@ -16,14 +16,10 @@ module.exports = (mongo) ->
       when mongo.UpdateCommand      then 'update'
 
   mongo.Db.prototype.executeCommand = (db_command, options, callback) ->
-    output = collection: db_command.collectionName
-    output.query = db_command.query if db_command.query
-    output.documents = db_command.documents if db_command.documents
-    output.spec = db_command.spec if db_command.spec
-    output.document = db_command.document if db_command.document
-    output.selector = db_command.selector if db_command.selector
-    output.skip = db_command.numberToSkip if db_command.numberToSkip
-    output.limit = db_command.numberToReturn if db_command.numberToReturn
+    output = collectionName: db_command.collectionName
+    for k in [ 'query', 'documents', 'spec', 'document', 'selector', \
+               'numberToSkip', 'numberToReturn' ]
+      output[k] = db_command[k] if db_command[k]
     console.log "#{commandName(db_command).underline}: #{inspect(output, null, 8)}".grey
 
     executeCommand.apply this, arguments
