@@ -1,3 +1,4 @@
+require 'colors'
 inspect = require('util').inspect
 
 module.exports = (mongo) ->
@@ -5,21 +6,18 @@ module.exports = (mongo) ->
   BaseCommand = mongo.BaseCommand
 
   commandName = (command) ->
-    switch command.getOpCode()
-      when BaseCommand.OP_REPLY then 'reply'
-      when BaseCommand.OP_MSG then 'msg'
-      when BaseCommand.OP_UPDATE then 'update'
-      when BaseCommand.OP_INSERT then 'insert'
-      when BaseCommand.OP_GET_BY_OID then 'get_by_oid'
-      when BaseCommand.OP_QUERY then 'query'
-      when BaseCommand.OP_GET_MORE then 'get_more'
-      when BaseCommand.OP_DELETE then 'delete'
-      when BaseCommand.OP_KILL_CURSORS then 'kill_cursors'
+    switch command.constructor
+      when mongo.BaseCommand        then 'base'
+      when mongo.DbCommand          then 'db'
+      when mongo.DeleteCommand      then 'delete'
+      when mongo.GetMoreCommand     then 'get_more'
+      when mongo.InsertCommand      then 'insert'
+      when mongo.KillCursorCommand  then 'kill_cursor'
+      when mongo.QueryCommand       then 'query'
+      when mongo.UpdateCommand      then 'update'
 
   mongo.Db.prototype.executeCommand = (db_command, options, callback) ->
-    output =
-      collection: db_command.collectionName
-      command: commandName db_command
+    output = collection: db_command.collectionName
     output.query = db_command.query if db_command.query
     output.documents = db_command.documents if db_command.documents
     output.spec = db_command.spec if db_command.spec
@@ -27,7 +25,7 @@ module.exports = (mongo) ->
     output.selector = db_command.selector if db_command.selector
     output.skip = db_command.numberToSkip if db_command.numberToSkip
     output.limit = db_command.numberToReturn if db_command.numberToReturn
-    console.log inspect(output, null, 8).grey
+    console.log "#{commandName(db_command).underline}: #{inspect(output, null, 8)}".grey
 
     executeCommand.apply this, arguments
 
