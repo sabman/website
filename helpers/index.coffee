@@ -1,6 +1,7 @@
 crypto = require 'crypto'
 _ = require 'underscore'
-md = require('discount')
+md = require 'discount'
+mongoose = require 'mongoose'
 
 md5 = (str) ->
   hash = crypto.createHash 'md5'
@@ -43,6 +44,7 @@ module.exports = (app) ->
       else
         "#{n} #{counter}s"
     voting: app.enabled 'voting'
+    Vote: mongoose.model 'Vote'
 
   app.dynamicHelpers
     session: (req, res) -> req.session

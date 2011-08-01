@@ -12,25 +12,19 @@ $ ->
         finishedMsg: 'No more teams. :('
 
   $('#page.teams-show').each ->
-    $('.invites a', this).live 'click', (e) ->
+    $(this).delegate '.invites a', 'click', (e) ->
       e.preventDefault()
       $t = $(this).hide()
       $n = $t.next().show().html 'sending&hellip;'
       $.post @href, ->
         $n.text('done').delay(500).fadeOut 'slow', -> $t.show()
 
-    $('.heart', this).live 'click', (e) ->
+    ###
+    $(this).delegate 'form.vote', 'submit', (e) ->
       e.preventDefault()
       $this = $(this)
-      team = $this.attr('data-team')
-      if $this.hasClass('loved')
-        $.ajax
-          url: '/teams/'+team+'/love'
-          type: 'DELETE'
-          success: -> $this.removeClass('loved')
-      else
-        $.post '/teams/'+team+'/love', ->
-          $this.addClass('loved')
+      $.post $this.attr('action'), $this.serialize()
+    ###
 
   $('#page.teams-edit').each ->
     $('a.pull', this).click ->

@@ -1,3 +1,4 @@
+_ = require 'underscore'
 mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.ObjectId
 Person = mongoose.model 'Person'
@@ -22,7 +23,7 @@ VoteSchema = module.exports = new mongoose.Schema
     remoteAddress: String
     remotePort: Number
     userAgent: String
-    referer: String
+    referrer: String
     accept: String
     requestAt: Number
     renderAt: Number
@@ -34,5 +35,17 @@ VoteSchema.plugin require('mongoose-types').useTimestamps
 VoteSchema.index { personId: 1, teamId: 1, type: 1 }, { unique: true }
 VoteSchema.index { personId: 1, updatedAt: -1 }
 VoteSchema.index { teamId: 1, updatedAt: -1 }
+
+VoteSchema.static 'dimensions',
+  [ 'utility', 'design', 'innovation', 'completeness' ]
+
+# associations
+VoteSchema.static 'people', (votes, next) ->
+  peopleIds = _.pluck votes, 'personId'
+  Person.find _id: { '$in': peopleIds }, (err, people) ->
+    return next err if err
+    people = _.reduce people, ((h, p) -> h[p.id] = p; h), {}
+    _.each votes, (v) -> v.person = people[v.personId]
+    next()
 
 Vote = mongoose.model 'Vote', VoteSchema

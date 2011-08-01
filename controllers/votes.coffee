@@ -1,4 +1,5 @@
 app = require '../config/app'
+_ = require 'underscore'
 m = require './middleware'
 Vote = app.db.model 'Vote'
 
@@ -7,10 +8,12 @@ ensureVoting = (req, res, next) ->
 
 # create
 app.post '/teams/:teamId/votes', [ensureVoting, m.ensureAuth], (req, res, next) ->
-  vote = new Vote
-    personId: m.user.id
+  attr = _.clone req.body
+  _.extend attr,
+    personId: req.user.id
     teamId: req.params.teamId
-    type: m.user.role
+    type: req.user.role
+  vote = new Vote attr
   vote.save (err) ->
     return next err if err
     res.redirect '/teams/' + req.params.teamId

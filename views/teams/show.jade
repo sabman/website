@@ -39,11 +39,5 @@ h1= title(team.name)
 
 - if (voting)
   h2 Votes
-  - if (!user || user.voter)
-    button.heart( data-team: team.id) ♥
-  - else if (user.contestant || user.judge)
-    form
-  ul.votes
-  - each vote in votes
-    li
-      img.avatar( src: avatar_url(vote) )
+  != partial('votes/form', { vote: null })
+  ul.votes!= partial('votes/vote', votes)

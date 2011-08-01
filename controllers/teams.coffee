@@ -2,13 +2,14 @@ _ = require 'underscore'
 qs = require 'querystring'
 app = require '../config/app'
 m = require './middleware'
-[Person, Team, Deploy] = (app.db.model s for s in ['Person', 'Team', 'Deploy'])
+[Person, Team, Deploy, Vote] = (app.db.model s for s in ['Person', 'Team', 'Deploy', 'Vote'])
 
 # index
 app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
   page = (req.param('page') or 1) - 1
   query = if req.params[0] then { peopleIds: { $size: 0 } } else {}
   options = { sort: [['updatedAt', -1]], limit: 50, skip: 50 * page }
+  # TODO move this join-thing into the Team model (see Vote <-> Person)
   Team.find query, {}, options, (err, teams) ->
     return next err if err
     ids = _.reduce teams, ((r, t) -> r.concat(t.peopleIds)), []

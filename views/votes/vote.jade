@@ -1,0 +1,16 @@
+li.vote
+  .person
+    a( href: '/people/' + vote.personId )
+      img.avatar( src: avatar_url(vote.person, 50) )
+      = vote.person.login
+    .role= vote.person.role
+    .ip= req.socket.remoteAddress
+  table
+    tr
+      - each d in Vote.dimensions
+        th: label( for: d )= d
+    tr
+      - each d in Vote.dimensions
+        td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: vote[d] )
+    tr: td( colspan: 4 )
+      .comment!= markdown(vote.comment)
