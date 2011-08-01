@@ -97,16 +97,19 @@ ul.locations
     p There'll be Club Mate!
 
   li
-    h4#dresden Dublin, Ireland
+    h4#dublin Dublin, Ireland
     - address = escape('Anglesea Mills, 9 Anglesea Row, Dublin 7, Ireland')
     a( href='http://maps.google.com/maps?q=' + address )
       img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
     h3
-      a( href: 'https://www.amworks.ie/' ) AMWorks coworking
+      a( href: 'http://www.amworks.ie/' ) AMWorks coworking
     h5
       | 9 Anglesea Row
       br
       | Dublin 7
+    p
+      | Contact
+      a( href: 'http://twitter.com/amworks' ) @amworks
 
   li
     h4#london London, UK
@@ -183,6 +186,21 @@ ul.locations
       .
 
   li
+    h4#poznan Poznań, Poland
+    - address = escape('Woźna 9, 61-777 Poznań, Poland')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://www.netguru.pl/p/en' ) Netguru
+    h5
+      | Woźna 9C/2
+      br
+      | Poznań
+    p
+      | Contact
+      a( href: 'http://twitter.com/iktorn' ) @iktorn
+  
+  li
     h4#santa-monica Santa Monica / Los Angeles
     - address = escape('902 Colorado, Santa Monica, CA 90401')
     a( href='http://maps.google.com/maps?q=' + address )
@@ -258,3 +276,19 @@ ul.locations
     p Contact 
       a( href: 'http://twitter.com/johnnyaboh' ) @johnnyaboh
       .
+
+  li
+    h4#warsaw Warsaw, Poland
+    - address = escape('Bohomolca 15, 01-613 Warszawa, Poland')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://reaktor.net' ) ReaktorWarsaw
+    h5
+      | Bohomolca 15
+      br
+      | Warsaw
+    p
+      | Contact
+      a( href: 'http://twitter.com/ReaktorWarsaw' ) @ReaktorWarsaw
+  
