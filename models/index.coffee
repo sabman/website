@@ -1,7 +1,6 @@
 util = require 'util'
 mongoose = require 'mongoose'
 require('mongoose-types').loadTypes mongoose
-require('../lib/mongo-log')(mongoose.mongo)
 
 require "./#{lib}" for lib in ['invite', 'person', 'deploy', 'team', 'vote']
 

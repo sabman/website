@@ -108,6 +108,7 @@ app.configure('development', function() {
   app.use(express.static(app.paths.public));
   app.use(express.profiler());
   app.enable('voting');
+  require('../lib/mongo-log')(app.db.mongo);
 });
 app.configure('production', function() {
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
