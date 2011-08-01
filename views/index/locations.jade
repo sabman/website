@@ -97,6 +97,18 @@ ul.locations
     p There'll be Club Mate!
 
   li
+    h4#dresden Dublin, Ireland
+    - address = escape('Anglesea Mills, 9 Anglesea Row, Dublin 7, Ireland')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'https://www.amworks.ie/' ) AMWorks coworking
+    h5
+      | 9 Anglesea Row
+      br
+      | Dublin 7
+
+  li
     h4#london London, UK
     - address = escape('19 Mandela Street, London, NW1 0DU, United Kingdom')
     a( href: 'http://www.forward.co.uk/contact' )
