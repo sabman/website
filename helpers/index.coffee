@@ -77,6 +77,7 @@ sponsors = [
   [ 'sleepless.gif', 'http://sleepless.com/' ]
   [ 'spreecast.png', 'http://spreecast.com/' ]
   [ 'summercamp.gif', 'http://www.nodeconf.com/summercamp.html' ]
+  [ 'tapjoy.png', 'https://www.tapjoy.com/' ]
   [ 'tradeking.png', 'http://www.tradeking.com/' ]
   [ 'twilio.png', 'http://www.twilio.com/' ]
 ]
