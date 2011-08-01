@@ -34,7 +34,7 @@
   .twitter.tabular
     label( for: 'twitter' ) Twitter
     | http://twitter.com/
-    input( type: 'text', name: 'twitterScreenName', id: 'twitter', value: person.twitterScreenName )
+    input( type: 'text', name: 'twitterScreenName', id: 'twitter', value: person.twitterScreenName, placeholder: 'username' )
     img.spinner( src: '/images/spinner.gif' )
 
   - if (!person.contestant)
