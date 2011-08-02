@@ -32,7 +32,7 @@
     "mongoose-types": "1.0.3",
     "postageapp": "0.0.2",
     "rbytes": "0.0.2",
-    "socket.io": "0.7.7",
+    "socket.io": "https://nodeload.github.com/LearnBoost/socket.io/tarball/master",
     "stylus": "0.13.7",
     "uglify-js": "1.0.6",
     "underscore": "1.1.7"
