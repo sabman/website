@@ -61,6 +61,7 @@ module.exports = (app) ->
 sponsors = [
   [ 'adobe.png', 'http://www.adobe.com/' ]
   [ 'bislr.png', 'http://www.bislr.com/' ]
+  [ 'couchbase.png', 'http://www.couchbase.com/' ]
   [ 'geeklist.png', 'http://geekli.st/' ]
   [ 'github.png', 'https://github.com/' ]
   [ 'heroku.png', 'http://www.heroku.com/' ]
