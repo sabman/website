@@ -116,7 +116,8 @@ app.configure('production', function() {
 });
 
 app.configure(function() {
-  var RedisStore = require('connect-redis')(express);
+  var RedisStore = require('connect-redis')(express)
+    , fortnight = 1000 * 60 * 60 * 24 * 7 * 2;
 
   app.use(function(req, res, next) {
     if (req.headers.host.indexOf('www.') === 0)
@@ -125,7 +126,11 @@ app.configure(function() {
       next();
   });
   app.use(express.cookieParser());
-  app.use(express.session({ secret: secrets.session, store: new RedisStore }));
+  app.use(express.session({
+    secret: secrets.session,
+    cookie: { maxAge: fortnight },
+    store: new RedisStore
+  }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.logger());
