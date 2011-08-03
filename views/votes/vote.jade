@@ -1,10 +1,11 @@
 li.vote
   .person
     a( href: '/people/' + vote.personId )
-      img.avatar( src: avatar_url(vote.person, 50) )
+      img.avatar( src: avatar_url(vote.person, 40) )
       = vote.person.login
     .role= vote.person.role
     .ip= req.socket.remoteAddress
+    time.created-at( datetime: vote.createdAt )= relativeDate(vote.createdAt)
   table
     tr
       - each d in Vote.dimensions

@@ -2,12 +2,12 @@
 
 ## /login -> /auth/github
 
-- remember referer for returnTo behavior
+- remember referrer for returnTo behavior
 - sign in via github, redirects to /people/me
 
 ## /auth/facebook
 
-- remember referer for returnTo behavior
+- remember referrer for returnTo behavior
 - sign in via facebook, redirects to /people/me
 
 ## /auth/twitter

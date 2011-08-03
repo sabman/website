@@ -193,20 +193,39 @@ aside
       margin 15px 0
 
 .vote
+  margin 1em 0
+  border solid 1px hsla(0, 0%, 0%, 0.1)
+  border-radius 4px
+  padding 10px
+  box-shadow 0 0 5px hsla(0, 0%, 0%, 0.1)
+  background-color hsla(0, 0%, 100%, 0.6)
+  clear left
+  overflow hidden
   .person
     float left
-    width 145px
+    width 120px
     img.avatar
-      width 50px
+      width 40px
       height auto
+      vertical-align top
+      float left
+    .role, .ip, .created-at
+      font-size small
+      margin-left 45px
+    .ip, .created-at
+      font-size x-small
+      display block
+      line-height 150%
   th
     font-size small
     text-align center
   input[type=range]
     width 100px
   textarea
-    width 100%
+    width 98%
     height 5em
+  .comment p
+    margin 0.5em 0
 
 #page
   position relative
@@ -430,6 +449,8 @@ aside
     width auto
     text-align center
     line-height 150%
+  p.sign-in
+    text-align center
 
 #page.teams #inner
   ul.teams
@@ -582,3 +603,9 @@ form.person
     img
       float left
       margin 0 15px -8px 0
+
+#page.login #inner
+  text-align center
+  ul.options li
+    display inline-block
+    margin-right 1em

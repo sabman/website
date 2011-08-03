@@ -2,6 +2,10 @@ app = require '../config/app'
 { ensureAuth, loadPerson, loadPersonTeam } = require './middleware'
 Team = app.db.model 'Team'
 
+app.get '/login', (req, res) ->
+  req.session.returnTo = req.param('returnTo') or req.header('referrer')
+  res.render2 'login'
+
 app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next) ->
   if req.user?.role is 'judge' or req.user?.role is 'nomination' or req.team
     returnTo = req.session.returnTo
@@ -32,5 +36,5 @@ app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next
 
 # order matters
 app.get '/login/:service?', (req, res, next) ->
-  req.session.returnTo = req.param('returnTo') or req.header('referer')
+  req.session.returnTo or= req.param('returnTo') or req.header('referrer')
   res.redirect "/auth/#{req.param('service') or 'github'}"

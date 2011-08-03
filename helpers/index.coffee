@@ -16,6 +16,12 @@ module.exports = (app) ->
     inspect: require('util').inspect
     _: _
     markdown: (str) -> if str? then md.parse str, md.flags.noHTML else ''
+    relativeDate: require 'relative-date'
+    pluralize: (n, counter) ->
+      if n is 1
+        "1 #{counter}"
+      else
+        "#{n} #{counter}s"
     avatar_url: (person, size = 30) ->
       if person.github?.gravatarId
         id = person.github.gravatarId # HACK getter bugs
@@ -38,11 +44,6 @@ module.exports = (app) ->
         , {})
         .values()
         .value().join '; '
-    pluralize: (n, counter) ->
-      if n is 1
-        "1 #{counter}"
-      else
-        "#{n} #{counter}s"
     voting: app.enabled 'voting'
     Vote: mongoose.model 'Vote'
 

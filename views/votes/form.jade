@@ -1,31 +1,34 @@
-form.vote(
-  action: vote ? '/votes/' + vote.id : '/teams/' + team.id + '/votes',
-  method: 'POST'
-)
-  - if (vote)
-    input( type: 'hidden', name: '_method', value: 'PUT' )
-  input( type: 'hidden', name: 'audit[remoteAddress]', value: req.socket.remoteAddress )
-  input( type: 'hidden', name: 'audit[remotePort]', value: req.socket.remotePort )
-  input( type: 'hidden', name: 'audit[userAgent]', value: req.header('user-agent') )
-  input( type: 'hidden', name: 'audit[referrer]', value: req.header('referrer') )
-  input( type: 'hidden', name: 'audit[accept]', value: req.header('accept') )
-  - each f in [ 'requestAt', 'renderAt', 'hoverAt', 'responseAt' ]
-    input( type: 'hidden', name: f )
-  .person
-    img.avatar( src: avatar_url(user, 50) )
-    = user.login
-    .role= user.role
-    .ip= req.socket.remoteAddress
-  - if (!user || user.voter)
-    input.heart( type: 'submit', value: '♥' )
-  - else if (user.contestant || user.judge)
-    table
-      tr
-        - each d in Vote.dimensions
-          th: label( for: d )= d
-      tr
-        - each d in Vote.dimensions
-          td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: 0 )
-      tr: td( colspan: 4 )
-        textarea( name: 'comment', placeholder: 'Be awesome. Give some feedback.' )
-        input( type: 'submit', value: 'Vote' )
+- if (!user)
+  p.sign-in: a.scary.button( href: '/login' ) Sign in to vote
+- else
+  form.vote(
+    action: vote ? '/votes/' + vote.id : '/teams/' + team.id + '/votes',
+    method: 'POST'
+  )
+    - if (vote)
+      input( type: 'hidden', name: '_method', value: 'PUT' )
+    input( type: 'hidden', name: 'audit[remoteAddress]', value: req.socket.remoteAddress )
+    input( type: 'hidden', name: 'audit[remotePort]', value: req.socket.remotePort )
+    input( type: 'hidden', name: 'audit[userAgent]', value: req.header('user-agent') )
+    input( type: 'hidden', name: 'audit[referrer]', value: req.header('referrer') )
+    input( type: 'hidden', name: 'audit[accept]', value: req.header('accept') )
+    - each f in [ 'requestAt', 'renderAt', 'hoverAt', 'responseAt' ]
+      input( type: 'hidden', name: f )
+    .person
+      img.avatar( src: avatar_url(user, 40) )
+      = user.login
+      .role= user.role
+      .ip= req.socket.remoteAddress
+    - if (!user || user.voter)
+      input.heart( type: 'submit', value: '♥' )
+    - else if (user.contestant || user.judge)
+      table
+        tr
+          - each d in Vote.dimensions
+            th: label( for: d )= d
+        tr
+          - each d in Vote.dimensions
+            td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: 0 )
+        tr: td( colspan: 4 )
+          textarea( name: 'comment', placeholder: 'Be awesome. Give some feedback.' )
+          input( type: 'submit', value: 'Vote' )
