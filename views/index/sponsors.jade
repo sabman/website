@@ -1,1 +1,14 @@
-h1 Sponsors
+h1= title('Sponsors')
+
+p.
+  These guys are all awesome. We wouldn't be able to do this without them, so
+  give them some love.
+
+ul.sponsors
+  - _.shuffle(sponsors).forEach(function(sponsor) {
+    - if (!sponsor.description) return;
+    li
+      a( href: sponsor.url )
+        img( src: '/images/sponsors/' + sponsor.image, class: sponsor.image.replace(/\.\w+$/, '') )
+      != markdown(sponsor.description)
+  - });

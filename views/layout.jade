@@ -45,9 +45,9 @@ html
             th.asterisk( colspan: 2 ) *space permitting
 
         ul.sponsors
-          - sponsors(function(sponsor) {
-            li: a( href: sponsor[1] )
-              img( src: '/images/sponsors/' + sponsor[0], class: sponsor[0].replace(/\.\w+$/, '') )
+          - _.shuffle(sponsors).forEach(function(sponsor) {
+            li: a( href: sponsor.url )
+              img( src: '/images/sponsors/' + sponsor.image, class: sponsor.image.replace(/\.\w+$/, '') )
           - });
           li.interested
             a( href: 'mailto:all@nodeknockout.com?subject=Sponsoring' ) Interested in sponsoring?
