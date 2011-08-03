@@ -5,7 +5,8 @@ li.vote
       = vote.person.login
     .role= vote.person.role
     .ip= req.socket.remoteAddress
-    time.created-at( datetime: vote.createdAt )= relativeDate(vote.createdAt)
+    time.created-at( datetime: vote.createdAt.toJSON(), title: vote.createdAt )
+      = relativeDate(vote.createdAt)
   table
     tr
       - each d in Vote.dimensions

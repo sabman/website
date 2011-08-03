@@ -42,6 +42,7 @@ VoteSchema.static 'dimensions',
 # associations
 VoteSchema.static 'people', (votes, next) ->
   peopleIds = _.pluck votes, 'personId'
+  # TODO only need certain fields probably; make `only` an argument
   Person.find _id: { '$in': peopleIds }, (err, people) ->
     return next err if err
     people = _.reduce people, ((h, p) -> h[p.id] = p; h), {}
