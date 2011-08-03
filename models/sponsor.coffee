@@ -121,6 +121,10 @@ module.exports = [
     [1]: htts://mongohq.com/home
     '''
 ,
+  name:  'ngmoco'
+  image: 'ngmoco.png'
+  url:   'http://blog.ngmoco.com/'
+,
   name:  'nodejitsu'
   image: 'nodejitsu.png'
   url:   'http://www.nodejitsu.com/'
