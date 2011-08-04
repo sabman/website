@@ -25,7 +25,7 @@
       table
         tr
           - each d in Vote.dimensions
-            th: label( for: d )= d
+            th: label( for: d )= Vote.label(d)
         tr
           - each d in Vote.dimensions
             td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: 0 )

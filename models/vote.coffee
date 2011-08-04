@@ -38,6 +38,12 @@ VoteSchema.index { teamId: 1, updatedAt: -1 }
 
 VoteSchema.static 'dimensions',
   [ 'utility', 'design', 'innovation', 'completeness' ]
+VoteSchema.static 'label', (dimension) ->
+  switch dimension
+    when 'utility'      then 'Utility/Fun'
+    when 'design'       then 'Design'
+    when 'innovation'   then 'Innovation'
+    when 'completeness' then 'Completeness'
 
 # associations
 VoteSchema.static 'people', (votes, next) ->
