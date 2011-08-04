@@ -17,7 +17,7 @@ section
     a.register.button( href: '/teams/' + team.id ) View Your Team
   - else if (canRegister)
     a.register.button( href: '/teams/new' ) Register a Team
-    p Before it's too late! (#{teamsLeft} spots left)
+    p Before it's too late! (#{pluralize(teamsLeft, 'spot')} left)
   - else
     h3.scary Registration is full
     a( href: '/teams/new' ) More spots open at 
