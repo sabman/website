@@ -124,6 +124,17 @@ module.exports = [
   name:  'ngmoco'
   image: 'ngmoco.png'
   url:   'http://blog.ngmoco.com/'
+  description:
+    '''
+    In 2011 there will be more iOS/Android devices shipped than PCs/notebooks.
+    We at [ngmoco:)][1] see a once-in-a-generation opportunity to build a
+    Social Entertainment Network to serve this new audience. We provide Mobage,
+    a powerful social framework for developers to build & amplify social in
+    their games. We make the best social games, powered by ngCore, a technology
+    framework to publish on multiple platforms from a single codebase.
+
+    [1]: http://blog.ngmoco.com/
+    '''
 ,
   name:  'nodejitsu'
   image: 'nodejitsu.png'
