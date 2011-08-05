@@ -210,7 +210,7 @@ var nko = {};
   $(function() {
     // a dude
     var types = [ 'suit', 'littleguy', 'beast', 'gifter' ];
-    var me = new nko.Dude({
+    var me = nko.me = new nko.Dude({
       name: types[Math.floor(types.length * Math.random())],
       pos: new nko.Vector(-100, -100),
       ready: function() {
@@ -220,7 +220,7 @@ var nko = {};
     });
 
     // networking
-    var dudes = {};
+    var dudes = nko.dudes = {};
     var ws = io.connect();
     ws.on('connect', function() {
       (function heartbeat() {
