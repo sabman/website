@@ -208,32 +208,6 @@ var nko = {};
 
 
   $(function() {
-    // countdown
-    $('time:first').each(function() {
-      var parts = $(this).attr('datetime').split(/[-:TZ]/);
-      parts[1]--; // js dates :( js dates are hot dates.
-      var start = Date.UTC.apply(null, parts);
-
-      $('#countdown').each(function() {
-        var $this = $(this);
-
-        (function tick() {
-          var names = ['day', 'hour', 'minute', 'second']
-            , secs = (start - (new Date)) / 1000
-            , left = $.map([secs / 86400, secs % 86400 / 3600, secs % 3600 / 60, secs % 60], function(num, i) {
-              return [Math.floor(num), pluralize(names[i], num)];
-            }).join(' ');
-
-          $this.html(left + ' from now');
-          return setTimeout(tick, 800);
-        })();
-
-        function pluralize(str, count) {
-          return str + (parseInt(count) !== 1 ? 's' : '');
-        }
-      });
-    });
-
     // a dude
     var types = [ 'suit', 'littleguy', 'beast', 'gifter' ];
     var me = new nko.Dude({
