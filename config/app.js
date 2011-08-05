@@ -67,8 +67,8 @@ app.configure(function() {
           }
         ]
       },
-      files: [
-        // order matters here
+      files: [ // order matters here
+        'console.js',
         'hoptoad-notifier.js',
         'hoptoad-key.js',
         'modernizr-2.0.4.js',
@@ -79,7 +79,6 @@ app.configure(function() {
         'jquery.keylisten.js',
         'jquery.transform.light.js',
         'jquery.transloadit2.js',
-        'console.js',
         'md5.js',
         'application.coffee',
         '*'
