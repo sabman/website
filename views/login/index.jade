@@ -2,17 +2,20 @@ h1= title('Sign in as')
 
 ul.options
   li
+    .dude.beast
     a.button( href: '/login/github' ) Contestant
     .via via 
       img( src: '/images/github.png' )
       |  github
   li
+    .dude.suit
     a.button( href: '/login/twitter' ) Judge
     .via via 
       img( src: '/images/twitter.png' )
       |  Twitter
   - if (voting)
     li
+      .dude.littleguy
       a.button( href: '/login/facebook' ) Voter
       .via via 
         img( src: '/images/facebook.png' )
