@@ -4,7 +4,6 @@ li.vote
       img.avatar( src: avatar_url(vote.person, 40) )
       = vote.person.login
     .role= vote.person.role
-    .ip= req.socket.remoteAddress
     time.created-at( datetime: vote.createdAt.toJSON(), title: vote.createdAt )
       = relativeDate(vote.createdAt)
   table
@@ -13,6 +12,6 @@ li.vote
         th: label( for: d )= Vote.label(d)
     tr
       - each d in Vote.dimensions
-        td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: vote[d] )
+        td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: vote[d], disabled: true )
     tr: td( colspan: 4 )
       .comment!= markdown(vote.comment)

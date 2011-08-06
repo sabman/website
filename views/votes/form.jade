@@ -18,7 +18,6 @@
       img.avatar( src: avatar_url(user, 40) )
       = user.login
       .role= user.role
-      .ip= req.socket.remoteAddress
     - if (!user || user.voter)
       input.heart( type: 'submit', value: '♥' )
     - else if (user.contestant || user.judge)

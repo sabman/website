@@ -1,6 +1,16 @@
 h1= title('Sign in as')
 
 ul.options
-  li: a.button( href: '/login/github' ) Contestant
-  li: a.button( href: '/login/twitter' ) Judge
-  li: a.button( href: '/login/facebook' ) Voter
+  li
+    a.button( href: '/login/github' ) Contestant
+    .via
+      | via
+      img.via-github( src: '/images/github.png' )
+      |  github
+  li
+    a.button( href: '/login/twitter' ) Judge
+    .via via Twitter
+  - if (voting)
+    li
+      a.button( href: '/login/facebook' ) Voter
+      .via via Facebook
