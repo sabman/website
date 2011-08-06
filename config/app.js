@@ -111,6 +111,12 @@ app.configure('development', function() {
 });
 app.configure('production', function() {
   app.use(express.static(app.paths.public, { maxAge: 1000 * 5 * 60 }));
+  app.use(function(req, res, next) {
+    if (req.headers.host !== 'nodeknockout.com')
+      res.redirect('http://nodeknockout.com' + req.url);
+    else
+      next();
+  });
   app.disable('voting');
 });
 
@@ -118,12 +124,6 @@ app.configure(function() {
   var RedisStore = require('connect-redis')(express)
     , fortnight = 1000 * 60 * 60 * 24 * 7 * 2;
 
-  app.use(function(req, res, next) {
-    if (req.headers.host.indexOf('www.') === 0)
-      res.redirect('http://' + req.headers.host.substring(4) + req.url);
-    else
-      next();
-  });
   app.use(express.cookieParser());
   app.use(express.session({
     secret: secrets.session,
