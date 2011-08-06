@@ -4,14 +4,16 @@ ul.options
   li
     a.button( href: '/login/github' ) Contestant
     .via via 
-      img.via-github( src: '/images/github.png' )
+      img( src: '/images/github.png' )
       |  github
   li
     a.button( href: '/login/twitter' ) Judge
     .via via 
-      img.via-twitter( src: '/images/twitter.png' )
+      img( src: '/images/twitter.png' )
       |  Twitter
   - if (voting)
     li
       a.button( href: '/login/facebook' ) Voter
-      .via via Facebook
+      .via via 
+        img( src: '/images/facebook.png' )
+        |  Facebook
