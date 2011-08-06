@@ -67,16 +67,20 @@ var nko = {};
   };
 
   nko.Thing.prototype.getPosition = function() {
-    var offset = new nko.Vector(this.div.offsetParent().offset());
-    return this.pos.plus(offset);
+    return this.pos.plus(this.origin);
   };
 
   nko.Thing.prototype.toJSON = function() {
     return {
       name: this.name,
       pos: this.pos,
-      size: this.size
+      size: this.size,
+      origin: this.origin
     };
+  };
+
+  nko.Thing.prototype.resetOrigin = function() {
+    this.origin = new nko.Vector(this.div.offsetParent().offset());
   };
 
   nko.Thing.prototype.draw = function draw() {
@@ -92,6 +96,7 @@ var nko = {};
         background: 'url(' + this.img.attr('src') + ')'
       })
       .appendTo($('#page'));
+    this.resetOrigin();
     if (this.ready) this.ready();
 
     this.animate();
@@ -150,8 +155,7 @@ var nko = {};
   };
 
   nko.Dude.prototype.goTo = function(pos, duration) {
-    var offset = new nko.Vector(this.div.offsetParent().offset());
-    pos = new nko.Vector(pos).minus(offset);
+    pos = new nko.Vector(pos).minus(this.origin);
 
     var self = this
       , delta = pos.minus(this.pos)
@@ -240,8 +244,10 @@ var nko = {};
       if (data.obj && !dude && data.obj.pos.x < 10000 && data.obj.pos.y < 10000)
         dude = dudes[data.id] = new nko.Dude(data.obj).draw();
 
-      if (dude && data.method)
+      if (dude && data.method) {
+        dude.origin = data.obj.origin;
         nko.Dude.prototype[data.method].apply(dude, data.arguments);
+      }
     });
 
     function randomPositionOn(selector) {
@@ -281,7 +287,12 @@ var nko = {};
       page.click();
     };
 
+    var resizeTimeout = null;
     $(window)
+      .resize(function(e) {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() { me.resetOrigin(); }, 50);
+      })
       .click(function(e) { // move on click
         var pos = { x: e.pageX, y: e.pageY };
         me.goTo(pos);
