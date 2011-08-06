@@ -91,7 +91,7 @@ TeamSchema.pre 'save', (next) ->
       @invites.push new Invite(email: email)
   _.invoke @invites, 'send'
   next()
-TeamSchema.post 'save', () ->
+TeamSchema.post 'save', ->
   for invite in @invites
     invite.remove() unless !invite or _.include(@emails, invite.email)
   @save() if @isModified 'invites'

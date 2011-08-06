@@ -23,7 +23,7 @@ PersonSchema.plugin auth,
   everymodule:
     everyauth:
       moduleTimeout: 10000
-      User: () -> Person
+      User: -> Person
   github:
     everyauth:
       redirectPath: '/login/done'
