@@ -24,6 +24,9 @@ PersonSchema.plugin auth,
     everyauth:
       moduleTimeout: 10000
       User: -> Person
+      handleLogout: (req, res) ->
+        req.logout()
+        res.redirect(req.param('returnTo') || req.header('referrer') || '/')
   github:
     everyauth:
       redirectPath: '/login/done'
