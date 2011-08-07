@@ -73,6 +73,13 @@ module.exports =
       req.votes = votes
       Vote.people votes, next
 
+  loadMyVote: (req, res, next) ->
+    return next() unless req.user?
+    Vote.findOne { teamId: req.team.id, personId: req.user.id }, (err, vote) ->
+      return next err if err
+      req.vote = vote
+      next()
+
   loadVote: (req, res, next) ->
     if id = req.params.voteId or req.params.id
       Vote.findById id, (err, vote) ->

@@ -27,7 +27,10 @@
             th: label( for: d )= Vote.label(d)
         tr
           - each d in Vote.dimensions
-            td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: 0 )
+            td: input( name: d, id: d, type: 'range', min: 0, max: 5,
+                       value: vote ? vote[d] : 0 )
         tr: td( colspan: 4 )
-          textarea( name: 'comment', placeholder: 'Be awesome. Give some feedback.' )
-          input( type: 'submit', value: 'Vote' )
+          textarea( name: 'comment',
+                    placeholder: 'Be awesome. Give some feedback.'
+                  )= vote && vote.comment
+          input( type: 'submit', value: vote ? 'Change' : 'Vote' )

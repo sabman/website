@@ -39,5 +39,5 @@ h1= title(team.name)
 
 - if (voting)
   h2 Votes
-  != partial('votes/form', { vote: null })
+  != partial('votes/form', { vote: vote })
   ul.votes!= partial('votes/vote', votes)
