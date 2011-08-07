@@ -14,3 +14,7 @@ h1= title(person.name)
     a( href: '/teams/' + team.id )= team.name
 
 .bio!= markdown(person.bio)
+
+- if (voting)
+  h2 Votes
+  ul.votes!= partial('votes/vote', votes)

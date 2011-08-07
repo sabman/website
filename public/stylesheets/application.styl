@@ -201,7 +201,7 @@ aside
   background-color hsla(0, 0%, 100%, 0.6)
   clear left
   overflow hidden
-  .person
+  .person, .team
     float left
     width 120px
     img.avatar
@@ -209,13 +209,15 @@ aside
       height auto
       vertical-align top
       float left
-    .role, .created-at
-      font-size small
-      margin-left 45px
     .created-at
       font-size x-small
       display block
       line-height 150%
+  .person
+    .role, .created-at
+      margin-left 45px
+    .role
+      font-size small
   th
     font-size small
     text-align center

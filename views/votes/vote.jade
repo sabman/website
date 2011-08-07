@@ -1,11 +1,17 @@
 li.vote
-  .person
-    a( href: '/people/' + vote.personId )
-      img.avatar( src: avatar_url(vote.person, 40) )
-      = vote.person.login
-    .role= vote.person.role
-    time.created-at( datetime: vote.createdAt.toJSON(), title: vote.createdAt )
-      = relativeDate(vote.createdAt)
+  - if (vote.person)
+    .person
+      a( href: '/people/' + vote.personId )
+        img.avatar( src: avatar_url(vote.person, 40) )
+        = vote.person.login
+      .role= vote.person.role
+      time.created-at( datetime: vote.createdAt.toJSON(), title: vote.createdAt )
+        = relativeDate(vote.createdAt)
+  - else if (vote.team)
+    .team
+      a( href: '/teams/' + vote.teamId )= vote.team.name
+      time.created-at( datetime: vote.createdAt.toJSON(), title: vote.createdAt )
+        = relativeDate(vote.createdAt)
   table
     tr
       - each d in Vote.dimensions

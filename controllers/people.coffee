@@ -27,8 +27,11 @@ app.post '/people', [m.ensureAdmin], (req, res) ->
       res.redirect "people/#{person.id}"
 
 # show
-app.get '/people/:id', [m.loadPerson, m.loadPersonTeam], (req, res, next) ->
-  res.render2 'people/show', person: req.person, team: req.team
+app.get '/people/:id', [m.loadPerson, m.loadPersonTeam, m.loadPersonVotes], (req, res, next) ->
+  res.render2 'people/show',
+    person: req.person
+    team: req.team
+    votes: req.votes
 
 # edit
 app.get '/people/:id/edit', [m.loadPerson, m.ensureAccess], (req, res, next) ->

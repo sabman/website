@@ -42,7 +42,7 @@ module.exports =
     req.person.votes (err, votes) ->
       return next err if err
       req.votes = votes
-      next()
+      Vote.teams votes, next
 
   loadTeam: (req, res, next) ->
     if id = req.params.teamId or req.params.id

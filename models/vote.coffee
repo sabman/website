@@ -2,6 +2,7 @@ _ = require 'underscore'
 mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.ObjectId
 Person = mongoose.model 'Person'
+Team = mongoose.model 'Team'
 
 VoteSchema = module.exports = new mongoose.Schema
   personId:
@@ -48,11 +49,21 @@ VoteSchema.static 'label', (dimension) ->
 # associations
 VoteSchema.static 'people', (votes, next) ->
   peopleIds = _.pluck votes, 'personId'
+  return next() if peopleIds.length == 0
   # TODO only need certain fields probably; make `only` an argument
   Person.find _id: { '$in': peopleIds }, (err, people) ->
     return next err if err
     people = _.reduce people, ((h, p) -> h[p.id] = p; h), {}
     _.each votes, (v) -> v.person = people[v.personId]
+    next()
+VoteSchema.static 'teams', (votes, next) ->
+  teamIds = _.pluck votes, 'teamId'
+  return next() if teamIds.length == 0
+  # TODO only need certain fields probably; make `only` an argument
+  Team.find _id: { '$in': teamIds }, (err, teams) ->
+    return next err if err
+    teams = _.reduce teams, ((h, t) -> h[t.id] = t; h), {}
+    _.each votes, (v) -> v.team = teams[v.teamId]
     next()
 
 Vote = mongoose.model 'Vote', VoteSchema
