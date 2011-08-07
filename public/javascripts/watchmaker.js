@@ -58,7 +58,7 @@ var nko = {};
     this.size = new nko.Vector(options.size);
     this.ready = options.ready;
 
-    this.div = $('<div class="thing">');
+    this.div = $('<div class="thing">').addClass(this.name);
     this.img = $('<img>', { src: '/images/734m/' + this.name + '.png' })
       .load(function() {
         self.size = new nko.Vector(this.width, this.height);
@@ -442,5 +442,7 @@ var nko = {};
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(120, 1800) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(70, 1700) });
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(-10, 1900) });
+
+    $('.thing.streetlamp').live('click', function() { $('#inner').fadeToggle() });
   });
 })(nko); // export nko
