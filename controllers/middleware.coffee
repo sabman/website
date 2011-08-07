@@ -13,7 +13,7 @@ module.exports =
       unless req.user.admin
         return next 401 if req.person? and req.person.id isnt req.user.id
         return next 401 if req.team? and not req.team.includes(req.user, req.session.team)
-        return next 401 if req.vote? and req.vote.personId isnt req.user.id
+        return next 401 if req.vote? and req.vote.personId.toString() isnt req.user.id
       next()
 
   ensureAdmin: (req, res, next) ->

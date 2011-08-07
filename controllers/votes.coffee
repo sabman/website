@@ -24,10 +24,10 @@ app.put '/votes/:id', [ensureVoting, m.loadVote, m.ensureAccess], (req, res, nex
   _.extend req.vote, req.body
   req.vote.save (err) ->
     return next err if err
-    res.redirect '/teams/' + req.vote.teamId
+    res.redirect 'back'
 
 # delete
 app.delete '/votes/:id', [ensureVoting, m.loadVote, m.ensureAccess], (req, res, next) ->
   req.vote.remove (err) ->
     return next err if err
-    res.send 'ok'
+    res.redirect 'back'
