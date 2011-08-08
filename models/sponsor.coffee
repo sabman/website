@@ -157,9 +157,11 @@ module.exports = [
     [NodeSocket][1] is a simple, scalable, and powerful node.js hosting
     platform and community for developers. NodeSocket provides a complete
     suite of developer focused tools and add-ons to assist developers
-    build, deploy, scale, and monitor their node.js applications.
+    build, deploy, scale, and monitor their node.js applications.  __Request a
+    [beta invitation][2] today.__
 
     [1]: http://www.nodesocket.com/
+    [2]: http://beta.nodesocket.com/
     '''
 ,
   name:  'PostageApp'
