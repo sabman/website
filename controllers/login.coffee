@@ -20,11 +20,6 @@ app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next
             res.redirect "/people/#{req.person.id}"
       else
         res.redirect '/teams/new'
-  else if returnTo = req.session.returnTo
-    delete req.session.returnTo
-    res.redirect returnTo
-  else if req.user.role is 'judge' or req.user.role is 'nomination' or req.team
-    res.redirect returnTo or "/people/#{req.person.id}"
   else if code = req.session.team
     Team.findOne code: code, (err, team) ->
       return next err if err
@@ -32,6 +27,11 @@ app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next
         res.redirect '/teams/' + team.id
       else
         res.redirect '/teams/new'
+  else if returnTo = req.session.returnTo
+    delete req.session.returnTo
+    res.redirect returnTo
+  else if req.user.judge or req.user.nomination or req.team
+    res.redirect returnTo or "/people/#{req.person.id}"
   else
     res.redirect '/teams/new'
 
