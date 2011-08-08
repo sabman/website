@@ -229,7 +229,7 @@ var nko = {};
     ws.on('connect', function() {
       (function heartbeat() {
         ws.send(JSON.stringify({ obj: me }));
-        setTimeout(heartbeat, 5000);
+        setTimeout(heartbeat, 10000);
       })();
     });
     ws.on('message', function(data) {
