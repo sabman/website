@@ -360,11 +360,12 @@ var nko = {};
         me.goTo(new nko.Vector(t.pageX, t.pageY));
       })
       .delegate('a[href^="#"]', 'click', function(e) {
+        if ($(this).attr('href') === '#') return;
         e.preventDefault();
         var page = $($(this).attr('href'));
         setTimeout(function checkArrived() {
           if (me.div.queue().length === 0) {
-            warpTo(page);
+            nko.warpTo(page);
             page.click();
           } else {
             setTimeout(checkArrived, 500);
