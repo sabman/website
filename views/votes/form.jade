@@ -21,7 +21,7 @@
       - if (vote)
         .edit: a.disabled.edit( href: '#' ) Edit your vote
     - if (!user || user.voter)
-      input.heart( type: 'submit', value: '♥' )
+      input.scary( type: 'submit', value: '♥ this entry' )
     - else if (user.contestant || user.judge)
       table
         tr
@@ -41,4 +41,4 @@
             | 
             a.enabled.cancel( href: '#' ) Cancel
           - else
-            input( type: 'submit', value: 'Vote' )
+            input.scary( type: 'submit', value: 'Vote' )
