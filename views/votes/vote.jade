@@ -13,7 +13,7 @@ li.vote
       time.created-at( datetime: vote.createdAt.toJSON(), title: vote.createdAt )
         = relativeDate(vote.createdAt)
   - if (vote.type === 'voter')
-    | ♥
+    .heart ♥
   - else
     table
       tr

@@ -23,7 +23,9 @@
     - if (user.voter)
       .voter
         - if (vote)
-          | You ♥ this entry
+          | You
+          span.heart ♥ 
+          | this entry
           .disabled
             a.edit( href: '#' ) Change your mind
           .enabled
