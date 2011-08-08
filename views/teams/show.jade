@@ -6,7 +6,7 @@ h1= title(team.name)
 - if (team.invited(session.invite))
   h2 You're invited to this team!
   p.accept
-    a.button( href: '/login' ) Accept Invitation
+    a.button.scary( href: '/login/github' ) Accept Invitation
     |  via
     img( src: '/images/github.png', style: 'margin-bottom: -4px;' )
     | github
