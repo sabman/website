@@ -19,12 +19,17 @@ $ ->
       $.post @href, ->
         $n.text('done').delay(500).fadeOut 'slow', -> $t.show()
 
-    ###
-    $(this).delegate 'form.vote', 'submit', (e) ->
-      e.preventDefault()
-      $this = $(this)
-      $.post $this.attr('action'), $this.serialize()
-    ###
+    # initially disable any vote edit form
+    $('form.vote[action^="/votes"]').each ->
+      $('input, textarea', this).prop 'disabled', true
+      $('.disabled', this).show()
+      $('.enabled', this).hide()
+      $('a.edit, a.cancel', this).click (e) ->
+        e.preventDefault()
+        $('.disabled, .enabled').toggle()
+        $form = $(this).closest('form')
+        $('input, textarea', $form).prop 'disabled', (i, d) -> !d
+        $form[0].reset()
 
   $('#page.teams-edit').each ->
     $('a.pull', this).click ->
