@@ -18,7 +18,8 @@
       img.avatar( src: avatar_url(user, 40) )
       = user.login
       .role= user.role
-      .edit: a.disabled.edit( href: '#' ) Edit your vote
+      - if (vote)
+        .edit: a.disabled.edit( href: '#' ) Edit your vote
     - if (!user || user.voter)
       input.heart( type: 'submit', value: '♥' )
     - else if (user.contestant || user.judge)
@@ -31,11 +32,11 @@
             td: input( name: d, id: d, type: 'range', min: 0, max: 5,
                        value: vote ? vote[d] : 0 )
         tr: td( colspan: 4 )
-          .comment.disabled!= markdown(vote.comment)
           textarea.enabled( name: 'comment',
                     placeholder: 'Be awesome. Give some feedback.'
                   )= vote && vote.comment
           - if (vote)
+            .comment.disabled!= markdown(vote.comment)
             input.enabled( type: 'submit', value: 'Save' )
             | 
             a.enabled.cancel( href: '#' ) Cancel
