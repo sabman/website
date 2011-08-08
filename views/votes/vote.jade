@@ -12,12 +12,15 @@ li.vote
       a( href: '/teams/' + vote.teamId )= vote.team.name
       time.created-at( datetime: vote.createdAt.toJSON(), title: vote.createdAt )
         = relativeDate(vote.createdAt)
-  table
-    tr
-      - each d in Vote.dimensions
-        th: label( for: d )= Vote.label(d)
-    tr
-      - each d in Vote.dimensions
-        td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: vote[d], disabled: true )
-    tr: td( colspan: 4 )
-      .comment!= markdown(vote.comment)
+  - if (vote.type === 'voter')
+    | ♥
+  - else
+    table
+      tr
+        - each d in Vote.dimensions
+          th: label( for: d )= Vote.label(d)
+      tr
+        - each d in Vote.dimensions
+          td: input( name: d, id: d, type: 'range', min: 0, max: 5, value: vote[d], disabled: true )
+      tr: td( colspan: 4 )
+        .comment!= markdown(vote.comment)

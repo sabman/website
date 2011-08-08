@@ -223,6 +223,7 @@ aside
       display block
       line-height 150%
   .person
+    line-height 125%
     .role, .created-at
       margin-left 45px
     .role
@@ -231,6 +232,8 @@ aside
     clear left
     font-size small
     margin-top 1em
+    text-align center
+  .voter
     text-align center
   th
     font-size small
@@ -242,6 +245,10 @@ aside
     height 9em
   .comment p
     margin 0.5em 0
+form.vote
+  box-shadow 0 0 5px hsla(200, 30%, 50%, 0.8)
+form.vote[action^="/votes"] .enabled /* TODO fix for IE */
+  display none
 
 #page
   position relative

@@ -21,15 +21,13 @@ $ ->
 
     # initially disable any vote edit form
     $('form.vote[action^="/votes"]').each ->
-      $('input, textarea', this).prop 'disabled', true
-      $('.disabled', this).show()
-      $('.enabled', this).hide()
+      $(':input', this).prop 'disabled', true
       $('a.edit, a.cancel', this).click (e) ->
         e.preventDefault()
         $('.disabled, .enabled').toggle()
         $form = $(this).closest('form')
-        $('input, textarea', $form).prop 'disabled', (i, d) -> !d
         $form[0].reset()
+        $('input, textarea', $form).prop 'disabled', (i, d) -> !d
 
   $('#page.teams-edit').each ->
     $('a.pull', this).click ->

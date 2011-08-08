@@ -5,7 +5,7 @@
     action: vote ? '/votes/' + vote.id : '/teams/' + team.id + '/votes',
     method: 'POST'
   )
-    - if (vote)
+    - if (vote && !req.user.voter)
       input( type: 'hidden', name: '_method', value: 'PUT' )
     input( type: 'hidden', name: 'audit[remoteAddress]', value: req.socket.remoteAddress )
     input( type: 'hidden', name: 'audit[remotePort]', value: req.socket.remotePort )
@@ -18,10 +18,21 @@
       img.avatar( src: avatar_url(user, 40) )
       = user.login
       .role= user.role
-      - if (vote)
+      - if (vote && !user.voter)
         .edit: a.disabled.edit( href: '#' ) Edit your vote
-    - if (!user || user.voter)
-      input.scary( type: 'submit', value: '♥ this entry' )
+    - if (user.voter)
+      .voter
+        - if (vote)
+          | You ♥ this entry
+          .disabled
+            a.edit( href: '#' ) Change your mind
+          .enabled
+            input( type: 'hidden', name: '_method', value: 'DELETE' )
+            input.scary( type: 'submit', value: 'Delete your vote' )
+            | 
+            a.cancel( href: '#' ) Cancel
+        - else
+          input.scary( type: 'submit', value: '♥ this entry' )
     - else if (user.contestant || user.judge)
       table
         tr
