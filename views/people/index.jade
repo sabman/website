@@ -1,4 +1,10 @@
 h1 People
 ul
   - each person in people
-    li: a( href: '/people/' + person.id )= person.name
+    li
+      a( href: '/people/' + person.id )= person.name || '?'
+      |  -
+      = person.role
+      |  -
+      - if (person.contestant)
+        a( href: 'https://github.com/' + person.login )= person.login
