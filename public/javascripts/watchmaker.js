@@ -228,7 +228,7 @@ var nko = {};
     var ws = io.connect();
     ws.on('connect', function() {
       (function heartbeat() {
-        ws.send(JSON.stringify({ obj: me }));
+        nko.send({ obj: me });
         setTimeout(heartbeat, 10000);
       })();
     });
@@ -265,11 +265,11 @@ var nko = {};
       pos = randomPositionOn(page);
 
       me.warp(pos);
-      ws.send(JSON.stringify({
+      nko.send({
         obj: me,
         method: 'warp',
         arguments: [ pos ]
-      }));
+      });
     }
     nko.goTo = function goTo(selector) {
       var page = $(selector)
@@ -278,13 +278,22 @@ var nko = {};
       pos = randomPositionOn(page);
 
       me.goTo(pos);
-      ws.send(JSON.stringify({
+      nko.send({
         obj: me,
         method: 'goTo',
         arguments: [ pos ]
-      }));
+      });
 
       page.click();
+    };
+    nko.send = function send(data) {
+      if (!ws) return;
+      if (Date.now() - ws.lastSentAt < 10) throw Error('too fast'); // throttle
+      ws.send(JSON.stringify(data));
+      ws.lastSentAt = Date.now();
+
+      // TODO disconnect after 10 minutes of no real sending
+      // TODO refresh watchmaker client after 24 hours of inactivity
     };
 
     var resizeTimeout = null;
@@ -296,11 +305,11 @@ var nko = {};
       .click(function(e) { // move on click
         var pos = { x: e.pageX, y: e.pageY };
         me.goTo(pos);
-        ws.send(JSON.stringify({
+        nko.send({
           obj: me,
           method: 'goTo',
           arguments: [ pos ]
-        }));
+        });
       })
       .keydown(function(e) {
         return true;
@@ -322,11 +331,11 @@ var nko = {};
           if (me.keyNav) return false;
           var pos = me.getPosition().plus(d);
           me.goTo(pos);
-          ws.send(JSON.stringify({
+          nko.send({
             obj: me,
             method: 'goTo',
             arguments: [ pos ]
-          }));
+          });
           me.keyNav = true;
           return false;
         }
@@ -341,11 +350,11 @@ var nko = {};
           case 39: // right
           case 40: // down
             me.goTo(me.getPosition(), 1);
-            ws.send(JSON.stringify({
+            nko.send({
               obj: me,
               method: 'goTo',
               arguments: [ me.getPosition(), 1 ]
-            }));
+            });
             me.keyNav = false;
             return false;
         }
@@ -385,19 +394,19 @@ var nko = {};
             return false;
           default:
             me.speak(text);
-            ws.send(JSON.stringify({
+            nko.send({
               obj: me,
               method: 'speak',
               arguments: [ text ]
-            }));
+            });
             clearTimeout(speakTimeout);
             speakTimeout = setTimeout(function() {
               $text.val('');
               me.speak();
-              ws.send(JSON.stringify({
+              nko.send({
                 obj: me,
                 method: 'speak'
-              }));
+              });
             }, 5000);
         }
       }).focus();
