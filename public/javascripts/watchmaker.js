@@ -233,8 +233,7 @@ var nko = {};
       })();
     });
     ws.on('message', function(data) {
-      var data = JSON.parse(data)
-        , dude = dudes[data.id];
+      var dude = dudes[data.id];
 
       if (data.disconnect && dude) {
         dude.remove();
@@ -289,7 +288,7 @@ var nko = {};
     nko.send = function send(data) {
       if (!ws) return;
       if (Date.now() - ws.lastSentAt < 10) throw Error('too fast'); // throttle
-      ws.send(JSON.stringify(data));
+      ws.json.send(data);
       ws.lastSentAt = Date.now();
 
       // TODO disconnect after 10 minutes of no real sending
