@@ -228,8 +228,8 @@ var nko = {};
     var ws = io.connect();
     ws.on('connect', function() {
       (function heartbeat() {
-        nko.send({ obj: me });
-        setTimeout(heartbeat, 10000);
+        nko.send({ obj: me }, true);
+        setTimeout(heartbeat, 5000);
       })();
     });
     ws.on('message', function(data) {
@@ -285,14 +285,20 @@ var nko = {};
 
       page.click();
     };
-    nko.send = function send(data) {
+    nko.send = function send(data, heartbeat) {
       if (!ws) return;
-      if (Date.now() - ws.lastSentAt < 10) throw Error('too fast'); // throttle
-      ws.json.send(data);
-      ws.lastSentAt = Date.now();
+      var now = Date.now();
 
-      // TODO disconnect after 10 minutes of no real sending
-      // TODO refresh watchmaker client after 24 hours of inactivity
+      if (now - ws.lastSentAt < 10) throw Error('throttled');
+      ws.lastSentAt = now;
+
+      if (!heartbeat || ws.lastActionAt)
+        ws.json.send(data);
+
+      // disconnect after 30 minutes of idling; refresh after 12 hours
+      if (now - ws.lastActionAt > 1800000) ws.disconnect();
+      if (now - ws.lastActionAt > 43200000) location.reload();
+      if (!heartbeat) ws.lastActionAt = now;
     };
 
     var resizeTimeout = null;
