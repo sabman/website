@@ -50,6 +50,21 @@ ul.locations
       .
 
   li
+    h4#cologne Chandler, Arizona
+    - address = escape('260 S Arizona Avenue, Chandler, AZ 85225')
+    a( href='http://maps.google.com/maps?q=' + address )
+      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
+    h3
+      a( href: 'http://gangplankhq.com/' ) Gangplank
+    h5
+      | 260 S Arizona Avenue
+      br
+      | Chandler, AZ 85225
+    p Contact
+      a( href: 'http://twitter.com/geetarista' ) @geetarista
+      .
+
+  li
     h4#cologne Cologne, Germany
     - address = escape('Deutz-Mülheimerstraße 129, 51063 Köln, Germany')
     a( href='http://maps.google.com/maps?q=' + address )
