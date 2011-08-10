@@ -50,6 +50,8 @@ module.exports = (app) ->
   app.dynamicHelpers
     session: (req, res) -> req.session
     req: (req, res) -> req
+    _csrf: (req, res) ->
+      """<input type="hidden" name="_csrf" value="#{req.session._csrf}"/>"""
     title: (req, res) ->
       (title) ->
         req.pageTitle = title if title

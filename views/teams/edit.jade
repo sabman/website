@@ -10,6 +10,7 @@ form( method: 'POST', action: '/teams/' + team.id )
   a.scary.remove( href: '#' ) Delete?
 
 form.delete( method: 'POST', action: '/teams/' + team.id )
+  != _csrf
   input( type: 'hidden', name: '_method', value: 'DELETE' )
   p Are you sure? This can't be undone.
   input.scary( type: 'submit', value: 'Delete' )

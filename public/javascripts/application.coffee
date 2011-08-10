@@ -1,4 +1,10 @@
 $ ->
+  # ensure csrf token is included in all ajax requests
+  # from https://github.com/rails/jquery-ujs/blob/master/src/rails.js
+  $.ajaxPrefilter (options, originalOptions, xhr) ->
+    token = $('meta[name="_csrf"]').attr('content')
+    xhr.setRequestHeader 'X-CSRF-Token', token
+
   $(':text:first').focus() # focus first input
 
   $('#page.teams-edit, #page.people-edit').each ->

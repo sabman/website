@@ -5,6 +5,7 @@
     action: vote ? '/votes/' + vote.id : '/teams/' + team.id + '/votes',
     method: 'POST'
   )
+    != _csrf
     - if (vote && !req.user.voter)
       input( type: 'hidden', name: '_method', value: 'PUT' )
     input( type: 'hidden', name: 'audit[remoteAddress]', value: req.socket.remoteAddress )
