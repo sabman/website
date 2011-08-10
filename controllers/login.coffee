@@ -26,6 +26,7 @@ app.get '/login/done', [ensureAuth, loadPerson, loadPersonTeam], (req, res, next
       if team
         res.redirect '/teams/' + team.id
       else
+        delete req.session.team
         res.redirect '/teams/new'
   else if returnTo = req.session.returnTo
     delete req.session.returnTo
