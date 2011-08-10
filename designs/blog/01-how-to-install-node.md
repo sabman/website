@@ -1,6 +1,6 @@
-This is the 1st in series of posts leading up to the second annual
+_This is the 1st in series of posts leading up to the second annual
 [Node.js Knockout](http://nodeknockout.com) about how to use
-[node.js](http://nodejs.org).
+[node.js](http://nodejs.org)._
 
 This post covers how to install node on three popular development
 platforms: [Mac](#mac), [Ubuntu](#ubuntu), and [Windows](#windows).
@@ -21,7 +21,7 @@ That's it! Check it worked with a simple [Hello, World!](#hello) example.
     sudo apt-get install python-software-properties
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
-    sudo apt-get install nodejs
+    sudo apt-get install nodejs nodejs-dev
 
 Then, check it worked with a simple [Hello, World!](#hello) example.
 
