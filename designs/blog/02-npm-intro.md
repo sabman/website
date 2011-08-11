@@ -1,8 +1,8 @@
-This is the 2nd in series of posts leading up
+_This is the 2nd in series of posts leading up
 [Node.js Knockout](http://nodeknockout.com) about how to use
 [npm](http://npmjs.org). This post was written by npm author and
 [Node.js Knockout judge](http://nodeknockout.com/people/4e2819db6fd024010000192e)
-Isaac Schlueter.
+Isaac Schlueter._
 
 npm is a [NodeJS](http://nodejs.org/) package manager.  As its name
 would imply, you can use it to install node programs.  Also, if you use
