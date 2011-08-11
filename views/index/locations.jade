@@ -36,280 +36,180 @@
 ul.locations
   li
     h4#cape-town Cape Town, South Africa
-    - address = escape('71 Roeland St, Cape Town')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://thisarmy.com/' ) thisarmy
-    h5
-      | Tank, First Floor
-      br
-      | 71 Roeland St, Cape Town
-    p Contact 
-      a( href: 'http://twitter.com/__leroux' ) @__leroux
-      .
+    != address('71 Roeland St, Cape Town')
+    :markdown
+      ### [thisarmy](http://thisarmy.com/)
+      ##### Tank, First Floor<br/> 71 Roeland St, Cape Town
+
+      Contact [@__leroux](http://twitter.com/__leroux).
 
   li
     h4#chandler Chandler, Arizona
-    - address = escape('260 S Arizona Avenue, Chandler, AZ 85225')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://gangplankhq.com/' ) Gangplank
-    h5
-      | 260 S Arizona Avenue
-      br
-      | Chandler, AZ 85225
-    p Contact
-      a( href: 'http://twitter.com/geetarista' ) @geetarista
-      .
+    != address('260 S Arizona Avenue, Chandler, AZ 85225')
+    :markdown
+      ### [Gangplank](http://gangplankhq.com/)
+      ##### 260 S Arizona Avenue<br/> Chandler, AZ 85225
+
+      Contact [@geetarista](http://twitter.com/geetarista).
 
   li
     h4#cologne Cologne, Germany
-    - address = escape('Deutz-Mülheimerstraße 129, 51063 Köln, Germany')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://railslove.com/' ) Railslove
-      br
-      a( href: 'http://www.coworkingcologne.de/' ) @ cowoco
-    h5
-      | Deutz-Mülheimerstraße 129
-      br
-      | 51063 Köln
-    p Contact 
-      a( href: 'mailto:michael@railslove.com' ) michael@railslove.com
-      .
+    != address('Deutz-Mülheimerstraße 129, 51063 Köln, Germany')
+    :markdown
+      ### [Railslove](http://railslove.com/)<br/> [@ cowoco](http://www.coworkingcologne.de/)
+      ##### Deutz-Mülheimerstraße 129<br/> 51063 Köln
+
+      Contact [michael@railslove.com](mailto:michael@railslove.com).
 
   li
     h4#copenhagen Copenhagen, Denmark
-    - address = escape('Gothersgade 8B, 1123 Copenhagen')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.nodeclub.dk/' ) Node Club Copenhagen
-      br
-      a( href: 'http://foundershouse.dk/' ) @ Founders House
-    h5
-      | Boltens Gaard
-      br
-      | Gothersgade 8B, 1123 Copenhagen
-    p
-      | Drinks are on the house and good pizza, bagels, and kebabs are 30-50
-      | meters away.
+    != address('Gothersgade 8B, 1123 Copenhagen')
+    :markdown
+      ### [Node Club Copenhagen](http://www.nodeclub.dk/)<br/> [@ Founders House](http://foundershouse.dk/)
+      ##### Boltens Gaard<br/> Gothersgade 8B, 1123 Copenhagen
+
+      Drinks are on the house and good pizza, bagels, and kebabs are 30-50
+      meters away.
 
   li
     h4#dresden Dresden, Germany
-    - address = escape('Lingnerallee 3, 01069 Dresden')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'https://www.c3d2.de/' ) C3D2 HQ
-    h5
-      | Lingnerallee 3
-      br
-      | 01069 Dresden
-    p There'll be Club Mate!
+    != address('Lingnerallee 3, 01069 Dresden')
+    :markdown
+      ### [C3D2 HQ](https://www.c3d2.de/)
+      ##### Lingnerallee 3<br/> 01069 Dresden
+
+      There'll be Club Mate!
 
   li
     h4#dublin Dublin, Ireland
-    - address = escape('9 Anglesea Row, Dublin 7, Ireland')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.amworks.ie/' ) AMWorks coworking
-    h5
-      | 9 Anglesea Row
-      br
-      | Dublin 7
-    p
-      | Contact
-      a( href: 'http://twitter.com/amworks' ) @amworks
+    != address('9 Anglesea Row, Dublin 7, Ireland')
+    :markdown
+      ### [AMWorks coworking](http://www.amworks.ie/)
+      ##### 9 Anglesea Row<br/> Dublin 7
+
+      Contact [@amworks](http://twitter.com/amworks).
 
   li
     h4#london London, UK
-    - address = escape('19 Mandela Street, London, NW1 0DU, United Kingdom')
-    a( href: 'http://www.forward.co.uk/contact' )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.forward.co.uk/' ) Forward
-      | , 
-      a( href: 'http://pusher.com/' ) Pusher
-      | , &amp;
-      a( href: 'http://www.gosquared.com/' ) GoSquared
-    h5
-      | Floor 2, Centro 3
-      br
-      | 19 Mandela Street, London, NW1 0DU
-    p Free pizza and beers. More details soon.
+    != address('19 Mandela Street, London, NW1 0DU, United Kingdom')
+    :markdown
+      ### [Forward], [Pusher], & [GoSquared]
+      ##### Floor 2, Centro 3<br/> 19 Mandela Street, London, NW1 0DU
+
+      Free pizza and beers. More details soon.
+
+      [Forward]: http://www.forward.co.uk/
+      [Pusher]: http://pusher.com/
+      [GoSquared]: http://www.gosquared.com/
 
   li
     h4#munich Munich, Germany
-    - address = escape('Sonnenstraße 32, 80331 München')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3: a( href: 'http://coworkingmunich.de/' ) coworkingmunich.de
-    h5
-      | Sonnenstraße 32
-      br
-      | 80331 München
-    p
-      | Coworking space for free to all attendees during the contest.
-      | Contact
-      a( href: 'mailto:counter@coworkingmunich.de' ) counter@coworkingmunich.de
+    != address('Sonnenstraße 32, 80331 München')
+    :markdown
+      ### [coworkingmunich.de](http://coworkingmunich.de/)
+      ##### Sonnenstraße 32<br/> 80331 München
+
+      Coworking space for free to all attendees during the contest. Contact
+      [counter@coworkingmunich.de](mailto:counter@coworkingmunich.de).
 
   li
     h4#nyc New York
-    - address = escape('902 Broadway 4th Floor, New York, NY, 10016')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.nodejitsu.com/#/home' ) nodejitsu
-      br
-      a( href: 'http://www.generalassemb.ly/' ) @ General Assembly
-    h5
-      | 902 Broadway, 4th Floor
-      br
-      | New York, NY, 10016
+    != address('902 Broadway 4th Floor, New York, NY, 10016')
     :markdown
+      ### [nodejitsu]<br/> [@ General Assembly]
+      ##### 902 Broadway, 4th Floor<br/> New York, NY, 10016
+
       Beverages and snacks on hand as well as team Nodejitsu
       and a few other tech startups to help you out with their
       APIs and tools. [Check out all the details][1]. Contact [@saadiq].
 
+      [nodejitsu]: http://www.nodejitsu.com/#/home
+      [@ General Assembly]: http://www.generalassemb.ly/
       [1]: http://blog.nodejitsu.com/node-knockout-nyc
       [@saadiq]: https://twitter.com/#!/saadiq
 
   li
     h4#paris Paris, France
-    - address = escape('16 rue Gaillon, 75002 Paris')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3: a( href: 'http://joshfire.com/contact/' ) Joshfire
-    h5
-      | 16 rue Gaillon
-      br
-      | 75002 Paris
-    p We have space for at least 10 teams.
+    != address('16 rue Gaillon, 75002 Paris')
+    :markdown
+      ### [Joshfire](http://joshfire.com/contact/)
+      ##### 16 rue Gaillon<br/> 75002 Paris
+
+      We have space for at least 10 teams.
 
   li
     h4#poa Porto Alegre, Brazil
-    - address = escape('Rua Liberdade 553, Porto Alegre, Brazil')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.softa.com.br/' ) Softa
-    h5
-      | Rua Liberdade 553
-      br
-      | Porto Alegre
-    p Contact 
-      a( href: 'http://twitter.com/joaomilho' ) @joaomilho
-      .
+    != address('Rua Liberdade 553, Porto Alegre, Brazil')
+    :markdown
+      ### [Softa](http://www.softa.com.br/)
+      ##### Rua Liberdade 553<br/> Porto Alegre
+
+      Contact [@joaomilho](http://twitter.com/joaomilho).
 
   li
     h4#poznan Poznań, Poland
-    - address = escape('Woźna 9, 61-777 Poznań, Poland')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.netguru.pl/p/en' ) Netguru
-    h5
-      | Woźna 9C/2
-      br
-      | Poznań
-    p
-      | Contact
-      a( href: 'http://twitter.com/iktorn' ) @iktorn
+    != address('Woźna 9, 61-777 Poznań, Poland')
+    :markdown
+      ### [Netguru](http://www.netguru.pl/p/en)
+      ##### Woźna 9C/2<br/> Poznań
+
+      Contact [@iktorn](http://twitter.com/iktorn).
   
   li
     h4#santa-monica Santa Monica / Los Angeles
-    - address = escape('902 Colorado, Santa Monica, CA 90401')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.mahalo.com/' ) Mahalo HQ
-    h5
-      | 902 Colorado Ave
-      br
-      | Santa Monica, CA 90401
-    p
-      | Sodas plus pizza for lunch both days. Contact
-      a( href: 'http://twitter.com/joshontheweb' ) @joshontheweb
-      |  with questions.
+    != address('902 Colorado, Santa Monica, CA 90401')
+    :markdown
+      ### [Mahalo HQ](http://www.mahalo.com/)
+      ##### 902 Colorado Ave<br/> Santa Monica, CA 90401
+
+      Sodas plus pizza for lunch both days. Contact
+      [@joshontheweb](http://twitter.com/joshontheweb) with questions.
 
   li
     h4#singapore Singapore
-    - address = escape('99B Tanjong Pagar Road, Singapore 088520')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://2359media.com/' ) 2359 media
-    h5
-      | 99B Tanjong Pagar Road
-      br
-      | Singapore 088520
-    p
-      | A fridge, complimentary monitors, keyboards, and mice. Contact
-      a( href: 'mailto:seivan.heidari@2359media.com' ) Seivan Heidari
-      | .
+    != address('99B Tanjong Pagar Road, Singapore 088520')
+    :markdown
+      ### [2359 media](http://2359media.com/)
+      ##### 99B Tanjong Pagar Road<br/> Singapore 088520
+
+      A fridge, complimentary monitors, keyboards, and mice. Contact
+      [Seivan Heidari](mailto:seivan.heidari@2359media.com).
 
   li
     h4#stockholm Stockholm, Sweden
-    - address = escape('Birger Jarlsgatan 18, 114 34, Stockholm, Sweden')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://hanssonlarsson.se/' ) Hansson & Larsson Internet AB
-    h5
-      | Birger Jarlsgatan 18A, 5 tr
-      br
-      | 114 34 Stockholm
-    p
-      | Everybody welcome during the knockout. We will provide coffee and beer.
-      | Contact 
-      a( href: 'http://twitter.com/yesbabyyes' ) @yesbabyyes
-      |  with any questions.
+    != address('Birger Jarlsgatan 18, 114 34, Stockholm, Sweden')
+    :markdown
+      ### [Hansson & Larsson Internet AB](http://hanssonlarsson.se/)
+      ##### Birger Jarlsgatan 18A, 5 tr<br/> 114 34 Stockholm
+
+      Everybody welcome during the knockout. We will provide coffee and beer.
+      Contact [@yesbabyyes](http://twitter.com/yesbabyyes) with any questions.
 
   li
     h4#tokyo Tokyo, Japan
-    - address = escape('東京都港区芝浦１丁目１４−６')
-    a( href='http://maps.google.co.jp/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'https://groups.google.com/forum/#!forum/nodejs_jp' ) Node.js日本ユーザグループ
-    h5 東京都港区芝浦1-14-6 BSビル3F
-    p
-      | Everybody welcome during whole knockout with free drinks. Contact 
-      a( href: 'http://twitter.com/meso' ) @meso
-      .
+    != address('東京都港区芝浦１丁目１４−６', 'maps.google.co.jp')
+    :markdown
+      ### [Node.js日本ユーザグループ](https://groups.google.com/forum/#!forum/nodejs_jp)
+      ##### 東京都港区芝浦1-14-6 BSビル3F
+
+      Everybody welcome during whole knockout with free drinks. Contact
+      [@meso](http://twitter.com/meso).
 
   li
     h4#treviso Treviso, Italy
-    - address = escape('Via Sile, 41, 31056 Roncade Treviso')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://www.h-farmventures.com/' ) H-farm
-    h5
-      | Via Sile, 41
-      br
-      | Roncade Treviso
-    p Contact 
-      a( href: 'http://twitter.com/johnnyaboh' ) @johnnyaboh
-      .
+    != address('Via Sile, 41, 31056 Roncade Treviso')
+    :markdown
+      ### [H-farm](http://www.h-farmventures.com/)
+      ##### Via Sile, 41<br/> Roncade Treviso
+
+      Contact [@johnnyaboh](http://twitter.com/johnnyaboh).
 
   li
     h4#warsaw Warsaw, Poland
-    - address = escape('Bohomolca 15, 01-613 Warszawa, Poland')
-    a( href='http://maps.google.com/maps?q=' + address )
-      img.map( src='http://maps.googleapis.com/maps/api/staticmap?center=' + address + '&zoom=15&size=226x140&sensor=false&markers=size:small|' + address )
-    h3
-      a( href: 'http://reaktor.net' ) ReaktorWarsaw
-    h5
-      | Bohomolca 15
-      br
-      | Warsaw
-    p
-      | Contact
-      a( href: 'http://twitter.com/ReaktorWarsaw' ) @ReaktorWarsaw
+    != address('Bohomolca 15, 01-613 Warszawa, Poland')
+    :markdown
+      ### [ReaktorWarsaw](http://reaktor.net)
+      ##### Bohomolca 15<br/> Warsaw
+
+      Contact [@ReaktorWarsaw](http://twitter.com/ReaktorWarsaw).
   
