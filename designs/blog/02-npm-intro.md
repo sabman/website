@@ -81,9 +81,9 @@ the packages that your project relies on in both production and
 development. `"devDependencies"` lists the packages, like test suites
 and debugging tools, that are only useful in development.
 
-You can easily create a valid `package.json` file with the `npm init`
-command.  `npm install blerg --save` will install `blerg` package and
-add it as a dependency in your `package.json` file.
+Some useful shortcuts: you can easily create a valid `package.json` file
+with the `npm init` command, and  `npm install blerg --save` will install
+the `blerg` package and automatically add it as a dependency.
 
 Now, if you run `npm install` without any arguments, it will
 automatically install your project's dependencies.
