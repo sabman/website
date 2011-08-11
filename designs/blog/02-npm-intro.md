@@ -32,7 +32,7 @@ package managers do, they install stuff.
 
 The first step in installing something is discovering what to install.
 That's where `npm search` comes in handy. It'll search the package
-registry for anything that matches the search term you provide, and
+registry for anything that matches the search term you provide and
 print out a list matching packages, along with descriptions.
 
     $ npm search memcached
@@ -42,10 +42,9 @@ print out a list matching packages, along with descriptions.
     memcached          A fully featured Memcached API client, supporting both single
     nMemcached         A fully featured Memcached client, supporting both single and
 
-`npm info` will get you more details about a package: the
-contents of the package.json file. From there, you can usually find all
-the information you need to fully evaluate if it is the right package
-for you.
+`npm info` will get you more details about a package: namely, the
+contents of the package.json file. From there, you can usually find
+everything you need to evaluate if it's the right package for you.
 
 ## Installing stuff: `npm install`
 
