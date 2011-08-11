@@ -70,19 +70,20 @@ Instead, you can specify your dependencies in the `package.json` file.
 
 The `package.json` file goes in the root of your project.  It tells npm
 how your package is structured, and what to do to install it, and most
-importantly, what dependencies it relies on.
-
-Here's what the
+importantly, what dependencies it relies on.  Here's what the
 [Node.js Knockout `package.json` file looks like](https://github.com/nko2/website/blob/master/package.json).
 
 For projects without dependencies, you only need the `"name"`,
 `"version"`, and `"main"` fields  (even for node-waf compiled addons).
-
 However, it's likely you'll also want to specify `"dependencies"` and
 `"devDependencies"` in your package.json file. `"dependencies"` lists
 the packages that your project relies on in both production and
 development. `"devDependencies"` lists the packages, like test suites
 and debugging tools, that are only useful in development.
+
+You can easily create a valid `package.json` file with the `npm init`
+command.  `npm install blerg --save` will install `blerg` package and
+add it as a dependency in your `package.json` file.
 
 Now, if you run `npm install` without any arguments, it will
 automatically install your project's dependencies.
