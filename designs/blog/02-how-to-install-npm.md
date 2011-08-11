@@ -23,8 +23,8 @@ See the [npm readme][2] for additional installation options, including
 being able to install without git or curl, and being able to install
 with different permissions.
 
-[1](http://github.com/isaacs/npm)
-[2](https://github.com/isaacs/npm/blob/master/README.md)
+[1]: http://github.com/isaacs/npm
+[2]: https://github.com/isaacs/npm/blob/master/README.md
 
 ## Coming soon
 
@@ -33,4 +33,4 @@ In a future post, npm author and [Node.js Knockout judge][3] Isaac
 Schlueter will give a more detailed overview some of the most useful
 features of npm.
 
-[3](http://nodeknockout.com/people/4e2819db6fd024010000192e)
+[3]: http://nodeknockout.com/people/4e2819db6fd024010000192e
