@@ -295,9 +295,9 @@ var nko = {};
       if (!heartbeat || ws.lastActionAt)
         ws.json.send(data);
 
-      // disconnect after 30 minutes of idling; refresh after 12 hours
+      // disconnect after 30 minutes of idling; refresh after 2 hours
       if (now - ws.lastActionAt > 1800000) ws.disconnect();
-      if (now - ws.lastActionAt > 43200000) location.reload();
+      if (now - ws.lastActionAt > 7200000) location.reload();
       if (!heartbeat) ws.lastActionAt = now;
     };
 
