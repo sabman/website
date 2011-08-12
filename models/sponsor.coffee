@@ -203,18 +203,20 @@ module.exports = [
     [1]: http://pusher.com/
     '''
 ,
-  name:  'scopely'
+  name:  'Scopely'
   image: 'scopely.png'
   url:   'http://jobs.scopely.com/'
   description:
     '''
-    The hottest new consumer web startup in Los Angeles, Scopely is in stealth
-    mode preparing to disrupt a segment of the social web that is ripe for
-    innovation. The Scopely team includes 12 senior engineers and product
+    The hottest new consumer web startup in Los Angeles, [Scopely][1] is in
+    stealth mode preparing to disrupt a segment of the social web that is ripe
+    for innovation. The Scopely team includes 12 senior engineers and product
     managers from companies including Playdom, MindJolt, Warner Brothers, and
     Saatchi and Saatchi. Current investors include David Tisch, Greycroft
     Partners, David Cohen, Windsor Media, Lerer Ventures, The Collaborative
     Fund, Howard Lindzon, Gil Elbaz, and Evan Rifkin.
+
+    [1]: http://jobs.scopely.com/
     '''
 ,
   name:  'Sleepless'
@@ -290,6 +292,22 @@ module.exports = [
     available at developers.tradeking.com.
 
     [1]: http://www.tradeking.com
+    '''
+,
+  name:  'Tropo'
+  image: 'tropo.png'
+  url:   'https://www.tropo.com/home.jsp'
+  description:
+    '''
+    [Tropo][1] makes it simple to build phone, SMS and Instant Messaging (IM)
+    applications. You use the web technologies you already know and Tropo's
+    powerful cloud API to bring real-time communications to your apps. Tropo
+    empowers developers to build sophisticated, multi-channel communication
+    applications with easy to use cloud-based components. Tropo is committed to
+    fostering and supporting open source, open standards and open
+    communications.
+
+    [1]: https://www.tropo.com/home.jsp
     '''
 ,
   name:  'Twilio'
