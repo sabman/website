@@ -212,7 +212,7 @@ module.exports = [
     mode preparing to disrupt a segment of the social web that is ripe for
     innovation. The Scopely team includes 12 senior engineers and product
     managers from companies including Playdom, MindJolt, Warner Brothers, and
-    Saatchi and Saatchi. Current invesotrs include David Tisch, Greycroft
+    Saatchi and Saatchi. Current investors include David Tisch, Greycroft
     Partners, David Cohen, Windsor Media, Lerer Ventures, The Collaborative
     Fund, Howard Lindzon, Gil Elbaz, and Evan Rifkin.
     '''
@@ -229,7 +229,7 @@ module.exports = [
     infrastructure.  We provide development, consulting, and analysis for
     projects large and small. Our teams are very highly skilled and possess a
     breadth and depth of experience rarely found.  If you have a project or
-    would like to work on one,  find us at Sleepless.com.
+    would like to work on one, find us at Sleepless.com.
 
     [1]: http://sleepless.com/
     '''
