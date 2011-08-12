@@ -289,7 +289,7 @@ var nko = {};
       if (!ws) return;
       var now = Date.now();
 
-      if (now - ws.lastSentAt < 10) throw Error('throttled');
+      if (now - ws.lastSentAt < 10) return; //throw Error('throttled');
       ws.lastSentAt = now;
 
       if (!heartbeat || ws.lastActionAt)
