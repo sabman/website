@@ -212,7 +212,8 @@ var nko = {};
 
 
   $(function() {
-    // a dude
+
+    //// a dude
     var types = [ 'suit', 'littleguy', 'beast', 'gifter' ];
     var me = nko.me = new nko.Dude({
       name: types[Math.floor(types.length * Math.random())],
@@ -223,7 +224,15 @@ var nko = {};
       }
     });
 
-    // networking
+    // random dude placement
+    $(window).load(function() {
+      var el = $(location.hash)
+      if (el.length === 0) el = $('body');
+      nko.warpTo(el);
+    });
+
+
+    //// networking
     var dudes = nko.dudes = {};
     var ws = io.connect();
     ws.on('connect', function() {
@@ -249,6 +258,8 @@ var nko = {};
       }
     });
 
+
+    //// helper methods
     function randomPositionOn(selector) {
       var page = $(selector)
         , pos = page.position()
@@ -301,6 +312,15 @@ var nko = {};
       if (!heartbeat) ws.lastActionAt = now;
     };
 
+
+    //// event listeners
+
+    // enter watchmaker land
+    $('.thing.streetlamp').live('click', function() {
+      $('#inner').fadeToggle()
+    });
+
+    // movement
     var resizeTimeout = null;
     $(window)
       .resize(function(e) {
@@ -365,6 +385,7 @@ var nko = {};
         }
       });
 
+    // ios
     var moved = false;
     $('body')
       .bind('touchmove', function(e) { moved = true; })
@@ -373,6 +394,8 @@ var nko = {};
         var t = e.originalEvent.changedTouches.item(0);
         me.goTo(new nko.Vector(t.pageX, t.pageY));
       })
+
+    $('body')
       .delegate('a[href^="#"]', 'click', function(e) {
         if ($(this).attr('href') === '#') return;
         e.preventDefault();
@@ -387,7 +410,7 @@ var nko = {};
         }, 1);
       });
 
-    // keyboard
+    // chat
     var speakTimeout, $text = $('<textarea>')
       .appendTo($('<div class="textarea-container">')
       .appendTo(me.div))
@@ -433,11 +456,6 @@ var nko = {};
       }
     });
 
-    $(window).load(function() { // center it
-      var el = $(location.hash)
-      if (el.length === 0) el = $('body');
-      nko.warpTo(el);
-    });
 
     //// flare
     new nko.Thing({ name: 'streetlamp', pos: new nko.Vector(-10, 160) });
@@ -457,7 +475,5 @@ var nko = {};
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(120, 1800) });
     new nko.Thing({ name: 'deadtree', pos: new nko.Vector(70, 1700) });
     new nko.Thing({ name: 'livetree', pos: new nko.Vector(-10, 1900) });
-
-    $('.thing.streetlamp').live('click', function() { $('#inner').fadeToggle() });
   });
 })(nko); // export nko
