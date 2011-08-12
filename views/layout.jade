@@ -88,3 +88,7 @@ html
           if (/^https?:/.test(href)) { _gaq.push([ '_trackPageview', href ]); }
         } catch(e) {}
       });
+      $(function() {
+        if (nko.me)
+          nko.me.div.prop('title', !{JSON.stringify(req.user && req.user.login || null)});
+      });
