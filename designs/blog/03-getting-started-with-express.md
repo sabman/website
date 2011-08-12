@@ -52,21 +52,21 @@ callback function.
     });
 
 Next we need our server to listen on a given port. Below we call
-`listen()` which attempts to bind the server to port 55065 by default,
-however this can be whatever you like, for example `listen(80)`.
+`listen(3000)` which attempts to bind the server to port 3000. This can
+be whatever you like, for example `listen(80)`.
 
-    app.listen();
+    app.listen(3000);
     console.log('Express server started on port %s', app.address().port);
 
 We can execute the app simply by executing `node(1)` against our
 JavaScript file:
 
     $ node app.js
-    Express server started on port 55065
+    Express server started on port 3000
 
 Finally to confirm everything is working as expected:
 
-    $ curl http://localhost:55065
+    $ curl http://localhost:3000
     Hello World
 
 ## Middleware
@@ -77,7 +77,7 @@ Express middleware. For example if we wish to add logging support to our
 hello world application, we can add the following line below `app =
 express.createServer();`:
 
-app.use(express.logger());
+    app.use(express.logger());
 
 For more information on middleware usage view the [Middleware][9]
 section of the [Express Guide][10].
@@ -101,5 +101,5 @@ application:
         res.send('Hello World');
     });
 
-    app.listen();
+    app.listen(3000);
     console.log('Express server started on port %s', app.address().port);
