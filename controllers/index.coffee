@@ -1,5 +1,6 @@
 app = require '../config/app'
 Team = app.db.model 'Team'
+Person = app.db.model 'Person'
 
 # middleware
 loadCurrentPersonWithTeam = (req, res, next) ->
@@ -26,3 +27,12 @@ app.get '/', [loadCurrentPersonWithTeam, loadCanRegister], (req, res) ->
 
 app.get '/judging', (req, res) ->
   res.redirect '/judges/new'
+
+app.get '/media', (req, res) ->
+  Team.count {}, (err, teams) ->
+    return next err if err
+    Person.count { role: 'contestant' }, (err, people) ->
+      return next err if err
+      res.render2 'index/media',
+        teams: teams - 1   # compensate for team fortnight
+        people: people - 4
