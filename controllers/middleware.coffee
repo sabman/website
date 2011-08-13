@@ -9,6 +9,7 @@ module.exports =
   ensureAuth: ensureAuth
 
   ensureAccess: (req, res, next) ->
+    return next() if req.team? and req.team.includes(null, req.session.team)
     ensureAuth req, res, ->
       unless req.user.admin
         return next 401 if req.person? and req.person.id isnt req.user.id
