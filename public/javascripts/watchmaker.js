@@ -316,7 +316,7 @@ var nko = {};
     //// event listeners
 
     // enter watchmaker land
-    $('.thing.streetlamp').live('click', function() {
+    $('.thing.streetlamp').live('click touchend', function() {
       $('#inner').fadeToggle()
     });
 
