@@ -68,7 +68,7 @@ app.configure(function() {
         ]
       },
       files: [ // order matters here
-        'console.js',
+        'polyfills.js',
         'vendor/hoptoad-notifier.js',
         'vendor/hoptoad-key.js',
         'vendor/modernizr-2.0.4.js',
