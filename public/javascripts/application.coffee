@@ -3,10 +3,12 @@ $('a[href^="/"]').live 'click', (e) ->
   href = $(this).attr('href')
   if !href.match(new RegExp('^/(auth|login/|logout)')) # login, logout
     e.preventDefault()
-    $.pjax url: href, container: '#inner', fragment: '#inner'
+    $('#inner').toggleClass('loading')
+    $.pjax url: href, container: '#inner', fragment: '#inner', timeout: 2222
 
 $(document).bind 'pjax', (e, xhr, options) ->
   xhr.success (html) ->
+    $('#inner').toggleClass('loading')
     wrapper = $('<div>')
     wrapper.get(0).innerHTML = html
     $('#page').prop('class', wrapper.find('#page').attr('class'))

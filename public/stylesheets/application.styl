@@ -268,6 +268,9 @@ form.vote[action^="/votes"] .enabled /* TODO fix for IE */
     position relative
     padding 10px 20px
     width 580px
+    transition color 100ms
+    &.loading
+      color: hsla(0, 0%, 0%, 0.5)
     header
       text-align center
       h1
