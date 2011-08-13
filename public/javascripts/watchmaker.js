@@ -234,7 +234,7 @@ var nko = {};
 
     //// networking
     var dudes = nko.dudes = {};
-    var ws = io.connect();
+    var ws = nko.ws = io.connect();
     ws.on('connect', function() {
       (function heartbeat() {
         nko.send({ obj: me }, true);
