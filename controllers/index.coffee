@@ -22,17 +22,17 @@ app.get '/', [loadCurrentPersonWithTeam, loadCanRegister], (req, res) ->
     canRegister: req.canRegister
     teamsLeft: req.teamsLeft
 
-['faq', 'how-to-win', 'locations', 'rules', 'sponsors'].forEach (p) ->
+['how-to-win', 'locations', 'rules', 'sponsors'].forEach (p) ->
   app.get '/' + p, (req, res) -> res.render2 "index/#{p}"
 
-app.get '/judging', (req, res) ->
-  res.redirect '/judges/new'
-
-app.get '/media', (req, res) ->
+app.get '/about', (req, res) ->
   Team.count {}, (err, teams) ->
     return next err if err
     Person.count { role: 'contestant' }, (err, people) ->
       return next err if err
-      res.render2 'index/media',
+      res.render2 'index/about',
         teams: teams - 1   # compensate for team fortnight
         people: people - 4
+
+app.get '/judging', (req, res) ->
+  res.redirect '/judges/new'
