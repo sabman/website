@@ -1,6 +1,6 @@
+_ = require 'underscore'
 app = require '../config/app'
 Person = app.db.model 'Person'
-_ = require 'underscore'
 
 # index
 app.get '/judges', (req, res, next) ->
@@ -35,8 +35,8 @@ app.post '/judges', (req, res) ->
 
 # edit (just redirects to person/edit with twitter login)
 app.get '/judges/:judgeId/edit', (req, res, next) ->
-  edit_person_path = "/people/#{req.param('judgeId')}/edit"
+  editPersonPath = "/people/#{req.param('judgeId')}/edit"
   if req.loggedIn
-    res.redirect edit_person_path
+    res.redirect editPersonPath
   else
-    res.redirect "/login/twitter?returnTo=#{edit_person_path}"
+    res.redirect "/login/twitter?returnTo=#{editPersonPath}"
