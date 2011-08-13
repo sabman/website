@@ -14,6 +14,7 @@ load = ->
   $('#page.teams-show').each ->
     $(this).delegate '.invites a', 'click', (e) ->
       e.preventDefault()
+      e.stopImmediatePropagation()
       $t = $(this).hide()
       $n = $t.next().show().html 'sending&hellip;'
       $.post @href, ->
