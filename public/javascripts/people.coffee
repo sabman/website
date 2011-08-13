@@ -36,29 +36,33 @@ $('form.person .twitter input').live('blur', ->
       $this.next('.spinner').hide()
 ).change()
 
-$ ->
-  $i = $('form.person .image_url')
+load = ->
+  $('form.person .image_url').each ->
+    $i = $(this)
 
-  # setup the transloadit form
-  # TODO may not need the iframe BS
-  $t = $i.find('.transloadit')
-  $iframe = $t.find('iframe').contents()
-  $form = $iframe.find('body').html($t.find('script').html()).find('form')
-  $file = $form.find('input[type=file]').change -> $form.submit()
-  $form.transloadit
-    wait: true
-    modal: false
-    autoSubmit: false
-    onStart: -> $i.find('.spinner').show()
-    onSuccess: (data) ->
-      $i.find('.spinner').hide()
-      image_url = data.results.w80[0].url
-      $i.find('img.avatar').attr('src', image_url).end()
-        .find('input').val(image_url).end()
+    # setup the transloadit form
+    # TODO may not need the iframe BS
+    $t = $i.find('.transloadit')
+    $iframe = $t.find('iframe').contents()
+    $form = $iframe.find('body').html($t.find('script').html()).find('form')
+    $file = $form.find('input[type=file]').change -> $form.submit()
+    $form.transloadit
+      wait: true
+      modal: false
+      autoSubmit: false
+      onStart: -> $i.find('.spinner').show()
+      onSuccess: (data) ->
+        $i.find('.spinner').hide()
+        image_url = data.results.w80[0].url
+        $i.find('img.avatar').attr('src', image_url).end()
+          .find('input').val(image_url).end()
 
 
-  # button clicks trigger file upload
-  $i.find('button').click((e) ->
-    e.preventDefault();
-    $file.click()
-  ).show()
+    # button clicks trigger file upload
+    $i.find('button').click (e) ->
+      e.preventDefault()
+      $file.click()
+    .show()
+
+$(load)
+$(document).bind 'end.pjax', load

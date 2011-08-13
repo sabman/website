@@ -1,4 +1,4 @@
-$ ->
+load = ->
   $('#page.login').each ->
     animate = (dude, steps) ->
       return unless dude.length > 0
@@ -17,3 +17,6 @@ $ ->
 
     animate $('.dude.beast', this), 4
     animate $('.dude.littleguy', this), 2
+
+$(load)
+$(document).bind 'end.pjax', load

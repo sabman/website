@@ -1,4 +1,4 @@
-$ ->
+load = ->
   $('#page.teams').each ->
     $('ul.teams').infinitescroll
       navSelector: '.more'
@@ -39,3 +39,6 @@ $ ->
         name: 'emails[]'
         placeholder: 'member' + i + '@example.com')
       false
+
+$(load)
+$(document).bind 'end.pjax', load

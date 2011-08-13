@@ -26,7 +26,8 @@ app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
       Team.count query, (err, count) ->
         return next err if err
         teams.count = count
-        res.render2 'teams', teams: teams, people: people, layout: !req.xhr
+        layout = req.header('x-pjax')? || !req.xhr
+        res.render2 'teams', teams: teams, people: people, layout: layout
 
 # new
 app.get '/teams/new', (req, res, next) ->

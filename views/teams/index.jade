@@ -1,5 +1,4 @@
 - title('Teams')
-
 h1 Teams (#{teams.count})
 ul.teams
   - toPeople = function(team) { return _.map(team.peopleIds, function(id) { return people[id]; }) };
@@ -19,4 +18,6 @@ ul.teams
             li: a( href: '/people/' + m.id)= m.login
       .location= locations(members)
       .description!= markdown(team.description)
-  .more: a( href: req.url + '?page=' + (Number(req.param('page') || 1) + 1) ) more
+  - path = req.url.split('?')[0]
+  - nextPage = (+req.param('page') || 1) + 1
+  .more: a( href: path + '?page=' + nextPage ) more

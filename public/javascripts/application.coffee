@@ -1,10 +1,24 @@
-$ ->
-  # ensure csrf token is included in all ajax requests
-  # from https://github.com/rails/jquery-ujs/blob/master/src/rails.js
-  $.ajaxPrefilter (options, originalOptions, xhr) ->
-    token = $('meta[name="_csrf"]').attr('content')
-    xhr.setRequestHeader 'X-CSRF-Token', token
+# pjax
+$('a[href^="/"]').live 'click', (e) ->
+  href = $(this).attr('href')
+  if !href.match(new RegExp('^/(auth|login/|logout)')) # login, logout
+    e.preventDefault()
+    $.pjax url: href, container: '#inner', fragment: '#inner'
 
+$(document).bind 'pjax', (e, xhr, options) ->
+  xhr.success (html) ->
+    wrapper = $('<div>')
+    wrapper.get(0).innerHTML = html
+    $('#page').prop('class', wrapper.find('#page').attr('class'))
+    document.title = wrapper.find('title').text()
+
+# ensure csrf token is included in all ajax requests
+# from https://github.com/rails/jquery-ujs/blob/master/src/rails.js
+$.ajaxPrefilter (options, originalOptions, xhr) ->
+  token = $('meta[name="_csrf"]').attr('content')
+  xhr.setRequestHeader 'X-CSRF-Token', token
+
+load = ->
   $(':text:first').focus() # focus first input
 
   $('#page.teams-edit, #page.people-edit').each ->
@@ -22,3 +36,5 @@ $ ->
     $('form.delete a', this).click ->
       $(this).closest('form').fadeOut('fast')
       false
+$(load)
+$(document).bind 'end.pjax', load

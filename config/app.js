@@ -77,6 +77,7 @@ app.configure(function() {
         'vendor/jquery.border-image.js',
         'vendor/jquery.infinitescroll.js',
         'vendor/jquery.keylisten.js',
+        'vendor/jquery.pjax.js',
         'vendor/jquery.transform.light.js',
         'vendor/jquery.transloadit2.js',
         'vendor/md5.js',
