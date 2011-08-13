@@ -1,6 +1,6 @@
 _This is the 3rd in a series of posts leading up to [Node.js
 Knockout][1] on how to use [Express][2]. This post was written by guest
-author and former [Node.js Knockout judge][3] Tj Holowaychuk and is
+author and [former Node.js Knockout judge][3] Tj Holowaychuk and is
 [cross-posted on his blog][4]._
 
 [1]: http://nodeknockout.com
