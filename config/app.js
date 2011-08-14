@@ -165,7 +165,7 @@ require('../helpers')(app);
 app.listen(port);
 app.ws = require('socket.io').listen(app);
 app.ws.set('log level', 1);
-app.ws.set('browser client minification', false);
+app.ws.set('browser client minification', true);
 
 app.on('listening', function() {
   require('util').log('listening on ' + ('0.0.0.0:' + port).cyan);
