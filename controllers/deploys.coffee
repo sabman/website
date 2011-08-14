@@ -14,7 +14,6 @@ app.all '/teams/:code/deploys', [m.loadTeam], (req, res) ->
   res.end 'ok'
 
   attr = _.clone req.body || {}
-  attr.isProduction = false # TODO check where the request came from
   attr.teamId = req.team.id
   attr.remoteAddress = req.socket.remoteAddress
 
