@@ -41,6 +41,7 @@ h1= title(team.name)
   != markdown(team.description)
 
 - if (voting)
-  h2 Votes
+  h2 Your Vote
   != partial('votes/form', { vote: vote })
+  h2 Votes
   ul.votes!= partial('votes/vote', votes)
