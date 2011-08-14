@@ -1,7 +1,7 @@
 # node.js knockout deploy check-ins
 
 So, we need to keep track of your deploys for lots of different reasons.
-Because we want to be as deploy-agnostic as possible, we now have this fancy
+Because we want to be as platform-agnostic as possible, we now have this fancy
 module that will ping the competition website whenever you deploy.
 
 ## Installation
@@ -22,7 +22,7 @@ top of your `server.js`:
 
     require('nko')('secretc0deZ');
 
-The code parameter is available on [your team page]. It's linked to just your
+The code parameter is available on [your team page]. It's tied to just your
 team, so don't share it with others unless you want them hijacking your
 deploys.
 
@@ -31,9 +31,9 @@ can pass an optional callback as the second parameter.
 
 __Important: The module will only ping us if the `NODE_ENV` environment
 variable is set to `production`.__ If you're not seeing your deploy get
-recorded, make sure it's set correctly. Also, if you happen to have `NODE_ENV`
-set to `production` on your development machine, no worries: we'll be making
-sure the source IP address looks right before recording a deploy.
+recorded, make sure that's set correctly. Also, if you happen to have
+`NODE_ENV` set to `production` on your development machine, no worries: we'll
+be making sure the source IP address looks right before recording a deploy.
 
 ## Problems?
 
