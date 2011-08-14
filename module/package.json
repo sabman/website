@@ -9,7 +9,7 @@
     "type": "git",
     "url": "git://github.com/nko2/website.git"
   },
-  "homepage": "https://github.com/nko2/website/tree/master/module",
+  "homepage": "https://github.com/nko2/website/tree/master/module#readme",
   "keywords": [ "node.js knockout", "knockout", "nko" ],
   "bugs": {
     "email": "all@nodeknockout.com",
