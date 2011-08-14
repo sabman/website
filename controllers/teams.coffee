@@ -87,14 +87,3 @@ app.delete '/teams/:id', [m.loadTeam, m.ensureAccess], (req, res, next) ->
   req.team.remove (err) ->
     return next err if err
     res.redirect '/teams'
-
-app.post '/teams/:code/deploys', [m.loadTeam], (req, res) ->
-  console.log( 'team'.cyan, req.team.name, 'deployed'.green )
-  body = req.body
-  # TODO check where the request came from
-  body.isProduction = false
-  body.teamId = req.team.id
-  delete body.code
-  deploy = new Deploy body
-  deploy.save ->
-    res.send 'ok'
