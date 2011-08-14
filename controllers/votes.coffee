@@ -9,6 +9,8 @@ ensureVoting = (req, res, next) ->
 # create
 app.post '/teams/:teamId/votes', [ensureVoting, m.ensureAuth], (req, res, next) ->
   attr = _.clone req.body
+  attr.audit?.remoteAddress = req.socket.remoteAddress
+  attr.audit?.remotePort = req.socket.remotePort
   _.extend attr,
     personId: req.user.id
     teamId: req.params.teamId

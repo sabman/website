@@ -8,8 +8,6 @@
     != _csrf
     - if (vote && !req.user.voter)
       input( type: 'hidden', name: '_method', value: 'PUT' )
-    input( type: 'hidden', name: 'audit[remoteAddress]', value: req.socket.remoteAddress )
-    input( type: 'hidden', name: 'audit[remotePort]', value: req.socket.remotePort )
     input( type: 'hidden', name: 'audit[userAgent]', value: req.header('user-agent') )
     input( type: 'hidden', name: 'audit[referrer]', value: req.header('referrer') )
     input( type: 'hidden', name: 'audit[accept]', value: req.header('accept') )
