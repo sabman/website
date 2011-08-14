@@ -12,7 +12,30 @@ h1= title(team.name)
     | github
 
 - if (deployment && team.includes(user, session.team) || admin)
-  h2 Deploy
+  - if (team.lastDeploy)
+    h2.deploy-status.done Successfully deployed
+  - else
+    h2.deploy-status.pending Not yet deployed
+    ul.platforms
+      li: label use:
+      li: a( href: '#joyent' ) Joyent
+      li: a( href: '#heroku' ) Heroku
+      li: a( href: '#linode' ) Linode
+    .platform#joyent
+      ol
+        li require('nko')('#{team.code}');
+        li git remote add joyent git://xyz
+        li git push joyent
+    .platform#heroku
+      ol
+        li require('nko')('#{team.code}');
+        li heroku create --stack cedar
+        li git push heroku
+    .platform#linode
+      ol
+        li require('nko')('#{team.code}');
+        li install linux
+        li deploy it, yo
 
 - if (people.length)
   h2 Members

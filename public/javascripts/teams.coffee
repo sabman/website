@@ -12,6 +12,7 @@ load = ->
         finishedMsg: 'No more teams. :('
 
   $('#page.teams-show').each ->
+    # re-send invites
     $(this).delegate '.invites a', 'click', (e) ->
       e.preventDefault()
       e.stopImmediatePropagation()
@@ -19,6 +20,22 @@ load = ->
       $n = $t.next().show().html 'sending&hellip;'
       $.post @href, ->
         $n.text('done').delay(500).fadeOut 'slow', -> $t.show()
+
+    # deploy instructions
+    $('.platform')
+      .addClass(-> $(this).attr('id'))
+      .removeProp('id')
+    $(window).hashchange (e) ->
+      hash = location.hash || '#joyent'
+      $('.platform')
+        .hide()
+        .filter(hash.replace('#', '.'))
+          .show()
+      $('ul.platforms a')
+        .removeClass('selected')
+        .filter('a[href="' + hash + '"]')
+          .addClass('selected')
+    .hashchange()
 
     # initially disable any vote edit form
     $('form.vote[action^="/votes"]').each ->

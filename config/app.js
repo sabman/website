@@ -75,6 +75,7 @@ app.configure(function() {
         'vendor/modernizr-2.0.4.js',
         'vendor/json2.js',
         'vendor/jquery-1.6.2.js',
+        'vendor/jquery.ba-hashchange.js',
         'vendor/jquery.border-image.js',
         'vendor/jquery.infinitescroll.js',
         'vendor/jquery.keylisten.js',

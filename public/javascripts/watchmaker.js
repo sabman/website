@@ -395,20 +395,22 @@ var nko = {};
         me.goTo(new nko.Vector(t.pageX, t.pageY));
       })
 
-    $('body')
-      .delegate('a[href^="#"]', 'click', function(e) {
-        if ($(this).attr('href') === '#') return;
-        e.preventDefault();
-        var page = $($(this).attr('href'));
-        setTimeout(function checkArrived() {
-          if (me.div.queue().length === 0) {
-            nko.warpTo(page);
-            page.click();
-          } else {
-            setTimeout(checkArrived, 500);
-          }
-        }, 1);
-      });
+    // #foo links: walk to, then warp there
+    /*
+    $('a[href^="#"]').live('click', function(e) {
+      if ($(this).attr('href') === '#') return;
+      e.preventDefault();
+      var page = $($(this).attr('href'));
+      setTimeout(function checkArrived() {
+        if (me.div.queue().length === 0) {
+          nko.warpTo(page);
+          page.click();
+        } else {
+          setTimeout(checkArrived, 500);
+        }
+      }, 1);
+    });
+    */
 
     // chat
     var speakTimeout, $text = $('<textarea>')
