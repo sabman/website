@@ -20,11 +20,11 @@ After that, `npm install`.
 Just require it somewhere in your normal execution path. We recommend at the
 top of your `server.js`:
 
-    require('nko')('secretc0deZ');
+    require('nko')(secret);
 
-The code parameter is available on [your team page]. It's tied to just your
-team, so don't share it with others unless you want them hijacking your
-deploys.
+The `secret` parameter is available on [your team page] (make sure you're
+signed in to see it). It's tied to just your team, so don't share it with
+others unless you want them hijacking your deploys.
 
 If for whatever reason, you want to know when we've recorded the deploy, you
 can pass an optional callback as the second parameter.
