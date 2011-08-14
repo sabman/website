@@ -15,6 +15,13 @@ h1= title(person.name)
 
 .bio!= markdown(person.bio)
 
+- if (admin)
+  - var twitterBase = 'http://twitter.com/intent/tweet?text=' + encodeURIComponent(('@' + person.twitterScreenName).replace('@@', '@') + ' ');
+  - if (person.nomination)
+    a.button( href: twitterBase + encodeURIComponent("You've been nominated to judge @node_knockout! Interested? Takes ~2hrs online, at your convenience, between 8/29 and 9/5."), target: 'twitter' ) Confirm
+  - if (person.judge)
+    a.button( href: twitterBase + encodeURIComponent("Sweet! Made you a judge. You can edit your profile at") + "&url=" + encodeURIComponent('http://nodeknockout.com' + req.url.replace('/people/', '/judges/') + '/edit'), target: 'twitter') Alert
+
 - if (voting)
   h2 Votes
   ul.votes!= partial('votes/vote', votes)
