@@ -28,6 +28,7 @@ process.on('uncaughtException', function(e) {
 require('colors');
 require('../lib/render2');
 require('../lib/underscore.shuffle');
+require('../lib/regexp-extensions');
 
 // db
 app.db = require('../models')(env.mongo_url);

@@ -145,7 +145,7 @@ PersonSchema.method 'updateFromFacebook', (facebook) ->
 PersonSchema.static 'findOrCreateFromTwitter', (twitter, callback) ->
   Person.findOne
     $or: [
-      { twitterScreenName: twitter.screenName }
+      { twitterScreenName: new RegExp("^#{RegExp.escape twitter.screenName}$", 'i') }
       { 'twit.id': twitter.id }]
     (error, person) ->
       return callback(error) if error
