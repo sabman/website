@@ -133,7 +133,6 @@ PersonSchema.method 'updateFromTwitter', (twitter) ->
   @location ||= twitter.location
   @bio ||= twitter.description
   @imageURL ||= twitter.profileImageUrl.replace('_normal.', '.')
-  @role ||= 'nomination'
 
 PersonSchema.method 'updateFromFacebook', (facebook) ->
   @fb = facebook
