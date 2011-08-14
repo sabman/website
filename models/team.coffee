@@ -17,6 +17,7 @@ TeamSchema = module.exports = new mongoose.Schema
   peopleIds:
     type: [ mongoose.Schema.ObjectId ]
     index: true
+  lastDeploy: {}
   code:
     type: String
     default: -> rbytes.randomBytes(12).toString('base64')

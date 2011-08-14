@@ -24,4 +24,11 @@ DeploySchema.path('remoteAddress').validate (v) ->
       false
 , 'not production'
 
+# callbacks
+DeploySchema.post 'save', ->
+  @team (err, team) =>
+    throw err if err
+    team.lastDeploy = this
+    team.save()
+
 Deploy = mongoose.model 'Deploy', DeploySchema

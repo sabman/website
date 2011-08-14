@@ -51,12 +51,11 @@ app.post '/teams', (req, res, next) ->
       res.redirect "/teams/#{team.id}"
 
 # show (join)
-app.get '/teams/:id', [m.loadTeam, m.loadTeamPeople, m.loadTeamDeploys, m.loadTeamVotes, m.loadMyVote], (req, res) ->
+app.get '/teams/:id', [m.loadTeam, m.loadTeamPeople, m.loadTeamVotes, m.loadMyVote], (req, res) ->
   req.session.invite = req.param('invite') if req.param('invite')
   res.render2 'teams/show'
     team: req.team
     people: req.people
-    deploys: req.deploys
     votes: req.votes
     vote: req.vote
 

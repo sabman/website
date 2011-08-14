@@ -69,12 +69,6 @@ module.exports =
       req.people = people
       next()
 
-  loadTeamDeploys: (req, res, next) ->
-    req.team.deploys (err, deploys) ->
-      return next err if err
-      req.deploys = deploys
-      next()
-
   loadTeamVotes: (req, res, next) ->
     req.team.votes (err, votes) ->
       return next err if err
