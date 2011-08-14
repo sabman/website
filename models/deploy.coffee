@@ -8,6 +8,7 @@ DeploySchema = module.exports = new mongoose.Schema
     required: true
   hostname: String
   os: String
+  remoteAddress: String
   isProduction: Boolean
 
 DeploySchema.method 'team', (callback) ->
