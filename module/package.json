@@ -11,14 +11,14 @@
   },
   "homepage": "https://github.com/nko2/website/tree/master/module",
   "keywords": [ "node.js knockout", "knockout", "nko" ],
-  "bugs" {
+  "bugs": {
     "email": "all@nodeknockout.com",
     "url": "https://github.com/nko2/website/issues"
   },
   "contributors": [
     "Danny Coates <dannycoates@gmail.com>",
     "Visnu Pitiyanuvath <visnupx@gmail.com> (http://visnup.com/)"
-  ]
+  ],
   "main": "nko",
   "engines": {
     "node": "~v0.4.10"
