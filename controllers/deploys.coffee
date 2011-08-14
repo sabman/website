@@ -9,7 +9,7 @@ return if app.disabled('deploys')
 
 # create (if anyone finds the team by code, they're authorized)
 app.all '/teams/:code/deploys', [m.loadTeam], (req, res) ->
-  util.log "#{'DEPLOY'.green} #{req.team.name} (#{req.team.id})"
+  util.log "#{'DEPLOY'.magenta} #{req.team.name} (#{req.team.id})"
   req.session.destroy()
   res.end 'ok'
 
