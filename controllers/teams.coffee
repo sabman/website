@@ -1,8 +1,7 @@
 _ = require 'underscore'
-qs = require 'querystring'
 app = require '../config/app'
 m = require './middleware'
-[Person, Team, Deploy, Vote] = (app.db.model s for s in ['Person', 'Team', 'Deploy', 'Vote'])
+[Person, Team, Vote] = (app.db.model s for s in ['Person', 'Team', 'Vote'])
 
 # index
 app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->

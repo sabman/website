@@ -1,3 +1,4 @@
+qs = require 'querystring'
 app = require '../config/app'
 [Person, Team, Vote] = (app.db.model m for m in ['Person', 'Team', 'Vote'])
 

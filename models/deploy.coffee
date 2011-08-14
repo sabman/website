@@ -5,12 +5,10 @@ DeploySchema = module.exports = new mongoose.Schema
   teamId:
     type: ObjectId
     index: true
-  hostname:
-    type: String
-  os:
-    type: String
-  isProduction:
-    type: Boolean
+    required: true
+  hostname: String
+  os: String
+  isProduction: Boolean
 
 DeploySchema.method 'team', (callback) ->
   Team = mongoose.model 'Team'
