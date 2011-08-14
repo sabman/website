@@ -10,9 +10,6 @@ app.get '/people', (req, res, next) ->
     return next err if err
     res.render2 'people', people: people
 
-app.get '/people/me', [m.ensureAuth], (req, res, next) ->
-  res.redirect "/people/#{req.user.id}"
-
 # new
 app.get '/people/new', [m.ensureAdmin], (req, res, next) ->
   res.render2 'people/new', person: new Person
@@ -25,6 +22,10 @@ app.post '/people', [m.ensureAdmin], (req, res) ->
       res.render2 'people/new', person: person
     else
       res.redirect "people/#{person.id}"
+
+# me
+app.get '/people/me', [m.ensureAuth], (req, res, next) ->
+  res.redirect "/people/#{req.user.id}"
 
 # show
 app.get '/people/:id', [m.loadPerson, m.loadPersonTeam, m.loadPersonVotes], (req, res, next) ->

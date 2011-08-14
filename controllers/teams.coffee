@@ -50,6 +50,11 @@ app.post '/teams', (req, res, next) ->
       req.session.team = team.code
       res.redirect "/teams/#{team.id}"
 
+# my team
+app.get '/teams/mine', [m.ensureAuth, m.loadPerson, m.loadPersonTeam], (req, res, next) ->
+  return next 404 unless req.team
+  res.redirect "/teams/#{req.team.id}"
+
 # show (join)
 app.get '/teams/:id', [m.loadTeam, m.loadTeamPeople, m.loadTeamVotes, m.loadMyVote], (req, res) ->
   req.session.invite = req.param('invite') if req.param('invite')
