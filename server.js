@@ -5,6 +5,7 @@ require('coffee-script');
   'people',
   'judges',
   'teams',
+  'deploys',
   'votes',
   'websocket',
   'redirect'
