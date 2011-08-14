@@ -3,9 +3,7 @@ mongoose = require 'mongoose'
 rbytes = require 'rbytes'
 
 InviteSchema = require './invite'
-Invite = mongoose.model 'Invite'
-Person = mongoose.model 'Person'
-Deploy = mongoose.model 'Deploy'
+[Invite, Person, Deploy, Vote] = (mongoose.model m for m in ['Invite', 'Person', 'Deploy', 'Vote'])
 
 TeamSchema = module.exports = new mongoose.Schema
   name:
@@ -37,7 +35,6 @@ TeamSchema.method 'people', (next) ->
 TeamSchema.method 'deploys', (next) ->
   Deploy.find teamId: @id, next
 TeamSchema.method 'votes', (next) ->
-  Vote = mongoose.model 'Vote'
   Vote.find teamId: @id, next
 
 TeamSchema.static 'canRegister', (next) ->

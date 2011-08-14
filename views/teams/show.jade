@@ -11,6 +11,9 @@ h1= title(team.name)
     img( src: '/images/github.png', style: 'margin-bottom: -4px;' )
     | github
 
+- if (deployment && team.includes(user, session.team) || admin)
+  h2 Deploy
+
 - if (people.length)
   h2 Members
   ul.people

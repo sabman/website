@@ -5,7 +5,7 @@ util = require 'util'
 
 Deploy = app.db.model 'Deploy'
 
-return if app.disabled('deploys')
+return if app.disabled('deployment')
 
 # create (if anyone finds the team by code, they're authorized)
 app.all '/teams/:code/deploys', [m.loadTeam], (req, res) ->

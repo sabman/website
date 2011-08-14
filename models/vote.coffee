@@ -2,7 +2,6 @@ _ = require 'underscore'
 mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.ObjectId
 Person = mongoose.model 'Person'
-Team = mongoose.model 'Team'
 
 VoteSchema = module.exports = new mongoose.Schema
   personId:
@@ -60,6 +59,7 @@ VoteSchema.static 'teams', (votes, next) ->
   teamIds = _.pluck votes, 'teamId'
   return next() if teamIds.length == 0
   # TODO only need certain fields probably; make `only` an argument
+  Team = mongoose.model 'Team'
   Team.find _id: { '$in': teamIds }, (err, teams) ->
     return next err if err
     teams = _.reduce teams, ((h, t) -> h[t.id] = t; h), {}

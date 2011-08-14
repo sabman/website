@@ -60,6 +60,7 @@ module.exports = (app) ->
       </a>
       """
 
+    deployment: app.enabled 'deployment'
     voting: app.enabled 'voting'
     Vote: mongoose.model 'Vote'
 
