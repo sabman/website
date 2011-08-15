@@ -157,7 +157,7 @@ On both ends (server and client side), you can pass a function to request a
 explicit data response. Consider an example where the chat client sets a
 nickname, but you want to validate whether it's available or not.
 
-On the client,
+On the client:
 
     socket.emit('set nickname', $('#my-input').val(), function (available) {
       if (available) {
@@ -167,7 +167,7 @@ On the client,
       }
     });
 
-On the server
+On the server:
 
     io.sockets.on('connection', function (socket) {
       socket.on('set nickname', function (fn) {
