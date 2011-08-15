@@ -41,7 +41,7 @@ TeamSchema.method 'votes', (next) ->
 TeamSchema.static 'canRegister', (next) ->
   Team.count {}, (err, count) ->
     return next err if err
-    max = 320 + 1 # +1 because team fortnight labs doesn't count
+    max = 325 + 1 # +1 because team fortnight labs doesn't count
     next null, count < max, max - count
 
 TeamSchema.static 'uniqueName', (name, next) ->
