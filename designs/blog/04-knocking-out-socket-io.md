@@ -179,9 +179,10 @@ On the server:
 
 ## Wrapping up
 
-You can check out this example [here]. Run `npm install` and `node app`,
-then point your browser to `http://localhost:3000`!
+You can check out [the example on GitHub][4]. Clone the repo, then run
+`npm install` and `node app` and point your browser to
+`http://localhost:3000`!
 
 These are all the tools in your toolbox. Go make great realtime apps!
 
-[here]: https://github.com/nko2/knocking-out-socket.io
+[4]: https://github.com/nko2/knocking-out-socket.io
