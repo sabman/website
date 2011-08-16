@@ -1,11 +1,11 @@
 _This is the 5th in a series of posts leading up to [Node.js
 Knockout][1] on pulling it all together using [Node Express
 Boilerplate][node-express-boilerplate].  This post was written by
-[@mape][3], "solo winner" of [Node.js Knockout 2010][4]._
+[@mape][], "solo winner" of [Node.js Knockout 2010][4]._
 
 [1]: http://nodeknockout.com
 [node-express-boilerplate]: https://github.com/mape/node-express-boilerplate
-[3]: http://twitter.com/mape
+[@mape]: http://twitter.com/mape
 [4]: http://2010.nodeknockout.com/
 
 # Taking a walk (with node.js)
@@ -48,7 +48,7 @@ just fork it and change it according to your own personal preferences.
   CSS/JS/template-files are changed in order to remove all those
   annoying "save, tab, refresh" repetitions
 * [Notifications][11] to your computer/mobile phone on certain user
-  actions (This is something [I][12] relied heavily on last year when he
+  actions (This is something [I][@mape] relied heavily on last year when I
   was involved in NKO; as soon as a new game was started I knew about it
   and could jump in and interact - nobody enjoys something social if they
   are stuck there alone.)
@@ -64,7 +64,6 @@ just fork it and change it according to your own personal preferences.
 [9]: https://github.com/bnoguchi/everyauth
 [10]: https://github.com/mape/connect-assetmanager/
 [11]: http://notifo.com/
-[12]: http://twitter.com/mape
 [13]: http://airbrakeapp.com/
 
 ## How do I get started? (on Joyent's no.de service)
@@ -88,8 +87,7 @@ just fork it and change it according to your own personal preferences.
   8. open `http://yourname.no.de`
 
 So check it out at github ([node-express-boilerplate][]) and drop by
-[#node.js on irc][14] for feedback and to let [me][15] know if you run into
+[#node.js on irc][14] for feedback and to let [me][@mape] know if you run into
 any issues.
 
-[14]: http://github.com/mape/node-express-boilerplate
-[15]: irc://irc.freenode.net/node.js
+[14]: irc://irc.freenode.net/node.js
