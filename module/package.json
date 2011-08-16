@@ -3,7 +3,7 @@
   "maintainers": "visnup <visnupx@gmail.com>",
   "author": "Danny Coates <dannycoates@gmail.com>",
   "description": "node.js knockout deploy check-in",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "homepage": "http://nodeknockout.com",
   "repository": {
     "type": "git",
@@ -24,5 +24,10 @@
     "node": "0.4"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "files": [
+    "README.md",
+    "nko.js",
+    "package.json"
+  ]
 }
