@@ -10,7 +10,7 @@ Boilerplate][node-express-boilerplate].  This post was written by
 
 # Taking a walk (with node.js)
 
-![Chill][https://s3.amazonaws.com/2011.nodeknockout.com/chill.png.scaled500.png]
+![Chill](https://s3.amazonaws.com/2011.nodeknockout.com/chill.png.scaled500.png)
 
 Taking a walk every now and then is good for the body and the mind. But as
 with many other endeavors, often the hardest part is taking that first step.
@@ -28,7 +28,7 @@ tasks that can derail a project before it even really gets started.
 
 ## So what does [node-express-boilerplate][] do?
 
-![Express-boiler][https://s3.amazonaws.com/2011.nodeknockout.com/express-boiler.png.scaled500.png]
+![Express-boiler](https://s3.amazonaws.com/2011.nodeknockout.com/express-boiler.png.scaled500.png)
 
 First of all, it is very easy to understand, allowing you to start using it
 right away. There is minimal need to dig around in files just to get a good
