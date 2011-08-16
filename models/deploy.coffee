@@ -32,7 +32,7 @@ DeploySchema.path('remoteAddress').validate (v) ->
 DeploySchema.post 'save', ->
   @team (err, team) =>
     throw err if err
-    team.lastDeploy = this
+    team.lastDeploy = @toObject()
     team.save()
 
 Deploy = mongoose.model 'Deploy', DeploySchema
