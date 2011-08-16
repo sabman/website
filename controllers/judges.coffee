@@ -9,7 +9,7 @@ app.get '/judges', (req, res, next) ->
     res.render2 'judges', judges: _.shuffle(judges)
 
 app.get '/judges/nominations', (req, res, next) ->
-  Person.find { role: 'nomination' }, (err, judges) ->
+  Person.find { role: 'nomination' }, {}, {sort: [['updatedAt', -1]]}, (err, judges) ->
     return next err if err
     res.render2 'judges/nominations', judges: judges
 

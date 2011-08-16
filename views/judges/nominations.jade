@@ -1,4 +1,7 @@
-h1 Judge Nominations
+h1= title('Judge Nominations') + ' (' + judges.length + ')'
 ul
   - each judge in judges
-    li: a( href: '/people/' + judge.id )= judge.name
+    li.judge
+      a( href: '/people/' + judge.id )= judge.name
+      | 
+      span= judge.updatedAt
