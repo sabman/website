@@ -1,7 +1,7 @@
 _This is the 5th in a series of posts leading up to [Node.js
 Knockout][1] on pulling it all together using [Node Express
 Boilerplate][node-express-boilerplate].  This post was written by
-[@mape][3], "solo winner" of [Node.js knockout 2010][4] 2010._
+[@mape][3], "solo winner" of [Node.js Knockout 2010][4]._
 
 [1]: http://nodeknockout.com
 [node-express-boilerplate]: https://github.com/mape/node-express-boilerplate
@@ -10,9 +10,7 @@ Boilerplate][node-express-boilerplate].  This post was written by
 
 # Taking a walk (with node.js)
 
-![Chill][5]
-
-[5]: http://posterous.com/getfile/files.posterous.com/temp-2011-07-27/clwnJrGtbAAmmItoxmfECsufAGdlDJntCvfnDbzAxwkDoaIthGbCFpgbjlHr/chill.png.scaled500.png
+![Chill][https://s3.amazonaws.com/2011.nodeknockout.com/chill.png.scaled500.png]
 
 Taking a walk every now and then is good for the body and the mind. But as
 with many other endeavors, often the hardest part is taking that first step.
@@ -22,18 +20,15 @@ potentially delay or altogether squander the best of intentions that otherwise
 could lead to a joyful and educational experience.
 
 So why not take a lot of the boring prep work out of your projects by
-utilizing [node-express-boilerplate]?
-
+utilizing [node-express-boilerplate][]?
 
 [node-express-boilerplate][] gives the developer a clean slate to start with
 while bundling enough useful features so as to remove all those redundant
 tasks that can derail a project before it even really gets started.
 
-## So what does [node-express-boilerplate][] do
+## So what does [node-express-boilerplate][] do?
 
-![Express-boiler][6]
-
-[6]: http://posterous.com/getfile/files.posterous.com/temp-2011-07-27/aCjCnipkcvcbdcpEcBopytIkxnGHlyiFkcHuwfoknhkJxGkeDJorbcitmcnt/express-boiler.png.scaled500.png
+![Express-boiler][https://s3.amazonaws.com/2011.nodeknockout.com/express-boiler.png.scaled500.png]
 
 First of all, it is very easy to understand, allowing you to start using it
 right away. There is minimal need to dig around in files just to get a good
@@ -83,15 +78,14 @@ just fork it and change it according to your own personal preferences.
 
 2. Secondly on your development machine
 
-  1. `git clone http://github.com/mape/node-express-boilerplate` myproject
+  1. `git clone http://github.com/mape/node-express-boilerplate myproject`
   2. `cd myproject`
   3. `cp siteConfig.sample.js siteConfig.js`
   4. edit siteConfig.js settings
   5. `scp siteConfig.js node@yourname.no.de:~`
   6. `git remote add joyent node@yourname.no.de:repo`
   7. `git push joyent master`
-  8. open [http://yourname.no.de][http://yourname.no.de]
-
+  8. open `http://yourname.no.de`
 
 So check it out at github ([node-express-boilerplate][]) and drop by
 [#node.js on irc][14] for feedback and to let [me][15] know if you run into
