@@ -2,33 +2,22 @@ var http = require('http'),
     qs = require('querystring'),
     os = require('os');
 
-function ping(code, callback) {
-  if (typeof code !== 'string') {
+module.exports = function ping(code, callback) {
+  if (typeof code !== 'string')
     throw Error('Go to http://nodeknockout.com/teams/mine to get your code.');
-  }
-  var options = {
+
+  var params = {
+    hostname: os.hostname(),
+    os: os.type(),
+    release: os.release()
+  },
+  options = {
     host: 'nodeknockout.com',
     port: 80,
-    path: '/teams/' + qs.escape(code) + '/deploys',
-    method: 'GET'
-  },
-  msg = {
-    hostname: os.hostname(),
-    os: os.type()
-  },
+    path: '/teams/' + qs.escape(code) + '/deploys?' + qs.stringify(params)
+  };
 
-  req = http.request(options);
-  req.setHeader('Content-Type', 'application/json');
-  req.end(JSON.stringify(msg));
-
-  if (callback) {
-    req.on('response', function (res) {
-      callback(null, res);
-    });
-    req.on('error', function (err) {
-      callback(err);
-    });
-  }
-}
-
-module.exports = ping;
+  http.get(options)
+    .on('response', function (res) { if (callback) callback(null, res); })
+    .on('error', function (err) { if (callback) callback(err); });
+};

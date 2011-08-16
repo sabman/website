@@ -27,7 +27,12 @@ signed in to see it). It's tied to just your team, so don't share it with
 others unless you want them hijacking your deploys.
 
 If for whatever reason, you want to know when we've recorded the deploy, you
-can pass an optional callback as the second parameter.
+can pass an optional callback as the second parameter:
+
+    require('nko')('correct horse battery staple', function(err, res) {
+      if (err) throw err
+      res.on('data', function(d) { console.log(d.toString()); });
+    });
 
 __Important: The module will only ping us if the `NODE_ENV` environment
 variable is set to `production`.__ If you're not seeing your deploy get
