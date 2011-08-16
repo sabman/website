@@ -1,4 +1,4 @@
-_This is the 3rd in a series of posts leading up to [Node.js
+_This is the 4th in a series of posts leading up to [Node.js
 Knockout][1] on how to use [Socket.IO][2]. This post was written by
 guest author and [Node.js Knockout judge][3] Guillermo Rauch._
 
