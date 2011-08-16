@@ -11,7 +11,7 @@ h1= title(team.name)
     img( src: '/images/github.png', style: 'margin-bottom: -4px;' )
     | github
 
-- if (deployment && (team.includes(user) || admin))
+- if (admin || (deployment && team.includes(user)))
   - if (team.lastDeploy)
     h2.deploy-status.done Successfully deployed
   - else
