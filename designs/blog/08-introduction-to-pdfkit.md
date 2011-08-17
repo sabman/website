@@ -1,6 +1,6 @@
 _This is the 8th in a series of posts leading up to [Node.js
 Knockout][1] on creating PDFs with Node using [PDFKit][].  This post was
-written by [Node Knockout judge][2] and [PDFKit][] author Devon Govett_
+written by [Node Knockout judge][2] and [PDFKit][] author Devon Govett._
 
 [1]: http://nodeknockout.com
 [PDFKit]: http://pdfkit.org
