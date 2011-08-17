@@ -24,17 +24,19 @@ h1= title(team.name)
     .platform#joyent
       ol
         li require('nko')('#{team.code}');
-        li git remote add joyent git://xyz
-        li git push joyent
+        li git remote add joyent git://no.de/foo.git
+        li git push joyent master
     .platform#heroku
       ol
         li require('nko')('#{team.code}');
         li heroku create --stack cedar
-        li git push heroku
+        li heroku config:add NODE_ENV=production
+        li git push heroku master
     .platform#linode
       ol
         li require('nko')('#{team.code}');
         li install linux
+        li export NODE_ENV=production
         li deploy it, yo
 
 - if (people.length)
