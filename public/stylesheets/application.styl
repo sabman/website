@@ -486,10 +486,18 @@ form.vote[action^="/votes"] .enabled /* TODO fix for IE */
   h2.deploy-status
     text-align center
     font-size x-large
+    inverted()
+    box-shadow none
+    border-radius 2px
     &.pending
-      inverted()
       background red url('/images/noise.png')
-      box-shadow none
+    &.done
+      background green url('/images/noise.png')
+    time
+      display block
+      font-size small
+      font-family 'Droid Sans'
+      font-weight normal
   ul.platforms
     text-align center
     margin 0.5em 0

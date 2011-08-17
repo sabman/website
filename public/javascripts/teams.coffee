@@ -26,7 +26,8 @@ load = ->
       .addClass(-> $(this).attr('id'))
       .removeProp('id')
     $(window).hashchange (e) ->
-      hash = location.hash || '#joyent'
+      hash = location.hash
+      hash = '#joyent' if not location.hash and $('.deploy-status.pending').length > 0
       $('.platform')
         .hide()
         .filter(hash.replace('#', '.'))
