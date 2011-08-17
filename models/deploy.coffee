@@ -19,9 +19,13 @@ DeploySchema.method 'team', (callback) ->
 # validations
 DeploySchema.path('remoteAddress').validate (v) ->
   @platform =
-    if inNetwork v, '72.2.126.0/23'
+    if inNetwork v, '127.0.0.1/24'
+      'localdomain'
+    else if inNetwork v, '72.2.126.0/23'
       'joyent'
-    else if inNetwork v, '50.19.126.0/24' # TODO
+    else if inNetwork v, '216.182.224.0/20', '72.44.32.0/19', \
+                         '67.202.0.0/18', '75.101.128.0/17', \
+                         '174.129.0.0/16'
       'heroku'
     else if inNetwork v, '96.126.12.0/24', '74.207.251.0/24'
       'linode'
