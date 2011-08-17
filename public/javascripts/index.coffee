@@ -14,10 +14,12 @@ load = ->
       do tick = ->
         names = ['day', 'hour', 'minute', 'second']
         secs = (start - (new Date)) / 1000
-        left = $.map([secs / 86400, secs % 86400 / 3600, secs % 3600 / 60, secs % 60], (num, i) -> [Math.floor(num), pluralize(names[i], num)]).join(' ')
-
-        $this.html(left + ' from now')
-        setTimeout tick, 800
+        if secs > 0
+          left = $.map([secs / 86400, secs % 86400 / 3600, secs % 3600 / 60, secs % 60], (num, i) -> [Math.floor(num), pluralize(names[i], num)]).join(' ')
+          $this.text left + ' from now'
+          setTimeout tick, 800
+        else
+          $this.html $('<h1>GOGOGOGOGOGO</h1>')
 
 $(load)
 $(document).bind 'end.pjax', load
