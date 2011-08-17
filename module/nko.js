@@ -3,7 +3,8 @@ var http = require('http'),
     os = require('os');
 
 module.exports = function ping(code, callback) {
-  if (process.env.NODE_ENV !== 'production') return;
+  if (process.env.NODE_ENV !== 'production')
+    return callback && callback(Error('NODE_ENV !== production'));
   if (typeof code !== 'string')
     throw Error('Go to http://nodeknockout.com/teams/mine to get your code.');
 
