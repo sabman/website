@@ -27,6 +27,9 @@ $.ajaxPrefilter (options, originalOptions, xhr) ->
   token = $('meta[name="_csrf"]').attr('content')
   xhr.setRequestHeader 'X-CSRF-Token', token
 
+# speed up default jQuery animations
+$.fx.speeds._default = 200
+
 load = ->
   $(':text:first').focus() # focus first input
 

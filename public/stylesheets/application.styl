@@ -501,11 +501,15 @@ form.vote[action^="/votes"] .enabled /* TODO fix for IE */
       background red url('/images/noise.png')
     &.done
       background green url('/images/noise.png')
-    time
-      display block
+    .details
       font-size small
       font-family 'Droid Sans'
       font-weight normal
+    a
+      color white
+      font-style italic
+  h2.deploy-status.done + .instructions
+    display none
   ul.platforms
     text-align center
     margin 0.5em 0

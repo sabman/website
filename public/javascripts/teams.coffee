@@ -22,12 +22,14 @@ load = ->
         $n.text('done').delay(500).fadeOut 'slow', -> $t.show()
 
     # deploy instructions
+    $('a[href="#instructions"]').click ->
+      $('.instructions').slideToggle()
+      false
     $('.platform')
       .addClass(-> $(this).attr('id'))
       .removeProp('id')
     $(window).hashchange (e) ->
-      hash = location.hash
-      hash = '#joyent' if not location.hash and $('.deploy-status.pending').length > 0
+      hash = location.hash || '#joyent'
       $('.platform')
         .hide()
         .filter(hash.replace('#', '.'))

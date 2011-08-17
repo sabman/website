@@ -14,34 +14,38 @@ h1= title(team.name)
 - if (admin || (deployment && team.includes(user)))
   - if (team.lastDeploy)
     h2.deploy-status.done Successfully deployed
-      - lastDeployedAt = new Date(team.lastDeploy._id.generationTime)
-      time( datetime: lastDeployedAt.toISOString(),
-            title: lastDeployedAt.toISOString() )
-        = relativeDate(lastDeployedAt)
+      .details
+        - lastDeployedAt = new Date(team.lastDeploy._id.generationTime)
+        time( datetime: lastDeployedAt.toISOString(),
+              title: lastDeployedAt.toISOString() )
+          = relativeDate(lastDeployedAt)
+        &nbsp;&mdash;
+        a( href: '#instructions' ) Show deploy instructions
   - else
     h2.deploy-status.pending Not yet deployed
-  ul.platforms
-    li: label use:
-    li: a( href: '#joyent' ) Joyent
-    li: a( href: '#heroku' ) Heroku
-    li: a( href: '#linode' ) Linode
-  .platform#joyent
-    ol
-      li require('nko')('#{team.code}');
-      li git remote add joyent git://no.de/foo.git
-      li git push joyent master
-  .platform#heroku
-    ol
-      li require('nko')('#{team.code}');
-      li heroku create --stack cedar
-      li heroku config:add NODE_ENV=production
-      li git push heroku master
-  .platform#linode
-    ol
-      li require('nko')('#{team.code}');
-      li install linux
-      li export NODE_ENV=production
-      li deploy it, yo
+  .instructions
+    ul.platforms
+      li: label use:
+      li: a( href: '#joyent' ) Joyent
+      li: a( href: '#heroku' ) Heroku
+      li: a( href: '#linode' ) Linode
+    .platform#joyent
+      ol
+        li require('nko')('#{team.code}');
+        li git remote add joyent git://no.de/foo.git
+        li git push joyent master
+    .platform#heroku
+      ol
+        li require('nko')('#{team.code}');
+        li heroku create --stack cedar
+        li heroku config:add NODE_ENV=production
+        li git push heroku master
+    .platform#linode
+      ol
+        li require('nko')('#{team.code}');
+        li install linux
+        li export NODE_ENV=production
+        li deploy it, yo
 
 - if (people.length)
   h2 Who
