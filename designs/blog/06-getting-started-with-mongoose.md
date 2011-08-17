@@ -1,4 +1,4 @@
-_This is the 8th in a series of posts leading up to [Node.js
+_This is the 6th in a series of posts leading up to [Node.js
 Knockout][1] on using [Mongoose][].  This post was
 written by [Node Knockout judge][2] and [Mongoose][] author Aaron
 Heckmann._
@@ -18,7 +18,7 @@ object modeling tool for [MongoDB][] and [node.js][].
 ## Install
 
 We're going to assume that you have both [MongoDB][4] and [npm][]
-installed for this post. Once we those let's install Mongoose:
+installed for this post. Once you have those, you can install Mongoose:
 
 [4]: http://www.mongodb.org/display/DOCS/Quickstart (Installing mongodb)
 [npm]: http://npmjs.org/ (node package manager)
@@ -88,20 +88,13 @@ This is what a movie might look like within the [mongo shell][6]:
 
 [6]: http://www.mongodb.org/display/DOCS/mongo+-+The+Interactive+Shell (MongoDB shell)
 
-    {
-      "name" : "Inception",
-      "year" : 2010,
-      "ratings" : [
-        {
-          "stars" : 8.9,
-          "comment" : "I fell asleep during this movie, and yeah, you've heard this joke before"
-        },
-        {
-          "stars" : 9.3
-        }
-      ],
-      "director" : ObjectId("4e4b4a8b73e1d576d6a1438e")
-    }
+    { name: 'Inception',
+      year: 2010,
+      ratings:
+       [ { stars: 8.9,
+           comment: 'I fell asleep during this movie, and yeah, you\'ve heard this joke before' },
+         { stars: 9.3 } ],
+      director: ObjectId("4e4b4a8b73e1d576d6a1438e") }
 
 Now that we've finished our schemas we're ready to create our movie model.
 
