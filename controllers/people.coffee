@@ -6,7 +6,7 @@ Team = app.db.model 'Team'
 
 # index
 app.get '/people', (req, res, next) ->
-  Person.find {}, {}, {sort: [['github.followersCount', -1]]}, (err, people) ->
+  Person.find {name: {$ne: null}}, {}, {sort: [['github.followersCount', -1]]}, (err, people) ->
     return next err if err
     res.render2 'people', people: people
 

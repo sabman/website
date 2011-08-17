@@ -5,6 +5,8 @@ ul
       a( href: '/people/' + person.id )= person.name || '?'
       |  -
       = person.role
-      |  -
       - if (person.contestant)
+        |  -
         a( href: 'https://github.com/' + person.login )= person.login
+      |  -
+      = person.location
