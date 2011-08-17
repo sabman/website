@@ -12,10 +12,11 @@ h1= title(team.name)
     | github
 
 - if (admin || (deployment && team.includes(user)))
-  - if (team.lastDeploy)
+  - lastDeploy = team.lastDeploy
+  - if (lastDeploy)
     h2.deploy-status.done Successfully deployed
       .details
-        - lastDeployedAt = new Date(team.lastDeploy._id.generationTime)
+        - lastDeployedAt = new Date(lastDeploy._id.generationTime)
         time( datetime: lastDeployedAt.toISOString(),
               title: lastDeployedAt.toISOString() )
           = relativeDate(lastDeployedAt)
@@ -46,6 +47,11 @@ h1= title(team.name)
         li install linux
         li export NODE_ENV=production
         li deploy it, yo
+
+  - if (lastDeploy)
+    .entry
+      img#screenshot( src: 'http://pinkyurl.com/i?url=nodeknockout.com&out-format=png&resize=240x148' )
+      a( href: lastDeploy.remoteAddress )= lastDeploy.remoteAddress
 
 - if (people.length)
   h2 Who
