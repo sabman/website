@@ -1,11 +1,10 @@
 **TODO: update with changes from https://gist.github.com/e981060e6cdb86b2f106
 (since 8748dd)**
 
+# Countdown to KO #10: Deploying Your Node.js App to Heroku
 
-# Countdown to KO #9: Deploying Your Node.js App to Heroku
-
-*This is the 9th in series of posts leading up [Node.js Knockout][1], and
-covers deploying your Node.js app to the [Heroku][2] platform.*
+*This is the 10th in series of posts leading up [Node.js Knockout][1],
+and covers deploying your Node.js app to the [Heroku][2] platform.*
 
 [1]: http://nodeknockout.com
 [2]: http://heroku.com
