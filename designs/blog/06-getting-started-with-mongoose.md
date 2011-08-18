@@ -1,6 +1,6 @@
 _This is the 6th in a series of posts leading up to [Node.js
 Knockout][1] on using [Mongoose][].  This post was
-written by [Node Knockout judge][2] and [Mongoose][] author Aaron
+written by [Node Knockout judge][2] and [Mongoose][] co-maintainer Aaron
 Heckmann._
 
 [1]: http://nodeknockout.com
