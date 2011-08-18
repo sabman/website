@@ -3,6 +3,16 @@ module.exports = [
   image: 'adobe.png'
   url:   'http://www.adobe.com/'
 ,
+  name:  'Blitz'
+  image: 'blitz.png'
+  url:   'http://blitz.io/'
+  description:
+    '''
+    Blitz is a self-service cloud based performance testing platform. Built for
+    API, cloud, web and mobile app developers, Blitz quickly and inexpensively
+    helps you ensure performance and scalability.
+    '''
+,
   name:  'Bislr'
   image: 'bislr.png'
   url:   'http://www.bislr.com/'
