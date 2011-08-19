@@ -269,6 +269,20 @@ module.exports = [
     [1]: http://www.nodeconf.com/summercamp.html
     '''
 ,
+  name:  'SunGard'
+  image: 'sungard.png'
+  url:   'http://sungard.com/'
+  description:
+    '''
+    SunGard Global Services combines business consulting, technology and
+    professional services for financial services firms, energy companies and
+    corporations. Leveraging SunGard’s global delivery model, more than 5,000
+    employees worldwide help customers manage their complex data needs,
+    optimize end-to-end business processes and assist with systems integration,
+    while providing full application development, maintenance, testing and
+    support services.
+    '''
+,
   name:  'Tapjoy'
   image: 'tapjoy.png'
   url:   'https://www.tapjoy.com/'
