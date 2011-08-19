@@ -1,5 +1,7 @@
 - title('Teams')
 h1 Teams (#{teams.count})
+form.search
+  input( type: 'search', name: 'q', value: req.query.q, placeholder: 'Search' )
 ul.teams
   - toPeople = function(team) { return _.map(team.peopleIds, function(id) { return people[id]; }) };
   - each team in teams
@@ -19,5 +21,5 @@ ul.teams
       .location= locations(members)
       .description!= markdown(team.description)
   - q = req.query
-  - q.page = (+req.params.page || 1) + 1
+  - q.page = (+req.query.page || 1) + 1
   .more: a( href: req.url.split('?')[0] + '?' + qs.stringify(q) ) more
