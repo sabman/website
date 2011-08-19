@@ -1,3 +1,7 @@
+# unbind infinite scrolling on pjax
+$(document).bind 'start.pjax', ->
+  $('#page.teams ul.teams').data('infinitescroll')?.unbind()
+
 load = ->
   $('#page.teams').each ->
     $('ul.teams').infinitescroll
