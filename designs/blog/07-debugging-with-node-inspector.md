@@ -33,7 +33,7 @@ it a signal:
 1. Get the PID of the node process using your favorite method. `pgrep`
 or `ps -ef` are good
 
-    $ pgrep -l node
+    $ pgrep -l node<br/>
     2345 node your/node/server.js
 
 2. Send it the USR1 signal
@@ -69,7 +69,7 @@ Chrome. Here's a [good overview of the UI][6].
 
 1. I don't see one of my script files in the file list.
 
-  > try refreshing the browser (F5 or command-r)
+  > try refreshing the browser (F5 or ⌘-r or control-r)
 
 2. My script runs too fast to attach the debugger.
 
@@ -77,7 +77,7 @@ Chrome. Here's a [good overview of the UI][6].
 
 3. Can I debug remotely?
 
-  > Yes. node-inspector needs to run on the same machine, but your
+  > Yes. node-inspector needs to run on the same machine as the node process, but your
   browser can be anywhere. Just make sure the firewall is open on 8080
 
 4. I got the ui in a weird state.
