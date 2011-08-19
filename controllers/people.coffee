@@ -24,8 +24,8 @@ app.post '/people', [m.ensureAdmin], (req, res) ->
       res.redirect "people/#{person.id}"
 
 # me
-app.get '/people/me', [m.ensureAuth], (req, res, next) ->
-  res.redirect "/people/#{req.user.id}"
+app.get '/people/me(\/edit)?', [m.ensureAuth], (req, res, next) ->
+  res.redirect "/people/#{req.user.id}#{req.params[0] || ''}"
 
 # show
 app.get '/people/:id', [m.loadPerson, m.loadPersonTeam, m.loadPersonVotes], (req, res, next) ->
