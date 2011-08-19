@@ -1,33 +1,33 @@
 _This is the 9th in a series of posts leading up to [Node.js
-Knockout][1] on debugging node processes using [Node Inspector][2].
-This post was written by [Node Knockout judge][3] and [Node Inspetor][2]
-author Christian Kvalheim._
+Knockout][1] on using mongodb with [node-mongodb-native][2]
+This post was written by [Node Knockout judge][3] and
+[node-mongo-db-native][2] author Christian Kvalheim._
 
 [1]: http://nodeknockout.com
 [2]: https://github.com/christkv/node-mongodb-native
 [3]: http://nodeknockout.com/people/4e469032c0d8572b29002612
 
-# Countdown to KO #9: A Basic introduction to Mongo DB
+# Countdown to KO #9: A Basic Introduction to Mongo DB
 
 Mongo DB has rapidly grown to become a popular database for web
 applications and is a perfect fit for Node.JS applications, letting you
-write Javascript for the client, backend and database layer. It's
+write Javascript for the client, backend and database layer. Its
 schemaless nature is a better match to our constantly evolving data
 structures in web applications and the integrated support for location
-queries a bonus that it's hard to ignore. Throw Replicasets for scaling
-and we are looking at really nice platform to grow your storage needs
-now and in the future.
+queries is a bonus that's hard to ignore. Throw in replicasets for
+scaling and we are looking at really nice platform to grow your storage
+needs now and in the future.
 
 Now to shamelessly plug my driver. It can be downloaded either using npm
 or fetched from the github repository. To install via npm do the
-following.
+following:
 
     npm install mongodb
 
 or go fetch it from github at
 [https://github.com/christkv/node-mongodb-native][2]
 
-Once this business is taken care of let's move through the types
+Once this business is taken care of, let's move through the types
 available for the driver and then how to connect to your Mongo DB
 instance before facing the usage of some crud operations.
 
@@ -35,10 +35,10 @@ instance before facing the usage of some crud operations.
 
 So there is an important thing to keep in mind when working with Mongo
 DB and that is that there is a slight mapping difference between the
-types supported in Mongo DB and what is native types in Javascript.
-Let's have a look at the types supported out of the box and then how
-types are promoted by the driver to try to fit as close to the native
-Javascript types as possible.
+types supported in Mongo DB and the native types in Javascript.  Let's
+have a look at the types supported out of the box and then how types are
+promoted by the driver to try to fit the native Javascript types as
+closely possible.
 
 * **Float** is a 8 byte and is directly convertible to the Javascript
   type Number
@@ -326,7 +326,7 @@ This last one will remove all documents in the collection.
 
 ## Time to Query
 
-Queries is of course a fundamental part of interacting with a database
+Queries are of course a fundamental part of interacting with a database
 and Mongo DB is no exception. Fortunately for us it has a rich query
 interface with cursors and close to SQL concepts for slicing and dicing
 your datasets. To build queries we have lots of operators to choose from
