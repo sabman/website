@@ -1,16 +1,17 @@
 # pjax
 $('a[href^="/"]').live 'click', (e) ->
+  return if e.metaKey or e.ctrlKey
   href = $(this).attr('href')
-  if !href.match(new RegExp('^/(auth|login/|logout)')) # login, logout
-    e.preventDefault()
-    $.pjax
-      url: href
-      container: '#inner'
-      fragment: '#inner'
-      timeout: 2222
-      success: ->
-        if $('#inner nav').offset().top < $(window).scrollTop()
-          $(window).scrollTop 0
+  return if href.match(new RegExp('^/(auth|login/|logout)')) # login, logout
+  e.preventDefault()
+  $.pjax
+    url: href
+    container: '#inner'
+    fragment: '#inner'
+    timeout: 2222
+    success: ->
+      if $('#inner nav').offset().top < $(window).scrollTop()
+        $(window).scrollTop 0
 
 $(document).bind 'pjax', (e, xhr, options) ->
   $('#inner').addClass('pjax')
