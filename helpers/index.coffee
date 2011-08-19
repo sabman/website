@@ -16,6 +16,7 @@ module.exports = (app) ->
   app.helpers
 
     inspect: require('util').inspect
+    qs: require('querystring')
     _: _
 
     markdown: (str) -> if str? then md.parse str, md.flags.noHTML else ''

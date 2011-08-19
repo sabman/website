@@ -16,10 +16,11 @@ app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
     ids = _.reduce teams, ((r, t) -> r.concat(t.peopleIds)), []
     only =
       email: 1
+      name: 1
+      location: 1
       imageURL: 1
       'github.gravatarId': 1
       'github.login': 1
-      'location': 1
       'twit.screenName': 1
     Person.find _id: { $in: ids }, only, (err, people) ->
       return next err if err

@@ -102,13 +102,15 @@ TeamSchema.post 'save', ->
 
 ## search index
 TeamSchema.pre 'save', (next) ->
-  Person.find _id: { '$in': @peopleIds }, { location: 1 }, (err, people) =>
+  only = name: 1, location: 1, 'github.login': 1, 'twit.screenName': 1
+  Person.find _id: { '$in': @peopleIds }, only, (err, people) =>
     return next err if err
     @search =
       """
       #{@name}
       #{@description}
-      #{_.pluck people, 'location'}
+      #{_.pluck(people, 'login').join(';')}
+      #{_.pluck(people, 'location').join(';')}
       """
     next()
 
