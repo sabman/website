@@ -18,7 +18,7 @@ module.exports = (mongo) ->
   mongo.Db.prototype.executeCommand = (db_command, options, callback) ->
     output = collectionName: db_command.collectionName
     for k in [ 'query', 'documents', 'spec', 'document', 'selector', \
-               'numberToSkip', 'numberToReturn' ]
+               'returnFieldSelector', 'numberToSkip', 'numberToReturn' ]
       output[k] = db_command[k] if db_command[k]
     console.log "#{commandName(db_command).underline}: #{inspect(output, null, 8)}".grey
 
