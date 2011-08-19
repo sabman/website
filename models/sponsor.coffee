@@ -26,6 +26,16 @@ module.exports = [
     [1]: http://www.bislr.com/
     '''
 ,
+  name:  'Cloud 9'
+  image: 'cloud9.png'
+  url:   'http://cloud9ide.com/'
+  description:
+    '''
+    Cloud9 IDE is the first-ever cloud-based integrated development environment
+    (IDE) for JavaScript developers, built on top of Node.js. Cloud9 enables
+    Web developers to access, edit and share projects anywhere, anytime. 
+    '''
+,
   name:  'Couchbase'
   image: 'couchbase.png'
   url:   'http://www.couchbase.com/'
