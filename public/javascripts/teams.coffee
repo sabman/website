@@ -85,6 +85,17 @@ load = ->
         $('input, textarea', $form).prop 'disabled', (i, d) -> !d
 
   $('#page.teams-edit').each ->
+
+    # show the delete box on load if the hash is delete
+    if window.location.hash is '#delete'
+      window.location.hash = ''
+      $form = $('#inner form:first')
+      pos = $form.position()
+      $delete = $('form.delete').show()
+      $delete.css
+        left: pos.left + ($form.width() - $delete.outerWidth()) / 2
+        top: pos.top
+
     $('a.pull', this).click ->
       li = $(this).closest('li')
       i = li.prevAll('li').length + 1
