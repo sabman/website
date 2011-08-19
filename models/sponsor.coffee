@@ -67,9 +67,10 @@ module.exports = [
     to always have their stuff at hand, share with family and friends, and work
     on team projects. We're looking for more great people to join us, so if
     you're excited to help simplify life for millions of people, check out our
-    jobs.
+    [jobs][2].
 
     [1]: http://www.dropbox.com/
+    [2]: http://www.dropbox.com/jobs
     '''
 ,
   name:  'Geekli.st'
