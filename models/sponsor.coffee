@@ -2,6 +2,15 @@ module.exports = [
   name:  'Adobe'
   image: 'adobe.png'
   url:   'http://www.adobe.com/'
+  description:
+    '''
+    We help our customers create, deliver, and optimize compelling content and
+    applications — improving the impact of their communications, enhancing
+    their brands and productivity, and ultimately bringing them greater
+    business success. Together, we're turning ordinary interactions into more
+    valuable digital experiences every day, across media and devices, anywhere,
+    anytime.
+    '''
 ,
   name:  'Blitz'
   image: 'blitz.png'
@@ -47,6 +56,20 @@ module.exports = [
     resolution.
 
     [1]: http://www.couchbase.com/
+    '''
+,
+  name:  'Dropbox'
+  image: 'dropbox.png'
+  url:   'http://www.dropbox.com/'
+  description:
+    '''
+    Today, more than 25 million people across every continent use [Dropbox][1]
+    to always have their stuff at hand, share with family and friends, and work
+    on team projects. We're looking for more great people to join us, so if
+    you're excited to help simplify life for millions of people, check out our
+    jobs.
+
+    [1]: http://www.dropbox.com/
     '''
 ,
   name:  'Geekli.st'
