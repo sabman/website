@@ -138,6 +138,7 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.csrf());
+  app.use(function(req, res, next) { if (req.body) delete req.body._csrf; next(); });
   app.use(express.logger());
   app.use(auth.middleware());
   app.use(app.router);
