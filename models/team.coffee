@@ -10,6 +10,7 @@ TeamSchema = module.exports = new mongoose.Schema
     type: String
     required: true
     unique: true
+  description: String
   emails:
     type: [ mongoose.SchemaTypes.Email ]
     validate: [ ((v) -> v.length <= 4), 'max' ]
@@ -21,10 +22,22 @@ TeamSchema = module.exports = new mongoose.Schema
   code:
     type: String
     default: -> rbytes.randomBytes(12).toString('base64')
-  description: String
+  search: String
 TeamSchema.plugin require('mongoose-types').useTimestamps
 TeamSchema.index updatedAt: -1
 
+# class methods
+TeamSchema.static 'canRegister', (next) ->
+  Team.count {}, (err, count) ->
+    return next err if err
+    max = 330 + 1 # +1 because team fortnight labs doesn't count
+    next null, count < max, max - count
+TeamSchema.static 'uniqueName', (name, next) ->
+  Team.count { name: name }, (err, count) ->
+    return next err if err
+    next null, !count
+
+# instance methods
 TeamSchema.method 'includes', (person, code) ->
   @code == code or person and _.any @peopleIds, (id) -> id.equals(person.id)
 TeamSchema.method 'invited', (invite) ->
@@ -38,18 +51,9 @@ TeamSchema.method 'deploys', (next) ->
 TeamSchema.method 'votes', (next) ->
   Vote.find teamId: @id, next
 
-TeamSchema.static 'canRegister', (next) ->
-  Team.count {}, (err, count) ->
-    return next err if err
-    max = 330 + 1 # +1 because team fortnight labs doesn't count
-    next null, count < max, max - count
+# validations
 
-TeamSchema.static 'uniqueName', (name, next) ->
-  Team.count { name: name }, (err, count) ->
-    return next err if err
-    next null, !count
-
-# min people validation
+## min people
 TeamSchema.pre 'save', (next) ->
   if @peopleIds.length + @emails.length == 0
     error = new mongoose.Document.ValidationError this
@@ -58,7 +62,7 @@ TeamSchema.pre 'save', (next) ->
   else
     next()
 
-# max teams
+## max teams
 TeamSchema.pre 'save', (next) ->
   return next() unless @isNew
   Team.canRegister (err, yeah) =>
@@ -70,7 +74,7 @@ TeamSchema.pre 'save', (next) ->
       error.errors._base = 'max'
       next error
 
-# unique name
+## unique name
 TeamSchema.pre 'save', (next) ->
   return next() unless @isNew
   Team.uniqueName @name, (err, yeah) =>
@@ -82,7 +86,9 @@ TeamSchema.pre 'save', (next) ->
       error.errors.name = 'unique'
       next error
 
-# create invites
+# callbacks
+
+## create invites
 TeamSchema.pre 'save', (next) ->
   for email in @emails
     unless _.detect(@invites, (i) -> i.email == email)
@@ -93,5 +99,17 @@ TeamSchema.post 'save', ->
   for invite in @invites
     invite.remove() unless !invite or _.include(@emails, invite.email)
   @save() if @isModified 'invites'
+
+## search index
+TeamSchema.pre 'save', (next) ->
+  Person.find _id: { '$in': @peopleIds }, { location: 1 }, (err, people) =>
+    return next err if err
+    @search =
+      """
+      #{@name}
+      #{@description}
+      #{_.pluck people, 'location'}
+      """
+    next()
 
 Team = mongoose.model 'Team', TeamSchema

@@ -6,7 +6,9 @@ m = require './middleware'
 # index
 app.get /^\/teams(\/pending)?\/?$/, (req, res, next) ->
   page = (req.param('page') or 1) - 1
-  query = if req.params[0] then { peopleIds: { $size: 0 } } else {}
+  query = {}
+  query.peopleIds = { $size: 0 } if req.params[0]
+  query.search = new RegExp(req.param('q'), 'i') if req.param('q')
   options = { sort: [['updatedAt', -1]], limit: 50, skip: 50 * page }
   # TODO move this join-thing into the Team model (see Vote <-> Person)
   Team.find query, {}, options, (err, teams) ->
