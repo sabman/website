@@ -31,6 +31,7 @@ TeamSchema.index updatedAt: -1
 
 # class methods
 TeamSchema.static 'canRegister', (next) ->
+  return next null, false, 0 # cut off team registration
   Team.count {}, (err, count) ->
     return next err if err
     max = 330 + 1 # +1 because team fortnight labs doesn't count
