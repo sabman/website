@@ -1,5 +1,5 @@
 - if (team.includes(user, session.team) || admin)
-  .edit: a.button( href: '/teams/' + team.id + '/edit' ) Manage
+  .edit: a.button( href: '/teams/' + team + '/edit' ) Manage
 
 h1= title(team.name)
 
@@ -72,7 +72,7 @@ h1= title(team.name)
       - each invite in team.invites
         li
           #{invite.email} &mdash;
-          a( href: '/teams/' + team.id + '/invites/' + invite.id, rel: 'nofollow' ) resend
+          a( href: '/teams/' + team + '/invites/' + invite.id, rel: 'nofollow' ) resend
           span.sending
 
 - if (team.description)

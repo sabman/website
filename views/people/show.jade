@@ -11,7 +11,7 @@ h1= title(person.name)
 - if (team)
   h2.team
     | On
-    a( href: '/teams/' + team.id )= team.name
+    a( href: '/teams/' + team )= team.name
 
 .bio!= markdown(person.bio)
 

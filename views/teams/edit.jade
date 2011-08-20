@@ -1,15 +1,15 @@
 h1 Edit your Team
 
-form( method: 'POST', action: '/teams/' + team.id )
+form( method: 'POST', action: '/teams/' + team )
   input( type: 'hidden', name: '_method', value: 'PUT' )
   != partial('form')
   input( type: 'submit', value: 'Update' )
   | 
-  a( href: '/teams/' + team.id ) Cancel
+  a( href: '/teams/' + team ) Cancel
   |  or
   a.scary.remove( href: '#' ) Delete?
 
-form.delete( method: 'POST', action: '/teams/' + team.id )
+form.delete( method: 'POST', action: '/teams/' + team )
   != _csrf
   input( type: 'hidden', name: '_method', value: 'DELETE' )
   p Are you sure? This can't be undone.

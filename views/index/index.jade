@@ -14,7 +14,7 @@ section
 
 section
   - if (team)
-    a.register.button( href: '/teams/' + team.id ) View Your Team
+    a.register.button( href: '/teams/' + team ) View Your Team
   - else if (canRegister)
     a.register.button( href: '/teams/new' ) Register a Team
     p Before it's too late! (#{pluralize(teamsLeft, 'spot')} left)

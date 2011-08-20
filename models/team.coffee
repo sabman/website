@@ -30,6 +30,8 @@ TeamSchema.plugin require('mongoose-types').useTimestamps
 TeamSchema.index updatedAt: -1
 
 # class methods
+TeamSchema.static 'findBySlug', (slug, rest...) ->
+  Team.findOne { slug: slug }, rest...
 TeamSchema.static 'canRegister', (next) ->
   return next null, false, 0 # cut off team registration
   Team.count {}, (err, count) ->
@@ -42,6 +44,7 @@ TeamSchema.static 'uniqueName', (name, next) ->
     next null, !count
 
 # instance methods
+TeamSchema.method 'toString', -> @slug or @id
 TeamSchema.method 'includes', (person, code) ->
   @code == code or person and _.any @peopleIds, (id) -> id.equals(person.id)
 TeamSchema.method 'invited', (invite) ->

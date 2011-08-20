@@ -7,7 +7,7 @@ ul.teams
   - each team in teams
     - members = toPeople(team)
     li
-      h3: a( href: '/teams/' + team.id )= team.name
+      h3: a( href: '/teams/' + team )= team.name
       .members
         ul.members
           - if (team.invites.length > 0)

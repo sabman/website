@@ -48,7 +48,8 @@ module.exports =
 
   loadTeam: (req, res, next) ->
     if id = req.params.teamId or req.params.id
-      Team.findById id, (err, team) ->
+      findBy = if /^[0-9a-fA-F]{24}$/.test(id) then 'findById' else 'findBySlug'
+      Team[findBy] id, (err, team) ->
         return next err if err && err.message != 'Invalid ObjectId'
         return next 404 unless team
         req.team = team

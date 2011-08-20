@@ -18,7 +18,7 @@ app.post '/teams/:teamId/votes', [ensureVoting, m.ensureAuth], (req, res, next) 
   vote = new Vote attr
   vote.save (err) ->
     return next err if err
-    res.redirect '/teams/' + req.params.teamId
+    res.redirect 'back'
 
 # update
 app.put '/votes/:id', [ensureVoting, m.loadVote, m.ensureAccess], (req, res, next) ->
