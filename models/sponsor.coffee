@@ -35,7 +35,7 @@ module.exports = [
     [1]: http://www.bislr.com/
     '''
 ,
-  name:  'Cloud 9'
+  name:  'Cloud9'
   image: 'cloud9.png'
   url:   'http://cloud9ide.com/'
   description:
