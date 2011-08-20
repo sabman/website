@@ -8,7 +8,7 @@ InviteSchema = require './invite'
 TeamSchema = module.exports = new mongoose.Schema
   slug:
     type: String
-    index: true
+    unique: true
   name:
     type: String
     required: true
