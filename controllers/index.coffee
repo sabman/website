@@ -1,6 +1,8 @@
 app = require '../config/app'
 Team = app.db.model 'Team'
 Person = app.db.model 'Person'
+Service = app.db.model 'Service'
+m = require './middleware'
 
 # middleware
 loadCurrentPersonWithTeam = (req, res, next) ->
@@ -21,6 +23,12 @@ app.get '/', [loadCurrentPersonWithTeam, loadCanRegister], (req, res) ->
     team: req.team
     canRegister: req.canRegister
     teamsLeft: req.teamsLeft
+
+app.get '/services', [m.ensureAuth], (req, res, next) ->
+  return next 401 unless req.user.contestant or req.user.admin
+  Service.sorted (error, services) ->
+    next error if error
+    res.render2 'index/services', services: services
 
 ['how-to-win', 'locations', 'prizes', 'rules', 'sponsors', 'scoring'].forEach (p) ->
   app.get '/' + p, (req, res) -> res.render2 "index/#{p}"

@@ -1,0 +1,7 @@
+- title('services')
+
+h1 Services
+
+- each service in services
+  h2= service.name
+  != markdown(service.description)
