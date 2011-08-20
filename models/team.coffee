@@ -6,6 +6,9 @@ InviteSchema = require './invite'
 [Invite, Person, Deploy, Vote] = (mongoose.model m for m in ['Invite', 'Person', 'Deploy', 'Vote'])
 
 TeamSchema = module.exports = new mongoose.Schema
+  slug:
+    type: String
+    index: true
   name:
     type: String
     required: true
