@@ -9,6 +9,6 @@ ServiceSchema = module.exports = new mongoose.Schema
 ServiceSchema.static 'sorted', (callback) ->
   Service.find (error, services) ->
     return callback(error) if error
-    callback null, _.sortBy services, (s) -> s.name.toLowerCase()
+    callback null, _.sortBy(services, (s) -> s.name.toLowerCase())
 
 Service = mongoose.model 'Service', ServiceSchema
