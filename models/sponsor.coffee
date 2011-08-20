@@ -17,9 +17,10 @@ module.exports = [
   url:   'http://blitz.io/'
   description:
     '''
-    Blitz is a self-service cloud based performance testing platform. Built for
-    API, cloud, web and mobile app developers, Blitz quickly and inexpensively
-    helps you ensure performance and scalability.
+    Blitz, powered by Mu Dynamics, is a self-service cloud based performance
+    testing platform. Built for API, cloud, web and mobile app developers,
+    Blitz quickly and inexpensively helps you ensure performance and
+    scalability.
     '''
 ,
   name:  'Bislr'
