@@ -33,6 +33,9 @@ app.get '/services', [m.ensureAuth], (req, res, next) ->
 ['how-to-win', 'locations', 'prizes', 'rules', 'sponsors', 'scoring'].forEach (p) ->
   app.get '/' + p, (req, res) -> res.render2 "index/#{p}"
 
+app.get '/now', (req, res) ->
+  res.end Date.now().toString()
+
 app.get '/about', (req, res) ->
   Team.count {}, (err, teams) ->
     return next err if err
