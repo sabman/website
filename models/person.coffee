@@ -157,7 +157,6 @@ PersonSchema.static 'findOrCreateFromFacebook', (facebook, callback) ->
     return callback(error) if error
     person ||= new Person
     try person.updateFromFacebook facebook catch e then callback(e)
-    console.log(person, 'person')
     person.save (err) -> callback(err, person)
 
 Person = mongoose.model 'Person', PersonSchema
