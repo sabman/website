@@ -125,6 +125,7 @@ source desktop GIS packages out-there. And it will come in handy as you
 work with more and more geospatial data. We would recommend the last
 stable release:
 [http://www.qgis.org/en/download/current-software.html](http://www.qgis.org/en/download/current-software.html).
+On MacOS X you can grab standalone binaries from [http://www.kyngchaos.com/software/qgis](http://www.kyngchaos.com/software/qgis).
 
 Install it. After installing QGIS its time to connect and import some
 initial data.
@@ -133,21 +134,45 @@ initial data.
 
 We want Shapefiles. Most prevalent geospatial data format currently
 available on the web... SpacialDB envisions changing that (but more on
-that later). For now lets get the following datasets:
+that later). For now lets get the following datasets which are in a Shapefile format:
 
-* [boundary_with_populations_germany (zip)](http://j.mp/iwO6Ee) from GeoCommons
-* [german_cities_ranked_by_population (zip)](http://j.mp/mc5sEc) from GeoCommons
+* [boundary_with_populations_germany (zip)](http://dl.dropbox.com/u/1415964/6367-boundary_with_populations_germany.zip)
+* [german_cities_ranked_by_population (zip)](http://dl.dropbox.com/u/1415964/21273-german_cities_ranked_by_population.zip)
 
 ## Download the PostGIS plugin
 
 QGIS has a plugin manager. From there we get our hands on the Spit
 plugin. A great little utility for importing Shapefiles straight into
-PostGIS.
+PostGIS. To install Spit go to: Plugins > Manage Plugins... 
+
+![Manage Plugins](https://img.skitch.com/20110821-d65eqj8npdwpb2t78h9kw3je5e.png)
+
+Here you can find the plugin via the search filter and enbable it. 
+
+![Spit](https://img.skitch.com/20110821-piswg9utcma2hw8xudj7t5wsmj.png)
+
+Now its time to connect to your database and load up the Shapefiles.
 
 ## Upload some data
 
 Lets fire up the plugin to connect to your new database and import the
-Shapefiles we have just downloaded. It should slurps it right in.
+Shapefiles we have just downloaded. Go to: Plugins > Spit > Import Shapefiles to PostgreSQL
+
+![Import Shapefiles to PostgreSQL](https://img.skitch.com/20110821-881mk2tent8r3j2yt4bewf35xe.png)
+
+Add a new connection and connect to the database:
+
+![New connection](https://img.skitch.com/20110821-d8np16ftyt31qxkf7i5kxncatw.png)
+
+Next we add the Shapefiles we downloaded for this demo to our database. Click on Add and select the unzipped files:
+
+![Add Shpfiles for import](https://img.skitch.com/20110821-bjmc1qeug6b474xx38m7im9i9g.png)
+
+Make sure you have picked the correct SRID (Spatial Reference ID). 
+We set ours to 4326 which is what our original dataset was in and is also used by GPS.
+
+
+It should slurps it right in.
 
 ## View the data.
 
@@ -159,3 +184,11 @@ database.
 * **[Using SpacialDB with nodejs](http://devcenter.spacialdb.com/Node.html)**
 * [Importing OpenStreetMap data into SpacialDB](http://devcenter.spacialdb.com/Import-OSM.html)
 * [Adding navigation & routing to your applications](http://devcenter.spacialdb.com/Routing-Introduction.html)
+
+
+## Data Sources:
+
+* [cloudmade](http://downloads.cloudmade.com/)
+* [geofabrik](http://www.geofabrik.de/data/shapefiles.html)
+* [geocommons](http://geocommons.com/search?model=Overlay&page=1)
+
